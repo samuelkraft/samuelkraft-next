@@ -1,0 +1,48 @@
+.project {
+  width: 100%;
+  margin-bottom: 75px;
+}
+
+.imageWrapper {
+  margin-bottom: 20px;
+  padding-bottom: 56%;
+  background-color: black;
+  border-radius: 15px;
+
+  @media (min-width: 890px) {
+    margin-right: -25px;
+    margin-left: -25px;
+  }
+}
+
+.title {
+  margin-bottom: 10px;
+  font-size: 30px;
+}
+
+.description {
+  margin-bottom: 12px;
+  font-weight: 600;
+  font-size: 18px;
+  opacity: 0.8;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--brand);
+  font-weight: 600;
+  font-size: 18px;
+  transition: color 200ms ease-out;
+
+  &:hover,
+  &:focus {
+    color: var(--brandActive);
+  }
+
+  svg {
+    width: 20px;
+    height: auto;
+    margin-left: 10px;
+  }
+}

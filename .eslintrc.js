@@ -32,6 +32,9 @@ module.exports = {
       },
     ],
     'react/jsx-one-expression-per-line': 0,
+    'react/require-default-props': 0,
+    'react/jsx-props-no-spreading': 0,
+    'jsx-a11y/anchor-is-valid': 0, // next-links require empty a tags
   },
   globals: {
     JSX: true,

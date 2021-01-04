@@ -1,0 +1,29 @@
+.header {
+  display: flex;
+  padding: 30px;
+  background-color: var(--bookHeaderBg);
+  border-radius: 8px;
+}
+
+.meta {
+  margin-left: 43px;
+}
+
+.cover {
+  border-radius: 8px;
+}
+
+.title {
+  display: block;
+  margin-bottom: 6px;
+  padding-top: 15px;
+  font-weight: 800;
+  font-size: 36px;
+}
+
+.author {
+  margin-bottom: 12px;
+  font-weight: 600;
+  font-size: 17px;
+  opacity: 0.6;
+}

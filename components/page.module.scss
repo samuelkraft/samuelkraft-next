@@ -1,0 +1,22 @@
+.container {
+  max-width: 830px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.main {
+  margin-bottom: 80px;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 30px 0;
+  border-top: 1px solid var(--border);
+
+  p {
+    opacity: 0.3;
+  }
+}

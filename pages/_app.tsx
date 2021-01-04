@@ -1,9 +1,15 @@
-import '../styles/globals.css'
+import { ThemeProvider } from 'next-themes'
 import type { AppProps } from 'next/app'
+import SEO from 'components/seo'
+import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
-  /* eslint-disable react/jsx-props-no-spreading */
-  return <Component {...pageProps} />
+  return (
+    <ThemeProvider defaultTheme="system">
+      <SEO />
+      <Component {...pageProps} />
+    </ThemeProvider>
+  )
 }
 
 export default MyApp

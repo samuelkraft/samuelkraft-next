@@ -1,0 +1,64 @@
+.grid {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 73px;
+}
+
+.book {
+  margin: 0;
+}
+
+.cover {
+  border-radius: 8px;
+}
+
+.title {
+  display: block;
+  margin-bottom: 6px;
+  padding-top: 15px;
+  font-size: 19px;
+}
+
+.author {
+  margin-bottom: 12px;
+  font-weight: 600;
+  font-size: 15px;
+  opacity: 0.6;
+}
+
+.pageDescription {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 1.35;
+  opacity: 0.8;
+}
+
+.selectLabel {
+  display: inline-flex;
+  align-items: center;
+
+  svg {
+    margin-left: 5px;
+    stroke: var(--brand);
+  }
+}
+
+.select {
+  width: auto;
+  margin: 0;
+  margin-left: 13px;
+  color: var(--brand);
+  font-weight: 500;
+  font-size: 17px;
+  font-family: var(--fontFamily);
+  line-height: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}

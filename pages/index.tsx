@@ -1,31 +1,27 @@
-import Head from 'next/head'
 import Button from 'components/button'
-import styles from './index.module.css'
+import PageHeader from 'components/pageheader'
+import Project from 'components/project'
+import Page from 'components/page'
+import styles from './index.module.scss'
 
 const Home = (): JSX.Element => (
-  <div className={styles.container}>
-    <Head>
-      <title>Samuel Kraft</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
-
-    <main className={styles.main}>
-      <h1 className={styles.title}>
-        Welcome to <a href="https://nextjs.org">Next.js!</a>
-      </h1>
-      <Button>button test</Button>
-    </main>
-
-    <footer className={styles.footer}>
-      <a
-        href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Powered by <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-      </a>
-    </footer>
-  </div>
+  <Page>
+    <PageHeader
+      title="Hi, my name is Samuel."
+      description="I’m a frontend developer &amp; designer. Right now I’m working at Tracklib. This is my personal website - where you’ll find all the stuff I’m currently doing and thinking about."
+    >
+      <Button href="/about">More about me</Button>
+    </PageHeader>
+    <h2>Projects</h2>
+    <Project title="Tracklib" description="Clear samples from real music" link="tracklib.com" />
+    <Project title="Bitrefill" description="Live on Crypto" link="bitrefill.com" />
+    <div className={styles.grid}>
+      <Project title="StyleRoom" description="Swedens largest source of interior design inspiration" link="styleroom.se/app" />
+      <Project title=" Watch Strength" description="Your personal strength tracker" href="/strength" />
+      <Project title="Eventomatic" description="Connecting brands with fans" link="eventomatic.se" />
+      <Project title="The Jet Lag Family" description="My small family’s travel blog" link="thejetlagfamily.com" />
+    </div>
+  </Page>
 )
 
 export default Home

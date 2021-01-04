@@ -1,0 +1,14 @@
+.star {
+  width: 16px;
+  height: auto;
+  margin-right: 2px;
+  opacity: 0.15;
+  fill: var(--text);
+  stroke: none;
+}
+
+.filledStar {
+  composes: star;
+  opacity: 1;
+  fill: var(--star);
+}
