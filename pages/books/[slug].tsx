@@ -17,7 +17,7 @@ import styles from './book.module.scss'
 
 type BookProps = {
   book: BookType
-  page: Record<string, unknown>
+  page: any // eslint-disable-line
 }
 
 const Book = ({ book, page }: BookProps): JSX.Element => {
