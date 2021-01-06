@@ -91,7 +91,7 @@ const Books = ({ books }: BooksProps): JSX.Element => {
               <li className={styles.book} key={id}>
                 <Link href={`books/${slug}`}>
                   <a>
-                    <Image src={image[0].url} width={218} height={328} className={styles.cover} layout="responsive" />
+                    <Image src={image[0].url} width={218} height={328} className={styles.cover} />
                     <strong className={styles.title}>{title}</strong>
                     <p className={styles.author}>{author}</p>
                     <Rating rating={rating} />
