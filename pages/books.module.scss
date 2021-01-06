@@ -3,16 +3,30 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column-gap: 73px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+
+  @media (min-width: 480px) {
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 40px;
+  }
 }
 
 .book {
+  min-width: 0;
   margin: 0;
+
+  &:hover,
+  &:focus {
+    .cover {
+      transform: translateY(-5px);
+    }
+  }
 }
 
 .cover {
   border-radius: 8px;
+  transition: transform 200ms ease-out;
 }
 
 .title {
@@ -29,11 +43,20 @@
   opacity: 0.6;
 }
 
-.pageDescription {
+.sortBy {
+  margin-top: -10px;
   font-weight: 500;
   font-size: 17px;
   line-height: 1.35;
-  opacity: 0.8;
+
+  @media (min-width: 480px) {
+    font-size: 19px;
+    line-height: 1.35;
+  }
+
+  span {
+    opacity: 0.8;
+  }
 }
 
 .selectLabel {
@@ -61,4 +84,8 @@
   cursor: pointer;
   -webkit-appearance: none;
   -moz-appearance: none;
+
+  @media (min-width: 480px) {
+    font-size: 19px;
+  }
 }

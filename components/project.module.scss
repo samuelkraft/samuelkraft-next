@@ -1,11 +1,17 @@
 .project {
   width: 100%;
-  margin-bottom: 75px;
+  margin-bottom: 40px;
+
+  @media (min-width: 480px) {
+    margin-bottom: 75px;
+  }
 }
 
 .imageWrapper {
+  position: relative;
   margin-bottom: 20px;
-  padding-bottom: 56%;
+  padding-bottom: 50%;
+  overflow: hidden;
   background-color: black;
   border-radius: 15px;
 
@@ -15,16 +21,35 @@
   }
 }
 
+.small {
+  padding-bottom: 100%;
+
+  .imageAnimationWrapper {
+    right: 5%;
+    left: 5%;
+  }
+}
+
 .title {
-  margin-bottom: 10px;
-  font-size: 30px;
+  margin-bottom: 8px;
+  font-size: 26px;
+
+  @media (min-width: 480px) {
+    margin-bottom: 10px;
+    font-size: 30px;
+  }
 }
 
 .description {
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 16px;
   opacity: 0.8;
+
+  @media (min-width: 480px) {
+    margin-bottom: 12px;
+    font-size: 18px;
+  }
 }
 
 .link {
@@ -32,8 +57,12 @@
   align-items: center;
   color: var(--brand);
   font-weight: 600;
-  font-size: 18px;
+  font-size: 16px;
   transition: color 200ms ease-out;
+
+  @media (min-width: 480px) {
+    font-size: 18px;
+  }
 
   &:hover,
   &:focus {
@@ -45,4 +74,19 @@
     height: auto;
     margin-left: 10px;
   }
+}
+
+.imageAnimationWrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.image {
+  position: absolute;
+  bottom: -7px;
+  left: 50%;
+  width: 95%;
+  transform: translateX(-50%);
 }

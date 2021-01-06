@@ -1,5 +1,6 @@
 .header {
   display: flex;
+  margin-bottom: 40px;
   padding: 30px;
   background-color: var(--bookHeaderBg);
   border-radius: 8px;
@@ -15,15 +16,87 @@
 
 .title {
   display: block;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
   padding-top: 15px;
   font-weight: 800;
   font-size: 36px;
 }
 
 .author {
-  margin-bottom: 12px;
+  margin-bottom: 20px;
   font-weight: 600;
   font-size: 17px;
   opacity: 0.6;
+}
+
+.genre {
+  padding: 2px 5px;
+  color: white;
+  font-weight: 500;
+  font-size: 13px;
+  background-color: #407069;
+  border-radius: 3px;
+}
+
+.checkbox {
+  margin: 0;
+}
+
+.metaList {
+  margin-bottom: 20px;
+  dt {
+    position: relative;
+    top: 6px;
+    float: left;
+    clear: left;
+    font-size: 14px;
+    opacity: 0.8;
+  }
+
+  dd {
+    margin-bottom: 8px;
+    margin-left: 150px;
+    padding: 5px;
+    font-size: 15px;
+  }
+}
+
+.post {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  ul,
+  li,
+  ol {
+    color: var(--text);
+  }
+
+  li {
+    padding-bottom: 0;
+  }
+
+  ol,
+  ul,
+  p {
+    font-size: 1.1em;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 700;
+  }
+
+  :global(.notion-quote) {
+    margin-bottom: 10px;
+    color: var(--text);
+    opacity: 0.8;
+  }
 }

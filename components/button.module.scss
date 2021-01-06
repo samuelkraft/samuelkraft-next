@@ -1,4 +1,6 @@
 .button {
+  display: inline-flex;
+  align-items: center;
   padding: 10px 14px;
   color: white;
   font-weight: 700;
@@ -6,11 +8,29 @@
   background-color: var(--brand);
   border: none;
   border-radius: 6px;
-  transition: background-color 200ms ease-out;
+  transition: background-color 200ms ease-out, color 200ms ease-out;
 
   &:hover,
   &:focus {
     background-color: var(--brandActive);
+    cursor: pointer;
+  }
+
+  svg {
+    width: 18px;
+    margin-left: 8px;
+  }
+}
+
+.transparent {
+  padding: 0;
+  color: var(--brand);
+  background-color: transparent;
+
+  &:hover,
+  &:focus {
+    color: var(--brandActive);
+    background-color: transparent;
     cursor: pointer;
   }
 }

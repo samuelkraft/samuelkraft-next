@@ -8,13 +8,18 @@
     "start": "next start"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
+    "framer-motion": "^3.1.4",
     "next": "10.0.0",
     "next-seo": "^4.17.0",
     "next-themes": "^0.0.10",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-feather": "^2.0.9",
-    "sass": "^1.32.0"
+    "react-intersection-observer": "^8.31.0",
+    "react-notion": "^0.9.3",
+    "sass": "^1.32.0",
+    "slugify": "^1.4.6"
   },
   "devDependencies": {
     "@types/node": "^14.14.19",

@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Page from 'components/page'
 import Button from 'components/button'
+import { NextSeo } from 'next-seo'
 import styles from './about.module.scss'
 
 const About = (): JSX.Element => {
@@ -8,8 +9,20 @@ const About = (): JSX.Element => {
     target: '_blank',
     rel: 'noopener noreferrer',
   }
+  const seoTitle = 'About Samuel Kraft'
   return (
     <Page>
+      <NextSeo
+        title={seoTitle}
+        openGraph={{
+          title: seoTitle,
+          url: `https://samuelkraft.com/about/`,
+          site_name: 'Samuel Kraft',
+        }}
+        twitter={{
+          cardType: 'summary_large_image',
+        }}
+      />
       <Image src="/samuelkraft.jpg" alt="Picture of me (samuel kraft)" width={1606} height={990} className={styles.image} />
       <div className={styles.text}>
         <p>Hey I’m Samuel, a frontend developer &amp; designer currently living in 🇸🇪 Stockholm, Sweden.</p>

@@ -1,8 +1,12 @@
 .switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
+  display: none;
+
+  @media (min-width: 480px) {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
 }
 
 /* Hide default HTML checkbox */
