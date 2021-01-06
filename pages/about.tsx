@@ -47,7 +47,7 @@ const About = (): JSX.Element => {
           are CSS, React, Design Systems, Component Kits, UI Animation and delightful interfaces ✨.
         </p>
         <p>
-          In my spare time I love the being outdoors, training and travelling with my family (check out{' '}
+          In my spare time I love being outdoors, training and travelling with my family (check out{' '}
           <a href="https://www.instagram.com/thejetlagfamily/" {...linkProps}>
             @thejetlagfamily
           </a>{' '}
