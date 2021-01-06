@@ -55,11 +55,12 @@
 }
 
 .iconDark {
-  position: relative;
-  top: 2px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-55%);
 }
 
 .iconLight {
   composes: iconDark;
-  right: -27px;
+  right: 6px;
 }
