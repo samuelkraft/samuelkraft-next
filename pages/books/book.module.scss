@@ -1,13 +1,20 @@
 .header {
   display: flex;
+  flex-direction: column;
   margin-bottom: 40px;
   padding: 30px;
   background-color: var(--bookHeaderBg);
   border-radius: 8px;
+
+  @media (min-width: 480px) {
+    flex-direction: row;
+  }
 }
 
 .meta {
-  margin-left: 43px;
+  @media (min-width: 480px) {
+    margin-left: 43px;
+  }
 }
 
 .cover {
