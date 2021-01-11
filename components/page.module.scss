@@ -13,14 +13,30 @@
 }
 
 .footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
   padding: 30px 0;
   border-top: 1px solid var(--border);
 
   p {
     opacity: 0.3;
+  }
+}
+.copyright {
+  text-align: center;
+}
+
+.links {
+  display: grid;
+  margin: 0;
+  margin-bottom: 50px;
+  padding: 0;
+  list-style: none;
+  opacity: 0.5;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+
+  li {
+    margin-bottom: 0;
+    font-weight: 500;
   }
 }

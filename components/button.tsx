@@ -5,12 +5,20 @@ import styles from './button.module.scss'
 type ButtonProps = {
   children: JSX.Element | JSX.Element[] | string
   type?: 'button' | 'submit' | 'reset'
-  href: string
+  href?: string
+  onClick?: () => void
   variant?: string
 }
 
-const Button = ({ children, type, href, variant }: ButtonProps): JSX.Element => {
+const Button = ({ children, type, href, variant, onClick }: ButtonProps): JSX.Element => {
   const classes = cn(styles.button, styles[variant])
+  if (onClick || !href) {
+    return (
+      <button className={classes} type={type === 'submit' ? 'submit' : 'button'} onClick={onClick}>
+        {children}
+      </button>
+    )
+  }
   if (href.startsWith('/')) {
     return (
       <Link href={href} passHref>
