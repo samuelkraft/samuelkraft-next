@@ -2,6 +2,7 @@
   "name": "nextjs",
   "version": "0.1.0",
   "private": true,
+  "browserslist": ["last 4 version", "not dead"],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
