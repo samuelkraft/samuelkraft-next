@@ -106,7 +106,7 @@ const Book = ({ book, page }: BookProps): JSX.Element => {
 export const getStaticPaths: GetStaticPaths = async () => {
   const bookRes = await fetch(`https://notion-api.splitbee.io/v1/table/b84d503315b24b7e8326ba6012dfddde`)
   const bookData = await bookRes.json()
-  const paths = bookData.filter(book => book.Published).map(b => `/books/${slugify(b.Name, { lower: true })}`)
+  const paths = bookData.filter(book => book.Status === 'Published').map(b => `/books/${slugify(b.Name, { lower: true })}`)
 
   return {
     paths,

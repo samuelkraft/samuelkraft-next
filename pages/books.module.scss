@@ -1,6 +1,7 @@
 .grid {
   display: grid;
   margin: 0;
+  margin-bottom: 50px;
   padding: 0;
   list-style: none;
   grid-template-columns: repeat(2, 1fr);

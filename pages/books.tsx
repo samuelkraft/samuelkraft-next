@@ -33,10 +33,11 @@ export type Book = {
 }
 
 type BooksProps = {
-  books: Array<Book>
+  published: Array<Book>
+  reading: Array<Book>
 }
 
-const Books = ({ books }: BooksProps): JSX.Element => {
+const Books = ({ published, reading }: BooksProps): JSX.Element => {
   const [sorting, setSorting] = useState('finished')
   const seoTitle = 'Books | Samuel Kraft'
   const seoDesc = 'This page contains books I enjoy with my notes, highlights and reviews.'
@@ -56,7 +57,7 @@ const Books = ({ books }: BooksProps): JSX.Element => {
         }}
       />
       <PageHeader title="Books" description="This page contains books I enjoy with my notes, highlights and reviews.">
-        {books.length > 1 && (
+        {published.length > 1 && (
           <p className={styles.sortBy}>
             <span>Sort by:</span>
             <label htmlFor="select" className={styles.selectLabel}>
@@ -78,7 +79,7 @@ const Books = ({ books }: BooksProps): JSX.Element => {
         )}
       </PageHeader>
       <ul className={styles.grid}>
-        {books
+        {published
           ?.sort((a, b) => {
             if (sorting === 'finished') {
               return new Date(b.Date).getTime() - new Date(a.Date).getTime()
@@ -101,6 +102,19 @@ const Books = ({ books }: BooksProps): JSX.Element => {
             )
           })}
       </ul>
+      <h2>Currently reading</h2>
+      <ul className={styles.grid}>
+        {reading.map(({ Name: title, Author: author, Rating: rating, Image: image, id }) => {
+          const slug = slugifiy(title, { lower: true })
+          return (
+            <li className={styles.book} key={id}>
+              <Image src={image[0].url} width={218} height={328} className={styles.cover} />
+              <strong className={styles.title}>{title}</strong>
+              <p className={styles.author}>{author}</p>
+            </li>
+          )
+        })}
+      </ul>
     </Page>
   )
 }
@@ -114,11 +128,13 @@ export const getStaticProps: GetStaticProps = async () => {
       notFound: true,
     }
   }
-  const books = data.filter(book => book.Published)
+  const published = data.filter(book => book.Status === 'Published')
+  const reading = data.filter(book => book.Status === 'Reading')
 
   return {
     props: {
-      books,
+      published,
+      reading,
     },
     revalidate: 1,
   }
