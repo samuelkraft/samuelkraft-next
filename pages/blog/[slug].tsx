@@ -5,11 +5,11 @@ import matter from 'gray-matter'
 import hydrate from 'next-mdx-remote/hydrate'
 import renderToString from 'next-mdx-remote/render-to-string'
 import Head from 'next/head'
-import dynamic from 'next/dynamic'
-import slug from 'remark-slug'
-import headings from 'remark-autolink-headings'
 import capitalize from 'remark-capitalize'
 import readingTime from 'reading-time'
+import Link from 'next/link'
+import Image from 'next/image'
+import { NextSeo } from 'next-seo'
 
 // Components
 import Page from 'components/page'
@@ -19,13 +19,30 @@ import PageHeader from 'components/pageheader'
 import { postFilePaths, POSTS_PATH } from 'utils/mdxutils'
 import styles from './post.module.scss'
 
+const CustomLink = (props: { href: string }) => {
+  const { href } = props
+
+  /* eslint-disable */
+  if (href?.startsWith('/')) {
+    return (
+      <Link href={href}>
+        <a {...props} />
+      </Link>
+    )
+  }
+
+  if (href.startsWith('#')) {
+    return <a {...props} />
+  }
+
+  return <a target="_blank" rel="noopener noreferrer" {...props} />
+  /* eslint-enable */
+}
+
 const components = {
-  // a: CustomLink,
-  // It also works with dynamically-imported components, which is especially
-  // useful for conditionally loading components for certain routes.
-  // See the notes in README.md for more details.
-  Button: dynamic(() => import('components/button')),
   Head,
+  a: CustomLink,
+  Image,
 }
 
 export type Meta = {
@@ -39,6 +56,7 @@ export type Meta = {
   }
   summary: string
   title: string
+  slug: string
 }
 
 type PostProps = {
@@ -52,11 +70,43 @@ type PostProps = {
 const Post = ({ source }: PostProps): JSX.Element => {
   const content = hydrate(source, { components })
   const { scope: meta } = source
+  const formattedDate = new Date(meta.publishedAt).toLocaleString('en-US', {
+    month: 'short',
+    day: '2-digit',
+    year: 'numeric',
+  })
+
+  const seoTitle = `${meta.title} - Samuel Kraft`
+  const seoDesc = `${meta.summary}`
+
   return (
     <Page>
-      <PageHeader title={meta.title} description={meta.summary} />
-      <p>{meta.readingTime.text}</p>
-      <main>{content}</main>
+      <NextSeo
+        title={seoTitle}
+        description={seoDesc}
+        openGraph={{
+          title: seoTitle,
+          url: `https://samuelkraft.com/blog/${meta.slug}`,
+          description: seoDesc,
+          images: [
+            {
+              url: meta.image,
+              alt: meta.title,
+            },
+          ],
+          site_name: 'Samuel Kraft',
+        }}
+        twitter={{
+          cardType: 'summary_large_image',
+        }}
+      />
+      <PageHeader title={meta.title}>
+        <p className={styles.meta}>
+          Published on {formattedDate} &middot; {meta.readingTime.text}
+        </p>
+      </PageHeader>
+
+      <article className={styles.article}>{content}</article>
     </Page>
   )
 }
@@ -84,10 +134,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     components,
     // Optionally pass remark/rehype plugins
     mdxOptions: {
-      remarkPlugins: [slug, headings, capitalize],
+      remarkPlugins: [capitalize],
       rehypePlugins: [],
     },
-    scope: { ...data, readingTime: readingTime(content) },
+    scope: { ...data, readingTime: readingTime(content), slug: params.slug },
   })
 
   return {

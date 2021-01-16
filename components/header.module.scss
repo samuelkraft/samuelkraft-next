@@ -64,8 +64,12 @@
   margin-bottom: 0;
   padding: 0;
   font-weight: 700;
-  font-size: 17px;
+  font-size: 14px;
   list-style: none;
+
+  @media (min-width: 370px) {
+    font-size: 17px;
+  }
 
   @media (min-width: 480px) {
     margin-right: 25px;
@@ -82,13 +86,8 @@
     opacity: 1;
   }
 
-  @media (min-width: 588px) {
-    margin-right: 80px;
-    margin-left: 0;
-  }
-
   @media (min-width: 768px) {
-    margin-right: 80px;
+    margin-right: 75px;
     margin-left: 0;
   }
 }

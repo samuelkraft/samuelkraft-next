@@ -13,10 +13,13 @@ import PageHeader from 'components/pageheader'
 // Utils
 import { postFilePaths, POSTS_PATH } from 'utils/mdxutils'
 
+// Types
+import type { Meta } from 'pages/blog/[slug]'
+
 import styles from './blog.module.scss'
 
 type BlogProps = {
-  posts: any
+  posts: Array<{ content: string; filePath: string; meta: Meta }>
 }
 
 const Blog = ({ posts }: BlogProps): JSX.Element => {
@@ -38,14 +41,25 @@ const Blog = ({ posts }: BlogProps): JSX.Element => {
         }}
       />
       <PageHeader title="Blog" description={seoDesc} />
-      <ul>
+      <ul className={styles.list}>
         {posts.map(post => {
+          const {
+            meta: { summary, title, readingTime: readTime, publishedAt },
+          } = post
+          const formattedDate = new Date(publishedAt).toLocaleString('en-US', {
+            month: 'short',
+            day: '2-digit',
+            year: 'numeric',
+          })
           return (
             <li key={post.filePath}>
               <Link as={`/blog/${post.filePath.replace(/\.mdx?$/, '')}`} href="/blog/[slug]">
-                <a>{post.meta.title}</a>
+                <a className={styles.title}>{title}</a>
               </Link>
-              <p>{post.meta.readingTime.text}</p>
+              <p className={styles.summary}>{summary}</p>
+              <p className={styles.meta}>
+                Published on {formattedDate} &middot; {readTime.text}
+              </p>
             </li>
           )
         })}
