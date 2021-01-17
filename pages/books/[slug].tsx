@@ -107,7 +107,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const bookRes = await fetch(`https://notion-api.splitbee.io/v1/table/b84d503315b24b7e8326ba6012dfddde`)
   const bookData = await bookRes.json()
   const paths = bookData.filter(book => book.Status === 'Published').map(b => `/books/${slugify(b.Name, { lower: true })}`)
-
   return {
     paths,
     fallback: false,
@@ -117,10 +116,7 @@ export const getStaticProps: GetStaticProps = async context => {
   const bookRes = await fetch(`https://notion-api.splitbee.io/v1/table/b84d503315b24b7e8326ba6012dfddde`)
   const bookData = await bookRes.json()
 
-  const pageRes = await fetch(`https://notion-api.splitbee.io/v1/page/b4f80f98-e06d-4672-b8af-a52ebb48894a`)
-  const pageData = await pageRes.json()
-
-  if (!bookData || !pageData) {
+  if (!bookData) {
     return {
       notFound: true,
     }
@@ -128,6 +124,9 @@ export const getStaticProps: GetStaticProps = async context => {
 
   const { slug } = context.params
   const book = bookData.find(b => slugify(b.Name, { lower: true }) === slug)
+
+  const pageRes = await fetch(`https://notion-api.splitbee.io/v1/page/${book.id}`)
+  const pageData = await pageRes.json()
 
   return {
     props: {
