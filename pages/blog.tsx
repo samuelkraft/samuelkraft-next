@@ -42,27 +42,29 @@ const Blog = ({ posts }: BlogProps): JSX.Element => {
       />
       <PageHeader title="Blog" description={seoDesc} />
       <ul className={styles.list}>
-        {posts.map(post => {
-          const {
-            meta: { summary, title, readingTime: readTime, publishedAt },
-          } = post
-          const formattedDate = new Date(publishedAt).toLocaleString('en-US', {
-            month: 'short',
-            day: '2-digit',
-            year: 'numeric',
-          })
-          return (
-            <li key={post.filePath}>
-              <Link as={`/blog/${post.filePath.replace(/\.mdx?$/, '')}`} href="/blog/[slug]">
-                <a className={styles.title}>{title}</a>
-              </Link>
-              <p className={styles.summary}>{summary}</p>
-              <p className={styles.meta}>
-                Published on {formattedDate} &middot; {readTime.text}
-              </p>
-            </li>
-          )
-        })}
+        {posts
+          .sort((a, b) => new Date(b.meta.publishedAt).getTime() - new Date(a.meta.publishedAt).getTime())
+          .map(post => {
+            const {
+              meta: { summary, title, readingTime: readTime, publishedAt },
+            } = post
+            const formattedDate = new Date(publishedAt).toLocaleString('en-US', {
+              month: 'short',
+              day: '2-digit',
+              year: 'numeric',
+            })
+            return (
+              <li key={post.filePath}>
+                <Link as={`/blog/${post.filePath.replace(/\.mdx?$/, '')}`} href="/blog/[slug]">
+                  <a className={styles.title}>{title}</a>
+                </Link>
+                <p className={styles.summary}>{summary}</p>
+                <p className={styles.meta}>
+                  Published on {formattedDate} &middot; {readTime.text}
+                </p>
+              </li>
+            )
+          })}
       </ul>
     </Page>
   )

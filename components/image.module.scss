@@ -1,0 +1,15 @@
+.wrapper {
+  margin: 2em 0 1.5em 0;
+  text-align: center;
+
+  & > div {
+    display: inline-block;
+    text-align: left;
+  }
+}
+
+.caption {
+  padding-top: 5px;
+  font-size: 0.8em;
+  opacity: 0.6;
+}

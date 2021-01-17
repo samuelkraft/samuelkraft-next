@@ -8,7 +8,7 @@ import Head from 'next/head'
 import capitalize from 'remark-capitalize'
 import readingTime from 'reading-time'
 import Link from 'next/link'
-import Image from 'next/image'
+import CustomImage from 'components/image'
 import { NextSeo } from 'next-seo'
 
 // Components
@@ -42,7 +42,7 @@ const CustomLink = (props: { href: string }) => {
 const components = {
   Head,
   a: CustomLink,
-  Image,
+  Image: CustomImage,
 }
 
 export type Meta = {
