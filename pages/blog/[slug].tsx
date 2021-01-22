@@ -9,6 +9,7 @@ import capitalize from 'remark-capitalize'
 import readingTime from 'reading-time'
 import Link from 'next/link'
 import CustomImage from 'components/image'
+import Warning from 'components/warning'
 import { NextSeo } from 'next-seo'
 
 // Components
@@ -43,6 +44,8 @@ const components = {
   Head,
   a: CustomLink,
   Image: CustomImage,
+  Warning,
+  Link: CustomLink,
 }
 
 export type Meta = {
