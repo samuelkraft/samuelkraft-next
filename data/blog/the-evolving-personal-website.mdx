@@ -1,0 +1,60 @@
+---
+title: 'The Evolving Personal Website'
+publishedAt: '2021-01-22'
+summary: 'A brief history of my personal website starting in the tumblr era.'
+image: '/blog/the-evolving-personal-website/og.png'
+---
+
+My personal website has taken quite a few shapes over the years. With the rise of simple website creators like squarespace or even dribbble portfolios you could ask yourself as a frontend dev; Do you even need to build your own website today? What is a personal website for?
+
+The primary use-case is normally to show your portfolio and previous work to showcase your skills and provide easy access to contact information. A personal website can be just that, but it can also be something more. A playground for experimentation, a place to try new techniques, learn new tools, really anything you want. As Brian Lovin stated in [Incrementally correct personal websites](https://brianlovin.com/overthought/incrementally-correct-personal-websites):
+
+> If you've been struggling with the looming task of redesigning your personal website from scratch, or rebuilding your portfolio after years of neglect, maybe it's time to approach things from a different angle the next time around.
+
+This website's goal is just that. To be a living place for me to experiment with the latest techniques, share things I've learned with the community (check out /books and this blog) and showcase what I do.
+
+## A brief history
+
+My first personal website was created back in 2012, it used **tumblr** as a cms (hello old, samuelkraft.tumblr.com) and was my first foray into creating custom tumblr themes. Learning this skill then enabled me to create a whole bunch of tumblr themes, including the first version of my wifes blog, [https://emmasjulblogg.se](https://emmasjulblogg.se) (swedish, now migrated to wordpress on digitalocean) which is now her full time job. My site now consisted of a simple visual list of work.
+
+<Image
+  alt="Personal website version 2012"
+  caption="Personal website version 2012"
+  src={'/blog/the-evolving-personal-website/samuelkraft-2012.png'}
+  width={400}
+  height={300}
+/>
+
+Growing tired of tumblr's branded url the next version was a pure html/css site hosted on a "real" hosting provider with my first domain: **samuelkraft.me**. At this time I focused most of my energy posting work on [dribbble](https://dribbble.com/samuelkraft) leading my website to a very minimal design including just social links and contact information. Unfortunately this one did not convert very well, so now I had a good reason to redesign it again 😉
+
+<Image
+  alt="Personal website version 2013"
+  caption="Personal website version 2013"
+  src={'/blog/the-evolving-personal-website/samuelkraft-2013.png'}
+  width={400}
+  height={300}
+/>
+
+Somewhere along here my website got redesigned at least twice, but I can't find any of those assets so let's fast forward to 2018. The new design put my work front and center, solving the issue of the previous one. This is the time I realized that the static nature of my personal website would be a perfect fit for **github pages**. I previously purchased my domain at my hosting provider, but constant price increases made me annoyed so now I dropped them completely and bought and switched to [samuelkraft.com](http://samuelkraft.com) some place else instead.
+
+<Image
+  alt="Personal website version 2018"
+  caption="Personal website version 2018"
+  src={'/blog/the-evolving-personal-website/samuelkraft-2018.png'}
+  width={2182}
+  height={1570}
+/>
+
+I wanted to do something more though. I wanted my website to be more dynamic, to update more often and to be a place I can share whatever I wish. As an example I read a lot of books, and I've recently started writing reviews & summaries of them in order to remember what I've read and to make sure I really understand it. It seemed like the perfect thing to publish to my personal website. If it helps me it will probably help someone else. You can find these on [/books](/books).
+
+Around this time javascript frameworks started getting lots of attention, and my work started to include them more and more. My personal website did not change however, what's the point in over-architecting ones personal website with a bloated js framework when one can simply host a bunch of static files? Fast forward to 2020 [Next.js](https://nextjs.org) have pretty much solved that problem. What's great about Next.js is that while based on React, it can build completely static websites including updating them on the fly periodically. This means you can ship a fast static website to the end user while still getting all the benefits and interactivity of a js framework. Couple this with [Vercel](https://vercel.com), you have dead simple hosting and amazing dev experience included. Of all the versions over the years, my current one is definitely the most technical but it has been the easiest one to build and deploy. I've summarized my experience building this version in my post [Building My Personal Website with Next.js backed by Notion](/blog/personal-website-with-next-and-notion) where I go deeper on technical details.
+
+<Image
+  alt="Personal website version 2021"
+  caption="Personal website version 2021"
+  src={'/blog/the-evolving-personal-website/samuelkraft-2021.png'}
+  width={2584}
+  height={1628}
+/>
+
+If I look back at my personal websites over the years, every new version has resulted in me learning new techniques and tools and this is for me what it's all about. This version of my personal website is my playground. It's where I can learn and keep improving. It's where I can give back to the community what I've learned. It's where I can show my work. It's [samuelkraft.com](http://samuelkraft.com) v2021.

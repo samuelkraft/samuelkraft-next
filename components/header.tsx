@@ -6,6 +6,7 @@ import styles from './header.module.scss'
 const links = [
   { name: 'Home', path: '/' },
   { name: 'About', path: '/about' },
+  { name: 'Blog', path: '/blog' },
   { name: 'Books', path: '/books' },
 ]
 

@@ -22,7 +22,7 @@ const Page = ({ children }: PageProps): JSX.Element => (
     <footer className={styles.footer}>
       <ul className={styles.links}>
         {footerLinks.map(link => (
-          <li>
+          <li key={link.name}>
             <Link href={link.url}>{link.name}</Link>
           </li>
         ))}
