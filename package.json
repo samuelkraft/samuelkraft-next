@@ -12,10 +12,10 @@
     "start": "next start"
   },
   "dependencies": {
+    "@mapbox/rehype-prism": "^0.5.0",
     "classnames": "^2.2.6",
     "framer-motion": "^3.2.1",
     "gray-matter": "^4.0.2",
-    "mdx-prism": "^0.3.1",
     "next": "10.0.5",
     "next-mdx-remote": "^2.1.1",
     "next-seo": "^4.17.0",

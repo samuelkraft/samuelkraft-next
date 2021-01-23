@@ -9,7 +9,7 @@ import capitalize from 'remark-capitalize'
 import readingTime from 'reading-time'
 import Link from 'next/link'
 import { NextSeo } from 'next-seo'
-import mdxPrism from 'mdx-prism'
+import rehypePrism from '@mapbox/rehype-prism'
 
 // Components
 import Page from 'components/page'
@@ -139,7 +139,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     // Optionally pass remark/rehype plugins
     mdxOptions: {
       remarkPlugins: [capitalize],
-      rehypePlugins: [mdxPrism],
+      rehypePlugins: [rehypePrism],
     },
     scope: { ...data, readingTime: readingTime(content), slug: params.slug },
   })
