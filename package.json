@@ -15,6 +15,7 @@
     "classnames": "^2.2.6",
     "framer-motion": "^3.2.1",
     "gray-matter": "^4.0.2",
+    "mdx-prism": "^0.3.1",
     "next": "10.0.5",
     "next-mdx-remote": "^2.1.1",
     "next-seo": "^4.17.0",
@@ -25,6 +26,7 @@
     "react-intersection-observer": "^8.31.0",
     "react-notion": "^0.9.3",
     "reading-time": "^1.2.1",
+    "rehype": "^11.0.0",
     "remark-capitalize": "^1.1.0",
     "sass": "^1.32.4",
     "slugify": "^1.4.6"
