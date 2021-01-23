@@ -14,6 +14,7 @@ const footerLinks = [
   { name: 'Dribbble', url: 'https://www.dribbble.com/samuelkraft' },
   { name: 'Instagram', url: 'https://www.instagram.com/samuelkraft' },
   { name: 'Github', url: 'https://github.com/samuelkraft' },
+  { name: 'Twitter', url: 'https://twitter.com/samuelkraft' },
 ]
 
 const Page = ({ children }: PageProps): JSX.Element => (
