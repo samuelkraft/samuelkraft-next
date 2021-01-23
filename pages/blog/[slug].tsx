@@ -8,13 +8,14 @@ import Head from 'next/head'
 import capitalize from 'remark-capitalize'
 import readingTime from 'reading-time'
 import Link from 'next/link'
-import CustomImage from 'components/image'
-import Warning from 'components/warning'
 import { NextSeo } from 'next-seo'
+import mdxPrism from 'mdx-prism'
 
 // Components
 import Page from 'components/page'
 import PageHeader from 'components/pageheader'
+import CustomImage from 'components/image'
+import Warning from 'components/warning'
 
 // Utils
 import { postFilePaths, POSTS_PATH } from 'utils/mdxutils'
@@ -138,7 +139,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     // Optionally pass remark/rehype plugins
     mdxOptions: {
       remarkPlugins: [capitalize],
-      rehypePlugins: [],
+      rehypePlugins: [mdxPrism],
     },
     scope: { ...data, readingTime: readingTime(content), slug: params.slug },
   })

@@ -9,7 +9,7 @@ When deciding to build a website in 2021 there's a bit of a double edged sword, 
 
 The reason I chose Next.js is how easily you can create really performant websites. With [getStaticProps](https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation) you can build super fast completely static pages which can also update periodically without needing to rebuild your whole site. In getStaticProps you can call any type of api or fetch data from the filesystem (like this blog), and then forward the data as props to your component. getStaticProps is run at build-time so the visitors will always get served a fast static page.
 
-```tsx
+```js
 export async function getStaticProps(context) {
   return {
     props: {}, // will be passed to the page component as props
@@ -151,7 +151,7 @@ Moving on to getStaticProps we need to get our list of books again, in order to 
 
 ```jsx
 export const getStaticProps: GetStaticProps = async context => {
-    const bookRes = await fetch(https://notion-api.splitbee.io/v1/table/b84d503315b24b7e8326ba6012dfddde)
+    const bookRes = await fetch(https://notion-api.splitbee.io/v1/table/[NOTION_TABLE_ID])
     const bookData = await bookRes.json()
 
     if (!bookData) {
@@ -161,7 +161,7 @@ export const getStaticProps: GetStaticProps = async context => {
     }
 
     const { slug } = context.params
-    const book = bookData.find(b => slugify([b.Name](http://b.name/), { lower: true }) === slug)
+    const book = bookData.find(b => slugify(b.name, { lower: true }) === slug)
 
     const pageRes = await fetch(`https://notion-api.splitbee.io/v1/page/${book.id}
     const pageData = await pageRes.json()
@@ -209,7 +209,7 @@ If you want to tweak the styling simply wrap NotionRenderer in a div and apply a
 }
 ```
 
-That's it, check out an example of this on [/books](/books) and [/books/vagabonding](/books/vagabonding).
+That's it, check out an example of this on [/books](/books) and [/books/vagabonding](/books/vagabonding) or the source code available on [Github](https://github.com/samuelkraft/samuelkraft-next).
 
 Let me know if you have any questions or feedback by emailing samuelkraft [at] me.com.
 
