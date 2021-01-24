@@ -11,7 +11,7 @@ const slugify = require('slugify')
   const pages = await globby(['pages/*.tsx', 'data/**/*.mdx', '!pages/_*.tsx', '!pages/api'])
   const bookRes = await fetch(`https://notion-api.splitbee.io/v1/table/b84d503315b24b7e8326ba6012dfddde`)
   const bookData = await bookRes.json()
-  const books = bookData?.filter(book => book.Status == 'Published').map(book => `/books/${slugify(book.Name, { lower: true })}`)
+  const books = bookData?.filter(book => book.Status == 'Published').map(book => `/books/${slugify(book?.Name, { lower: true })}`)
   const sitemap = `
         <?xml version="1.0" encoding="UTF-8"?>
         <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
