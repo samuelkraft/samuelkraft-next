@@ -94,7 +94,7 @@ const Post = ({ source }: PostProps): JSX.Element => {
           description: seoDesc,
           images: [
             {
-              url: meta.image,
+              url: `https://samuelkraft.com${meta.image}`,
               alt: meta.title,
             },
           ],
