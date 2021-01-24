@@ -31,6 +31,7 @@ const Page = ({ children }: PageProps): JSX.Element => (
       </ul>
       <p className={styles.copyright}>&copy; Samuel Kraft {new Date().getFullYear()}</p>
     </footer>
+    <link href="https://github.com/samuelkraft" rel="me" />
   </div>
 )
 
