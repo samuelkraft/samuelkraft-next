@@ -80,7 +80,7 @@ const Post = ({ source }: PostProps): JSX.Element => {
     year: 'numeric',
   })
 
-  const seoTitle = `${meta.title} - Samuel Kraft`
+  const seoTitle = `${meta.title} | Samuel Kraft`
   const seoDesc = `${meta.summary}`
 
   return (
