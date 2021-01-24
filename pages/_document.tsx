@@ -21,6 +21,8 @@ export default class MyDocument extends Document {
           `,
             }}
           />
+          <link rel="webmention" href="https://webmention.io/samuelkraft.com/webmention" />
+          <link rel="pingback" href="https://webmention.io/samuelkraft.com/xmlrpc" />
         </Head>
         <body>
           <Main />
