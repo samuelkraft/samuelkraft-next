@@ -16,6 +16,7 @@ import Page from 'components/page'
 import PageHeader from 'components/pageheader'
 import CustomImage from 'components/image'
 import Warning from 'components/warning'
+import HitCounter from 'components/hitcounter'
 
 // Utils
 import { postFilePaths, POSTS_PATH } from 'utils/mdxutils'
@@ -106,7 +107,8 @@ const Post = ({ source }: PostProps): JSX.Element => {
       />
       <PageHeader title={meta.title}>
         <p className={styles.meta}>
-          Published on {formattedDate} &middot; {meta.readingTime.text}
+          Published on {formattedDate} <span>&middot;</span> {meta.readingTime.text}
+          <HitCounter slug={meta.slug} />
         </p>
       </PageHeader>
 
