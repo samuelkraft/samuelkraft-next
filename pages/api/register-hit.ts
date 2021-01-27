@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
     )
   }
   // Fetch the document for-real
-  const document = await client.query(q.Get(q.Match(q.Index('hits_by_slug'), slug)))
+  const document = (await client.query(q.Get(q.Match(q.Index('hits_by_slug'), slug)))) as { ref: string; data: { hits: number } }
   await client.query(
     q.Update(document.ref, {
       data: {
