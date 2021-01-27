@@ -7,7 +7,7 @@ const prettier = require('prettier')
   const prettierConfig = await prettier.resolveConfig('./.prettier.config.js')
 
   // Ignore Next.js specific files (e.g., _app.js) and API routes.
-  const pages = await globby(['pages/*.tsx', 'data/**/*.mdx', '!pages/_*.tsx', '!pages/api'])
+  const pages = await globby(['pages/*.tsx', 'data/**/*.mdx', '!pages/_*.tsx', '!pages/api', '!pages/404.tsx'])
   const books = ['/books/vagabonding'] // hardcoded for now
   const sitemap = `
         <?xml version="1.0" encoding="UTF-8"?>

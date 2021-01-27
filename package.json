@@ -30,6 +30,7 @@
     "reading-time": "^1.2.1",
     "rehype": "^11.0.0",
     "remark-capitalize": "^1.1.0",
+    "rss": "^1.2.2",
     "sass": "^1.32.4",
     "slugify": "^1.4.6"
   },
