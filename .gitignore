@@ -14,10 +14,13 @@
 
 # production
 /build
+public/sitemap.xml
+public/feed.xml
 
 # misc
 .DS_Store
 *.pem
+/.eslintcache
 
 # debug
 npm-debug.log*
@@ -32,4 +35,4 @@ yarn-error.log*
 
 # vercel
 .vercel
-/.eslintcache
+
