@@ -20,7 +20,7 @@ public/feed.xml
 # misc
 .DS_Store
 *.pem
-/.eslintcache
+.eslintcache
 
 # debug
 npm-debug.log*
@@ -35,4 +35,3 @@ yarn-error.log*
 
 # vercel
 .vercel
-
