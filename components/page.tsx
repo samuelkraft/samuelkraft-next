@@ -1,6 +1,7 @@
 import Header from 'components/header'
 import NowPlaying from 'components/nowplaying'
 import Link from 'next/link'
+import PageTransition from 'components/pagetransition'
 import styles from './page.module.scss'
 
 type PageProps = {
@@ -22,7 +23,9 @@ const footerLinks = [
 const Page = ({ children }: PageProps): JSX.Element => (
   <div className={styles.container}>
     <Header />
-    <main className={styles.main}>{children}</main>
+    <main className={styles.main}>
+      <PageTransition>{children}</PageTransition>
+    </main>
     <footer className={styles.footer}>
       <ul className={styles.links}>
         {footerLinks.map(link => (
