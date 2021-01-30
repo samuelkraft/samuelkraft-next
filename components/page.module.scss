@@ -31,12 +31,18 @@
   margin-bottom: 50px;
   padding: 0;
   list-style: none;
-  opacity: 0.5;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;
 
   li {
     margin-bottom: 0;
     font-weight: 500;
+    opacity: 0.5;
+    transition: opacity 0.2s ease-out;
+
+    &:hover,
+    &:focus {
+      opacity: 0.8;
+    }
   }
 }

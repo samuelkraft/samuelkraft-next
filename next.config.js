@@ -1,6 +1,6 @@
 module.exports = {
   images: {
-    domains: ['www.notion.so'],
+    domains: ['www.notion.so', 'i.scdn.co'],
   },
   webpack: (config, { isServer }) => {
     if (isServer) {

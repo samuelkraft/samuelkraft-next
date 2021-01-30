@@ -1,4 +1,5 @@
 import Header from 'components/header'
+import NowPlaying from 'components/nowplaying'
 import Link from 'next/link'
 import styles from './page.module.scss'
 
@@ -30,6 +31,7 @@ const Page = ({ children }: PageProps): JSX.Element => (
           </li>
         ))}
       </ul>
+      <NowPlaying />
       <p className={styles.copyright}>&copy; Samuel Kraft {new Date().getFullYear()}</p>
     </footer>
     <link href="https://twitter.com/samuelkraft" rel="me" />
