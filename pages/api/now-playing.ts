@@ -1,18 +1,8 @@
+import type { NextApiRequest, NextApiResponse } from 'next'
 import { getNowPlaying } from 'lib/spotify'
 
-type NowPlaying = {
-  album: string
-  albumImageUrl: string
-  artist: string
-  isPlaying: boolean
-  songUrl: string
-  title: string
-}
-
-export default async (_, res): NowPlaying => {
+export default async (_: NextApiRequest, res: NextApiResponse) => {
   const response = await getNowPlaying()
-
-  console.log('response.status', response.status)
 
   if (response.status === 204 || response.status > 400) {
     return res.status(200).json({ isPlaying: false })

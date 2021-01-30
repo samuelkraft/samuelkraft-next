@@ -22,18 +22,7 @@ const getAccessToken = async () => {
   return response.json()
 }
 
-export type NowPlayingType = {
-  data: {
-    album?: string
-    albumImageUrl?: string
-    artist?: string
-    isPlaying: boolean
-    songUrl?: string
-    title?: string
-  }
-}
-
-export const getNowPlaying = async (): NowPlayingType => {
+export const getNowPlaying = async () => {
   const { access_token: accessToken } = await getAccessToken()
 
   return fetch(NOW_PLAYING_ENDPOINT, {

@@ -36,6 +36,7 @@ module.exports = {
     'react/jsx-props-no-spreading': 0,
     'jsx-a11y/anchor-is-valid': 0, // next-links require empty a tags
     'import/prefer-default-export': 0,
+    '@typescript-eslint/explicit-module-boundary-types': 0,
   },
   globals: {
     JSX: true,
