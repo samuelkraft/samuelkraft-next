@@ -53,7 +53,7 @@ const components = {
 }
 
 export type Meta = {
-  image: string
+  image?: string
   publishedAt: string
   readingTime: {
     text: string
@@ -97,9 +97,11 @@ const Post = ({ source }: PostProps): JSX.Element => {
           description: seoDesc,
           images: [
             {
-              url: `https://og-image.samuelkraft.vercel.app/${encodeURIComponent(meta.title)}?desc=${encodeURIComponent(
-                seoDesc,
-              )}&theme=dark.png`,
+              url: meta.image
+                ? `https://samuelkraft.com${meta.image}`
+                : `https://og-image.samuelkraft.vercel.app/${encodeURIComponent(meta.title)}?desc=${encodeURIComponent(
+                    seoDesc,
+                  )}&theme=dark.png`,
               alt: meta.title,
             },
           ],
