@@ -17,6 +17,7 @@ import PageHeader from 'components/pageheader'
 import CustomImage from 'components/image'
 import Warning from 'components/warning'
 import HitCounter from 'components/hitcounter'
+import { NowPlayingIcon } from 'components/nowplaying'
 
 // Utils
 import { postFilePaths, POSTS_PATH } from 'utils/mdxutils'
@@ -48,6 +49,7 @@ const components = {
   Image: CustomImage,
   Warning,
   Link: CustomLink,
+  NowPlayingIcon,
 }
 
 export type Meta = {

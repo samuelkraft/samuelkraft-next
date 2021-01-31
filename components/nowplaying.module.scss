@@ -35,7 +35,7 @@
 
 .icon {
   position: relative;
-  display: flex;
+  display: inline-flex;
   justify-content: space-between;
   width: 13px;
   height: 13px;
@@ -52,12 +52,10 @@
     content: '';
 
     &:nth-of-type(2) {
-      transform: scaleY(0.3);
       animation-delay: -2.2s;
     }
 
     &:nth-of-type(3) {
-      transform: scaleY(0.7);
       animation-delay: -3.7s;
     }
   }

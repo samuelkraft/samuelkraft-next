@@ -10,6 +10,19 @@ const truncate = (str, num) => {
   return str
 }
 
+export const NowPlayingIcon = ({ albumImageUrl }: { albumImageUrl?: string }) => (
+  <div className={styles.icon}>
+    <span />
+    <span />
+    <span />
+    {albumImageUrl && (
+      <div className={styles.cover}>
+        <Image src={albumImageUrl} width={13} height={13} />
+      </div>
+    )}
+  </div>
+)
+
 const NowPlaying = (): JSX.Element => {
   const { data } = useSWR('/api/now-playing', fetcher)
   const nowPlaying = `${data?.title} - ${data?.artist}`
@@ -23,14 +36,7 @@ const NowPlaying = (): JSX.Element => {
           rel="noreferrer noopener"
           title={`Currently playing on Spotify: ${nowPlaying}`}
         >
-          <div className={styles.icon}>
-            <span />
-            <span />
-            <span />
-            <div className={styles.cover}>
-              <Image src={data.albumImageUrl} width={13} height={13} />
-            </div>
-          </div>
+          <NowPlayingIcon albumImageUrl={data.albumImageUrl} />
           {truncate(nowPlaying, 50)}
         </a>
       ) : (
