@@ -1,11 +1,13 @@
 .article {
   margin-top: -20px;
+  margin-bottom: 40px;
   color: var(--text);
   font-size: 1.1em;
   line-height: 1.55;
 
   @media (min-width: 480px) {
     margin-top: -40px;
+    margin-bottom: 60px;
   }
 
   h1 {

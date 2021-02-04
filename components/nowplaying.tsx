@@ -37,7 +37,7 @@ const NowPlaying = (): JSX.Element => {
           title={`Currently playing on Spotify: ${nowPlaying}`}
         >
           <NowPlayingIcon albumImageUrl={data.albumImageUrl} />
-          {truncate(nowPlaying, 50)}
+          {truncate(nowPlaying, 46)}
         </a>
       ) : (
         <span className={styles.widgetHidden}>Not playing</span>

@@ -9,7 +9,7 @@ My site is a place to learn and try new tech, so after seeing Lee Robinsons post
 
 A few years back I purchased the first version of  Apple Watch, and I remember that the "Now playing" complication had a very pleasant animation with "bars" jumping up and down. This tutorial shows how to create a similar animation perfect for visualizing music. This is what we're building: (psst, if I'm listening to music right now you can watch a live example in the footer…)
 
-<div style={{ padding: '50px', backgroundColor: 'var(--bookHeaderBg)', borderRadius: '5px', textAlign: 'center' }}>
+<div style={{ padding: '50px', backgroundColor: 'var(--boxBg)', borderRadius: '5px', textAlign: 'center' }}>
   <NowPlayingIcon />
 </div>
 
@@ -49,7 +49,7 @@ We'll add some containing styles to our wrapper element and style each bar:
 }
 ```
 Which renders:
-<div style={{ padding: '50px', backgroundColor: 'var(--bookHeaderBg)', borderRadius: '5px', textAlign: 'center' }}>
+<div style={{ padding: '50px', backgroundColor: 'var(--boxBg)', borderRadius: '5px', textAlign: 'center' }}>
   <div style={{ position: 'relative', display: 'inline-flex', justifyContent: 'space-between', width: 13, height: 13 }}>
     <span style={{width: 3, height: '100%', backgroundColor: 'var(--brand)', content: '', borderRadius: 3 }} />
     <span style={{width: 3, height: '100%', backgroundColor: 'var(--brand)', content: '', borderRadius: 3 }} />
@@ -97,7 +97,7 @@ span {
 
 The infinite property basically tells our animation to keep going forever, and alternate is the short-hand for [animation-direction](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-direction) saying that the animation should be played forwards first, then backwards keeping our animation smooth.
 
-<div style={{ padding: '50px', backgroundColor: 'var(--bookHeaderBg)', borderRadius: '5px', textAlign: 'center' }}>
+<div style={{ padding: '50px', backgroundColor: 'var(--boxBg)', borderRadius: '5px', textAlign: 'center' }}>
   <div style={{ position: 'relative', display: 'inline-flex', justifyContent: 'space-between', width: 13, height: 13 }}>
     <span style={{width: 3, height: '100%', backgroundColor: 'var(--brand)', content: '', borderRadius: 3, animation: 'bounce 2.2s ease infinite alternate' }} />
     <span style={{width: 3, height: '100%', backgroundColor: 'var(--brand)', content: '', borderRadius: 3, animation: 'bounce 2.2s ease infinite alternate'  }} />
@@ -119,7 +119,7 @@ span {
 }
 ```
 
-<div style={{ padding: '50px', backgroundColor: 'var(--bookHeaderBg)', borderRadius: '5px', textAlign: 'center' }}>
+<div style={{ padding: '50px', backgroundColor: 'var(--boxBg)', borderRadius: '5px', textAlign: 'center' }}>
   <div style={{ position: 'relative', display: 'inline-flex', justifyContent: 'space-between', width: 13, height: 13 }}>
     <span style={{width: 3, height: '100%', backgroundColor: 'var(--brand)', content: '', borderRadius: 3, animation: 'bounce 2.2s ease infinite alternate', transformOrigin: 'bottom' }} />
     <span style={{width: 3, height: '100%', backgroundColor: 'var(--brand)', content: '', borderRadius: 3, animation: 'bounce 2.2s ease infinite alternate', transformOrigin: 'bottom' }} />
@@ -145,7 +145,7 @@ span {
 }
 ```
 
-<div style={{ padding: '50px', backgroundColor: 'var(--bookHeaderBg)', borderRadius: '5px', textAlign: 'center' }}>
+<div style={{ padding: '50px', backgroundColor: 'var(--boxBg)', borderRadius: '5px', textAlign: 'center' }}>
   <NowPlayingIcon />
 </div>
 

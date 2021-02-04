@@ -8,13 +8,14 @@ type ButtonProps = {
   href?: string
   onClick?: () => void
   variant?: string
+  disabled?: boolean
 }
 
-const Button = ({ children, type, href, variant, onClick }: ButtonProps): JSX.Element => {
+const Button = ({ children, type, href, variant, onClick, disabled }: ButtonProps): JSX.Element => {
   const classes = cn(styles.button, styles[variant])
   if (onClick || !href) {
     return (
-      <button className={classes} type={type === 'submit' ? 'submit' : 'button'} onClick={onClick}>
+      <button className={classes} type={type === 'submit' ? 'submit' : 'button'} onClick={onClick} disabled={disabled}>
         {children}
       </button>
     )
@@ -23,7 +24,7 @@ const Button = ({ children, type, href, variant, onClick }: ButtonProps): JSX.El
     return (
       <Link href={href} passHref>
         <a>
-          <button className={classes} type={type === 'submit' ? 'submit' : 'button'}>
+          <button className={classes} type={type === 'submit' ? 'submit' : 'button'} disabled={disabled}>
             {children}
           </button>
         </a>
