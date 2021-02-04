@@ -8,8 +8,9 @@
   --star: #fece02;
   --fontFamily: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
     sans-serif;
-  --bookHeaderBg: #f3f3f3;
+  --boxBg: #f3f3f3;
   --siteWidth: 77ch;
+  --inputBg: white;
 }
 
 [data-theme='dark'] {
@@ -17,8 +18,9 @@
   --text: #fff;
   --headerBg: rgba(22, 21, 21, 0.6);
   --border: rgba(255, 255, 255, 0.08);
-  --bookHeaderBg: #1f1e1d;
+  --boxBg: #1f1e1d;
   --star: #fef102;
+  --inputBg: #292929;
 }
 
 html,

@@ -18,6 +18,7 @@ import CustomImage from 'components/image'
 import Warning from 'components/warning'
 import HitCounter from 'components/hitcounter'
 import { NowPlayingIcon } from 'components/nowplaying'
+import Newsletter from 'components/newsletter'
 
 // Utils
 import { postFilePaths, POSTS_PATH } from 'utils/mdxutils'
@@ -119,6 +120,8 @@ const Post = ({ source }: PostProps): JSX.Element => {
       </PageHeader>
 
       <article className={styles.article}>{content}</article>
+
+      <Newsletter />
     </Page>
   )
 }

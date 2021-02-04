@@ -9,6 +9,7 @@ import readingTime from 'reading-time'
 // Components
 import Page from 'components/page'
 import PageHeader from 'components/pageheader'
+import Newsletter from 'components/newsletter'
 
 // Utils
 import { postFilePaths, POSTS_PATH } from 'utils/mdxutils'
@@ -66,6 +67,7 @@ const Blog = ({ posts }: BlogProps): JSX.Element => {
             )
           })}
       </ul>
+      <Newsletter />
     </Page>
   )
 }

@@ -9,7 +9,11 @@
 }
 
 .main {
-  margin-bottom: 80px;
+  margin-bottom: 50px;
+
+  @media (min-width: 480px) {
+    margin-bottom: 80px;
+  }
 }
 
 .footer {

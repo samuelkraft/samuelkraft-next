@@ -10,14 +10,16 @@ type PageProps = {
 
 const footerLinks = [
   { name: 'Home', url: '/' },
-  { name: 'About', url: '/about' },
-  { name: 'Books', url: '/books' },
-  { name: 'Percentage change calc', url: '/percentagechange' },
-  { name: 'Dribbble', url: 'https://www.dribbble.com/samuelkraft' },
-  { name: 'Instagram', url: 'https://www.instagram.com/samuelkraft' },
-  { name: 'Github', url: 'https://github.com/samuelkraft' },
   { name: 'Twitter', url: 'https://twitter.com/samuelkraft' },
+  { name: 'Newsletter', url: '/newsletter' },
+  { name: 'About', url: '/about' },
+  { name: 'Github', url: 'https://github.com/samuelkraft' },
   { name: 'RSS', url: '/feed.xml' },
+  { name: 'Blog', url: '/blog' },
+  { name: 'Dribbble', url: 'https://www.dribbble.com/samuelkraft' },
+  { name: 'Percentage change calc', url: '/percentagechange' },
+  { name: 'Books', url: '/books' },
+  { name: 'Instagram', url: 'https://www.instagram.com/samuelkraft' },
 ]
 
 const Page = ({ children }: PageProps): JSX.Element => (
