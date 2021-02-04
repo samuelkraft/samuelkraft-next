@@ -121,7 +121,7 @@ const Post = ({ source }: PostProps): JSX.Element => {
 
       <article className={styles.article}>{content}</article>
 
-      <Newsletter />
+      <Newsletter title="Enjoyed this post? Subscribe to the newsletter!" />
     </Page>
   )
 }
