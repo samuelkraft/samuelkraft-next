@@ -37,6 +37,12 @@ const PercentageChange = (): JSX.Element => {
           url: `https://samuelkraft.com/books/`,
           description,
           site_name: 'Samuel Kraft',
+          images: [
+            {
+              url: 'https://samuelkraft.com/percentagechange.png',
+              alt: title,
+            },
+          ],
         }}
         twitter={{
           cardType: 'summary_large_image',
