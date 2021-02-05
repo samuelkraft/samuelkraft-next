@@ -23,7 +23,7 @@ const About = (): JSX.Element => {
           cardType: 'summary_large_image',
         }}
       />
-      <Image src="/samuelkraft.jpg" alt="Picture of me (samuel kraft)" width={1606} height={990} className={styles.image} />
+      <Image src="/samuelkraft.jpg" alt="Picture of me (samuel kraft)" width={1606} height={990} className={styles.image} priority />
       <div className={styles.text}>
         <p>Hey I’m Samuel, a frontend developer &amp; designer currently living in 🇸🇪 Stockholm, Sweden.</p>
         <p>
