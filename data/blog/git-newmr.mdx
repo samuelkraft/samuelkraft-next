@@ -60,7 +60,7 @@ brew install gh
 Then add our alias, note that I've  renamed it to `git newpr` to separate it from the gitlab version.
 
 ```bash
-git config --global alias.newpr "!f() { git stash save && git checkout master && git pull && git checkout -b $1 && git stash apply && git add . && git commit -m $1 && git push -u origin HEAD && gh pr create }; f"
+git config --global alias.newpr "!f() { git stash save && git checkout master && git pull && git checkout -b $1 && git stash apply && git add . && git commit -m $1 && git push -u origin HEAD && gh pr create; }; f"
 ```
 
 ## Editing you aliases or troubleshooting
