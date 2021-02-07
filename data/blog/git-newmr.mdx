@@ -1,0 +1,79 @@
+---
+title: 'My favorite productivity hack: git newmr'
+publishedAt: '2021-02-08'
+summary: 'Using git aliases to automate repetitive tasks'
+image: '/blog/git-newmr/og.png'
+---
+
+How you tried to automate any daily tasks of your programming? You should!
+
+A git workflow I do every day is code something, stash it, checkout latest master, create a new branch, push my new code and create a mr/pr for it. This gets tedious over time given I usually do it 5+ times a day. [Git aliases](https://www.notion.so/My-favorite-productivity-boost-git-newmr-94eb984893e54381a6279e551384fb36) to the rescue!
+
+My workplace uses gitlab and they support [push options](https://docs.gitlab.com/ee/user/project/push_options.html), one of which is creating a Merge Request (Pull Request equivalent for Github). Thanks to this you can easily create a Gitlab merge request using the CLI. Let me present you the alias `git newmr`, allowing you to do all of the above things with one command!
+
+```bash
+git config --global alias.newmr "!f() { git stash save && git checkout master && git pull && git checkout -b $1 && git stash apply && git add . && git commit -m $1 && git push -u origin HEAD -o merge_request.create; }; f"
+```
+
+I can trigger the command with `git newmr <branchname>` and it:
+
+1. Stashes the current changes
+2. Checks out and pulls the latest master branch
+3. Creates a new branch based on `<branchname>`
+4. Applies the stash
+5. Commits changes
+6. Pushes the new branch as a remote
+7. Creates a PR/MR
+
+At my workplace we use Jira for issue tracking, and by setting the branch name to the issue number the issue will automatically close on jira when the branch is merged. Example: `git newmr TL-1337`.
+
+## Creating your own
+
+Creating a custom [git alias](https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases) is super easy. Looking at the example on the linked page adding a “unstage” alias is as easy as:
+
+```bash
+git config --global alias.unstage 'reset HEAD --'
+```
+
+In our case we want do do a lot of different things and pass parameters and that's were basic git aliases start to limit us. Luckily there is a solution to this!
+
+## Escaping to the shell
+
+We can access the shell by using the ! (bang). We can now have a lot more possibility including multiple commands and passing parameters. Let's add the commands we're looking for based on the list above. $1 means the first parameter we pass, so let's add it as our branch name and commit message. The -o option in our git push is gitlabs push option, in this case we’re using it to create a merge request.
+
+```bash
+git config --global alias.newmr "!f() { git stash save && git checkout master && git pull && git checkout -b $1 && git stash apply && git add . && git commit -m $1 && git push -u origin HEAD -o merge_request.create; }; f"
+```
+
+After running the command above you can use it with `git newmr <branch_name>` ✌️✨
+
+## Adopting it for Github
+
+If you are using github you can can use [their cli](https://cli.github.com/manual/gh_pr_create) instead of push options for creating the pull request with `gh pr create`.
+
+First install the github cli with brew
+
+```bash
+brew install gh
+```
+
+Then add our alias, note that I've  renamed it to `git newpr` to separate it from the gitlab version.
+
+```bash
+git config --global alias.newpr "!f() { git stash save && git checkout master && git pull && git checkout -b $1 && git stash apply && git add . && git commit -m $1 && git push -u origin HEAD && gh pr create }; f"
+```
+
+## Editing you aliases or troubleshooting
+
+All your aliases are stored in the global git config located in `~home/<username>/.gitconfig`. My complete file now looks like this:
+
+```bash
+[user]
+  name = Samuel Kraft
+  email = samuelkraft@me.com
+[alias]
+  newmr = "!f() { git stash save && git checkout master && git pull && git checkout -b $1 && git stash apply && git add . && git commit -m $1 && git push -u origin HEAD -o merge_request.create; }; f"
+  newpr = "!f() { git stash save && git checkout master && git pull && git checkout -b $1 && git stash apply && git add . && git commit -m $1 && git push -u origin HEAD && gh pr create }; f"
+```
+
+Do you have any other tips for custom aliases? Let me know on [Twitter](https://twitter.com/samuelkraft)!
