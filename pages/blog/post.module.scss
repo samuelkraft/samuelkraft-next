@@ -52,6 +52,15 @@
   p {
     margin-top: 1.25em;
     margin-bottom: 1.25em;
+
+    & > code {
+      margin: 0 3px;
+      padding: 3px 7px;
+      font-size: 1.1em;
+      white-space: nowrap;
+      background-color: var(--boxBg);
+      border-radius: 5px;
+    }
   }
 
   pre {
