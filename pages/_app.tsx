@@ -5,6 +5,7 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import SEO from 'components/seo'
 import * as gtag from 'lib/gtag'
+import * as goatcounter from 'lib/goatcounter'
 import '../styles/globals.scss'
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
@@ -13,9 +14,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   useEffect(() => {
     const handleRouteChange = (url: string) => {
       gtag.pageview(url)
-      window.goatcounter.count({
-        path: url,
-      })
+      goatcounter.count(url)
     }
     router.events.on('routeChangeComplete', handleRouteChange)
     return () => {
