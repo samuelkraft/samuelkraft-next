@@ -13,6 +13,9 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   useEffect(() => {
     const handleRouteChange = (url: string) => {
       gtag.pageview(url)
+      window.goatcounter.count({
+        path: url,
+      })
     }
     router.events.on('routeChangeComplete', handleRouteChange)
     return () => {
