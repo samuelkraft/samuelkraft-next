@@ -12,7 +12,11 @@ type ButtonProps = {
 }
 
 const Button = ({ children, type, href, variant, onClick, disabled }: ButtonProps): JSX.Element => {
-  const classes = cn(styles.button, styles[variant])
+  const base = 'inline-flex items-center font-bold rounded-md transition duration-200 ease-out'
+  const standard = 'bg-brand hover:bg-brandActive px-3.5 py-2 text-white'
+  const transparent = 'p-0 text-brand bg-transparent hover:text-brandActive hover:bg-transparent color-'
+
+  const classes = `${base} ${variant === 'transparent' ? transparent : standard}`
   if (onClick || !href) {
     return (
       <button className={classes} type={type === 'submit' ? 'submit' : 'button'} onClick={onClick} disabled={disabled}>

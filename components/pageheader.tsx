@@ -1,5 +1,3 @@
-import styles from './pageheader.module.scss'
-
 type PageHeaderProps = {
   title: string
   description?: string
@@ -7,9 +5,9 @@ type PageHeaderProps = {
 }
 
 const PageHeader = ({ title, description, children }: PageHeaderProps): JSX.Element => (
-  <div className={styles.wrapper}>
-    <h1 className={styles.title}>{title}</h1>
-    {description && <p className={styles.description}>{description}</p>}
+  <div className="mb-12 sm:mb-24">
+    <h1 className="text-3xl sm:text-4xl font-extrabold mb-3 tracking-tight">{title}</h1>
+    {description && <p className="mb-5 font-medium sm:text-lg">{description}</p>}
     {children}
   </div>
 )
