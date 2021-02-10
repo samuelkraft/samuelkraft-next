@@ -17,6 +17,7 @@ import PageHeader from 'components/pageheader'
 import CustomImage from 'components/image'
 import Warning from 'components/warning'
 import HitCounter from 'components/hitcounter'
+import LikeButton from 'components/likebutton'
 import { NowPlayingIcon } from 'components/nowplaying'
 import Newsletter from 'components/newsletter'
 
@@ -118,9 +119,10 @@ const Post = ({ source }: PostProps): JSX.Element => {
           <HitCounter slug={meta.slug} />
         </p>
       </PageHeader>
-
       <article className={styles.article}>{content}</article>
-
+      <div className={styles.buttons}>
+        <LikeButton slug={meta.slug} />
+      </div>
       <Newsletter title="Enjoyed this post? Subscribe to the newsletter!" />
     </Page>
   )
