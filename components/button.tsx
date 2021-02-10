@@ -7,7 +7,7 @@ type ButtonProps = {
   type?: 'button' | 'submit' | 'reset'
   href?: string
   onClick?: () => void
-  variant?: string
+  variant?: 'transparent' | 'like'
   disabled?: boolean
 }
 

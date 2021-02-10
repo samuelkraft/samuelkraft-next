@@ -23,6 +23,7 @@
 
   &[disabled] {
     opacity: 0.5;
+    pointer-events: none;
   }
 }
 
@@ -36,5 +37,33 @@
     color: var(--brandActive);
     background-color: transparent;
     cursor: pointer;
+  }
+}
+
+.like {
+  margin-bottom: 50px;
+  padding: 14px 60px;
+  color: var(--text);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  background-color: var(--likeButton);
+  border-radius: 30px;
+  transition: transform 200ms ease-out, background-color 200ms ease-out;
+
+  &:hover,
+  &:focus {
+    background-color: var(--likeButtonHover);
+    transform: scale(1.03);
+  }
+
+  &[disabled] {
+    opacity: 1;
+  }
+
+  svg {
+    width: 20px;
+    margin-right: 10px;
+    margin-left: 0;
   }
 }

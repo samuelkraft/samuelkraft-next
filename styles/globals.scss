@@ -11,6 +11,8 @@
   --boxBg: #f3f3f3;
   --siteWidth: 77ch;
   --inputBg: white;
+  --likeButton: rgba(0, 0, 0, 0.05);
+  --likeButtonHover: rgba(0, 0, 0, 0.1);
 }
 
 [data-theme='dark'] {
@@ -21,6 +23,8 @@
   --boxBg: #1f1e1d;
   --star: #fef102;
   --inputBg: #292929;
+  --likeButton: rgba(255, 255, 255, 0.2);
+  --likeButtonHover: rgba(255, 255, 255, 0.3);
 }
 
 html,
