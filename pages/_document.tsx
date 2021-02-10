@@ -8,13 +8,6 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           {/* GoatCounter */}
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-            window.goatcounter = {no_onload: true}
-          `,
-            }}
-          />
           <script data-goatcounter="https://samuel.goatcounter.com/count" async src="//gc.zgo.at/count.js" />
           {/* Global Site Tag (gtag.js) - Google Analytics */}
           <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
