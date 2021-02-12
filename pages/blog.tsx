@@ -10,6 +10,7 @@ import readingTime from 'reading-time'
 import Page from 'components/page'
 import PageHeader from 'components/pageheader'
 import Newsletter from 'components/newsletter'
+import BlogImage from 'components/blogimage'
 
 // Utils
 import { postFilePaths, POSTS_PATH } from 'utils/mdxutils'
@@ -47,16 +48,24 @@ const Blog = ({ posts }: BlogProps): JSX.Element => {
           .sort((a, b) => new Date(b.meta.publishedAt).getTime() - new Date(a.meta.publishedAt).getTime())
           .map(post => {
             const {
-              meta: { summary, title, readingTime: readTime, publishedAt },
+              meta: { summary, title, readingTime: readTime, publishedAt, image },
             } = post
             const formattedDate = new Date(publishedAt).toLocaleString('en-US', {
               month: 'short',
               day: '2-digit',
               year: 'numeric',
             })
+            const slug = post.filePath.replace(/\.mdx?$/, '')
             return (
               <li key={post.filePath}>
-                <Link as={`/blog/${post.filePath.replace(/\.mdx?$/, '')}`} href="/blog/[slug]">
+                {image && (
+                  <Link as={`/blog/${slug}`} href="/blog/[slug]">
+                    <a>
+                      <BlogImage src={image} alt={title} />
+                    </a>
+                  </Link>
+                )}
+                <Link as={`/blog/${slug}`} href="/blog/[slug]">
                   <a className={styles.title}>{title}</a>
                 </Link>
                 <p className={styles.summary}>{summary}</p>

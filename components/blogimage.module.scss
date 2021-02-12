@@ -1,0 +1,12 @@
+.wrapper {
+  display: block;
+  margin-right: -20px;
+  margin-bottom: 30px;
+  margin-left: -20px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+
+  @media (min-width: 489px) {
+    border-radius: 12px;
+  }
+}
