@@ -20,6 +20,7 @@ import HitCounter from 'components/hitcounter'
 import LikeButton from 'components/likebutton'
 import { NowPlayingIcon } from 'components/nowplaying'
 import Newsletter from 'components/newsletter'
+import BlogImage from 'components/blogimage'
 
 // Utils
 import { postFilePaths, POSTS_PATH } from 'utils/mdxutils'
@@ -55,6 +56,7 @@ const components = {
 }
 
 export type Meta = {
+  og?: string
   image?: string
   publishedAt: string
   readingTime: {
@@ -99,8 +101,8 @@ const Post = ({ source }: PostProps): JSX.Element => {
           description: seoDesc,
           images: [
             {
-              url: meta.image
-                ? `https://samuelkraft.com${meta.image}`
+              url: meta.og
+                ? `https://samuelkraft.com${meta.og}`
                 : `https://og-image.samuelkraft.vercel.app/${encodeURIComponent(meta.title)}?desc=${encodeURIComponent(
                     seoDesc,
                   )}&theme=dark.png`,
@@ -113,6 +115,7 @@ const Post = ({ source }: PostProps): JSX.Element => {
           cardType: 'summary_large_image',
         }}
       />
+      {meta.image && <BlogImage src={meta.image} alt={meta.title} />}
       <PageHeader title={meta.title}>
         <p className={styles.meta}>
           Published on {formattedDate} <span>&middot;</span> {meta.readingTime.text}
