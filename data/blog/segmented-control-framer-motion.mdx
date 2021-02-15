@@ -97,28 +97,28 @@ export default SegmentedControl
 }
 
 .item {
-    position: relative;
-    margin-bottom: 0;
-    line-height: 1;
+  position: relative;
+  margin-bottom: 0;
+  line-height: 1;
 
+  &:after {
+    position: absolute;
+    top: 15%;
+    right: -0.5px;
+    display: block;
+    width: 1px;
+    height: 70%;
+    background-color: var(--border);
+    transition: opacity 200ms ease-out;
+    content: '';
+  }
+
+  &:last-of-type {
     &:after {
-      position: absolute;
-      top: 15%;
-      right: -0.5px;
-      display: block;
-      width: 1px;
-      height: 70%;
-      background-color: var(--border);
-      transition: opacity 200ms ease-out;
-      content: '';
-    }
-
-    &:last-of-type {
-      &:after {
-        display: none;
-      }
+      display: none;
     }
   }
+}
 
 .itemNoDivider {
   composes: item;
