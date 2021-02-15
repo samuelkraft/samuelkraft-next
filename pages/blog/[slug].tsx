@@ -21,6 +21,7 @@ import LikeButton from 'components/likebutton'
 import { NowPlayingIcon } from 'components/nowplaying'
 import Newsletter from 'components/newsletter'
 import BlogImage from 'components/blogimage'
+import SegmentedControl from 'components/segmentedcontrol'
 
 // Utils
 import { postFilePaths, POSTS_PATH } from 'utils/mdxutils'
@@ -53,6 +54,7 @@ const components = {
   Warning,
   Link: CustomLink,
   NowPlayingIcon,
+  SegmentedControl,
 }
 
 export type Meta = {
