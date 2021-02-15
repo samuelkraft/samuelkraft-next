@@ -13,6 +13,7 @@
   --inputBg: white;
   --likeButton: rgba(0, 0, 0, 0.05);
   --likeButtonHover: rgba(0, 0, 0, 0.1);
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 [data-theme='dark'] {
@@ -75,7 +76,7 @@ h2 {
 code[class*='language-'],
 pre[class*='language-'] {
   color: #b9b5b8;
-  font-size: 16px;
+  font-size: 14px;
   font-family: Menlo, Monaco, 'Lucida Console', 'Courier New', Courier, monospace;
   line-height: 1.375;
   direction: ltr;
@@ -86,6 +87,10 @@ pre[class*='language-'] {
   -ms-hyphens: none;
   hyphens: none;
   background: #322931;
+
+  @media (min-width: 480px) {
+    font-size: 15px;
+  }
 }
 
 pre > code[class*='language-'] {
