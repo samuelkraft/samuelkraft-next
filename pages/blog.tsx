@@ -60,7 +60,7 @@ const Blog = ({ posts }: BlogProps): JSX.Element => {
               <li key={post.filePath}>
                 {image && (
                   <Link as={`/blog/${slug}`} href="/blog/[slug]">
-                    <a>
+                    <a aria-label={title}>
                       <BlogImage src={image} alt={title} />
                     </a>
                   </Link>

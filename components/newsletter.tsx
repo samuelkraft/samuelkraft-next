@@ -57,9 +57,12 @@ const Newsletter = ({ title }: { title?: string }) => {
     <form onSubmit={subscribe} className={styles.wrapper}>
       <header className={styles.header}>
         <Send />
-        <h4 className={styles.title}>{title || 'Subscribe to the newsletter'}</h4>
+        <p className={styles.title}>{title || 'Subscribe to the newsletter'}</p>
       </header>
       <p className={styles.description}>You&apos;ll get an email when new content is posted. No spam, unsubscribe at any time.</p>
+      <label htmlFor="email-input" className="sr-only">
+        Email address
+      </label>
       <div className={cn(styles.inputWrapper, message && styles.hidden)}>
         <input className={styles.input} id="email-input" name="email" placeholder="Email address" ref={inputEl} required type="email" />
         <Button disabled={loading} type="submit">
