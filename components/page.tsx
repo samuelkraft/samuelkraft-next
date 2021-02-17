@@ -2,7 +2,6 @@ import Header from 'components/header'
 import NowPlaying from 'components/nowplaying'
 import Link from 'next/link'
 import PageTransition from 'components/pagetransition'
-import styles from './page.module.scss'
 
 type PageProps = {
   children: JSX.Element | JSX.Element[]
@@ -23,21 +22,24 @@ const footerLinks = [
 ]
 
 const Page = ({ children }: PageProps): JSX.Element => (
-  <div className={styles.container}>
+  <div className="max-w-site mx-auto px-5 sm:px-7 ">
     <Header />
-    <main className={styles.main}>
+    <main className="mb-12 sm:28">
       <PageTransition>{children}</PageTransition>
     </main>
-    <footer className={styles.footer}>
-      <ul className={styles.links}>
+    <footer className="py-7 border-t border-default">
+      <ul className="grid mx-0 mt-0 mb-10 p-0 list-none grid-cols-3 gap-6">
         {footerLinks.map(link => (
-          <li key={link.name}>
+          <li
+            key={link.name}
+            className="mb-0 font-medium opacity-50 transition transition-opacity duration-200 ease-out hover:opacity-80 focus:opacity-80"
+          >
             <Link href={link.url}>{link.name}</Link>
           </li>
         ))}
       </ul>
       <NowPlaying />
-      <p className={styles.copyright}>&copy; Samuel Kraft {new Date().getFullYear()}</p>
+      <p className="opacity-30 text-center">&copy; Samuel Kraft {new Date().getFullYear()}</p>
     </footer>
     <link href="https://twitter.com/samuelkraft" rel="me" />
   </div>

@@ -41,6 +41,11 @@ const Books = ({ published, reading }: BooksProps): JSX.Element => {
   const [sorting, setSorting] = useState('finished')
   const seoTitle = 'Books | Samuel Kraft'
   const seoDesc = 'This page contains books I enjoy with my notes, highlights and reviews.'
+  const gridClasses = 'grid mb-12 p-0 list-none grid-cols-2 gap-6 sm:grid-cols-3 sm:gap-8'
+  const bookClasses = 'min-w-0 m-0 group'
+  const titleClasses = 'block mb-1 pt-3 text-xl'
+  const coverClasses = 'rounded-lg transition transiton-transform duration-200 ease-out transform group-hover:-translate-y-1'
+  const authorClasses = 'mb-6 font-semibold text-medium leading-7 opacity-60'
   return (
     <Page>
       <NextSeo
@@ -57,15 +62,15 @@ const Books = ({ published, reading }: BooksProps): JSX.Element => {
         }}
       />
       <PageHeader title="Books" description="This page contains books I enjoy with my notes, highlights and reviews.">
-        {published.length > 1 && (
-          <p className={styles.sortBy}>
+        {published.length > 0 && (
+          <p className="-mt-4 font-medium text-medium sm:text-lg">
             <span>Sort by:</span>
-            <label htmlFor="select" className={styles.selectLabel}>
+            <label htmlFor="select" className="inline-flex align-center">
               <select
                 value={sorting}
                 onChange={(e: ChangeEvent<HTMLSelectElement>) => setSorting(e.target.value)}
                 id="select"
-                className={styles.select}
+                className="w-auto m-0 ml-4 text-brand font-medium text-medium leading-none bg-transparent border-0 outline-0 cursor-pointer appearance-none sm:text-lg"
               >
                 {sortOptions.map(({ id, name }) => (
                   <option value={id} key={id}>
@@ -73,12 +78,12 @@ const Books = ({ published, reading }: BooksProps): JSX.Element => {
                   </option>
                 ))}
               </select>
-              <ChevronDown />
+              <ChevronDown className="ml-2 stroke-current text-brand" />
             </label>
           </p>
         )}
       </PageHeader>
-      <ul className={styles.grid}>
+      <ul className={gridClasses}>
         {published
           ?.sort((a, b) => {
             if (sorting === 'finished') {
@@ -89,12 +94,12 @@ const Books = ({ published, reading }: BooksProps): JSX.Element => {
           .map(({ Name: title, Author: author, Rating: rating, Image: image, id }) => {
             const slug = slugifiy(title, { lower: true })
             return (
-              <li className={styles.book} key={id}>
+              <li className={bookClasses} key={id}>
                 <Link href={`books/${slug}`}>
                   <a>
-                    <Image src={image[0].url} width={218} height={328} className={styles.cover} />
-                    <strong className={styles.title}>{title}</strong>
-                    <p className={styles.author}>{author}</p>
+                    <Image src={image[0].url} width={218} height={328} className={coverClasses} />
+                    <strong className={titleClasses}>{title}</strong>
+                    <p className={authorClasses}>{author}</p>
                     <Rating rating={rating} />
                   </a>
                 </Link>
@@ -103,14 +108,14 @@ const Books = ({ published, reading }: BooksProps): JSX.Element => {
           })}
       </ul>
       <h2>Currently reading</h2>
-      <ul className={styles.grid}>
+      <ul className={gridClasses}>
         {reading.map(({ Name: title, Author: author, Rating: rating, Image: image, id }) => {
           const slug = slugifiy(title, { lower: true })
           return (
-            <li className={styles.book} key={id}>
-              <Image src={image[0].url} width={218} height={328} className={styles.cover} />
-              <strong className={styles.title}>{title}</strong>
-              <p className={styles.author}>{author}</p>
+            <li className={bookClasses} key={id}>
+              <Image src={image[0].url} width={218} height={328} className={coverClasses} />
+              <strong className={titleClasses}>{title}</strong>
+              <p className={authorClasses}>{author}</p>
             </li>
           )
         })}

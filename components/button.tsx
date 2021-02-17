@@ -11,9 +11,9 @@ type ButtonProps = {
 }
 
 const Button = ({ children, type, href, variant, onClick, disabled }: ButtonProps): JSX.Element => {
-  const classes = cn('inline-flex items-center font-bold rounded-md transition duration-200 ease-out', {
-    'bg-brand hover:bg-brandActive px-3.5 py-2 text-white': !variant,
-    'p-0 text-brand bg-transparent hover:text-brandActive hover:bg-transparent': variant === 'transparent',
+  const classes = cn('inline-flex items-center font-bold transition duration-200 ease-out', {
+    'bg-brand hover:bg-brandActive px-3.5 py-2 text-white, rounded-md': !variant,
+    'p-0 text-brand bg-transparent hover:text-brandActive hover:bg-transparent, rounded-md': variant === 'transparent',
     'mb-14 px-12 py-3 text-text bg-likeButton hover:bg-likeButtonHover rounded-full disabled:opacity-100': variant === 'like',
   })
   if (onClick || !href) {

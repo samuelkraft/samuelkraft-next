@@ -8,11 +8,23 @@ module.exports = {
         brandActive: 'var(--brandActive)',
         likeButton: 'var(--likeButton)',
         likeButtonHover: 'var(--likeButtonHover)',
+        siteWidth: 'var(--siteWidth)',
+      },
+      maxWidth: {
+        site: 'var(--siteWidth)',
+      },
+      borderColor: {
+        default: 'var(--border)',
+      },
+      fontSize: {
+        medium: '17px',
       },
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      translate: ['group-hover'],
+    },
   },
   plugins: [],
 }

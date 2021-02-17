@@ -18,8 +18,6 @@ import { postFilePaths, POSTS_PATH } from 'utils/mdxutils'
 // Types
 import type { Meta } from 'pages/blog/[slug]'
 
-import styles from './blog.module.scss'
-
 type BlogProps = {
   posts: Array<{ content: string; filePath: string; meta: Meta }>
 }
@@ -43,7 +41,7 @@ const Blog = ({ posts }: BlogProps): JSX.Element => {
         }}
       />
       <PageHeader title="Blog" description={seoDesc} />
-      <ul className={styles.list}>
+      <ul className="mb-24 p-0 list-none">
         {posts
           .sort((a, b) => new Date(b.meta.publishedAt).getTime() - new Date(a.meta.publishedAt).getTime())
           .map(post => {
@@ -57,7 +55,7 @@ const Blog = ({ posts }: BlogProps): JSX.Element => {
             })
             const slug = post.filePath.replace(/\.mdx?$/, '')
             return (
-              <li key={post.filePath}>
+              <li key={post.filePath} className="mb-20">
                 {image && (
                   <Link as={`/blog/${slug}`} href="/blog/[slug]">
                     <a aria-label={title}>
@@ -66,10 +64,10 @@ const Blog = ({ posts }: BlogProps): JSX.Element => {
                   </Link>
                 )}
                 <Link as={`/blog/${slug}`} href="/blog/[slug]">
-                  <a className={styles.title}>{title}</a>
+                  <a className="block mb-2 text-brand font-bold text-2xl">{title}</a>
                 </Link>
-                <p className={styles.summary}>{summary}</p>
-                <p className={styles.meta}>
+                <p className="mb-2 text-lg opacity-70">{summary}</p>
+                <p className="text-base opacity-50">
                   Published on {formattedDate} &middot; {readTime.text}
                 </p>
               </li>
