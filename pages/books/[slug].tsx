@@ -64,7 +64,7 @@ const Book = ({ book, page }: BookProps): JSX.Element => {
         }}
       />
       <header className={styles.header}>
-        <Image src={image[0].url} width={218} height={328} className={styles.cover} />
+        <Image src={image[0].url} width={218} height={328} className={styles.cover} alt={title} />
         <div className={styles.meta}>
           <strong className={styles.title}>{title}</strong>
           <p className={styles.author}>{author}</p>
@@ -72,7 +72,10 @@ const Book = ({ book, page }: BookProps): JSX.Element => {
           <dl className={styles.metaList}>
             <dt>Non Fiction?</dt>
             <dd>
-              <input type="checkbox" checked={!fiction} className={styles.checkbox} readOnly />
+              <label htmlFor="non-fiction" className="sr-only">
+                Non-fiction
+              </label>
+              <input type="checkbox" checked={!fiction} className={styles.checkbox} readOnly id="non-fiction" />
             </dd>
             <dt>Genres</dt>
             <dd>

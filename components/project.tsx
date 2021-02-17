@@ -17,7 +17,7 @@ type ProjectProps = {
 
 const Project = ({ title, description, link, image, imageWidth, imageHeight, linkText, small }: ProjectProps): JSX.Element => (
   <div className={styles.project}>
-    <a href={`https://${link}`} target="_blank" rel="noreferrer">
+    <a href={`https://${link}`} target="_blank" rel="noreferrer" aria-label={title}>
       <div className={cn(styles.imageWrapper, small && styles.small)}>
         {image && (
           <motion.div whileHover={{ y: -7 }} transition={{ type: 'spring', stiffness: 50 }} className={styles.imageAnimationWrapper}>

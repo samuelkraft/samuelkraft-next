@@ -17,8 +17,11 @@ import PageHeader from 'components/pageheader'
 import CustomImage from 'components/image'
 import Warning from 'components/warning'
 import HitCounter from 'components/hitcounter'
+import LikeButton from 'components/likebutton'
 import { NowPlayingIcon } from 'components/nowplaying'
 import Newsletter from 'components/newsletter'
+import BlogImage from 'components/blogimage'
+import SegmentedControl from 'components/segmentedcontrol'
 
 // Utils
 import { postFilePaths, POSTS_PATH } from 'utils/mdxutils'
@@ -51,9 +54,11 @@ const components = {
   Warning,
   Link: CustomLink,
   NowPlayingIcon,
+  SegmentedControl,
 }
 
 export type Meta = {
+  og?: string
   image?: string
   publishedAt: string
   readingTime: {
@@ -98,8 +103,8 @@ const Post = ({ source }: PostProps): JSX.Element => {
           description: seoDesc,
           images: [
             {
-              url: meta.image
-                ? `https://samuelkraft.com${meta.image}`
+              url: meta.og
+                ? `https://samuelkraft.com${meta.og}`
                 : `https://og-image.samuelkraft.vercel.app/${encodeURIComponent(meta.title)}?desc=${encodeURIComponent(
                     seoDesc,
                   )}&theme=dark.png`,
@@ -112,15 +117,17 @@ const Post = ({ source }: PostProps): JSX.Element => {
           cardType: 'summary_large_image',
         }}
       />
+      {meta.image && <BlogImage src={meta.image} alt={meta.title} />}
       <PageHeader title={meta.title}>
         <p className={styles.meta}>
           Published on {formattedDate} <span>&middot;</span> {meta.readingTime.text}
           <HitCounter slug={meta.slug} />
         </p>
       </PageHeader>
-
       <article className={styles.article}>{content}</article>
-
+      <div className={styles.buttons}>
+        <LikeButton slug={meta.slug} />
+      </div>
       <Newsletter title="Enjoyed this post? Subscribe to the newsletter!" />
     </Page>
   )

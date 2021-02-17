@@ -1,22 +1,21 @@
 import Link from 'next/link'
 import cn from 'classnames'
-import styles from './button.module.scss'
 
 type ButtonProps = {
   children: JSX.Element | JSX.Element[] | string
   type?: 'button' | 'submit' | 'reset'
   href?: string
   onClick?: () => void
-  variant?: string
+  variant?: 'transparent' | 'like'
   disabled?: boolean
 }
 
 const Button = ({ children, type, href, variant, onClick, disabled }: ButtonProps): JSX.Element => {
-  const base = 'inline-flex items-center font-bold rounded-md transition duration-200 ease-out'
-  const standard = 'bg-brand hover:bg-brandActive px-3.5 py-2 text-white'
-  const transparent = 'p-0 text-brand bg-transparent hover:text-brandActive hover:bg-transparent color-'
-
-  const classes = `${base} ${variant === 'transparent' ? transparent : standard}`
+  const classes = cn('inline-flex items-center font-bold rounded-md transition duration-200 ease-out', {
+    'bg-brand hover:bg-brandActive px-3.5 py-2 text-white': !variant,
+    'p-0 text-brand bg-transparent hover:text-brandActive hover:bg-transparent': variant === 'transparent',
+    'mb-14 px-12 py-3 text-text bg-likeButton hover:bg-likeButtonHover rounded-full disabled:opacity-100': variant === 'like',
+  })
   if (onClick || !href) {
     return (
       <button className={classes} type={type === 'submit' ? 'submit' : 'button'} onClick={onClick} disabled={disabled}>

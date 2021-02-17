@@ -1,11 +1,11 @@
 import { ReactNode } from 'react'
-import { AlertTriangle } from 'react-feather'
+import { AlertTriangle, Info } from 'react-feather'
 
 import styles from './warning.module.scss'
 
-const Warning = ({ children }: { children: ReactNode }): JSX.Element => (
+const Warning = ({ children, type }: { children: ReactNode; type: 'warning' | 'info' }): JSX.Element => (
   <div className={styles.warning}>
-    <AlertTriangle />
+    {type === 'info' ? <Info /> : <AlertTriangle />}
     <p className={styles.text}>{children}</p>
   </div>
 )

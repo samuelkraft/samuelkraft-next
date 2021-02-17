@@ -17,7 +17,7 @@ export const NowPlayingIcon = ({ albumImageUrl }: { albumImageUrl?: string }) =>
     <span />
     {albumImageUrl && (
       <div className={styles.cover}>
-        <Image src={albumImageUrl} width={13} height={13} />
+        <Image src={albumImageUrl} width={13} height={13} alt="Album cover" />
       </div>
     )}
   </div>

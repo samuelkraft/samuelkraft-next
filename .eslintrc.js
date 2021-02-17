@@ -35,6 +35,7 @@ module.exports = {
     'react/require-default-props': 0,
     'react/jsx-props-no-spreading': 0,
     'jsx-a11y/anchor-is-valid': 0, // next-links require empty a tags
+    'jsx-a11y/label-has-associated-control': 0,
     'import/prefer-default-export': 0,
     '@typescript-eslint/explicit-module-boundary-types': 0,
   },
