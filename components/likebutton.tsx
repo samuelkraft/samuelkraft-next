@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Heart } from 'react-feather'
 import Button from 'components/button'
 import { safeLocalStorage as localStorage } from 'lib/localstorage'
+import cn from 'classnames'
 
 import useSWR, { mutate } from 'swr'
 import fetcher from 'lib/fetcher'
@@ -26,7 +27,7 @@ const LikeButton = ({ slug }: { slug: string }): JSX.Element | null => {
 
   return (
     <Button disabled={liked} onClick={onLike} type="button" variant="like">
-      <Heart className={liked ? styles.icon : ''} /> {typeof likes === 'undefined' ? '--' : likes}
+      <Heart className={cn('w-5 mr-2.5 ml-0', liked ? styles.icon : '')} /> {typeof likes === 'undefined' ? '--' : likes}
     </Button>
   )
 }

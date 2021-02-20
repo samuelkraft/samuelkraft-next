@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import cn from 'classnames'
-import styles from './button.module.scss'
 
 type ButtonProps = {
   children: JSX.Element | JSX.Element[] | string
@@ -12,7 +11,11 @@ type ButtonProps = {
 }
 
 const Button = ({ children, type, href, variant, onClick, disabled }: ButtonProps): JSX.Element => {
-  const classes = cn(styles.button, styles[variant])
+  const classes = cn('inline-flex items-center font-bold transition duration-200 ease-out', {
+    'bg-brand hover:bg-brandActive px-3.5 py-2 text-white, rounded-md': !variant,
+    'p-0 text-brand bg-transparent hover:text-brandActive hover:bg-transparent, rounded-md': variant === 'transparent',
+    'mb-14 px-12 py-3 text-text bg-likeButton hover:bg-likeButtonHover rounded-full disabled:opacity-100': variant === 'like',
+  })
   if (onClick || !href) {
     return (
       <button className={classes} type={type === 'submit' ? 'submit' : 'button'} onClick={onClick} disabled={disabled}>
