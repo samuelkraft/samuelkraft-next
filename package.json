@@ -24,6 +24,7 @@
     "next-seo": "^4.19.0",
     "next-themes": "^0.0.10",
     "querystring": "^0.2.0",
+    "random-words": "^1.1.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-feather": "^2.0.9",
