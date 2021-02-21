@@ -214,7 +214,7 @@ const variants = {
 
 const Messages = (): JSX.Element => (
   <AnimatePresence>
-    <ol className={styles.list} style={{ minHeight: 600 }}>
+    <ol className={styles.list}>
       {messages.map(({ text, sent }) => (
           <motion.li
             key={text}
