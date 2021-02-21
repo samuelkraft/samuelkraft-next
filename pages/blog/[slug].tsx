@@ -22,6 +22,8 @@ import { NowPlayingIcon } from 'components/nowplaying'
 import Newsletter from 'components/newsletter'
 import BlogImage from 'components/blogimage'
 import SegmentedControl from 'components/segmentedcontrol'
+import Messages, { TailBreakdown } from 'components/messages'
+import AnimatedMessages from 'components/animatedmessages'
 
 // Utils
 import { postFilePaths, POSTS_PATH } from 'utils/mdxutils'
@@ -55,6 +57,9 @@ const components = {
   Link: CustomLink,
   NowPlayingIcon,
   SegmentedControl,
+  Messages,
+  AnimatedMessages,
+  TailBreakdown,
 }
 
 export type Meta = {
