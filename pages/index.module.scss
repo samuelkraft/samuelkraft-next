@@ -8,24 +8,11 @@
   }
 }
 
-.tracklib {
-  &:hover,
-  &:focus {
-    .tracklibDesktop {
-      transform: translateY(-10px);
-    }
-    .tracklibMobile {
-      transform: translateY(-5px);
-    }
-  }
-}
-
 .tracklibDesktop,
 .tracklibMobile,
 .bitrefillDesktop,
 .bitrefillMobile {
   position: absolute;
-  transition: transform 350ms cubic-bezier(0.5, 1, 0.89, 1);
 
   @media (max-width: 767px) {
     transform: scale(0.5);
@@ -45,18 +32,6 @@
   left: 80%;
   width: 208px;
   margin-left: -104px;
-}
-
-.bitrefill {
-  &:hover,
-  &:focus {
-    .bitrefillDesktop {
-      transform: translateY(-10px);
-    }
-    .bitrefillMobile {
-      transform: translateY(-5px);
-    }
-  }
 }
 
 .bitrefillDesktop {
