@@ -5,6 +5,7 @@
   color: white;
   font-weight: 700;
   font-size: 16px;
+  font-family: var(--fontFamily);
   background-color: var(--brand);
   border: none;
   border-radius: 6px;
@@ -30,6 +31,7 @@
 .transparent {
   padding: 0;
   color: var(--brand);
+  font-weight: 500;
   background-color: transparent;
 
   &:hover,

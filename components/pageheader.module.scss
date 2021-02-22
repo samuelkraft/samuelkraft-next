@@ -7,18 +7,19 @@
 }
 
 .title {
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   font-weight: 800;
   font-size: 30px;
   letter-spacing: -0.3px;
 
   @media (min-width: 480px) {
-    margin-bottom: 18px;
+    margin-bottom: 15px;
     font-size: 38px;
   }
 }
 
 .description {
+  margin-bottom: 30px;
   font-weight: 500;
   font-size: 17px;
   line-height: 1.5;

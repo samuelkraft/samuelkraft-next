@@ -1,5 +1,7 @@
 .switch {
   display: none;
+  font-size: 0.9em;
+  line-height: 1;
 
   @media (min-width: 480px) {
     position: relative;
@@ -57,10 +59,12 @@
 .iconDark {
   position: absolute;
   top: 50%;
-  transform: translateY(-55%);
+  height: 18px;
+  line-height: 18px;
+  transform: translateY(-50%);
 }
 
 .iconLight {
   composes: iconDark;
-  right: 6px;
+  right: 8px;
 }
