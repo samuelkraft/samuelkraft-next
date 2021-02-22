@@ -40,7 +40,7 @@ const Home = (): JSX.Element => (
         small
       />
       <Project
-        title="Apple Watch Strength"
+        title="Watch Strength"
         description="Your personal strength tracker"
         link="samuelkraft.github.io/strength"
         linkText="Visit project"
