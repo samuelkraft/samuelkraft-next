@@ -38,6 +38,7 @@
   --likeButton: rgba(0, 0, 0, 0.05);
   --likeButtonHover: rgba(0, 0, 0, 0.1);
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --secondary: #caca28;
 }
 
 [data-theme='dark'] {
@@ -50,6 +51,7 @@
   --inputBg: #292929;
   --likeButton: rgba(255, 255, 255, 0.2);
   --likeButtonHover: rgba(255, 255, 255, 0.3);
+  --secondary: yellow;
 }
 
 html,

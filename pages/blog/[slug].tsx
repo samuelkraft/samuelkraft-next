@@ -19,7 +19,7 @@ import Warning from 'components/warning'
 import HitCounter from 'components/hitcounter'
 import LikeButton from 'components/likebutton'
 import { NowPlayingIcon } from 'components/nowplaying'
-import Newsletter from 'components/newsletter'
+import Subscribe from 'components/subscribe'
 import BlogImage from 'components/blogimage'
 import SegmentedControl from 'components/segmentedcontrol'
 import Messages, { TailBreakdown } from 'components/messages'
@@ -123,7 +123,7 @@ const Post = ({ source }: PostProps): JSX.Element => {
         }}
       />
       {meta.image && <BlogImage src={meta.image} alt={meta.title} />}
-      <PageHeader title={meta.title}>
+      <PageHeader title={meta.title} compact>
         <p className={styles.meta}>
           Published on {formattedDate} <span>&middot;</span> {meta.readingTime.text}
           <HitCounter slug={meta.slug} />
@@ -133,7 +133,7 @@ const Post = ({ source }: PostProps): JSX.Element => {
       <div className={styles.buttons}>
         <LikeButton slug={meta.slug} />
       </div>
-      <Newsletter title="Enjoyed this post? Subscribe to the newsletter!" />
+      <Subscribe />
     </Page>
   )
 }

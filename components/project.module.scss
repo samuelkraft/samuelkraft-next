@@ -22,11 +22,15 @@
 }
 
 .small {
-  padding-bottom: 100%;
+  padding-bottom: 65%;
+  @media (min-width: 480px) {
+    padding-bottom: 100%;
+  }
 
   .imageAnimationWrapper {
     right: 5%;
     left: 5%;
+    transform: translateY(30px);
   }
 }
 

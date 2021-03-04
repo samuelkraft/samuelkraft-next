@@ -5,9 +5,11 @@ import { useRouter, NextRouter } from 'next/router'
 
 import Button from 'components/button'
 
-import styles from './newsletter.module.scss'
+import styles from './subscribe.module.scss'
 
-const Newsletter = ({ title }: { title?: string }) => {
+type SubscribeProps = { title?: string; header?: boolean; className?: string }
+
+const Subscribe = ({ title, header = true, className }: SubscribeProps) => {
   const { query } = useRouter() as NextRouter
   const inputEl = useRef(null)
   const [message, setMessage] = useState('')
@@ -39,9 +41,10 @@ const Newsletter = ({ title }: { title?: string }) => {
     setMessage('Thanks! Check you inbox for a confirmation email ✨')
   }
 
+  const wrapperClassName = cn(styles.wrapper, className)
   if (query.confirmed) {
     return (
-      <div className={styles.wrapper}>
+      <div className={wrapperClassName}>
         <header className={styles.header}>
           <CheckCircle style={{ color: 'green' }} />
           <h4 className={styles.title}>Thanks for confirming your email!</h4>
@@ -54,12 +57,20 @@ const Newsletter = ({ title }: { title?: string }) => {
   }
 
   return (
-    <form onSubmit={subscribe} className={styles.wrapper}>
-      <header className={styles.header}>
-        <Send />
-        <p className={styles.title}>{title || 'Subscribe to the newsletter'}</p>
-      </header>
-      <p className={styles.description}>You&apos;ll get an email when new content is posted. No spam, unsubscribe at any time.</p>
+    <form onSubmit={subscribe} className={wrapperClassName}>
+      {header && (
+        <>
+          <header className={styles.header}>
+            <Send />
+            <p className={styles.title}>{title || 'Enjoyed this post? Subscribe to the newsletter!'}</p>
+          </header>
+          <p className={styles.description}>
+            A newsletter in the realm between <em className={styles.em}>design &amp; development</em>. Learn animations, CSS, web
+            development tips &amp; tricks and creating delightful and useful interfaces!
+          </p>
+          <p className={styles.description}>No spam, unsubcribe at any time!</p>
+        </>
+      )}
       <label htmlFor="email-input" className="sr-only">
         Email address
       </label>
@@ -74,4 +85,4 @@ const Newsletter = ({ title }: { title?: string }) => {
   )
 }
 
-export default Newsletter
+export default Subscribe

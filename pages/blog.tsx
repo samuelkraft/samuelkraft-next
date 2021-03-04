@@ -9,7 +9,7 @@ import readingTime from 'reading-time'
 // Components
 import Page from 'components/page'
 import PageHeader from 'components/pageheader'
-import Newsletter from 'components/newsletter'
+import Subscribe from 'components/subscribe'
 import BlogImage from 'components/blogimage'
 
 // Utils
@@ -76,7 +76,7 @@ const Blog = ({ posts }: BlogProps): JSX.Element => {
             )
           })}
       </ul>
-      <Newsletter />
+      <Subscribe title="Subscribe to the newsletter" />
     </Page>
   )
 }
