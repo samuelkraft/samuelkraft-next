@@ -2,7 +2,7 @@ import styles from './pageheader.module.scss'
 
 type PageHeaderProps = {
   title: string
-  description?: string
+  description?: string | JSX.Element
   children?: JSX.Element
   compact?: boolean
 }
