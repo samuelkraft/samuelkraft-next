@@ -1,5 +1,6 @@
 import { GetStaticProps } from 'next'
 import { useState, ChangeEvent } from 'react'
+import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import Page from 'components/page'
@@ -92,7 +93,9 @@ const Books = ({ published, reading }: BooksProps): JSX.Element => {
               <li className={styles.book} key={id}>
                 <Link href={`books/${slug}`}>
                   <a>
-                    <Image src={image[0].url} width={218} height={328} className={styles.cover} />
+                    <motion.div whileHover={{ y: -3 }}>
+                      <Image src={image[0].url} width={218} height={328} className={styles.cover} />
+                    </motion.div>
                     <strong className={styles.title}>{title}</strong>
                     <p className={styles.author}>{author}</p>
                     <Rating rating={rating} />
@@ -104,8 +107,7 @@ const Books = ({ published, reading }: BooksProps): JSX.Element => {
       </ul>
       <h2>Currently reading</h2>
       <ul className={styles.grid}>
-        {reading.map(({ Name: title, Author: author, Rating: rating, Image: image, id }) => {
-          const slug = slugifiy(title, { lower: true })
+        {reading.map(({ Name: title, Author: author, Image: image, id }) => {
           return (
             <li className={styles.book} key={id}>
               <Image src={image[0].url} width={218} height={328} className={styles.cover} />

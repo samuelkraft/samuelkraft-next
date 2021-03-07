@@ -24,6 +24,14 @@ const Book = ({ book, page }: BookProps): JSX.Element => {
   const router = useRouter()
   const { slug } = router.query
 
+  if (router.isFallback) {
+    return (
+      <Page>
+        <>Loading…</>
+      </Page>
+    )
+  }
+
   if (!book) {
     return (
       <Page>
@@ -95,7 +103,7 @@ const Book = ({ book, page }: BookProps): JSX.Element => {
           {link && (
             <Button href={link} variant="transparent">
               <>
-                Get it on Amazon <Link />
+                Buy the book <Link />
               </>
             </Button>
           )}
@@ -112,7 +120,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = bookData.filter(book => book.Status === 'Published').map(b => `/books/${slugify(b.Name, { lower: true })}`)
   return {
     paths,
-    fallback: false,
+    fallback: true,
   }
 }
 export const getStaticProps: GetStaticProps = async context => {

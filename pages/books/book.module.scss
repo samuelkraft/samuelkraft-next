@@ -1,13 +1,11 @@
 .header {
-  display: flex;
-  flex-direction: column;
   margin-bottom: 40px;
   padding: 30px;
   background-color: var(--boxBg);
   border-radius: 8px;
 
   @media (min-width: 480px) {
-    flex-direction: row;
+    display: flex;
   }
 }
 
@@ -26,7 +24,11 @@
   margin-bottom: 10px;
   padding-top: 15px;
   font-weight: 800;
-  font-size: 36px;
+  font-size: 32px;
+
+  @media (min-width: 480px) {
+    font-size: 36px;
+  }
 }
 
 .author {
@@ -38,6 +40,7 @@
 
 .genre {
   margin-right: 5px;
+  margin-bottom: 5px;
   padding: 2px 5px;
   color: white;
   font-weight: 500;
@@ -100,6 +103,13 @@
   h5,
   h6 {
     font-weight: 700;
+  }
+
+  h1 {
+    font-size: 1.375em;
+    @media (min-width: 480px) {
+      font-size: 1.875em;
+    }
   }
 
   :global(.notion-quote) {

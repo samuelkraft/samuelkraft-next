@@ -16,18 +16,10 @@
 .book {
   min-width: 0;
   margin: 0;
-
-  &:hover,
-  &:focus {
-    .cover {
-      transform: translateY(-5px);
-    }
-  }
 }
 
 .cover {
   border-radius: 8px;
-  transition: transform 200ms ease-out;
 }
 
 .title {
