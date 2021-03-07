@@ -21,12 +21,13 @@
 
 .title {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 7px;
   padding-top: 15px;
   font-weight: 800;
   font-size: 32px;
 
   @media (min-width: 480px) {
+    margin-bottom: 10px;
     font-size: 36px;
   }
 }
