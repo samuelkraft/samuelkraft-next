@@ -113,6 +113,11 @@
     }
   }
 
+  a {
+    color: var(--brand);
+    text-decoration: none;
+  }
+
   :global(.notion-quote) {
     margin-bottom: 10px;
     color: var(--text);
