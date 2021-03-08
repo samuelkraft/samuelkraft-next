@@ -47,8 +47,8 @@ const Book = ({ book, page }: BookProps): JSX.Element => {
     year: 'numeric',
   })
 
-  const seoTitle = `${title} book review - Samuel Kraft`
-  const seoDesc = `${title} by ${author} book review, notes and thoughts`
+  const seoTitle = `${title} Book Review - Samuel Kraft`
+  const seoDesc = `${title} by {author} book review, notes and thoughts`
 
   return (
     <Page>
