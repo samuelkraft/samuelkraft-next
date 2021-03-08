@@ -70,7 +70,7 @@ const Blog = ({ posts }: BlogProps): JSX.Element => {
                 </Link>
                 <p className={styles.summary}>{summary}</p>
                 <p className={styles.meta}>
-                  Published on {formattedDate} &middot; {readTime.text}
+                  Published on <time dateTime={publishedAt}>{formattedDate}</time> &middot; {readTime.text}
                 </p>
               </li>
             )
