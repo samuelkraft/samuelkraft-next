@@ -89,11 +89,20 @@ Since all tails will all have the same size and be positioned absolutely at the 
   word-wrap: break-word; /* Make sure the text wraps to multiple lines if long */
   border-radius: 25px;
 
+  &:before {
+    width: 20px;
+  }
+
+  &:after {
+    width: 26px;
+    background-color: var(--bg); /* All tails have the same bg cutout */
+  }
+
   &:before,
   &:after {
     position: absolute;
     bottom: 0;
-    height: 25px; // height of our bubble "tail" - should match the border-radius above
+    height: 25px; /* height of our bubble "tail" - should match the border-radius above */
     content: '';
   }
 }
@@ -110,7 +119,7 @@ If we take a closer look at the tails we're trying to accomplish we'll notice th
   <p style={{margin: 0, opacity: 0.75}}>Hover to arrange tail 👆</p>
 </div>
 
-Let's recreate these shapes with our pseudo elements. Start by creating the colored shape with a big border (`border-right: 20px`). We save a few lines of css by using border over setting width/height and background-color separately. Set the curve using border-radius, we can mimic the iOS one using different values for the horizontal and vertical axis. Then tweak the `right` value until it's positioned correctly.
+Let's recreate these shapes with our pseudo elements. Start by setting the color of our bordered shape, then set the curve using border-radius, we can mimic the iOS one using different values for the horizontal and vertical axis. Then tweak the `right` value until it's positioned correctly.
 
 Now we need to hide the parts that extend to the right of the bubble. We do this by almost recreating the same shape but filled with our background-color instead, and position it over the previous shape.
 
@@ -122,13 +131,12 @@ Now we need to hide the parts that extend to the right of the bubble. We do this
 
   &:before {
     right: -7px;
-    border-right: 20px solid var(--sentColor);
+    background-color: var(--sentColor);
     border-bottom-left-radius: 16px 14px;
   }
 
   &:after {
     right: -26px;
-    border-right: 26px solid var(--bg);
     border-bottom-left-radius: 10px;
   }
 }
@@ -144,13 +152,12 @@ For our received messages we do the same thing but to the left instead of to the
 
   &:before {
     left: -7px;
-    border-left: 20px solid var(--receiveColor);
+    background-color: var(--receiveColor);
     border-bottom-right-radius: 16px 14px;
   }
 
   &:after {
     left: -26px;
-    border-left: 26px solid var(--bg);
     border-bottom-right-radius: 10px;
   }
 }
