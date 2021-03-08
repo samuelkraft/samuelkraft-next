@@ -125,6 +125,12 @@ const Post = ({ source }: PostProps): JSX.Element => {
             },
           ],
           site_name: 'Samuel Kraft',
+          type: 'article',
+          article: {
+            publishedTime: meta.publishedAt,
+            modifiedTime: meta.updatedAt,
+            authors: ['https://samuelkrat.com'],
+          },
         }}
         twitter={{
           cardType: 'summary_large_image',
