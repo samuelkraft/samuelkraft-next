@@ -16,7 +16,7 @@ const footerLinks = [
   { name: 'Github', url: 'https://github.com/samuelkraft' },
   { name: 'RSS', url: '/feed.xml' },
   { name: 'Blog', url: '/blog' },
-  { name: 'Dribbble', url: 'https://www.dribbble.com/samuelkraft' },
+  { name: 'Dribbble', url: 'https://dribbble.com/samuelkraft' },
   { name: 'Percentage change calc', url: '/percentagechange' },
   { name: 'Books', url: '/books' },
   { name: 'Instagram', url: 'https://www.instagram.com/samuelkraft' },
