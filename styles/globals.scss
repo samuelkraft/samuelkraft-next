@@ -219,6 +219,39 @@ pre > code.highlight {
   outline-offset: 0.4em;
 }
 
+.remark-code-title {
+  padding: 12px 25px;
+  font-weight: 600;
+  font-size: 14px;
+  font-family: Menlo, Monaco, 'Lucida Console', 'Courier New', Courier, monospace;
+  background-color: var(--boxBg);
+  border-top-left-radius: 0.3em;
+  border-top-right-radius: 0.3em;
+}
+
+article .remark-code-title + pre {
+  margin-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.mdx-marker {
+  position: relative;
+  margin-right: -25px;
+  margin-left: -25px;
+  padding-left: 25px;
+  background-color: var(--brandTinted);
+
+  &:before {
+    position: absolute;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: var(--brand);
+    content: '';
+  }
+}
+
 @keyframes bounce {
   10% {
     transform: scaleY(0.3);
