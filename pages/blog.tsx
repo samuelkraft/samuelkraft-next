@@ -69,14 +69,7 @@ const Blog = ({ posts }: BlogProps): JSX.Element => {
       />
       <PageHeader title="Blog" description={seoDesc}>
         <div className={styles.inputWrapper}>
-          <Input
-            className={styles.input}
-            value={currentSearch}
-            onChange={handleInputChange}
-            name="search"
-            placeholder="Search posts…"
-            type="search"
-          />
+          <Input className={styles.input} value={currentSearch} onChange={handleInputChange} placeholder="Search posts…" type="search" />
           <Search className={styles.inputIcon} />
         </div>
       </PageHeader>

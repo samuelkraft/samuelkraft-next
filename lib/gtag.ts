@@ -15,7 +15,7 @@ export const event = ({ action, category, label, value }: { action: string; cate
 }
 
 // https://developers.google.com/gtagjs/reference/event#search
-export const search = (value: { value: string }): void => {
+export const search = (value: string): void => {
   window.gtag('event', 'search', {
     search_term: value,
   })
