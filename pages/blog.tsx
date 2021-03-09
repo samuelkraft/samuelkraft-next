@@ -26,7 +26,7 @@ type BlogProps = {
 
 const Blog = ({ posts }: BlogProps): JSX.Element => {
   const seoTitle = 'Blog | Samuel Kraft'
-  const seoDesc = 'My personal blog'
+  const seoDesc = 'I write about development, design, React, CSS, animation and more!'
   return (
     <Page>
       <NextSeo
