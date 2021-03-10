@@ -105,15 +105,17 @@ const Post = ({ source }: PostProps): JSX.Element => {
 
   const seoTitle = `${meta.title} | Samuel Kraft`
   const seoDesc = `${meta.summary}`
+  const url = `https://samuelkraft.com/blog/${meta.slug}`
 
   return (
     <Page>
       <NextSeo
         title={seoTitle}
         description={seoDesc}
+        canonical={url}
         openGraph={{
           title: seoTitle,
-          url: `https://samuelkraft.com/blog/${meta.slug}`,
+          url,
           description: seoDesc,
           images: [
             {
