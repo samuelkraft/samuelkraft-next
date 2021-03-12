@@ -25,7 +25,6 @@ import BlogImage from 'components/blogimage'
 import SegmentedControl from 'components/segmentedcontrol'
 import Messages, { TailBreakdown } from 'components/messages'
 import AnimatedMessages from 'components/animatedmessages'
-import Parallax from 'components/parallax'
 
 // Utils
 import { postFilePaths, POSTS_PATH } from 'utils/mdxutils'
@@ -62,7 +61,6 @@ const components = {
   Messages,
   AnimatedMessages,
   TailBreakdown,
-  Parallax,
 }
 
 export type Meta = {
