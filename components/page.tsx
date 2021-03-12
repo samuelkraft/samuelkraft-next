@@ -20,6 +20,7 @@ const footerLinks = [
   { name: 'Percentage change calc', url: '/percentagechange' },
   { name: 'Books', url: '/books' },
   { name: 'Instagram', url: 'https://www.instagram.com/samuelkraft' },
+  { name: 'Changelog', url: '/changelog' },
 ]
 
 const Page = ({ children }: PageProps): JSX.Element => (
