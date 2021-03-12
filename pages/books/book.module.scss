@@ -94,7 +94,8 @@
   ol,
   ul,
   p {
-    font-size: 1.1em;
+    font-size: 1.125em;
+    line-height: 1.6;
   }
 
   h1,
@@ -122,5 +123,9 @@
     margin-bottom: 10px;
     color: var(--text);
     opacity: 0.8;
+  }
+
+  :global(.notion) {
+    font-family: var(--fontFamily);
   }
 }
