@@ -68,10 +68,10 @@ const Changelog = ({ inProgress, inBacklog }: ChangelogProps): JSX.Element => {
             <a href="https://github.com/samuelkraft/samuelkraft-next" target="_blank" rel="noreferrer noopener">
               Github
             </a>
-            .
+            . If you want to see how a feature is built I&apos;ve included the commit hashes and a link to the respective commit.
           </p>
           <p>
-            Since this website was release I have to date added 128 commits with various features and improvements. I&apos;ve retrofitted
+            Since this website was released I have to date added 128 commits with various features and improvements. I&apos;ve retrofitted
             this changelog with some of the major ones.
           </p>
         </Entry>
