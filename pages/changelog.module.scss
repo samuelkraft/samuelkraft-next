@@ -49,7 +49,7 @@
       display: block;
       width: 21px;
       height: 21px;
-      border: 3px dotted var(--border);
+      border: 3px dotted var(--borderActive);
       border-radius: 25px;
       transition: border-color 150ms ease-out;
       content: '';
@@ -58,7 +58,7 @@
     &:hover,
     &:focus {
       &:before {
-        border-color: var(--borderActive);
+        border-color: var(--text);
       }
     }
   }
