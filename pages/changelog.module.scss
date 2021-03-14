@@ -141,7 +141,14 @@
 
 .meta {
   display: flex;
+  font-size: 14px;
+  font-family: Menlo, Monaco, 'Lucida Console', 'Courier New', Courier, monospace;
   opacity: 0.7;
+
+  a:hover,
+  a:focus {
+    text-decoration: underline;
+  }
 }
 
 .date {
@@ -184,7 +191,7 @@
 
   li {
     position: relative;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
     list-style-type: none;
 
     &:before {

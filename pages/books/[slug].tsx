@@ -11,6 +11,8 @@ import Rating from 'components/rating'
 import Page from 'components/page'
 import Button from 'components/button'
 
+import { formatDate } from 'lib/formatdate'
+
 import type { Book as BookType } from 'pages/books'
 
 import styles from './book.module.scss'
@@ -41,12 +43,6 @@ const Book = ({ book, page }: BookProps): JSX.Element => {
   }
 
   const { Name: title, Author: author, Rating: rating, Fiction: fiction, Date: date, Link: link, Genres: genres, Image: image } = book
-  const formattedDate = new Date(date).toLocaleString('en-US', {
-    month: 'short',
-    day: '2-digit',
-    year: 'numeric',
-  })
-
   const seoTitle = `${title} Book Review - Samuel Kraft`
   const seoDesc = `${title} by ${author} book review, notes and thoughts`
 
@@ -98,7 +94,7 @@ const Book = ({ book, page }: BookProps): JSX.Element => {
               <Rating rating={rating} />
             </dd>
             <dt>Date finished</dt>
-            <dd>{formattedDate}</dd>
+            <dd>{formatDate(date)}</dd>
           </dl>
           {link && (
             <Button href={link} variant="transparent">

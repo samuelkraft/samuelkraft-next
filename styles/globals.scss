@@ -25,6 +25,7 @@
 :root {
   --bg: #fff;
   --text: #000;
+  --textTinted: rgba(0, 0, 0, 0.5);
   --brand: #e38356;
   --brandActive: #b3613b;
   --brandTinted: rgba(227, 131, 86, 0.2);
@@ -46,6 +47,7 @@
 [data-theme='dark'] {
   --bg: #161515;
   --text: #fff;
+  --textTinted: rgba(255, 255, 255, 0.5);
   --headerBg: rgba(22, 21, 21, 0.6);
   --border: rgba(255, 255, 255, 0.08);
   --borderActive: rgba(255, 255, 255, 0.25);

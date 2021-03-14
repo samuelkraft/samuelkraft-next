@@ -28,6 +28,8 @@ import AnimatedMessages from 'components/animatedmessages'
 
 // Utils
 import { postFilePaths, POSTS_PATH } from 'utils/mdxutils'
+import { formatDate } from 'lib/formatdate'
+
 import styles from './post.module.scss'
 
 const CustomLink = (props: { href: string }) => {
@@ -90,18 +92,6 @@ type PostProps = {
 const Post = ({ source }: PostProps): JSX.Element => {
   const content = hydrate(source, { components })
   const { scope: meta } = source
-  const formattedPublishDate = new Date(meta.publishedAt).toLocaleString('en-US', {
-    month: 'short',
-    day: '2-digit',
-    year: 'numeric',
-  })
-  const formattedUpdatedDate = meta.updatedAt
-    ? new Date(meta.updatedAt).toLocaleString('en-US', {
-        month: 'short',
-        day: '2-digit',
-        year: 'numeric',
-      })
-    : null
 
   const seoTitle = `${meta.title} | Samuel Kraft`
   const seoDesc = `${meta.summary}`
@@ -142,8 +132,8 @@ const Post = ({ source }: PostProps): JSX.Element => {
       {meta.image && <BlogImage src={meta.image} alt={meta.title} />}
       <PageHeader title={meta.title} compact>
         <p className={styles.meta}>
-          Published on <time dateTime={meta.publishedAt}>{formattedPublishDate}</time>
-          {meta.updatedAt ? ` (Updated ${formattedUpdatedDate})` : ''} <span>&middot;</span> {meta.readingTime.text}
+          Published on <time dateTime={meta.publishedAt}>{formatDate(meta.publishedAt)}</time>
+          {meta.updatedAt ? ` (Updated ${formatDate(meta.updatedAt)})` : ''} <span>&middot;</span> {meta.readingTime.text}
           <HitCounter slug={meta.slug} />
         </p>
       </PageHeader>

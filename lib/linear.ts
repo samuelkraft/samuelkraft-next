@@ -10,5 +10,5 @@ export const getAllIssues = async () => {
   if (issues.nodes.length) {
     return issues.nodes
   }
-  return 'No issues'
+  return []
 }
