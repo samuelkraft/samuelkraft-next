@@ -40,13 +40,24 @@
 
   li {
     margin-bottom: 0;
+    color: var(--textTinted);
     font-weight: 500;
-    opacity: 0.5;
-    transition: opacity 0.2s ease-out;
+    transition: color 0.2s ease-out;
 
     &:hover,
     &:focus {
-      opacity: 0.8;
+      color: var(--text);
     }
   }
+}
+
+.badge {
+  margin-left: 5px;
+  padding: 2px 5px;
+  color: white;
+  font-weight: 500;
+  font-size: 10px;
+  text-transform: uppercase;
+  background-color: var(--brand);
+  border-radius: 5px;
 }

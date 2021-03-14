@@ -18,6 +18,7 @@ import Input from 'components/input'
 
 // Utils
 import { postFilePaths, POSTS_PATH } from 'utils/mdxutils'
+import { formatDate } from 'lib/formatdate'
 import * as gtag from 'lib/gtag'
 
 // Types
@@ -79,11 +80,6 @@ const Blog = ({ posts }: BlogProps): JSX.Element => {
           const {
             meta: { summary, title, readingTime: readTime, publishedAt, image },
           } = post
-          const formattedDate = new Date(publishedAt).toLocaleString('en-US', {
-            month: 'short',
-            day: '2-digit',
-            year: 'numeric',
-          })
           const slug = post.filePath.replace(/\.mdx?$/, '')
           return (
             <li key={post.filePath}>
@@ -99,7 +95,7 @@ const Blog = ({ posts }: BlogProps): JSX.Element => {
               </Link>
               <p className={styles.summary}>{summary}</p>
               <p className={styles.meta}>
-                Published on <time dateTime={publishedAt}>{formattedDate}</time> &middot; {readTime.text}
+                Published on <time dateTime={publishedAt}>{formatDate(publishedAt)}</time> &middot; {readTime.text}
               </p>
             </li>
           )

@@ -9,6 +9,7 @@ import Rating from 'components/rating'
 import { ChevronDown } from 'react-feather'
 import slugifiy from 'slugify'
 import { NextSeo } from 'next-seo'
+
 import styles from './books.module.scss'
 
 const sortOptions = [
