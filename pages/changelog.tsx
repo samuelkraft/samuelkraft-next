@@ -111,7 +111,15 @@ const Changelog = ({ inProgress, inBacklog }: ChangelogProps): JSX.Element => {
             .
           </p>
         </Entry>
-        <Entry date="2021-02-04" title="💌 Added newsletter" commit="45f860afc2d5deb05d5319a407bb60ed72c15bb4" />
+        <Entry date="2021-02-04" title="💌 Added newsletter" commit="45f860afc2d5deb05d5319a407bb60ed72c15bb4">
+          <p>
+            Learn animations, CSS, web development tips &amp; tricks and creating delightful and useful interfaces!{' '}
+            <Link href="/newsletter">
+              <a>Sign up here</a>
+            </Link>
+            .
+          </p>
+        </Entry>
         <Entry date="2021-01-30" title="🎶 Add now playing widget to footer" commit="5898535acfa8619b25c082a9ed86da909312354a">
           <p>
             Check out the original implementation by{' '}
