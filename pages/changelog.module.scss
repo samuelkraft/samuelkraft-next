@@ -1,7 +1,12 @@
 .entry {
   position: relative;
-  margin-bottom: 50px;
-  padding-left: 80px;
+  margin-bottom: 22px;
+  padding-left: 40px;
+
+  @media (min-width: 480px) {
+    margin-bottom: 50px;
+    padding-left: 80px;
+  }
 
   &.isDone {
     &:before {
@@ -22,9 +27,13 @@
       left: 8px;
       display: block;
       width: 4px;
-      height: calc(100% + 30px); /* 100% + bottom margin - circle height */
+      height: calc(100% + 2px);
       background-color: var(--border);
       content: '';
+
+      @media (min-width: 480px) {
+        height: calc(100% + 30px); /* 100% + bottom margin - circle height */
+      }
     }
 
     &:first-of-type {
@@ -92,16 +101,25 @@
 
   &.inBacklog,
   &.inProgress {
-    margin: -15px -20px 20px;
+    margin: -15px -20px 7px;
     padding-top: 15px;
     padding-right: 20px;
     padding-bottom: 15px;
     padding-left: 80px;
-    transition: background-color 250 ms ease-out;
+    transition: background-color 250ms ease-out;
+
+    @media (min-width: 480px) {
+      margin: -15px -20px 20px;
+      font-size: 22px;
+    }
 
     .title {
       margin-bottom: 7px;
-      font-size: 22px;
+      font-size: 18px;
+
+      @media (min-width: 480px) {
+        font-size: 22px;
+      }
     }
 
     &:hover,
@@ -119,7 +137,19 @@
 }
 
 .section {
-  margin-bottom: 60px;
+  margin-bottom: 40px;
+
+  @media (min-width: 480px) {
+    margin-bottom: 60px;
+  }
+}
+
+.sectionTitle {
+  font-size: 22px;
+
+  @media (min-width: 480px) {
+    font-size: 26px;
+  }
 }
 
 @keyframes pulse {
@@ -136,7 +166,13 @@
 
 .title {
   margin-bottom: 8px;
-  font-size: 25px;
+  padding-top: 3px;
+  font-size: 20px;
+
+  @media (min-width: 480px) {
+    padding-top: 0;
+    font-size: 25px;
+  }
 }
 
 .meta {
@@ -171,10 +207,15 @@
 
 .content {
   padding-top: 10px;
-  padding-bottom: 30px;
-  font-size: 18px;
+  padding-bottom: 15px;
+  font-size: 16px;
   line-height: 1.65;
   border-bottom: 1px solid var(--border);
+
+  @media (min-width: 480px) {
+    padding-bottom: 30px;
+    font-size: 18px;
+  }
 
   a {
     color: var(--brand);

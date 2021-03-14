@@ -165,7 +165,7 @@ const Changelog = ({ inProgress, inBacklog }: ChangelogProps): JSX.Element => {
       </section>
       {inProgress.length && (
         <section className={styles.section}>
-          <h2>Currently working on…</h2>
+          <h2 className={styles.sectionTitle}>Currently working on…</h2>
           {inProgress.map(issue => (
             <Entry date={new Date(issue.startedAt).toString()} title={issue.title} type="inProgress" identifier={issue.identifier} />
           ))}
@@ -173,7 +173,7 @@ const Changelog = ({ inProgress, inBacklog }: ChangelogProps): JSX.Element => {
       )}
       {inBacklog.length && (
         <section className={styles.section}>
-          <h2>In the backlog…</h2>
+          <h2 className={styles.sectionTitle}>In the backlog…</h2>
           {inBacklog.map(issue => (
             <Entry title={issue.title} type="inBacklog" identifier={issue.identifier} />
           ))}
