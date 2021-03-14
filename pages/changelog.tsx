@@ -7,6 +7,7 @@ import cn from 'classnames'
 import { getAllIssues } from 'lib/linear'
 import type { Issue } from '@linear/sdk'
 import { formatDate } from 'lib/formatdate'
+import { NextSeo } from 'next-seo'
 
 import styles from './changelog.module.scss'
 
@@ -56,6 +57,7 @@ type ChangelogProps = {
 const Changelog = ({ inProgress, inBacklog }: ChangelogProps): JSX.Element => {
   return (
     <Page>
+      <NextSeo title="Changelog | Samuel Kraft" />
       <PageHeader title="Changelog" description="What's new on this site?" />
       <section className={styles.section}>
         <Entry date="2021-03-14" title="Added Changelog" commit="3b6ac85a642a35586a03acc3623a171cd860d5b4">
