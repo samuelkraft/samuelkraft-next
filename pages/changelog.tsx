@@ -58,7 +58,7 @@ const Changelog = ({ inProgress, inBacklog }: ChangelogProps): JSX.Element => {
     <Page>
       <PageHeader title="Changelog" description="What's new on this site?" />
       <section className={styles.section}>
-        <Entry date="2021-03-14" title="Added Changelog">
+        <Entry date="2021-03-14" title="Added Changelog" commit="3b6ac85a642a35586a03acc3623a171cd860d5b4">
           <p>
             That&apos;s what you&apos;re looking at right now! 🎉 In the spirit of{' '}
             <a href="https://twitter.com/search?q=%23buildinpublic" target="_blank" rel="noreferrer noopener">
