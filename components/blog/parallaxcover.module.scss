@@ -1,0 +1,48 @@
+.wrapper {
+  position: relative;
+  height: 0;
+  margin-right: -15px;
+  margin-bottom: 15px;
+  margin-left: -15px;
+  padding-bottom: 40%;
+  background-color: #00000c;
+
+  @media (min-width: 480px) {
+    margin-right: -20px;
+    margin-bottom: 30px;
+    margin-left: -20px;
+    padding-bottom: 50%;
+    overflow: hidden;
+    border-radius: 12px;
+  }
+}
+
+.parallaxContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+
+  @media (min-width: 480px) {
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+.logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  transform: translate(-50%, -50%);
+
+  @media (min-width: 540px) {
+    width: 120px;
+    height: 120px;
+  }
+}

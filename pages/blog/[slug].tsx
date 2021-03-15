@@ -11,6 +11,7 @@ import Link from 'next/link'
 import { NextSeo } from 'next-seo'
 import mdxPrism from 'mdx-prism'
 import codeTitle from 'remark-code-titles'
+import dynamic from 'next/dynamic'
 
 // Components
 import Page from 'components/page'
@@ -26,6 +27,7 @@ import SegmentedControl from 'components/segmentedcontrol'
 import Messages, { TailBreakdown } from 'components/messages'
 import AnimatedMessages from 'components/animatedmessages'
 import Parallax from 'components/parallax'
+const ParallaxCover = dynamic(() => import('components/blog/parallaxcover'))
 
 // Utils
 import { postFilePaths, POSTS_PATH } from 'utils/mdxutils'
@@ -142,6 +144,7 @@ const Post = ({ source }: PostProps): JSX.Element => {
         }}
       />
       {meta.image && <BlogImage src={meta.image} alt={meta.title} />}
+      {meta.slug === 'spring-parallax-framer-motion-guide' && <ParallaxCover />}
       <PageHeader title={meta.title} compact>
         <p className={styles.meta}>
           Published on <time dateTime={meta.publishedAt}>{formattedPublishDate}</time>

@@ -24,7 +24,7 @@ const Project = ({ title, description, link, image, imageWidth, imageHeight, lin
         <div className={cn(styles.imageWrapper, small && styles.small)}>
           {image && (
             <div className={styles.imageAnimationWrapper}>
-              <Parallax offset={30} clamp>
+              <Parallax offset={30} clampFinal>
                 <div className={styles.image} style={{ maxWidth: imageWidth / 2, maxHeight: imageHeight / 2 }}>
                   <Image src={image} width={imageWidth} height={imageHeight} loading="eager" />
                 </div>

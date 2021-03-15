@@ -4,10 +4,11 @@ import { motion, useViewportScroll, useTransform, useSpring, useReducedMotion } 
 type ParallaxProps = {
   children: ReactNode
   offset?: number
-  clamp?: boolean
+  clampInitial?: boolean
+  clampFinal?: boolean
 }
 
-const Parallax = ({ children, offset = 50, clamp }: ParallaxProps): JSX.Element => {
+const Parallax = ({ children, offset = 50, clampInitial, clampFinal }: ParallaxProps): JSX.Element => {
   const prefersReducedMotion = useReducedMotion()
   const [elementTop, setElementTop] = useState(0)
   const [clientHeight, setClientHeight] = useState(0)
@@ -18,13 +19,13 @@ const Parallax = ({ children, offset = 50, clamp }: ParallaxProps): JSX.Element 
   const initial = elementTop - clientHeight
   const final = elementTop + offset
 
-  const yRange = useTransform(scrollY, [initial, final], [offset, clamp ? 0 : -offset])
+  const yRange = useTransform(scrollY, [initial, final], [clampInitial ? 0 : offset, clampFinal ? 0 : -offset])
   const y = useSpring(yRange, { stiffness: 400, damping: 90 })
 
   useLayoutEffect(() => {
     const element = ref.current
     const onResize = () => {
-      setElementTop(element.getBoundingClientRect().top)
+      setElementTop(element.getBoundingClientRect().top + window.scrollY || window.pageYOffset)
       setClientHeight(window.innerHeight)
     }
     onResize()
