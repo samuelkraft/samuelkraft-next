@@ -30,7 +30,6 @@
   .imageAnimationWrapper {
     right: 5%;
     left: 5%;
-    transform: translateY(30px);
   }
 }
 
@@ -80,15 +79,9 @@
 
 .imageAnimationWrapper {
   position: absolute;
-  top: 0;
   right: 0;
-  bottom: 0;
+  bottom: -8px;
   left: 0;
-}
-.image {
-  position: absolute;
-  bottom: -7px;
-  left: 50%;
-  width: 95%;
-  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
 }
