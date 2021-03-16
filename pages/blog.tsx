@@ -15,6 +15,7 @@ import PageHeader from 'components/pageheader'
 import Subscribe from 'components/subscribe'
 import BlogImage from 'components/blogimage'
 import Input from 'components/input'
+import ParallaxCover from 'components/blog/parallaxcover'
 
 // Utils
 import { postFilePaths, POSTS_PATH } from 'utils/mdxutils'
@@ -83,6 +84,13 @@ const Blog = ({ posts }: BlogProps): JSX.Element => {
           const slug = post.filePath.replace(/\.mdx?$/, '')
           return (
             <li key={post.filePath}>
+              {slug === 'spring-parallax-framer-motion-guide' && (
+                <Link href="/blog/spring-parallax-framer-motion-guide">
+                  <a>
+                    <ParallaxCover />
+                  </a>
+                </Link>
+              )}
               {image && (
                 <Link as={`/blog/${slug}`} href="/blog/[slug]">
                   <a aria-label={title}>

@@ -1,5 +1,6 @@
 .article {
   margin-bottom: 40px;
+  overflow: hidden;
   color: var(--text);
   font-size: 1.125em;
   line-height: 1.6;
@@ -92,6 +93,10 @@
     p {
       margin-bottom: 0.7em;
     }
+  }
+
+  ol li {
+    margin-bottom: 0.6em;
   }
 
   a {

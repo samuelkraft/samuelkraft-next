@@ -28,7 +28,7 @@ export default PageTransition
 
 Use this component as a wrapper to any pages you want to animate. In my case I'll add it to my [Page component](https://github.com/samuelkraft/samuelkraft-next/blob/master/components/page.tsx#L29), which sets the layout and shows my footer on all pages.
 
-```tsx
+```tsx{5}
 const Page = ({ children }: PageProps): JSX.Element => (
   <div className={styles.container}>
     <Header />

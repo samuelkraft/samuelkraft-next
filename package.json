@@ -34,7 +34,6 @@
     "react-notion": "^0.9.3",
     "reading-time": "^1.3.0",
     "rehype": "^11.0.0",
-    "remark-capitalize": "^1.1.0",
     "remark-code-titles": "^0.1.1",
     "rss": "^1.2.2",
     "sass": "^1.32.8",

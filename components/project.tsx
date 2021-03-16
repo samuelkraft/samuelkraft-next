@@ -1,8 +1,9 @@
-import { useState, useRef, useLayoutEffect } from 'react'
-import { motion, useViewportScroll, useTransform, useSpring } from 'framer-motion'
 import { Link2 } from 'react-feather'
-import Image from 'next/image'
 import cn from 'classnames'
+import Image from 'next/image'
+
+import Parallax from 'components/parallax'
+
 import styles from './project.module.scss'
 
 type ProjectProps = {
@@ -17,30 +18,18 @@ type ProjectProps = {
 }
 
 const Project = ({ title, description, link, image, imageWidth, imageHeight, linkText, small }: ProjectProps): JSX.Element => {
-  const [elementTop, setElementTop] = useState(0)
-  const [pageHeight, setPageHeight] = useState(0)
-  const ref = useRef(null)
-
-  const { scrollY } = useViewportScroll()
-  const yRange = useTransform(scrollY, [elementTop - pageHeight, elementTop], [30, 0])
-  const y = useSpring(yRange, { stiffness: 400, damping: 90 })
-
-  useLayoutEffect(() => {
-    const element = ref.current
-    setElementTop(element.offsetTop)
-    setPageHeight(window.innerHeight)
-  }, [ref])
-
   return (
-    <div className={styles.project} ref={ref}>
+    <div className={styles.project}>
       <a href={`https://${link}`} target="_blank" rel="noreferrer" aria-label={title}>
         <div className={cn(styles.imageWrapper, small && styles.small)}>
           {image && (
-            <motion.div className={styles.imageAnimationWrapper} style={{ y }}>
-              <div className={styles.image} style={{ maxWidth: imageWidth / 2, maxHeight: imageHeight / 2 }}>
-                <Image src={image} width={imageWidth} height={imageHeight} />
-              </div>
-            </motion.div>
+            <div className={styles.imageAnimationWrapper}>
+              <Parallax offset={30} clampFinal>
+                <div className={styles.image} style={{ maxWidth: imageWidth / 2, maxHeight: imageHeight / 2 }}>
+                  <Image src={image} width={imageWidth} height={imageHeight} loading="eager" />
+                </div>
+              </Parallax>
+            </div>
           )}
         </div>
       </a>

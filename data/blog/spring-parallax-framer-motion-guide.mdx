@@ -1,0 +1,266 @@
+---
+title: 'Spring-based Parallax with Framer motion: Step by step'
+publishedAt: '2021-03-16'
+summary: 'A guide on creating a spring-based Parallax scrolling effect using Framer Motion and React'
+og: '/blog/spring-parallax-framer-motion-guide/og.png'
+---
+
+Parallax scrolling has gotten a bad rap, but I believe that's in part because of the very poor implementations out there. As with everything, if we're mindful and make it subtle it can help convey our message more clearly. There's a simple thing you can do to greatly improve the effect: Use a spring-based easing.
+
+Let's take a look at the [Epic React course](https://epicreact.dev) landing page:
+
+<video playsInline autoPlay loop muted width="710" style={{ width: '100%', maxWidth: 710, marginBottom: 20}}>
+    <source src="/blog/spring-parallax-framer-motion-guide/epicreact.mp4" type="video/mp4" />
+    Sorry, your browser doesn't support embedded videos.
+</video>
+
+This is an example of a parallax transition implemented the right way. If you scroll super-quickly you will still see the animation, and if you use a mouse-wheel it never stutters. This is because the animation is eased and not mapped 1:1 to the actual scroll. This way the effect looks super nice! (And most importantly, it makes sense on this landing page and helps deliver the message).
+
+Another website that does this right is [Quill.chat](http://quill.chat), notice how when you scroll through the site you get a sense of joy when the elements smoothly slide into view with just the right velocity. Had they not eased the movement if wouldn't have felt as good.
+
+<video playsInline autoPlay loop muted width="710" style={{ width: '100%', maxWidth: 710, marginBottom: 20}}>
+    <source src="/blog/spring-parallax-framer-motion-guide/quill.mp4" type="video/mp4" />
+    Sorry, your browser doesn't support embedded videos.
+</video>
+
+## I'm convinced - How to implement parallax spring easing in react?
+
+You can implement parallax scrolling in a lot of different ways, for this example I'm using my favourite animation framework Framer Motion to create a reusable `<Parallax />` component. You can do similar things with other frameworks like react-spring or as descibed [here](https://developers.google.com/web/updates/2016/12/performant-parallaxing) by Paul Lewis & Robert Flack on the google developer blog. If you already know the basics of parallax scrolling feel free to skip to the section adding the spring easing.
+
+Let's start by creating a component that accept children as a prop.
+
+```tsx
+import { ReactNode } from 'react'
+
+type ParallaxProps = {
+  children: ReactNode
+}
+
+const Parallax = ({ children }: ParallaxProps): JSX.Element => {
+  return children
+})
+
+export default Parallax
+```
+
+Next up we'll import `useViewportScroll` from framer-motion in order to get how far on the page we have scrolled. We'll use this as the input to another framer-motion hook called `useTransform` in order to calculate our parallax values which we'll add to a `motion.div`.
+
+## Using Framer Motion useTransform
+
+[useTransform](https://www.framer.com/api/motion/motionvalue/#usetransform) takes an input value and a transformer, and outputs a new value. For example:
+
+```tsx
+  // The output value will always be double that of `x`.
+  const y = useTransform(x, value => value * 2)
+```
+
+Lets start by using some random values to see that it's working:
+
+```tsx{2,9-12}
+import { ReactNode } from 'react'
+import { motion, useViewportScroll, useTransform } from 'framer-motion'
+
+type ParallaxProps = {
+  children: ReactNode
+}
+
+const Parallax = ({ children }: ParallaxProps): JSX.Element => {
+  const { scrollY } = useViewportScroll()
+  const y = useTransform(scrollY, [100, 200], [0, 500])
+
+  return <motion.div style={{ y }}>{children}</motion.div>
+})
+
+export default Parallax
+```
+
+In order to find out the correct values we need to add some calculations. The idea is that the component should be centered in it's container when we've scrolled to the middle of the screen, but offset by x pixels when scrolled in either direction.
+
+In order to do this we need two values: what the offsetTop of our element is and the height of the screen. Let's add a ref to our element and use `useLayoutEffect` to save those values when the component is about to mount.
+
+```tsx{1,6,9-12,16-36,39}
+import { useState, useRef, useLayoutEffect, ReactNode } from 'react'
+import { motion, useViewportScroll, useTransform } from 'framer-motion'
+
+type ParallaxProps = {
+  children: ReactNode
+  offset?: number
+}
+
+const Parallax = ({ children, offset = 50 }: ParallaxProps): JSX.Element => {
+  const [elementTop, setElementTop] = useState(0)
+  const [clientHeight, setClientHeight] = useState(0)
+  const ref = useRef(null)
+
+  const { scrollY } = useViewportScroll()
+
+  // start animating our element when we've scrolled it into view
+  const initial = elementTop - clientHeight
+  // end our animation when we've scrolled the offset specified
+  const final = elementTop + offset
+
+  const y = useTransform(scrollY, [initial, final], [offset, -offset])
+
+  useLayoutEffect(() => {
+    const element = ref.current
+    // save our layout measurements in a function in order to trigger
+    // it both on mount and on resize
+    const onResize = () => {
+      // use getBoundingClientRect instead of offsetTop in order to
+      // get the offset relative to the viewport
+      setElementTop(element.getBoundingClientRect().top + window.scrollY || window.pageYOffset)
+      setClientHeight(window.innerHeight)
+    }
+    onResize()
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [ref])
+
+  return (
+    <motion.div ref={ref} style={{ y }}>
+      {children}
+    </motion.div>
+  )
+})
+
+export default Parallax
+```
+
+There's a lot going on here so let's break it down.
+
+<ol>
+  <li>We've added an <em>offset</em> prop to specify how strong we want our effect to be.</li>
+
+  <li>We create a ref that we'll use to measure our element</li>
+
+  <li>We setup our state where we'll save elementTop and clientHeight.</li>
+
+  <li>We add a useLayoutEffect where we set those values so we can calculate the start and end for our transformer.</li>
+
+  <li>Finally we put it all together in the useTransform function to get our new <em>y</em> value.</li>
+</ol>
+
+## Adding spring easing with useSpring
+
+In order to get the smooth easing we talked about earlier we need to transform our new `y` value with a spring. We can do it with the useSpring hook.
+
+```tsx{2,21-23}
+import { useState, useRef, useLayoutEffect, ReactNode } from 'react'
+import { motion, useViewportScroll, useTransform, useSpring } from 'framer-motion'
+
+type ParallaxProps = {
+  children: ReactNode
+  offset?: number
+}
+
+const Parallax = ({ children, offset = 50 }: ParallaxProps): JSX.Element => {
+  const [elementTop, setElementTop] = useState(0)
+  const [clientHeight, setClientHeight] = useState(0)
+  const ref = useRef(null)
+
+  const { scrollY } = useViewportScroll()
+
+  // start animating our element when we've scrolled it into view
+  const initial = elementTop - clientHeight
+  // end our animation when we've scrolled the offset specified
+  const final = elementTop + offset
+
+  const yRange = useTransform(scrollY, [initial, final], [offset, -offset])
+  // apply a spring to ease the result
+  const y = useSpring(yRange, { stiffness: 400, damping: 90 })
+
+  useLayoutEffect(() => {
+    const element = ref.current
+    // save our layout measurements in a function in order to trigger
+    // it both on mount and on resize
+    const onResize = () => {
+      // use getBoundingClientRect instead of offsetTop in order to
+      // get the offset relative to the viewport
+      setElementTop(element.getBoundingClientRect().top + window.scrollY || window.pageYOffset)
+      setClientHeight(window.innerHeight)
+    }
+    onResize()
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [ref])
+
+  return (
+    <motion.div ref={ref} style={{ y }}>
+      {children}
+    </motion.div>
+  )
+})
+
+export default Parallax
+```
+
+## Parallax accessibility: useReducedMotion
+
+When designing products with motion we have to be careful and think about people who might have problems viewing things that move around. Some people can get dizzy or nauseous. You can specify this by a setting in you operating system, for example on MacOS the setting is in "Accessibility > Reduce Motion".
+
+Luckily there's a Media Query for this called `prefers-reduced-motion`, and a useful hook exported by framer motion called `useReducedMotion`.
+
+If the user prefers reduced motion we will render the children directly without our parallax container:
+
+```tsx{2,10,34-37}
+import { useState, useRef, useLayoutEffect, ReactNode } from 'react'
+import { motion, useViewportScroll, useTransform, useSpring, useReducedMotion } from 'framer-motion'
+
+type ParallaxProps = {
+  children: ReactNode
+  offset?: number
+}
+
+const Parallax = ({ children, offset = 50 }: ParallaxProps): JSX.Element => {
+  const prefersReducedMotion = useReducedMotion()
+  const [elementTop, setElementTop] = useState(0)
+  const [clientHeight, setClientHeight] = useState(0)
+  const ref = useRef(null)
+
+  const { scrollY } = useViewportScroll()
+
+  const initial = elementTop - clientHeight
+  const final = elementTop + offset
+
+  const yRange = useTransform(scrollY, [initial, final], [offset, -offset])
+  const y = useSpring(yRange, { stiffness: 400, damping: 90 })
+
+  useLayoutEffect(() => {
+    const element = ref.current
+    const onResize = () => {
+      setElementTop(element.getBoundingClientRect().top + window.scrollY || window.pageYOffset)
+      setClientHeight(window.innerHeight)
+    }
+    onResize()
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [ref])
+
+  // Don't parallax if the user has "reduced motion" enabled
+  if (prefersReducedMotion) {
+    return <>{children}</>
+  }
+
+  return (
+    <motion.div ref={ref} style={{ y }}>
+      {children}
+    </motion.div>
+  )
+}
+
+export default Parallax
+```
+
+## Wrapping up
+
+Our finished component:
+
+<div style={{ background: 'var(--boxBg)', padding: 100 }}>
+  <Parallax>
+    <p style={{background: 'var(--brand)', color: 'white', padding: 10, textAlign: 'center', borderRadius: 5, fontWeight: 700}}>Parallax</p>
+  </Parallax>
+</div>
+
+We've learned how we can create a parallax effect with Framer Motion, improve it by applying a spring easing and taking care of the accesibility aspect with useReducedMotion. Check out the full source code of our Framer Motion example in my [git repo](https://github.com/samuelkraft/samuelkraft-next/blob/master/components/parallax.tsx), and make sure to ❤️ the post below if you liked it, or reach out to me on [twitter](https://twitter.com/samuelkraft) for any comments or questions!
+
+
