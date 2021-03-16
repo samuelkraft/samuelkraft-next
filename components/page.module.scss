@@ -52,6 +52,7 @@
 }
 
 .badge {
+  display: none;
   margin-left: 5px;
   padding: 2px 5px;
   color: white;
@@ -60,4 +61,8 @@
   text-transform: uppercase;
   background-color: var(--brand);
   border-radius: 5px;
+
+  @media (min-width: 480px) {
+    display: inline-block;
+  }
 }
