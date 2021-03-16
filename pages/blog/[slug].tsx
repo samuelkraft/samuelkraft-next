@@ -5,7 +5,6 @@ import matter from 'gray-matter'
 import hydrate from 'next-mdx-remote/hydrate'
 import renderToString from 'next-mdx-remote/render-to-string'
 import Head from 'next/head'
-import capitalize from 'remark-capitalize'
 import readingTime from 'reading-time'
 import Link from 'next/link'
 import { NextSeo } from 'next-seo'
@@ -27,11 +26,12 @@ import SegmentedControl from 'components/segmentedcontrol'
 import Messages, { TailBreakdown } from 'components/messages'
 import AnimatedMessages from 'components/animatedmessages'
 import Parallax from 'components/parallax'
-const ParallaxCover = dynamic(() => import('components/blog/parallaxcover'))
 
 // Utils
 import { postFilePaths, POSTS_PATH } from 'utils/mdxutils'
 import styles from './post.module.scss'
+
+const ParallaxCover = dynamic(() => import('components/blog/parallaxcover'))
 
 const CustomLink = (props: { href: string }) => {
   const { href } = props
@@ -184,7 +184,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     components,
     // Optionally pass remark/rehype plugins
     mdxOptions: {
-      remarkPlugins: [capitalize, codeTitle],
+      remarkPlugins: [codeTitle],
       rehypePlugins: [mdxPrism],
     },
     scope: { ...data, readingTime: readingTime(content), slug: params.slug },

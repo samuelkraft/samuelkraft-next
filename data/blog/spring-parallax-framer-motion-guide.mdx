@@ -1,6 +1,6 @@
 ---
 title: 'Spring-based Parallax with Framer motion: Step by step'
-publishedAt: '2021-03-15'
+publishedAt: '2021-03-16'
 summary: 'A guide on creating a spring-based Parallax scrolling effect using Framer Motion and React'
 og: '/blog/spring-parallax-framer-motion-guide/og.png'
 ---
@@ -43,7 +43,9 @@ const Parallax = ({ children }: ParallaxProps): JSX.Element => {
 export default Parallax
 ```
 
-Next up we'll import `useViewportScroll` from framer-motion in order to get how far on the page we have scrolled. We'll use this as an input to `useTransform` in order to calculate our parallax values which we'll add to a `motion.div`.
+Next up we'll import `useViewportScroll` from framer-motion in order to get how far on the page we have scrolled. We'll use this as the input to another framer-motion hook called `useTransform` in order to calculate our parallax values which we'll add to a `motion.div`.
+
+## Using Framer Motion useTransform
 
 [useTransform](https://www.framer.com/api/motion/motionvalue/#usetransform) takes an input value and a transformer, and outputs a new value. For example:
 
@@ -64,7 +66,7 @@ type ParallaxProps = {
 
 const Parallax = ({ children }: ParallaxProps): JSX.Element => {
   const { scrollY } = useViewportScroll()
-  const y = useTransform(scrollY, [100, 200], [500, -500])
+  const y = useTransform(scrollY, [100, 200], [0, 500])
 
   return <motion.div style={{ y }}>{children}</motion.div>
 })
@@ -138,7 +140,7 @@ There's a lot going on here so let's break it down.
   <li>Finally we put it all together in the useTransform function to get our new <em>y</em> value.</li>
 </ol>
 
-## Adding spring easing
+## Adding spring easing with useSpring
 
 In order to get the smooth easing we talked about earlier we need to transform our new `y` value with a spring. We can do it with the useSpring hook.
 
@@ -192,7 +194,7 @@ const Parallax = ({ children, offset = 50 }: ParallaxProps): JSX.Element => {
 export default Parallax
 ```
 
-## Don't forget accessibility!
+## Parallax accessibility: useReducedMotion
 
 When designing products with motion we have to be careful and think about people who might have problems viewing things that move around. Some people can get dizzy or nauseous. You can specify this by a setting in you operating system, for example on MacOS the setting is in "Accessibility > Reduce Motion".
 

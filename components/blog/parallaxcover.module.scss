@@ -6,6 +6,7 @@
   margin-left: -15px;
   padding-bottom: 40%;
   background-color: #00000c;
+  transform: translateZ(0); // Safari overflow bugfix
 
   @media (min-width: 480px) {
     margin-right: -20px;
@@ -24,9 +25,6 @@
   bottom: 0;
   left: 0;
   overflow: hidden;
-
-  @media (min-width: 480px) {
-  }
 
   img {
     width: 100%;
