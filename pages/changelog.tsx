@@ -55,9 +55,29 @@ type ChangelogProps = {
 }
 
 const Changelog = ({ inProgress, inBacklog }: ChangelogProps): JSX.Element => {
+  const seoTitle = 'Changelog | Samuel Kraft'
+  const seoDesc = "What's new on this site?"
   return (
     <Page>
-      <NextSeo title="Changelog | Samuel Kraft" />
+      <NextSeo
+        title={seoTitle}
+        description={seoDesc}
+        openGraph={{
+          title: seoTitle,
+          url: `https://samuelkraft.com/changelog/`,
+          description: seoDesc,
+          site_name: 'Samuel Kraft',
+          images: [
+            {
+              url: `https://og-image.samuelkraft.vercel.app/Changelog?desc=${encodeURIComponent(seoDesc)}&theme=dark.png`,
+              alt: seoTitle,
+            },
+          ],
+        }}
+        twitter={{
+          cardType: 'summary_large_image',
+        }}
+      />
       <PageHeader title="Changelog" description="What's new on this site?" />
       <section className={styles.section}>
         <Entry date="2021-03-14" title="Added Changelog" commit="3b6ac85a642a35586a03acc3623a171cd860d5b4">
@@ -169,7 +189,13 @@ const Changelog = ({ inProgress, inBacklog }: ChangelogProps): JSX.Element => {
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>Currently working on…</h2>
           {inProgress.map(issue => (
-            <Entry date={new Date(issue.startedAt).toString()} title={issue.title} type="inProgress" identifier={issue.identifier} />
+            <Entry
+              key={issue.id}
+              date={new Date(issue.startedAt).toString()}
+              title={issue.title}
+              type="inProgress"
+              identifier={issue.identifier}
+            />
           ))}
         </section>
       )}
@@ -177,7 +203,7 @@ const Changelog = ({ inProgress, inBacklog }: ChangelogProps): JSX.Element => {
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>In the backlog…</h2>
           {inBacklog.map(issue => (
-            <Entry title={issue.title} type="inBacklog" identifier={issue.identifier} />
+            <Entry key={issue.id} title={issue.title} type="inBacklog" identifier={issue.identifier} />
           ))}
         </section>
       )}
