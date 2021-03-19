@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import Header from 'components/header'
 import NowPlaying from 'components/nowplaying'
 import Link from 'next/link'
@@ -5,7 +6,7 @@ import PageTransition from 'components/pagetransition'
 import styles from './page.module.scss'
 
 type PageProps = {
-  children: JSX.Element | JSX.Element[]
+  children: ReactNode
 }
 
 const footerLinks = [

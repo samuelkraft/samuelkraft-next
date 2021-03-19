@@ -2,7 +2,6 @@ import { useState, useCallback } from 'react'
 import { GetStaticProps } from 'next'
 import fs from 'fs'
 import matter from 'gray-matter'
-import Link from 'next/link'
 import path from 'path'
 import { NextSeo } from 'next-seo'
 import readingTime from 'reading-time'
@@ -13,13 +12,11 @@ import debounce from 'lodash.debounce'
 import Page from 'components/page'
 import PageHeader from 'components/pageheader'
 import Subscribe from 'components/subscribe'
-import BlogImage from 'components/blogimage'
 import Input from 'components/input'
-import ParallaxCover from 'components/blog/parallaxcover'
+import PostList from 'components/postlist'
 
 // Utils
 import { postFilePaths, POSTS_PATH } from 'utils/mdxutils'
-import { formatDate } from 'lib/formatdate'
 import * as gtag from 'lib/gtag'
 
 // Types
@@ -27,8 +24,10 @@ import type { Meta } from 'pages/blog/[slug]'
 
 import styles from './blog.module.scss'
 
+export type BlogPosts = Array<{ content: string; filePath: string; meta: Meta }>
+
 type BlogProps = {
-  posts: Array<{ content: string; filePath: string; meta: Meta }>
+  posts: BlogPosts
 }
 
 const Blog = ({ posts }: BlogProps): JSX.Element => {
@@ -41,8 +40,8 @@ const Blog = ({ posts }: BlogProps): JSX.Element => {
   const seoDesc = 'I write about development, design, React, CSS, animation and more!'
   const filteredPosts = posts
     .sort((a, b) => new Date(b.meta.publishedAt).getTime() - new Date(a.meta.publishedAt).getTime())
-    .filter(({ meta: { title, summary } }) => {
-      const searchString = `${title.toLowerCase()} ${summary.toLowerCase()}`
+    .filter(({ meta: { title, summary, tags } }) => {
+      const searchString = `${title.toLowerCase()} ${summary.toLowerCase()} ${tags?.join(' ')}`
       return searchString.includes(currentSearch.toLowerCase())
     })
 
@@ -75,40 +74,7 @@ const Blog = ({ posts }: BlogProps): JSX.Element => {
           <Search className={styles.inputIcon} />
         </div>
       </PageHeader>
-      <ul className={styles.list}>
-        {filteredPosts.length === 0 && <p className={styles.noResults}>🧐 No posts found</p>}
-        {filteredPosts.map(post => {
-          const {
-            meta: { summary, title, readingTime: readTime, publishedAt, image },
-          } = post
-          const slug = post.filePath.replace(/\.mdx?$/, '')
-          return (
-            <li key={post.filePath}>
-              {slug === 'spring-parallax-framer-motion-guide' && (
-                <Link href="/blog/spring-parallax-framer-motion-guide">
-                  <a>
-                    <ParallaxCover />
-                  </a>
-                </Link>
-              )}
-              {image && (
-                <Link as={`/blog/${slug}`} href="/blog/[slug]">
-                  <a aria-label={title}>
-                    <BlogImage src={image} alt={title} />
-                  </a>
-                </Link>
-              )}
-              <Link as={`/blog/${slug}`} href="/blog/[slug]">
-                <a className={styles.title}>{title}</a>
-              </Link>
-              <p className={styles.summary}>{summary}</p>
-              <p className={styles.meta}>
-                Published on <time dateTime={publishedAt}>{formatDate(publishedAt)}</time> &middot; {readTime.text}
-              </p>
-            </li>
-          )
-        })}
-      </ul>
+      <PostList posts={filteredPosts} />
       <Subscribe title="Subscribe to the newsletter" />
     </Page>
   )

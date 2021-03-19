@@ -1,0 +1,30 @@
+.tags {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  margin-bottom: 60px;
+  padding-left: 0;
+  list-style: none;
+
+  li {
+    margin: 0 15px;
+
+    &:first-of-type {
+      margin-left: 0;
+    }
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+
+    a {
+      opacity: 0.7;
+      transition: opacity 250ms ease-out;
+
+      &:hover,
+      &:focus {
+        opacity: 1;
+      }
+    }
+  }
+}

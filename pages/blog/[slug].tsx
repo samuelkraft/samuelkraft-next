@@ -26,6 +26,7 @@ import SegmentedControl from 'components/segmentedcontrol'
 import Messages, { TailBreakdown } from 'components/messages'
 import AnimatedMessages from 'components/animatedmessages'
 import Parallax from 'components/parallax'
+import Tags from 'components/tags'
 
 // Utils
 import { postFilePaths, POSTS_PATH } from 'utils/mdxutils'
@@ -67,6 +68,8 @@ const components = {
   Parallax,
 }
 
+export type TagsType = Array<string>
+
 export type Meta = {
   og?: string
   image?: string
@@ -81,6 +84,7 @@ export type Meta = {
   summary: string
   title: string
   slug: string
+  tags: TagsType
 }
 
 type PostProps = {
@@ -156,6 +160,7 @@ const Post = ({ source }: PostProps): JSX.Element => {
       <div className={styles.buttons}>
         <LikeButton slug={meta.slug} />
       </div>
+      <Tags tags={meta.tags} />
       <Subscribe />
     </Page>
   )
