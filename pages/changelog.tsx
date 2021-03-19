@@ -80,6 +80,23 @@ const Changelog = ({ inProgress, inBacklog }: ChangelogProps): JSX.Element => {
       />
       <PageHeader title="Changelog" description="What's new on this site?" />
       <section className={styles.section}>
+        <Entry date="2021-03-19" title="Added blogpost tags" commit="4b357bc6307a628b9d71244d36d5d295448c851d">
+          <p>
+            Easily find posts on a specific topic, try out{' '}
+            <Link href="/blog/tag/react">
+              <a>#React</a>
+            </Link>
+            ,{' '}
+            <Link href="/blog/tag/framer-motion">
+              <a>#Framer Motion</a>
+            </Link>{' '}
+            or{' '}
+            <Link href="/blog/tag/css">
+              <a>#CSS</a>
+            </Link>
+            .
+          </p>
+        </Entry>
         <Entry date="2021-03-14" title="Added Changelog" commit="3b6ac85a642a35586a03acc3623a171cd860d5b4">
           <p>
             That&apos;s what you&apos;re looking at right now! 🎉 In the spirit of{' '}
