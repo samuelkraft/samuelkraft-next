@@ -9,7 +9,7 @@ type TagsProps = {
 }
 
 const Tags = ({ tags }: TagsProps): JSX.Element | null => {
-  if (!tags.length) {
+  if (!tags?.length) {
     return null
   }
   return (
