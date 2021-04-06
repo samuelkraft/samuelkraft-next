@@ -29,6 +29,14 @@ const Home = (): JSX.Element => (
       imageWidth={1396}
       imageHeight={676}
     />
+    <Project
+      title="Trail Routes"
+      description="Curated running &amp; hiking routes"
+      link="routes.samuelkraft.com"
+      image="/projects/routes.png"
+      imageWidth={1408}
+      imageHeight={706}
+    />
     <div className={styles.grid}>
       <Project
         title="StyleRoom"
