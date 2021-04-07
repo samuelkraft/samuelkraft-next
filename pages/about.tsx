@@ -6,7 +6,7 @@ import styles from './about.module.scss'
 
 const About = (): JSX.Element => {
   const linkProps = {
-    target: '_blank    ',
+    target: '_blank',
     rel: 'noopener noreferrer',
   }
   const seoTitle = 'About Samuel Kraft'
