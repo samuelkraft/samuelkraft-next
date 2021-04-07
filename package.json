@@ -55,9 +55,9 @@
     "eslint-plugin-react": "^7.23.1",
     "eslint-plugin-react-hooks": "^4.2.0",
     "globby": "^11.0.3",
-    "husky": ">=4.3.8",
     "lint-staged": ">=10.5.4",
     "prettier": "^2.2.1",
+    "simple-git-hooks": "^2.3.1",
     "stylelint": "^13.12.0",
     "stylelint-a11y": "^1.2.3",
     "stylelint-config-prettier": "^8.0.2",
@@ -65,10 +65,8 @@
     "stylelint-order": "^4.1.0",
     "typescript": "^4.2.3"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
   },
   "lint-staged": {
     "*.{js,ts,tsx}": "eslint --cache --fix",
