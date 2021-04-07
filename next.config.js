@@ -1,4 +1,7 @@
 module.exports = {
+  future: {
+    webpack5: true,
+  },
   images: {
     domains: ['www.notion.so', 'i.scdn.co'],
   },
