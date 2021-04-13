@@ -28,18 +28,14 @@ const About = (): JSX.Element => {
         <p>Hey I’m Samuel, a frontend developer &amp; designer currently living in 🇸🇪 Stockholm, Sweden.</p>
         <p>
           Right now I’m working at{' '}
-          <a href="https://www.tracklib.com/" {...linkProps}>
-            Tracklib
-          </a>
-          , the record store for sampling. I also like to get involved with freelance projects, currently designing the future of crypto at{' '}
           <a href="https://bitrefill.com/" {...linkProps}>
             Bitrefill
           </a>
-          . Before that I worked at{' '}
-          <a href="https://www.styleroom.se/app" {...linkProps}>
-            StyleRoom
+          , designing &amp; building the future of crypto. Before that I worked at{' '}
+          <a href="https://www.tracklib.com/" {...linkProps}>
+            Tracklib
           </a>
-          , swedens leading source of interior design inspiration.
+          , the record store for sampling.
         </p>
         <p>
           I grew up in Nacka just outside of Stockholm (the perfect distance from town while living next door to amazing nature 🏕) and come

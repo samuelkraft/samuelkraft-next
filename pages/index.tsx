@@ -8,7 +8,7 @@ const Home = (): JSX.Element => (
   <Page>
     <PageHeader
       title="Hi, my name is Samuel."
-      description="I’m a frontend developer &amp; designer. Right now I’m working at Tracklib. This is my personal website - where you’ll find all the stuff I’m currently doing and thinking about."
+      description="I’m a frontend developer &amp; designer. Right now I’m working at Bitrefill. This is my personal website - where you’ll find all the stuff I’m currently doing and thinking about."
     >
       <Button href="/about">More about me</Button>
     </PageHeader>
