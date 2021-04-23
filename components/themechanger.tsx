@@ -63,7 +63,7 @@ const ThemeChanger = (): JSX.Element => {
           layout
           initial={{ borderRadius: 26 }}
           style={active ? { boxShadow: '0 3px 13px rgba(0,0,0,0.2)' } : { boxShadow: 'none' }}
-          animate={active ? { backgroundColor: '#000' } : { backgroundColor: 'var(--transparent)' }}
+          animate={active ? { backgroundColor: '#000' } : { backgroundColor: 'var(--bg)' }}
           className={styles.menu}
         >
           <AnimatePresence>
