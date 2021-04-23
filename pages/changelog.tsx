@@ -80,6 +80,12 @@ const Changelog = ({ inProgress, inBacklog }: ChangelogProps): JSX.Element => {
       />
       <PageHeader title="Changelog" description="What's new on this site?" />
       <section className={styles.section}>
+        <Entry date="2021-04-23" title="Updated theme toggle" commit="5ba5761b2b2c0cf75029675d187623ad810a5831">
+          <p>
+            In order to respect the visitors system preference a theme switcher should have at least 3 options (system, dark &amp; light). I
+            had super fun building this interactive switcher with Framer motion, try it out in the header!
+          </p>
+        </Entry>
         <Entry date="2021-03-19" title="Added blogpost tags" commit="4b357bc6307a628b9d71244d36d5d295448c851d">
           <p>
             Easily find posts on a specific topic, try out{' '}
