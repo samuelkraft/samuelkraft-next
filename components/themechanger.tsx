@@ -54,19 +54,22 @@ const ThemeChanger = (): JSX.Element => {
   // When mounted on client, now we can show the UI
   useEffect(() => setMounted(true), [])
 
-  if (!mounted) return <div className={styles.switch} /> // skeleton on server
+  if (!mounted) return <div className={styles.wrapper} /> // skeleton on server
 
   return (
     <AnimateSharedLayout>
       <div className={styles.wrapper}>
-        <motion.div
-          layout
-          initial={{ borderRadius: 26 }}
-          style={active ? { boxShadow: '0 3px 13px rgba(0,0,0,0.2)' } : { boxShadow: 'none' }}
-          animate={active ? { backgroundColor: '#000' } : { backgroundColor: 'var(--bg)' }}
-          className={styles.menu}
-        >
-          <AnimatePresence>
+        <motion.div layout className={styles.menu}>
+          <AnimatePresence initial={false}>
+            {active && (
+              <motion.div
+                layout
+                initial={{ borderRadius: 26, opacity: 0, scale: 0.9 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className={styles.bg}
+              />
+            )}
             {variants.map(variant => {
               const selected = theme === variant
               const isHovered = hovered === variant
@@ -76,11 +79,12 @@ const ThemeChanger = (): JSX.Element => {
                     <motion.button
                       onHoverStart={() => setHovered(variant)}
                       layout
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.85 }}
+                      initial={{ opacity: 0, scale: 0.85 }}
                       type="button"
                       title={variant}
+                      key={variant}
                       className={styles.button}
                       onClick={() => {
                         if (!active) {

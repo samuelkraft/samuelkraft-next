@@ -13,6 +13,19 @@
   padding: 3px;
 }
 
+.bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: black;
+  border-radius: 9999px;
+  box-shadow: 0 3px 13px rgba(0, 0, 0, 0.2);
+  content: '';
+}
+
 .button {
   position: relative;
   flex-shrink: 0;
