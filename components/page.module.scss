@@ -52,6 +52,8 @@
 }
 
 .badge {
+  position: relative;
+  top: -1px;
   display: none;
   margin-left: 5px;
   padding: 2px 5px;
