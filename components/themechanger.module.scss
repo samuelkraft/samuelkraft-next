@@ -1,8 +1,13 @@
 .wrapper {
   position: relative;
+  display: none;
   width: 51px;
   height: 51px;
   margin-right: -3px;
+
+  @media (min-width: 480px) {
+    display: block;
+  }
 }
 
 .menu {
