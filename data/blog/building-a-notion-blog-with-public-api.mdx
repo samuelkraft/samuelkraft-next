@@ -334,6 +334,7 @@ export const getStaticProps = async (context) => {
 That's a lot, so let's break it down starting from the bottom.
 
 Just as on the index page we are using getStaticProps to get the data so the page can be statically rendered. In order to know which post to render we'll use the `context` parameter which contains route parameters for the current page. With the post id we can then use our two notion functions `getPage()` and `getBlocks()` and return the results as props to our component.
+
 For performance reasons any nested child blocks won't be returned with the original call. If you need to get a complete representation including child blocks (for example toggle blocks) then you need to run the getBlocks function for each block containing the `has_children` property. When you have received all the children you can then merge the original blocks array with the childblock data (`blocksWithChildren`).
 
 
