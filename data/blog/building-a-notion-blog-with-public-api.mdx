@@ -1,6 +1,7 @@
 ---
 title: 'Building a blog with Notions public API'
 publishedAt: '2021-05-17'
+updatedAt: '2021-05-23'
 summary: 'How to use Notion as a CMS using their public API and Next.js'
 og: '/blog/building-a-notion-blog-with-public-api/og.png'
 image: '/blog/building-a-notion-blog-with-public-api/image.png'
@@ -253,7 +254,9 @@ const renderBlock = (block) => {
           <summary>
             <Text text={value.text} />
           </summary>
-          It's a toggle!
+          {value.children?.map((block) => (
+            <Fragment key={block.id}>{renderBlock(block)}</Fragment>
+          ))}
         </details>
       );
     case "child_page":
@@ -296,10 +299,32 @@ export const getStaticProps = async (context) => {
   const page = await getPage(id);
   const blocks = await getBlocks(id);
 
+  // Retrieve block children for nested blocks (one level deep), for example toggle blocks
+  // https://developers.notion.com/docs/working-with-page-content#reading-nested-blocks
+  const childBlocks = await Promise.all(
+    blocks
+      .filter((block) => block.has_children)
+      .map(async (block) => {
+        return {
+          id: block.id,
+          children: await getBlocks(block.id),
+        };
+      })
+  );
+  const blocksWithChildren = blocks.map((block) => {
+    // Add child blocks if the block should contain children but none exists
+    if (block.has_children && !block[block.type].children) {
+      block[block.type]["children"] = childBlocks.find(
+        (x) => x.id === block.id
+      )?.children;
+    }
+    return block;
+  });
+
   return {
     props: {
       page,
-      blocks,
+      blocks: blocksWithChildren,
     },
     revalidate: 1,
   };
@@ -309,6 +334,9 @@ export const getStaticProps = async (context) => {
 That's a lot, so let's break it down starting from the bottom.
 
 Just as on the index page we are using getStaticProps to get the data so the page can be statically rendered. In order to know which post to render we'll use the `context` parameter which contains route parameters for the current page. With the post id we can then use our two notion functions `getPage()` and `getBlocks()` and return the results as props to our component.
+
+For performance reasons any nested child blocks won't be returned with the original call. If you need to get a complete representation including child blocks (for example toggle blocks) then you need to run the getBlocks function for each block containing the `has_children` property. When you have received all the children you can then merge the original blocks array with the childblock data (`blocksWithChildren`).
+
 
 When using dynamic routes we also need to specify a list of availables routes and we'll do that with `getStaticPaths` by mapping over the pages and returning the page id's.
 
