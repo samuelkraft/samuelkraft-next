@@ -21,7 +21,7 @@ const footerLinks = [
   { name: 'Percentage change calc', url: '/percentagechange' },
   { name: 'Books', url: '/books' },
   { name: 'Instagram', url: 'https://www.instagram.com/samuelkraft' },
-  { name: 'Changelog', url: '/changelog', new: true },
+  { name: 'Changelog', url: '/changelog' },
 ]
 
 const Page = ({ children }: PageProps): JSX.Element => (
@@ -35,9 +35,7 @@ const Page = ({ children }: PageProps): JSX.Element => (
         {footerLinks.map(link => (
           <li key={link.name}>
             <Link href={link.url}>
-              <a>
-                {link.name} {link.new && <span className={styles.badge}>New</span>}
-              </a>
+              <a>{link.name}</a>
             </Link>
           </li>
         ))}
