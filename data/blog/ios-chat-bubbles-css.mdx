@@ -196,7 +196,7 @@ That's it! We can now display a list of nicely styled messages, and based on the
 
 Building a chat app? We can easily animate our component with just a couple of lines of code using [Framer Motion](https://www.framer.com/motion/)!
 
-Wrap your messages in `AnimatePresence` and then make each message a `motion.li`. Apply the `layout` prop to make our messages magically animate smoothly when messages are added or removed. Then specify how the enter animation should look like by adding the initial state (slightly offset with 0 opacity) and the entered state (reset position and full opacity). This time I'm generating the messages with [random-words](https://www.npmjs.com/package/random-words) to make sure our component works with different types of content. [See the full source code on my Github](https://github.com/samuelkraft/samuelkraft-next/blob/master/components/animatedmessages.tsx).
+Wrap your messages in `AnimatePresence` and then make each message a `motion.li`. Apply the `layout` prop to make our messages magically animate smoothly when messages are added or removed. Then specify how the enter animation should look like by adding the initial state (slightly offset with 0 opacity) and the entered state (reset position and full opacity). This time I'm generating the messages with [random-words](https://www.npmjs.com/package/random-words) to make sure our component works with different types of content. [See the full source code on my GitHub](https://github.com/samuelkraft/samuelkraft-next/blob/master/components/animatedmessages.tsx).
 
 ```tsx
 import { motion, AnimatePresence } from 'framer-motion'
