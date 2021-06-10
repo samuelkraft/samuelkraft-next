@@ -11,7 +11,7 @@ How you tried to automate any daily tasks of your programming? You should!
 
 A git workflow I do every day is code something, stash it, checkout latest master, create a new branch, push my new code and create a mr/pr for it. This gets tedious over time given I usually do it 5+ times a day. [Git aliases](https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases) to the rescue!
 
-My workplace uses gitlab and they support [push options](https://docs.gitlab.com/ee/user/project/push_options.html), one of which is creating a Merge Request (Pull Request equivalent for Github). Thanks to this you can easily create a Gitlab merge request using the CLI. Let me present you the alias `git newmr`, allowing you to do all of the above things with one command!
+My workplace uses gitlab and they support [push options](https://docs.gitlab.com/ee/user/project/push_options.html), one of which is creating a Merge Request (Pull Request equivalent for GitHub). Thanks to this you can easily create a Gitlab merge request using the CLI. Let me present you the alias `git newmr`, allowing you to do all of the above things with one command!
 
 ```bash
 git config --global alias.newmr "!f() { git stash save && git checkout master && git pull && git checkout -b $1 && git stash apply && git add . && git commit -m $1 && git push -u origin HEAD -o merge_request.create; }; f"

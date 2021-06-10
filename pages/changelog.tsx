@@ -38,7 +38,7 @@ const Entry = ({ title, date, children, type = 'isDone', identifier, commit }: E
             href={`https://github.com/samuelkraft/samuelkraft-next/commit/${commit}`}
             target="_blank"
             rel="noreferrer noopener"
-            title="Github commit"
+            title="GitHub commit"
           >
             {commit.substring(0, 8)}
           </a>
@@ -111,7 +111,7 @@ const Changelog = ({ inProgress, inBacklog }: ChangelogProps): JSX.Element => {
             </a>{' '}
             I am now publishing the latest changes for this site in this changelog in addition to keeping the souce public on{' '}
             <a href="https://github.com/samuelkraft/samuelkraft-next" target="_blank" rel="noreferrer noopener">
-              Github
+              GitHub
             </a>
             . If you want to see how a feature is built I&apos;ve included the commit hashes and a link to the respective commit.
           </p>

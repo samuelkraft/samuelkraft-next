@@ -14,7 +14,7 @@ const footerLinks = [
   { name: 'Twitter', url: 'https://twitter.com/samuelkraft' },
   { name: 'Newsletter', url: '/newsletter' },
   { name: 'About', url: '/about' },
-  { name: 'Github', url: 'https://github.com/samuelkraft' },
+  { name: 'GitHub', url: 'https://github.com/samuelkraft' },
   { name: 'RSS', url: '/feed.xml' },
   { name: 'Blog', url: '/blog' },
   { name: 'Dribbble', url: 'https://dribbble.com/samuelkraft' },
