@@ -2,8 +2,7 @@ import { DefaultSeo } from 'next-seo'
 
 const config = {
   title: 'Samuel Kraft - Frontend Developer & Designer',
-  description:
-    'I’m a frontend developer & designer that loves to create stuff!',
+  description: 'I’m a frontend developer & designer that loves to create stuff!',
   openGraph: {
     type: 'website',
     locale: 'en_US',
