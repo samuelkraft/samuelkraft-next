@@ -21,7 +21,7 @@
     "gray-matter": "^4.0.3",
     "lodash.debounce": "^4.0.8",
     "mdx-prism": "^0.3.3",
-    "next": "10.2.3",
+    "next": "11.0.0",
     "next-mdx-remote": "^2.1.4",
     "next-seo": "^4.24.0",
     "next-themes": "^0.0.14",
