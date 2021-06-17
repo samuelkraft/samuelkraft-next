@@ -1178,6 +1178,13 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.0.6.tgz#023d72a5c4531b4ce204528971700a78a85a0c50"
   integrity sha512-Myxw//kzromB9yWgS8qYGuGVf91oBUUJpNvy5eM50sqvmKLbKjwLxohJnkWGTeeI9v9IBMtPLxz5Gc60FIfvCA==
 
+"@squoosh/lib@0.3.0":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@squoosh/lib/-/lib-0.3.1.tgz#de022198f82837086c8e4e91b892dcfbbb420e17"
+  integrity sha512-ni8gyTGgW9lH/yqaqgkxerGT7daSWNU9mtvWqj+/1qqzIT9YGfFvnTtDQRMIRjRCKQ5pkK/COufvWKuzHI6Dxw==
+  dependencies:
+    web-streams-polyfill "^3.0.3"
+
 "@stylelint/postcss-css-in-js@^0.37.2":
   version "0.37.2"
   resolved "https://registry.yarnpkg.com/@stylelint/postcss-css-in-js/-/postcss-css-in-js-0.37.2.tgz#7e5a84ad181f4234a2480803422a47b8749af3d2"
@@ -6552,6 +6559,11 @@ web-namespaces@^1.0.0:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/web-namespaces/-/web-namespaces-1.1.4.tgz#bc98a3de60dadd7faefc403d1076d529f5e030ec"
   integrity sha512-wYxSGajtmoP4WxfejAPIr4l0fVh+jeMXZb08wNc0tMg6xsfZXj3cECqIK0G7ZAqUq0PP8WlMDtaOGVBTAWztNw==
+
+web-streams-polyfill@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/web-streams-polyfill/-/web-streams-polyfill-3.0.3.tgz#f49e487eedeca47a207c1aee41ee5578f884b42f"
+  integrity sha512-d2H/t0eqRNM4w2WvmTdoeIvzAUSpK7JmATB8Nr2lb7nQ9BTIJVjbQ/TRFVEh2gUH1HwclPdoPtfMoFfetXaZnA==
 
 webidl-conversions@^4.0.2:
   version "4.0.2"
