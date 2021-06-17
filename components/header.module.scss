@@ -70,14 +70,10 @@
   @media (min-width: 370px) {
     font-size: 17px;
   }
-
-  @media (min-width: 480px) {
-    margin-right: 25px;
-  }
 }
 
 .link {
-  margin-left: 25px;
+  margin-right: 25px;
   padding: 4px 0;
   opacity: 0.6;
 
@@ -86,9 +82,17 @@
     opacity: 1;
   }
 
+  @media (min-width: 480px) {
+    margin-right: 35px;
+  }
+
   @media (min-width: 768px) {
     margin-right: 75px;
     margin-left: 0;
+  }
+
+  &:last-of-type {
+    margin-right: 0;
   }
 }
 

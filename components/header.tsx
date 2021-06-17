@@ -33,8 +33,8 @@ const Header = (): JSX.Element => {
                 </li>
               ))}
             </ol>
-            <ThemeChanger />
           </nav>
+          <ThemeChanger />
         </div>
       </header>
       <div className={styles.spacer} />
