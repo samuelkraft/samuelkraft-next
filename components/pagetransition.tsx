@@ -9,11 +9,15 @@ const variants = {
   enter: {
     opacity: 1,
     y: 0,
+    transition: {
+      duration: 0.4,
+      ease: [0.61, 1, 0.88, 1],
+    },
   },
 }
 
 const PageTransition = ({ children }: { children: ReactNode }): JSX.Element => (
-  <motion.div initial="initial" animate="enter" exit="initial" variants={variants} transition={{ duration: 0.4, ease: [0.61, 1, 0.88, 1] }}>
+  <motion.div initial="initial" animate="enter" variants={variants}>
     {children}
   </motion.div>
 )

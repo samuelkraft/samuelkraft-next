@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
       <Head>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <AnimatePresence exitBeforeEnter initial={false}>
+      <AnimatePresence initial={false}>
         <Component {...pageProps} key={router.route} />
       </AnimatePresence>
     </ThemeProvider>
