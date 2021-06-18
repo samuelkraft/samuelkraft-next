@@ -1,5 +1,5 @@
 import { ReactNode } from 'react'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 
 const variants = {
   initial: {
@@ -17,9 +17,11 @@ const variants = {
 }
 
 const PageTransition = ({ children }: { children: ReactNode }): JSX.Element => (
-  <motion.div initial="initial" animate="enter" variants={variants}>
-    {children}
-  </motion.div>
+  <AnimatePresence initial={false}>
+    <motion.div initial="initial" animate="enter" variants={variants}>
+      {children}
+    </motion.div>
+  </AnimatePresence>
 )
 
 export default PageTransition
