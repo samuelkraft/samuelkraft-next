@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { ThemeProvider } from 'next-themes'
 import type { AppProps } from 'next/app'
+import { AnimatePresence } from 'framer-motion'
 import Head from 'next/head'
 import SEO from 'components/seo'
 import * as gtag from 'lib/gtag'
@@ -25,7 +26,9 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
       <Head>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <Component {...pageProps} key={router.route} />
+      <AnimatePresence exitBeforeEnter initial={false}>
+        <Component {...pageProps} key={router.route} />
+      </AnimatePresence>
     </ThemeProvider>
   )
 }
