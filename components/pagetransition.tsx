@@ -17,7 +17,7 @@ const variants = {
 }
 
 const PageTransition = ({ children }: { children: ReactNode }): JSX.Element => (
-  <AnimatePresence>
+  <AnimatePresence exitBeforeEnter>
     <motion.div initial="initial" animate="enter" variants={variants}>
       {children}
     </motion.div>
