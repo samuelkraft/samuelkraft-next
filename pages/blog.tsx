@@ -22,6 +22,7 @@ import * as gtag from 'lib/gtag'
 // Types
 import type { Meta } from 'pages/blog/[slug]'
 
+import { getPlaiceholder } from 'plaiceholder'
 import styles from './blog.module.scss'
 
 export type BlogPosts = Array<{ content: string; filePath: string; meta: Meta }>
@@ -80,13 +81,14 @@ const Blog = ({ posts }: BlogProps): JSX.Element => {
   )
 }
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = postFilePaths.map(filePath => {
+  const posts = postFilePaths.map(async filePath => {
     const source = fs.readFileSync(path.join(POSTS_PATH, filePath))
     const { content, data } = matter(source)
+    const blurDataURL = await getPlaiceholder(data.image)
 
     return {
       content,
-      meta: { ...data, readingTime: readingTime(content) },
+      meta: { ...data, readingTime: readingTime(content), blurDataURL },
       filePath,
     }
   })

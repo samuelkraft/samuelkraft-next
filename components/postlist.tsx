@@ -20,7 +20,7 @@ const PostList = ({ posts }: PostListProps): JSX.Element => (
     {posts.length === 0 && <p className={styles.noResults}>🧐 No posts found</p>}
     {posts.map(post => {
       const {
-        meta: { summary, title, readingTime: readTime, publishedAt, image },
+        meta: { summary, title, readingTime: readTime, publishedAt, image, blurDataURL },
       } = post
       const slug = post.filePath.replace(/\.mdx?$/, '')
       return (
@@ -35,7 +35,7 @@ const PostList = ({ posts }: PostListProps): JSX.Element => (
           {image && (
             <Link as={`/blog/${slug}`} href="/blog/[slug]">
               <a aria-label={title}>
-                <BlogImage src={image} alt={title} />
+                <BlogImage src={image} alt={title} blurDataURL={blurDataURL} />
               </a>
             </Link>
           )}

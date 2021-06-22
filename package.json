@@ -25,6 +25,7 @@
     "next-mdx-remote": "^2.1.4",
     "next-seo": "^4.25.1",
     "next-themes": "^0.0.14",
+    "plaiceholder": "^2.0.1",
     "querystring": "^0.2.1",
     "random-words": "^1.1.1",
     "react": "17.0.2",
@@ -37,6 +38,7 @@
     "remark-code-titles": "^0.1.1",
     "rss": "^1.2.2",
     "sass": "^1.35.1",
+    "sharp": "^0.28.3",
     "slugify": "^1.5.0",
     "swr": "^0.5.5"
   },
