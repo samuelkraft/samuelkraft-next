@@ -80,6 +80,12 @@ const Changelog = ({ inProgress, inBacklog }: ChangelogProps): JSX.Element => {
       />
       <PageHeader title="Changelog" description="What's new on this site?" />
       <section className={styles.section}>
+        <Entry date="2021-06-24" title="Combining custom likes with twitter likes" commit="a7504b4b8f7fca330d889eebc4fe7b2498c8348b">
+          <p>
+            Added support for Webmentions to the blog. I&apos;m combining likes and mentions from twitter with my custom likes from Fauna.
+            Next up displaying replies/comments?
+          </p>
+        </Entry>
         <Entry date="2021-04-23" title="Updated theme toggle" commit="5ba5761b2b2c0cf75029675d187623ad810a5831">
           <p>
             In order to respect the visitors system preference a theme switcher should have at least 3 options (system, dark &amp; light). I
