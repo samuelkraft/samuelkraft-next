@@ -80,6 +80,12 @@ const Changelog = ({ inProgress, inBacklog }: ChangelogProps): JSX.Element => {
       />
       <PageHeader title="Changelog" description="What's new on this site?" />
       <section className={styles.section}>
+        <Entry date="2021-06-25" title="Added blogpost recommendations" commit="787ff45f6d9463d1f165082e48026c61d857f656">
+          <p>
+            Added related posts after a blogpost based on the tags to increase engagement.{' '}
+            <Link href="https://samuelkraft.com/blog/safari-15-bottom-tab-bars-web">Try a post!</Link>.
+          </p>
+        </Entry>
         <Entry date="2021-06-24" title="Combining custom likes with twitter likes" commit="a7504b4b8f7fca330d889eebc4fe7b2498c8348b">
           <p>
             Added support for Webmentions to the blog. I&apos;m combining likes and mentions from twitter with my custom likes from Fauna.
