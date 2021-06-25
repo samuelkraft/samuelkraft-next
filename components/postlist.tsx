@@ -22,7 +22,7 @@ const PostList = ({ posts }: PostListProps): JSX.Element => (
       const {
         meta: { summary, title, readingTime: readTime, publishedAt, image },
       } = post
-      const slug = post.filePath.replace(/\.mdx?$/, '')
+      const slug = post.meta.slug || post.filePath.replace(/\.mdx?$/, '')
       return (
         <li key={post.filePath}>
           {slug === 'spring-parallax-framer-motion-guide' && (

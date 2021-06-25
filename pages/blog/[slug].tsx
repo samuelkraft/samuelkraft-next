@@ -27,9 +27,12 @@ import Messages, { TailBreakdown } from 'components/messages'
 import AnimatedMessages from 'components/animatedmessages'
 import Parallax from 'components/parallax'
 import Tags from 'components/tags'
+import PostList from 'components/postlist'
+import Button from 'components/button'
 
 // Utils
-import { postFilePaths, POSTS_PATH } from 'utils/mdxutils'
+import { getAllMeta, postFilePaths, POSTS_PATH } from 'utils/mdxutils'
+import type { BlogPosts } from 'pages/blog'
 import styles from './post.module.scss'
 
 const ParallaxCover = dynamic(() => import('components/blog/parallaxcover'))
@@ -93,9 +96,10 @@ type PostProps = {
     renderedOutput: string
     scope: Meta
   }
+  related: BlogPosts
 }
 
-const Post = ({ source }: PostProps): JSX.Element => {
+const Post = ({ source, related }: PostProps): JSX.Element => {
   const content = hydrate(source, { components })
   const { scope: meta } = source
   const formattedPublishDate = new Date(meta.publishedAt).toLocaleString('en-US', {
@@ -147,7 +151,7 @@ const Post = ({ source }: PostProps): JSX.Element => {
           cardType: 'summary_large_image',
         }}
       />
-      {meta.image && <BlogImage src={meta.image} alt={meta.title} />}
+      {meta.image && <BlogImage src={meta.image} alt={meta.title} className={styles.image} />}
       {meta.slug === 'spring-parallax-framer-motion-guide' && <ParallaxCover />}
       <PageHeader title={meta.title} compact>
         <p className={styles.meta}>
@@ -161,7 +165,16 @@ const Post = ({ source }: PostProps): JSX.Element => {
         <LikeButton slug={meta.slug} />
       </div>
       <Tags tags={meta.tags} />
-      <Subscribe />
+      <Subscribe className={styles.subscribe} />
+      {related.length > 0 && (
+        <>
+          <h2 className={styles.relatedHeading}>Related Posts</h2>
+          <PostList posts={related} />
+        </>
+      )}
+      <div className={styles.buttons}>
+        <Button href="/blog">Back to the blog</Button>
+      </div>
     </Page>
   )
 }
@@ -195,9 +208,20 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     scope: { ...data, readingTime: readingTime(content), slug: params.slug },
   })
 
+  const related = (await getAllMeta())
+    /* remove current post */
+    .filter(meta => meta.slug !== params.slug)
+    /* Find other posts where tags are matching */
+    .filter(meta => meta.tags?.some(tag => data.tags?.includes(tag)))
+    /* Put the data inside meta in a fake Post object  */
+    .map(x => ({ meta: x }))
+    /* return the first three */
+    .filter((_, i) => i < 3)
+
   return {
     props: {
       source: mdxSource,
+      related,
     },
   }
 }

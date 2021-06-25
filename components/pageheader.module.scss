@@ -7,7 +7,7 @@
 }
 
 .wrapperCompact {
-  margin-bottom: 30px;
+  margin-bottom: 0;
 
   @media (min-width: 480px) {
     margin-bottom: 40px;
@@ -17,7 +17,7 @@
 .title {
   margin-bottom: 12px;
   font-weight: 800;
-  font-size: 30px;
+  font-size: 26px;
   letter-spacing: -0.3px;
 
   @media (min-width: 480px) {

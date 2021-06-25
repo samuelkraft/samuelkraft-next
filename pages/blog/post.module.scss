@@ -1,3 +1,10 @@
+.image {
+  @media (max-width: 479px) {
+    /* On mobile devices the blogimage should sit flush with the header */
+    margin-top: -30px;
+  }
+}
+
 .article {
   margin-bottom: 40px;
   overflow: hidden;
@@ -118,6 +125,7 @@
 }
 
 .meta {
+  margin: 0;
   opacity: 0.7;
 
   span {
@@ -127,4 +135,24 @@
 
 .buttons {
   text-align: center;
+}
+
+.subscribe {
+  margin-bottom: 30px;
+
+  @media (min-width: 480px) {
+    margin-right: -20px;
+    margin-bottom: 50px;
+    margin-left: -20px;
+  }
+}
+
+.relatedHeading {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 26px;
+
+  @media (min-width: 480px) {
+    margin-bottom: 40px;
+  }
 }
