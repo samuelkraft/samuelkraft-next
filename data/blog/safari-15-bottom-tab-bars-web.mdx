@@ -1,6 +1,7 @@
 ---
 title: 'Using Bottom Tab Bars on Safari iOS 15'
 publishedAt: '2021-06-17'
+updatedAt: '2021-06-29'
 summary: 'How to safely design and develop web tab bars on Safari 15'
 image: '/blog/safari-15-bottom-tab-bars-web/image.png'
 og: '/blog/safari-15-bottom-tab-bars-web/og.png'
@@ -55,7 +56,17 @@ Now when scrolling nothing overlaps:
     Sorry, your browser doesn't support embedded videos.
 </video>
 
-Be sure to use `env()` every time something is anchored to the bottom of the screen or overlap will likely appear. `env()` can also be combined with css `calc()` or `min()` and `max()`. You can learn more about this and respecting safe-area in [this excellent article](https://webkit.org/blog/7929/designing-websites-for-iphone-x/) published on the webkit blog or Apple's WWDC session called [Design for Safari 15](https://developer.apple.com/videos/play/wwdc2021/10029/?time=777&t=66) (Relevent part starts around 13 minutes in).
+Be sure to use `env()` every time something is anchored to the bottom of the screen or overlap will likely appear. `env()` can also be combined with css `calc()` or `min()` and `max()`, so if your design needs more padding you can add it like this:
+
+```jsx{4}
+.tabbar {
+  position: fixed;
+  bottom: 0;
+  bottom: calc(1rem + env(safe-area-inset-bottom));
+}
+```
+
+You can learn more about respecting the safe-area in [this excellent article](https://webkit.org/blog/7929/designing-websites-for-iphone-x/) published on the webkit blog or Apple's WWDC session called [Design for Safari 15](https://developer.apple.com/videos/play/wwdc2021/10029/?time=777&t=66) (Relevent part starts around 13 minutes in).
 
 The best way to see if you got it right is to use a physical device with iOS 15, but if you don't have access to one you can download the Xcode 13 beta from [Apples developer portal](https://developer.apple.com/download/) and use an iOS 15 simulator by going to `Xcode > Open Developer Tool > Simulator`
 
