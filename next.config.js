@@ -1,4 +1,5 @@
 module.exports = {
+  experimental: { optimizeCss: true },
   webpack5: true,
   images: {
     domains: ['www.notion.so', 'i.scdn.co'],
