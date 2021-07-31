@@ -1,7 +1,7 @@
 ---
 title: 'Building a blog with Notions public API'
 publishedAt: '2021-05-17'
-updatedAt: '2021-05-23'
+updatedAt: '2021-07-31'
 summary: 'How to use Notion as a CMS using their public API and Next.js'
 og: '/blog/building-a-notion-blog-with-public-api/og.png'
 image: '/blog/building-a-notion-blog-with-public-api/image.png'
@@ -90,7 +90,7 @@ export default function Home({ posts }) {
              <Text text={post.properties.Name.title} />
           </Link>
         </li>
-      )}
+      ))}
     </ol> 
   );
 }
