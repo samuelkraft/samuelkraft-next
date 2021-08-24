@@ -9,6 +9,7 @@ import Rating from 'components/rating'
 import { ChevronDown } from 'react-feather'
 import slugifiy from 'slugify'
 import { NextSeo } from 'next-seo'
+import { getDatabase } from 'lib/notion'
 
 import styles from './books.module.scss'
 
@@ -84,22 +85,28 @@ const Books = ({ published, reading }: BooksProps): JSX.Element => {
         {published
           ?.sort((a, b) => {
             if (sorting === 'finished') {
-              return new Date(b.Date).getTime() - new Date(a.Date).getTime()
+              return b.properties?.Date // eslint-disable-line
+                ? new Date(b.properties.Date.date.start).getTime()
+                : 0 - a.properties?.Date
+                ? new Date(a.properties.Date.date.start).getTime()
+                : 0
             }
-            return b.Rating - a.Rating
+            return b.properties.Rating.number - a.properties.Rating.number
           })
-          .map(({ Name: title, Author: author, Rating: rating, Image: image, id }) => {
+          .map(({ id, properties }) => {
+            const title = properties?.Name.title[0].plain_text || 'null'
+            const image = properties?.Image.files[0].file.url
             const slug = slugifiy(title, { lower: true })
             return (
               <li className={styles.book} key={id}>
                 <Link href={`books/${slug}`}>
                   <a>
                     <motion.div whileHover={{ y: -3 }}>
-                      <Image src={image[0].url} width={218} height={328} className={styles.cover} />
+                      {image && <Image unoptimized src={image} width={218} height={328} className={styles.cover} />}
                     </motion.div>
                     <strong className={styles.title}>{title}</strong>
-                    <p className={styles.author}>{author}</p>
-                    <Rating rating={rating} />
+                    <p className={styles.author}>{properties?.Author.rich_text[0].plain_text}</p>
+                    <Rating rating={properties?.Rating.number} />
                   </a>
                 </Link>
               </li>
@@ -108,12 +115,12 @@ const Books = ({ published, reading }: BooksProps): JSX.Element => {
       </ul>
       <h2>Currently reading</h2>
       <ul className={styles.grid}>
-        {reading.map(({ Name: title, Author: author, Image: image, id }) => {
+        {reading.map(({ id, properties }) => {
           return (
             <li className={styles.book} key={id}>
-              <Image src={image[0].url} width={218} height={328} className={styles.cover} />
-              <strong className={styles.title}>{title}</strong>
-              <p className={styles.author}>{author}</p>
+              <Image unoptimized src={properties.Image.files[0].file.url} width={218} height={328} className={styles.cover} />
+              <strong className={styles.title}>{properties.Name.title[0].plain_text}</strong>
+              <p className={styles.author}>{properties.Author.rich_text[0].plain_text}</p>
             </li>
           )
         })}
@@ -131,8 +138,10 @@ export const getStaticProps: GetStaticProps = async () => {
       notFound: true,
     }
   }
-  const published = data.filter(book => book.Status === 'Published')
-  const reading = data.filter(book => book.Status === 'Reading')
+  const database = await getDatabase(process.env.NOTION_DATABASE_ID)
+
+  const published = database.filter(book => book.properties.Status?.select.name === 'Published')
+  const reading = database.filter(book => book.properties.Status?.select.name === 'Reading')
 
   return {
     props: {
