@@ -141,8 +141,8 @@ export const getStaticProps: GetStaticProps = async () => {
   }
   const database = await getDatabase(process.env.NOTION_DATABASE_ID)
 
-  const published = database.filter(book => book.properties.Status?.select.name === 'Published')
-  const reading = database.filter(book => book.properties.Status?.select.name === 'Reading')
+  const published = database.filter(book => book.properties.Status?.['select']['name'] === 'Published') // eslint-disable-line
+  const reading = database.filter(book => book.properties.Status?.['select']['name'] === 'Reading') // eslint-disable-line
 
   return {
     props: {
