@@ -1,7 +1,7 @@
 ---
 title: 'Building a blog with Notions public API'
 publishedAt: '2021-05-17'
-updatedAt: '2021-07-31'
+updatedAt: '2021-08-24'
 summary: 'How to use Notion as a CMS using their public API and Next.js'
 og: '/blog/building-a-notion-blog-with-public-api/og.png'
 image: '/blog/building-a-notion-blog-with-public-api/image.png'
@@ -261,6 +261,16 @@ const renderBlock = (block) => {
       );
     case "child_page":
       return <p>{value.title}</p>;
+    case "image":
+      const src =
+        value.type === "external" ? value.external.url : value.file.url;
+      const caption = value.caption ? value.caption[0].plain_text : "";
+      return (
+        <figure>
+          <img src={src} alt={caption} />
+          {caption && <figcaption>{caption}</figcaption>}
+        </figure>
+      );
     default:
       return `❌ Unsupported block (${
         type === "unsupported" ? "unsupported by Notion API" : type
@@ -342,7 +352,7 @@ When using dynamic routes we also need to specify a list of availables routes an
 
 ## Rendering Notion blocks
 
-The `blocks` prop contains a list of all the blocks as [Block Objects](https://developers.notion.com/reference/block). We have created a `renderBlock()` function that will take care of displaying the different blocks. Simplifying this a bit, basically all blocks currently supported by Notions API is a "text-like" block. This means that we pretty much only have to use our Text component inside the respective tag needed.
+The `blocks` prop contains a list of all the blocks as [Block Objects](https://developers.notion.com/reference/block). We have created a `renderBlock()` function that will take care of displaying the different blocks.
 
 ```jsx
 switch (type) {
@@ -376,7 +386,15 @@ During the Notion API beta unfortunately not all block types are supported. The 
 - `numbered_list_item`
 - `to_do`
 - `toggle`
+
+*Update 2020/08/24* - New media block types added:
 - `child_page`
+- `image`
+- `embed`
+- `video`
+- `file`
+- `pdf`
+- `bookmark`
 
 If you use a block that is not supported the page will display `❌ Unsupported block`. At this time there's no way of getting around this other than using their private API which is not recommended and can change at any time. If you need more blocks than those available right now I would wait a little bit longer until all block types are available.
 
