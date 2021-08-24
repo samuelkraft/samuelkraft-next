@@ -33,6 +33,7 @@ export type Book = {
   }>
   Link: string
   id: string
+  properties: any // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
 type BooksProps = {
