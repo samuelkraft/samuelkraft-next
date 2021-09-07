@@ -29,6 +29,7 @@ import Parallax from 'components/parallax'
 import Tags from 'components/tags'
 import PostList from 'components/postlist'
 import Button from 'components/button'
+import { RatingPlayground } from 'components/blog/rating'
 
 // Utils
 import { getAllMeta, postFilePaths, POSTS_PATH } from 'utils/mdxutils'
@@ -69,6 +70,7 @@ const components = {
   AnimatedMessages,
   TailBreakdown,
   Parallax,
+  Rating: RatingPlayground,
 }
 
 export type TagsType = Array<string>

@@ -1,0 +1,137 @@
+---
+title: 'Fractional SVG stars with CSS'
+publishedAt: '2021-09-07'
+summary: 'Create a rating component with svg stars that support fractional values'
+og: '/blog/fractional-svg-stars-css/og.png'
+image: '/blog/fractional-svg-stars-css/image.png'
+tags: ["CSS", "SVG"]
+---
+
+**Building a stars/rating component and need to support fractional values like 4.2 or 3.7 but don't want to use images? This post explains how to make fractional stars using just CSS and inline SVGs.**
+
+I was working on displaying reviews on an ecommerce site when needing a component displaying the customers ratings. The previous version of the website used multiple png images overlayed on top of each other, contributing to unnessecary requests and [CLS](https://web.dev/cls/) issues. The criteria for the new component was:
+
+- Should use inline SVG:s instead of images
+- The number of stars should be dynamic
+- Should support fractional values
+
+## Final component
+
+Here's the component we are building:
+
+<Rating />
+
+The code:
+
+```jsx
+import IconStar from 'star.svg';
+
+const Rating = ({ value, max, className }) => {
+	/* Calculate how much of the stars should be "filled" */
+  const percentage = Math.round((value / max) * 100);
+
+  return (
+    <div className={styles.container}>
+    {
+      /* Create an array based on the max rating, render a star for each */
+    }
+      {Array.from(Array(max).keys()).map((_, i) => (
+        <IconStar key={i} className={styles.star} />
+      ))}
+    {
+      /* Render a div overlayed on top of the stars that should not be not filled */
+    }
+      <div className={styles.overlay} style={{ width: `${100 - percentage}%` }} />
+    </div>
+  );
+}
+```
+
+The component basically consists of two parts:
+
+1. A list of star icons based on the max rating (`max` prop)
+2. An "overlay" div that will be responsible for changing the color of the stars underneath. This is the magic that makes the fractional part work. 
+
+The overlay is just a plain div the same size as the part of the stars that should be a different color/unfilled. We calculate the width of the div by first dividing the rating with the maximum, then subtracting that value from 100.
+
+```jsx
+const percentage = Math.round((value / max) * 100);
+
+<div className={styles.overlay} style={{ width: `${100 - percentage}%` }} />
+```
+
+Add the styles below in order to lay out the stars:
+
+```css
+.container {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
+.star {
+  width: 18px;
+  margin-right: 2px;
+  display: flex;
+  color: #f8d448;
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+}
+
+.overlay {
+  background-color: black;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+```
+
+Now the overlay is just plain black though, lets change that:
+
+## Using mix-blend-mode to change SVG color
+
+The final step is making the overlay div only affect the star SVGs beneath, not the background. We can do this by using the CSS `mix-blend-mode` property with the `color` value.
+
+The color spec reads as following:
+
+<Warning type="info">Creates a color with the hue and saturation of the source color and the luminosity of the backdrop color. This preserves the gray levels of the backdrop and is useful for coloring monochrome images or tinting color images.</Warning>
+
+Tinting color images is exactly what we want to do, so let's add the property and see what happens:
+
+```css
+.overlay {
+  background-color: black;
+  mix-blend-mode: color;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+```
+
+This is exactly what we want! It changes the hue and saturation of the stars, but keeps the backgrund color unchanged. You can play with the background-color to change the tint of the stars. For example if I use background-color: red instead I get a red tint instead of gray stars.
+
+The browser support is pretty good (supported in all modern browsers) but for older browsers we can fall back to opacity instead:
+
+```css
+.overlay {
+  background-color: black;
+  mix-blend-mode: color;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+
+  @supports not(mix-blend-mode: color) {
+    opacity: 0.7;
+  }
+}
+```
+
+You can find the full source code [here](https://github.com/samuelkraft/samuelkraft-next/blob/master/components/blog/rating.tsx). Let me know if you found this CSS tip useful by pressing the heart below 👇
