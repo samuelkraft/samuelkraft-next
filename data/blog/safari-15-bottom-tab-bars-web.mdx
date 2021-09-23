@@ -1,7 +1,7 @@
 ---
 title: 'Using Bottom Tab Bars on Safari iOS 15'
 publishedAt: '2021-06-17'
-updatedAt: '2021-06-29'
+updatedAt: '2021-09-23'
 summary: 'How to safely design and develop web tab bars on Safari 15'
 image: '/blog/safari-15-bottom-tab-bars-web/image.png'
 og: '/blog/safari-15-bottom-tab-bars-web/og.png'
@@ -20,6 +20,11 @@ Safari on iOS has had a problem for a long time when it comes to building websit
 This makes for a really poor UX so designers and developers have mostly resorted to user "hamburger" menus instead. This is a shame as bottom tab bars increase discoverability by not hiding links behind a tap and are also easier to reach one-handed on todays large mobile devices.
 
 ## Updates with Safari 15
+<br />
+<Warning type="info">
+  <strong>Updated Sep 23, 2021:</strong>
+  <span style={{display: 'block'}}>Apple reverted some of these changes in the final iOS 15 release. The user can now choose between the old UI (top bar) or the new one. If they choose the new bottom bar UI it does not float as much greatly improving overlap issues. While you might not need safe areas anymore if you're lucky, I would still recommend to implement it as I've seen it cause issues anyways.</span>
+</Warning>
 
 The new Safari 15 now has a tab bar floating at the bottom of the screen. At first it might seem like this makes it even harder to create tab bar navigations, and by browsing the web using iOS 15 it's easy to spot issues like this:
 
