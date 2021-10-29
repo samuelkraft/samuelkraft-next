@@ -41,7 +41,7 @@
   height: 13px;
   margin-right: 8px;
 
-  span {
+  & > span {
     width: 3px;
     height: 100%;
     background-color: var(--brand);
