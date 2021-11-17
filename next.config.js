@@ -2,6 +2,7 @@ module.exports = {
   webpack5: true,
   images: {
     domains: ['www.notion.so', 'i.scdn.co'],
+    formats: ['image/avif', 'image/webp'],
   },
   webpack: (config, { isServer }) => {
     if (isServer) {
