@@ -2,80 +2,29 @@ import Button from 'components/button'
 import PageHeader from 'components/pageheader'
 import Project from 'components/project'
 import Page from 'components/page'
-import styles from './index.module.scss'
+
+import bitrefill from 'public/projects/bitrefill.png'
+import routes from 'public/projects/routes.png'
+import tracklib from 'public/projects/tracklib.png'
+
+const projects = [
+  { title: 'Tracklib', description: 'Clear samples from real music', link: 'tracklib.com', image: tracklib },
+  { title: 'Bitrefill', description: 'Live on Crypto', link: 'bitrefill.com', image: bitrefill },
+  { title: 'Trail Routes', description: 'Curated running & hiking routes', link: 'routes.samuelkraft.com', image: routes },
+]
 
 const Home = (): JSX.Element => (
   <Page>
     <PageHeader
       title="Hi, my name is Samuel."
-      description="I’m a frontend developer &amp; designer. Right now I’m working at Bitrefill. This is my personal website - where you’ll find all the stuff I’m currently thinking about."
+      description="I’m a frontend developer &amp; designer currently working at Bitrefill. This is my personal website - where you’ll find all the stuff I’m currently thinking about."
     >
       <Button href="/about">More about me</Button>
     </PageHeader>
-    <h2>Projects</h2>
-    <Project
-      title="Tracklib"
-      description="Clear samples from real music"
-      link="tracklib.com"
-      image="/projects/tracklib.png"
-      imageWidth={1400}
-      imageHeight={636}
-    />
-    <Project
-      title="Bitrefill"
-      description="Live on Crypto"
-      link="bitrefill.com"
-      image="/projects/bitrefill.png"
-      imageWidth={1396}
-      imageHeight={676}
-    />
-    <Project
-      title="Trail Routes"
-      description="Curated running &amp; hiking routes"
-      link="routes.samuelkraft.com"
-      image="/projects/routes.png"
-      imageWidth={1408}
-      imageHeight={706}
-    />
-    <div className={styles.grid}>
-      <Project
-        title="StyleRoom"
-        description="Swedens largest source of interior design inspiration"
-        link="styleroom.se/app"
-        image="/projects/styleroom.png"
-        imageWidth={972}
-        imageHeight={702}
-        small
-      />
-      <Project
-        title="Watch Strength"
-        description="Your personal strength tracker"
-        link="samuelkraft.github.io/strength"
-        linkText="Visit project"
-        image="/projects/strength.png"
-        imageWidth={940}
-        imageHeight={858}
-        small
-      />
-      <Project
-        title="Eventomatic"
-        description="Connecting brands with fans"
-        link="eventomatic.se"
-        image="/projects/eventomatic.png"
-        imageWidth={436}
-        imageHeight={520}
-        small
-      />
-      <Project
-        title="The Jet Lag Family"
-        description="My small family’s travel blog"
-        link="thejetlagfamily.com"
-        image="/projects/jetlag.png"
-        imageWidth={650}
-        imageHeight={614}
-        small
-      />
-    </div>
+    <h2>Selected Projects</h2>
+    {projects.map(project => (
+      <Project key={project.title} {...project} />
+    ))}
   </Page>
 )
 

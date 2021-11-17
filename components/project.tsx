@@ -1,9 +1,6 @@
 import { Link2 } from 'react-feather'
 import cn from 'classnames'
 import Image from 'next/image'
-
-import Parallax from 'components/parallax'
-
 import styles from './project.module.scss'
 
 type ProjectProps = {
@@ -11,24 +8,21 @@ type ProjectProps = {
   description: string
   link: string
   linkText?: string
-  image: string
-  imageWidth: number
-  imageHeight: number
+  image: any
   small?: boolean
+  priority?: boolean
 }
 
-const Project = ({ title, description, link, image, imageWidth, imageHeight, linkText, small }: ProjectProps): JSX.Element => {
+const Project = ({ title, description, link, image, linkText, small, priority }: ProjectProps): JSX.Element => {
   return (
     <div className={styles.project}>
       <a href={`https://${link}`} target="_blank" rel="noreferrer" aria-label={title}>
-        <div className={cn(styles.imageWrapper, small && styles.small)}>
+        <div className={cn(styles.background, small && styles.backgroundSmall)}>
           {image && (
-            <div className={styles.imageAnimationWrapper}>
-              <Parallax offset={30} clampFinal>
-                <div className={styles.image} style={{ maxWidth: imageWidth / 2, maxHeight: imageHeight / 2 }}>
-                  <Image src={image} width={imageWidth} height={imageHeight} loading="eager" />
-                </div>
-              </Parallax>
+            <div className={styles.imageWrapper}>
+              <div className={styles.image}>
+                <Image src={image} priority={priority} layout="responsive" sizes="(max-width: 700px) 90vw, 700px" placeholder="blur" />
+              </div>
             </div>
           )}
         </div>
