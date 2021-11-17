@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import ThemeChanger from 'components/themechanger'
 import { useRouter } from 'next/router'
+import Image from 'next/image'
+import avatar from 'public/avatar.png'
 import styles from './header.module.scss'
 
 const links = [
@@ -20,7 +22,7 @@ const Header = (): JSX.Element => {
         <div className={styles.container}>
           <Link href="/">
             <a className={styles.logo}>
-              <img src="/avatar.png" width="45" height="45" alt="Samuel Kraft logo" />
+              <Image src={avatar} alt="Samuel Kraft logo" layout="fixed" width="45" height="45" priority placeholder="blur" />
             </a>
           </Link>
           <nav className={styles.nav}>
