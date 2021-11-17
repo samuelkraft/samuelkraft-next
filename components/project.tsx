@@ -21,7 +21,7 @@ const Project = ({ title, description, link, image, linkText, small, priority }:
           {image && (
             <div className={styles.imageWrapper}>
               <div className={styles.image}>
-                <Image src={image} priority={priority} layout="responsive" sizes="(max-width: 700px) 90vw, 700px" placeholder="blur" />
+                <Image src={image} priority={priority} layout="responsive" sizes="(max-width: 700px) 90vw, 700px" />
               </div>
             </div>
           )}
