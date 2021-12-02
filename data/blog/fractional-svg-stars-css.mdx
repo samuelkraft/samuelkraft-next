@@ -1,6 +1,7 @@
 ---
 title: 'Fractional SVG stars with CSS'
 publishedAt: '2021-09-07'
+updatedAt: '2021-12-02'
 summary: 'Create a rating component with svg stars that support fractional values'
 og: '/blog/fractional-svg-stars-css/og.png'
 image: '/blog/fractional-svg-stars-css/image.png'
@@ -117,20 +118,23 @@ Tinting color images is exactly what we want to do, so let's add the property an
 
 This is exactly what we want! It changes the hue and saturation of the stars, but keeps the backgrund color unchanged. You can play with the background-color to change the tint of the stars. For example if I use background-color: red instead I get a red tint instead of gray stars.
 
-The browser support is pretty good (supported in all modern browsers) but for older browsers we can fall back to opacity instead:
+The browser support is pretty good (supported in all modern browsers) but for older browsers we can fall back to opacity instead. We can do this by setting the default styles to the fallback, and progressively adding the mix-blend-mode if the browser supports it:
+
+__Update:__ Thanks to reader Chris Morgan for pointing out that we need to reverse our properties and start with the fallback, as no browser that supports `@supports` supports `mix-blend-mode`.
 
 ```css
 .overlay {
   background-color: black;
-  mix-blend-mode: color;
+  opacity: 0.7;
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   z-index: 1;
 
-  @supports not(mix-blend-mode: color) {
-    opacity: 0.7;
+  @supports (mix-blend-mode: color) {
+    mix-blend-mode: color;
+    opacity: unset;
   }
 }
 ```
