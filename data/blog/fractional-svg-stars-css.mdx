@@ -120,7 +120,7 @@ This is exactly what we want! It changes the hue and saturation of the stars, bu
 
 The browser support is pretty good (supported in all modern browsers) but for older browsers we can fall back to opacity instead. We can do this by setting the default styles to the fallback, and progressively adding the mix-blend-mode if the browser supports it:
 
-__Update:__ Thanks to reader Chris Morgan for pointing out that we need to reverse our properties and start with the fallback, as no browser that supports `@supports` supports `mix-blend-mode`.
+__Update:__ Thanks to reader Chris Morgan for pointing out that we need to reverse our properties and start with the fallback, as no browser that doesn't support `mix-blend-mode` supports `@supports`.
 
 ```css
 .overlay {
