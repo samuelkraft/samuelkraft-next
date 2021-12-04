@@ -128,6 +128,8 @@ pre[class*='language-'] {
 }
 
 pre > code[class*='language-'] {
+  display: block;
+  width: 100%;
   font-size: 1em;
 }
 
@@ -242,8 +244,10 @@ article .remark-code-title + pre {
   border-top-right-radius: 0;
 }
 
-.mdx-marker {
+.highlight-line {
   position: relative;
+  display: block;
+  width: calc(100% + 50px);
   margin-right: -25px;
   margin-left: -25px;
   padding-left: 25px;

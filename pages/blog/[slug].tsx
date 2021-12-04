@@ -1,15 +1,8 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
-import path from 'path'
-import fs from 'fs'
-import matter from 'gray-matter'
-import hydrate from 'next-mdx-remote/hydrate'
-import renderToString from 'next-mdx-remote/render-to-string'
+import { useMDXComponent } from 'next-contentlayer/hooks' // eslint-disable-line
 import Head from 'next/head'
-import readingTime from 'reading-time'
 import Link from 'next/link'
 import { NextSeo } from 'next-seo'
-import mdxPrism from 'mdx-prism'
-import codeTitle from 'remark-code-titles'
 import dynamic from 'next/dynamic'
 
 // Components
@@ -32,8 +25,10 @@ import Button from 'components/button'
 import { RatingPlayground } from 'components/blog/rating'
 
 // Utils
-import { getAllMeta, postFilePaths, POSTS_PATH } from 'utils/mdxutils'
-import type { BlogPosts } from 'pages/blog'
+import { pick } from '@contentlayer/client'
+import { allPosts } from '.contentlayer/data'
+import type { Post as PostType } from '.contentlayer/types'
+
 import styles from './post.module.scss'
 
 const ParallaxCover = dynamic(() => import('components/blog/parallaxcover'))
@@ -73,53 +68,30 @@ const components = {
   Rating: RatingPlayground,
 }
 
-export type TagsType = Array<string>
-
-export type Meta = {
-  og?: string
-  image?: string
-  publishedAt: string
-  updatedAt?: string
-  readingTime: {
-    text: string
-    minutes: number
-    time: number
-    words: number
-  }
-  summary: string
-  title: string
-  slug: string
-  tags: TagsType
-}
-
 type PostProps = {
-  source: {
-    compiledSource: string
-    renderedOutput: string
-    scope: Meta
-  }
-  related: BlogPosts
+  post: PostType
+  related: PostType[]
 }
 
-const Post = ({ source, related }: PostProps): JSX.Element => {
-  const content = hydrate(source, { components })
-  const { scope: meta } = source
-  const formattedPublishDate = new Date(meta.publishedAt).toLocaleString('en-US', {
+const Post = ({ post, related }: PostProps): JSX.Element => {
+  const Component = useMDXComponent(post.body.code)
+
+  const formattedPublishDate = new Date(post.publishedAt).toLocaleString('en-US', {
     month: 'short',
     day: '2-digit',
     year: 'numeric',
   })
-  const formattedUpdatedDate = meta.updatedAt
-    ? new Date(meta.updatedAt).toLocaleString('en-US', {
+  const formattedUpdatedDate = post.updatedAt
+    ? new Date(post.updatedAt).toLocaleString('en-US', {
         month: 'short',
         day: '2-digit',
         year: 'numeric',
       })
     : null
 
-  const seoTitle = `${meta.title} | Samuel Kraft`
-  const seoDesc = `${meta.summary}`
-  const url = `https://samuelkraft.com/blog/${meta.slug}`
+  const seoTitle = `${post.title} | Samuel Kraft`
+  const seoDesc = `${post.summary}`
+  const url = `https://samuelkraft.com/blog/${post.slug}`
 
   return (
     <Page>
@@ -133,19 +105,19 @@ const Post = ({ source, related }: PostProps): JSX.Element => {
           description: seoDesc,
           images: [
             {
-              url: meta.og
-                ? `https://samuelkraft.com${meta.og}`
-                : `https://og-image.samuelkraft.vercel.app/${encodeURIComponent(meta.title)}?desc=${encodeURIComponent(
+              url: post.og
+                ? `https://samuelkraft.com${post.og}`
+                : `https://og-image.samuelkraft.vercel.app/${encodeURIComponent(post.title)}?desc=${encodeURIComponent(
                     seoDesc,
                   )}&theme=dark.png`,
-              alt: meta.title,
+              alt: post.title,
             },
           ],
           site_name: 'Samuel Kraft',
           type: 'article',
           article: {
-            publishedTime: meta.publishedAt,
-            modifiedTime: meta.updatedAt,
+            publishedTime: post.publishedAt,
+            modifiedTime: post.updatedAt,
             authors: ['https://samuelkrat.com'],
           },
         }}
@@ -153,20 +125,26 @@ const Post = ({ source, related }: PostProps): JSX.Element => {
           cardType: 'summary_large_image',
         }}
       />
-      {meta.image && <BlogImage src={meta.image} alt={meta.title} className={styles.image} />}
-      {meta.slug === 'spring-parallax-framer-motion-guide' && <ParallaxCover />}
-      <PageHeader title={meta.title} compact>
+
+      {post.slug === 'spring-parallax-framer-motion-guide' ? (
+        <ParallaxCover />
+      ) : (
+        <>{post.image && <BlogImage src={post.image} alt={post.title} className={styles.image} />}</>
+      )}
+      <PageHeader title={post.title} compact>
         <p className={styles.meta}>
-          Published on <time dateTime={meta.publishedAt}>{formattedPublishDate}</time>
-          {meta.updatedAt ? ` (Updated ${formattedUpdatedDate})` : ''} <span>&middot;</span> {meta.readingTime.text}
-          <HitCounter slug={meta.slug} />
+          Published on <time dateTime={post.publishedAt}>{formattedPublishDate}</time>
+          {post.updatedAt ? ` (Updated ${formattedUpdatedDate})` : ''} <span>&middot;</span> {post.readingTime.text}
+          <HitCounter slug={post.slug} />
         </p>
       </PageHeader>
-      <article className={styles.article}>{content}</article>
+      <article className={styles.article}>
+        <Component components={components} />
+      </article>
       <div className={styles.buttons}>
-        <LikeButton slug={meta.slug} />
+        <LikeButton slug={post.slug} />
       </div>
-      <Tags tags={meta.tags} />
+      <Tags tags={post.tags} />
       <Subscribe className={styles.subscribe} />
       {related.length > 0 && (
         <>
@@ -182,47 +160,27 @@ const Post = ({ source, related }: PostProps): JSX.Element => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = postFilePaths
-    // Remove file extensions for page paths
-    .map(p => p.replace(/\.mdx?$/, ''))
-    // Map the path into the static paths object required by Next.js
-    .map(s => ({ params: { slug: s } }))
-
   return {
-    paths,
+    paths: allPosts.map(p => ({ params: { slug: p.slug } })),
     fallback: false,
   }
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const postFilePath = path.join(POSTS_PATH, `${params.slug}.mdx`)
-  const source = fs.readFileSync(postFilePath)
-
-  const { content, data } = matter(source)
-
-  const mdxSource = await renderToString(content, {
-    components,
-    // Optionally pass remark/rehype plugins
-    mdxOptions: {
-      remarkPlugins: [codeTitle],
-      rehypePlugins: [mdxPrism],
-    },
-    scope: { ...data, readingTime: readingTime(content), slug: params.slug },
-  })
-
-  const related = (await getAllMeta())
+  const post = allPosts.find(p => p.slug === params?.slug)
+  const related = allPosts
     /* remove current post */
-    .filter(meta => meta.slug !== params.slug)
+    .filter(p => p.slug !== params?.slug)
     /* Find other posts where tags are matching */
-    .filter(meta => meta.tags?.some(tag => data.tags?.includes(tag)))
-    /* Put the data inside meta in a fake Post object  */
-    .map(x => ({ meta: x }))
+    .filter(p => p.tags?.some(tag => post.tags?.includes(tag)))
     /* return the first three */
     .filter((_, i) => i < 3)
+    /* only return what's needed to render the list */
+    .map(p => pick(p, ['slug', 'title', 'summary', 'publishedAt', 'image', 'readingTime']))
 
   return {
     props: {
-      source: mdxSource,
+      post,
       related,
     },
   }

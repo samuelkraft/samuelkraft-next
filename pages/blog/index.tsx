@@ -1,10 +1,6 @@
 import { useState, useCallback } from 'react'
 import { GetStaticProps } from 'next'
-import fs from 'fs'
-import matter from 'gray-matter'
-import path from 'path'
 import { NextSeo } from 'next-seo'
-import readingTime from 'reading-time'
 import { Search } from 'react-feather'
 import debounce from 'lodash.debounce'
 
@@ -16,18 +12,15 @@ import Input from 'components/input'
 import PostList from 'components/postlist'
 
 // Utils
-import { postFilePaths, POSTS_PATH } from 'utils/mdxutils'
 import * as gtag from 'lib/gtag'
+import { pick } from '@contentlayer/client'
+import { allPosts } from '.contentlayer/data'
+import type { Post } from '.contentlayer/types'
 
-// Types
-import type { Meta } from 'pages/blog/[slug]'
-
-import styles from './blog.module.scss'
-
-export type BlogPosts = Array<{ content: string; filePath: string; meta: Meta }>
+import styles from './index.module.scss'
 
 type BlogProps = {
-  posts: BlogPosts
+  posts: Post[]
 }
 
 const Blog = ({ posts }: BlogProps): JSX.Element => {
@@ -39,8 +32,8 @@ const Blog = ({ posts }: BlogProps): JSX.Element => {
   const seoTitle = 'Blog | Samuel Kraft'
   const seoDesc = 'I write about development, design, React, CSS, animation and more!'
   const filteredPosts = posts
-    .sort((a, b) => new Date(b.meta.publishedAt).getTime() - new Date(a.meta.publishedAt).getTime())
-    .filter(({ meta: { title, summary, tags } }) => {
+    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+    .filter(({ title, summary, tags }) => {
       const searchString = `${title.toLowerCase()} ${summary.toLowerCase()} ${tags?.join(' ')}`
       return searchString.includes(currentSearch.toLowerCase())
     })
@@ -79,19 +72,13 @@ const Blog = ({ posts }: BlogProps): JSX.Element => {
     </Page>
   )
 }
+
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = postFilePaths.map(filePath => {
-    const source = fs.readFileSync(path.join(POSTS_PATH, filePath))
-    const { content, data } = matter(source)
+  const posts = allPosts.map(post => pick(post, ['slug', 'title', 'summary', 'publishedAt', 'image', 'readingTime']))
 
-    return {
-      content,
-      meta: { ...data, readingTime: readingTime(content) },
-      filePath,
-    }
-  })
-
-  return { props: { posts } }
+  return {
+    props: { posts },
+  }
 }
 
 export default Blog

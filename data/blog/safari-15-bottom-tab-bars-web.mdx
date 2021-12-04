@@ -46,7 +46,7 @@ Thankfully solving this issue is very easy by using the `env()` CSS function tog
 
 To respect the safe area and make sure that nothing from the browser UI overlaps let's add another bottom property with `env(safe-area-inset-bottom)` as a value. This function works like a CSS variable, returning the minimum amount of inset needed to keep your UI from overlapping with the browser's. We keep the old style rule as a fallback browsers that do not support it:
 
-```jsx{4}
+```jsx {4}
 .tabbar {
   position: fixed;
   bottom: 0;
@@ -63,7 +63,7 @@ Now when scrolling nothing overlaps:
 
 Be sure to use `env()` every time something is anchored to the bottom of the screen or overlap will likely appear. `env()` can also be combined with css `calc()` or `min()` and `max()`, so if your design needs more padding you can add it like this:
 
-```jsx{4}
+```jsx {4}
 .tabbar {
   position: fixed;
   bottom: 0;
