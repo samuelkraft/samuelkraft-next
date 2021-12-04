@@ -31,6 +31,7 @@ module.exports = {
     'import/prefer-default-export': 0,
     'import/extensions': 0,
     '@typescript-eslint/explicit-module-boundary-types': 0,
+    'no-underscore-dangle': 0,
   },
   globals: {
     JSX: true,

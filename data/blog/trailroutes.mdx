@@ -67,7 +67,7 @@ const routes = routeFilePaths.map(filePath => {
 
 The gpx files from Strava only contains cordinates and some basic metadata, but we're missing distance and total elevation. Luckily we can use an amazing open-source project called [Turf.js](http://turfjs.org) to do lots of advanced analysis on our geoJson. Look how easily we can calculate the total distance of the geoJson using [@turfjs/length](https://www.npmjs.com/package/@turf/length):
 
-```jsx{5,14-15,18}
+```jsx {5,14-15,18}
 import toGeoJson from '@mapbox/togeojson'
 import { DOMParser } from 'xmldom'
 import path from 'path'
@@ -94,7 +94,7 @@ const routes = routeFilePaths.map(filePath => {
 
 The original gpx file from strava contains the current elevation for each point, so in order to calculate the total elevation gain we simply map over the coordinates and sum the difference between each as explained in [this article](https://www.gpsvisualizer.com/tutorials/elevation_gain.html). Credit to Taylor Callsen's [initial implemention](https://github.com/tcallsen/geoCalcLineElevation).
 
-```jsx{9-16,19}
+```jsx {9-16,19}
 const routes = routeFilePaths.map(filePath => {
     const source = new DOMParser().parseFromString(fs.readFileSync(path.join(ROUTES_PATH, filePath), 'utf8'))
     const geoJson = toGeoJson.gpx(source)
@@ -123,7 +123,7 @@ That's a lot of parsing and calculation! 😅 I now realized that my choice of u
 ## Displaying geoJson with Mapbox GL and React
 
 I used the excellent guide from the Mapbox docs on [creating a mapbox react component](https://docs.mapbox.com/help/tutorials/use-mapbox-gl-js-with-react/). Mapbox's outdoor map is perfect for this use-case and can be accessed by setting the style to outdoors:
-```jsx{3}
+```jsx {3}
 const map = new mapboxgl.Map({
     container: mapContainer.current,
     style: 'mapbox://styles/mapbox/outdoors-v11',
@@ -168,7 +168,7 @@ map.on('load', () => {
 
 We should now have a map showing all our routes 🎉 Right now the color is hardcoded to red, in order differentiate we need to specify a color for each route. In my case I'm saving some extra metadata in a javascript file including a custom color for each:
 
-```js{8,14}
+```js {8,14}
 const colors = require('tailwindcss/colors')
 
 export const meta = {
@@ -186,7 +186,7 @@ export const meta = {
   }
 }
 ```
-```jsx{10}
+```jsx {10}
 map.addLayer({
   id: slug,
   type: 'line',

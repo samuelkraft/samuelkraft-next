@@ -1,8 +1,4 @@
-import fs from 'fs'
 import { GetStaticProps, GetStaticPaths } from 'next'
-import path from 'path'
-import matter from 'gray-matter'
-import readingTime from 'reading-time'
 import slugify from 'slugify'
 import { useRouter } from 'next/router'
 
@@ -12,14 +8,14 @@ import PageHeader from 'components/pageheader'
 import PostList from 'components/postlist'
 
 // Utils
-import { postFilePaths, POSTS_PATH } from 'utils/mdxutils'
+import { pick } from '@contentlayer/client'
+import { allPosts } from '.contentlayer/data'
 
 // Types
-import type { BlogPosts } from 'pages/blog'
-import type { Meta } from 'pages/blog/[slug]'
+import type { Post } from '.contentlayer/types'
 
 type TagProps = {
-  posts: BlogPosts
+  posts: Post[]
 }
 
 const Tag = ({ posts }: TagProps): JSX.Element => {
@@ -44,46 +40,24 @@ const Tag = ({ posts }: TagProps): JSX.Element => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = postFilePaths
-    .map(filePath => {
-      const source = fs.readFileSync(path.join(POSTS_PATH, filePath))
-      const {
-        data: { tags },
-      } = matter(source)
-
-      return tags
-    })
-    .reduce((accumulator, currentValue) => accumulator.concat(currentValue), [])
+  const tags = allPosts
+    .map(p => p.tags)
+    .flat()
     .filter(Boolean)
-    .map(tag => `/blog/tag/${slugify(tag, { lower: true })}`)
+    .map(tag => ({ params: { slug: slugify(tag, { lower: true }) } }))
 
   return {
-    paths,
+    paths: tags,
     fallback: false,
   }
 }
 
 export const getStaticProps: GetStaticProps = async context => {
-  const posts = postFilePaths
-    .map(filePath => {
-      const source = fs.readFileSync(path.join(POSTS_PATH, filePath))
-      const { content, data } = matter(source)
-
-      const { slug } = context.params
-
-      if (data.tags?.some(x => slugify(x, { lower: true }) === slug)) {
-        return {
-          content,
-          meta: { ...data, readingTime: readingTime(content) } as Meta,
-          filePath,
-        }
-      }
-
-      return null
-    })
+  const posts = allPosts
+    .filter(post => post.tags?.some(x => slugify(x, { lower: true }) === context.params.slug))
     .filter(Boolean)
-    .sort((a, b) => new Date(b.meta.publishedAt).getTime() - new Date(a.meta.publishedAt).getTime())
-
+    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+    .map(post => pick(post, ['slug', 'title', 'summary', 'publishedAt', 'image', 'readingTime']))
   return { props: { posts } }
 }
 

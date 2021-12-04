@@ -38,7 +38,7 @@ const notion = new Client({
 
 Then we need to add the functions we need. To get a list of our posts we need to be able to query a specific database (`getDatabase`), to get the information for a specific post we need to get a specific page (`getPage`), and to actually get the content of the page we need get its blocks (`getBlocks`).   
 
-```jsx{7-25}
+```jsx {7-25}
 import { Client } from "@notionhq/client";
 
 const notion = new Client({
