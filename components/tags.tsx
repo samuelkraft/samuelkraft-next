@@ -1,11 +1,10 @@
 import slugify from 'slugify'
 import Link from 'next/link'
-import type { TagsType } from 'pages/blog/[slug]'
 
 import styles from './tags.module.scss'
 
 type TagsProps = {
-  tags: TagsType
+  tags: string[]
 }
 
 const Tags = ({ tags }: TagsProps): JSX.Element | null => {
