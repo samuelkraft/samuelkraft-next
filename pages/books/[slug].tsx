@@ -140,7 +140,7 @@ export const getStaticProps: GetStaticProps = async context => {
       book,
       page: pageData,
     },
-    revalidate: 1,
+    revalidate: 3600,
   }
 }
 

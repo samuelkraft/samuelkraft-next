@@ -139,7 +139,7 @@ export const getStaticProps: GetStaticProps = async () => {
       published,
       reading,
     },
-    revalidate: 1,
+    revalidate: 3600,
   }
 }
 

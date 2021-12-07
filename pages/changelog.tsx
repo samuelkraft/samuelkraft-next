@@ -267,7 +267,7 @@ export const getStaticProps: GetStaticProps = async () => {
       inBacklog,
       inProgress,
     },
-    revalidate: 60,
+    revalidate: 3600,
   }
 }
 
