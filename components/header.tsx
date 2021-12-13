@@ -14,7 +14,6 @@ const links = [
 
 const Header = (): JSX.Element => {
   const router = useRouter()
-
   const pathname = router.pathname.split('/[')[0] // active paths on dynamic subpages
   return (
     <>
