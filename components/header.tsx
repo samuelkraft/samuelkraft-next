@@ -22,7 +22,7 @@ const Header = (): JSX.Element => {
         <div className={styles.container}>
           <Link href="/">
             <a className={styles.logo}>
-              <Image src={avatar} alt="Samuel Kraft logo" layout="fixed" width="45" height="45" priority placeholder="blur" />
+              <Image src={avatar} alt="Samuel Kraft" layout="fixed" width="45" height="45" priority placeholder="blur" />
             </a>
           </Link>
           <nav className={styles.nav}>
