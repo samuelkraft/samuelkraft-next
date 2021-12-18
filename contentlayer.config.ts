@@ -3,10 +3,20 @@ import readingTime from 'reading-time'
 import rehypePrism from 'rehype-prism-plus'
 import codeTitle from 'remark-code-titles'
 
+const getSlug = doc => doc._raw.sourceFileName.replace(/\.mdx$/, '')
+
 const computedFields: ComputedFields = {
   slug: {
     type: 'string',
-    resolve: doc => doc._raw.sourceFileName.replace(/\.mdx$/, ''),
+    resolve: doc => getSlug(doc),
+  },
+  image: {
+    type: 'string',
+    resolve: doc => `/blog/${getSlug(doc)}/image.png`,
+  },
+  og: {
+    type: 'string',
+    resolve: doc => `/blog/${getSlug(doc)}/og.png`,
   },
   readingTime: { type: 'json', resolve: doc => readingTime(doc.body.raw) },
 }
@@ -20,8 +30,6 @@ export const Post = defineDocumentType(() => ({
     summary: { type: 'string', required: true },
     publishedAt: { type: 'string', required: true },
     updatedAt: { type: 'string', required: false },
-    og: { type: 'string', required: true },
-    image: { type: 'string', required: true },
     tags: { type: 'json', required: false },
   },
   computedFields,
