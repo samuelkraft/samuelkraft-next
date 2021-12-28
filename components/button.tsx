@@ -11,7 +11,7 @@ type ButtonProps = {
   disabled?: boolean
 }
 
-const Button = ({ children, type, href, variant, onClick, disabled }: ButtonProps): JSX.Element => {
+export const Button = ({ children, type, href, variant, onClick, disabled }: ButtonProps): JSX.Element => {
   const classes = cn(styles.button, styles[variant])
   if (onClick || !href) {
     return (

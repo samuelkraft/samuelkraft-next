@@ -6,7 +6,8 @@ import { AnimatePresence } from 'framer-motion'
 import Head from 'next/head'
 import SEO from 'components/seo'
 import * as gtag from 'lib/gtag'
-import '../styles/globals.scss'
+import { lightTheme, darkTheme } from 'styles/vars.css'
+import 'styles/globals.css'
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const router = useRouter()
@@ -21,7 +22,13 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     }
   }, [router.events])
   return (
-    <ThemeProvider defaultTheme="system">
+    <ThemeProvider
+      attribute="class"
+      value={{
+        light: lightTheme,
+        dark: darkTheme,
+      }}
+    >
       <SEO />
       <Head>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
