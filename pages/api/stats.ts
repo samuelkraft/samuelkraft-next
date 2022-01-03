@@ -30,6 +30,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
       return {
         ...post,
+        id: post.slug,
         likes: totalLikes,
         views: hitsDocument.data.hits,
       }
