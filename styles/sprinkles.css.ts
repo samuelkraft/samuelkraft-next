@@ -3,13 +3,14 @@ import { space, colors, radii, fontWeights, fontSizes, heights, widths } from '.
 
 const responsiveProperties = defineProperties({
   conditions: {
-    mobile: {},
-    tablet: { '@media': 'screen and (min-width: 768px)' },
-    desktop: { '@media': 'screen and (min-width: 1024px)' },
+    small: {},
+    medium: { '@media': 'screen and (min-width: 480px)' },
+    large: { '@media': 'screen and (min-width: 768px)' },
+    xlarge: { '@media': 'screen and (min-width: 1024px)' },
   },
-  defaultCondition: 'mobile',
+  defaultCondition: 'small',
   properties: {
-    display: ['none', 'flex', 'block', 'inline'],
+    display: ['none', 'flex', 'block', 'inline', 'grid', 'inline-flex'],
     flexDirection: ['row', 'column'],
     justifyContent: ['stretch', 'flex-start', 'center', 'flex-end', 'space-around', 'space-between'],
     alignItems: ['stretch', 'flex-start', 'center', 'flex-end'],
@@ -26,7 +27,35 @@ const responsiveProperties = defineProperties({
     borderRadius: radii,
     fontWeight: fontWeights,
     fontSize: fontSizes,
+    textAlign: ['left', 'center', 'right'],
+    textDecoration: ['none', 'underline', 'line-through'],
     gap: space,
+    maxWidth: widths,
+    gridGap: space,
+    gridTemplateColumns: [
+      'repeat(1, 1fr)',
+      'repeat(2, 1fr)',
+      'repeat(3, 1fr)',
+      'repeat(4, 1fr)',
+      'repeat(5, 1fr)',
+      'repeat(6, 1fr)',
+      'repeat(7, 1fr)',
+      'repeat(8, 1fr)',
+      'repeat(9, 1fr)',
+      'repeat(10, 1fr)',
+      'repeat(11, 1fr)',
+      'repeat(12, 1fr)',
+    ],
+    listStyle: ['none', 'disc', 'decimal'],
+    opacity: ['0', '0.25', '0.5', '0.75', '1'],
+    letterSpacing: ['0', '-0.3px'],
+    lineHeight: ['1', '1.25', '1.5', '1.75', '2'],
+    position: ['static', 'relative', 'absolute', 'fixed', 'sticky'],
+    top: space,
+    right: space,
+    bottom: space,
+    left: space,
+    zIndex: ['0', '1', '2', '3'],
   },
   shorthands: {
     padding: ['paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight'],
@@ -41,6 +70,7 @@ const responsiveProperties = defineProperties({
 const unresponsiveProperties = defineProperties({
   properties: {
     cursor: ['default', 'pointer', 'not-allowed'],
+    target: ['_blank', '_self', '_parent', '_top'],
   },
 })
 

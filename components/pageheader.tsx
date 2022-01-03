@@ -1,4 +1,4 @@
-import styles from './pageheader.module.scss'
+import { Box } from 'components'
 
 type PageHeaderProps = {
   title: string | JSX.Element
@@ -8,11 +8,17 @@ type PageHeaderProps = {
 }
 
 const PageHeader = ({ title, description, children, compact }: PageHeaderProps): JSX.Element => (
-  <div className={compact ? styles.wrapperCompact : styles.wrapper}>
-    <h1 className={styles.title}>{title}</h1>
-    {description && <p className={styles.description}>{description}</p>}
+  <Box marginBottom={compact ? { small: 'none', medium: 'xlarge' } : { small: 'xxlarge', medium: 'xxxlarge' }}>
+    <Box as="h1" fontSize={{ small: 'h2', medium: 'h1' }} marginBottom={{ small: 'small', medium: 'medium' }} letterSpacing="-0.3px">
+      {title}
+    </Box>
+    {description && (
+      <Box as="p" fontSize={{ small: 'base', medium: 'large' }} fontWeight="medium" marginBottom="xlarge" opacity="0.75" lineHeight="1.5">
+        {description}
+      </Box>
+    )}
     {children}
-  </div>
+  </Box>
 )
 
 export default PageHeader

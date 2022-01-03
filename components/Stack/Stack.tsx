@@ -20,7 +20,7 @@ type StackProps = {
   direction?: OptionalResponsiveValue<Direction>
 }
 
-const Stack = ({ as = 'div', children, space, direction }: StackProps) => {
+export const Stack = ({ as = 'div', children, space, direction }: StackProps) => {
   const flexDirection = directionToFlexDirection(direction)
   return (
     <Box as={as} gap={space} display="flex" flexDirection={flexDirection}>

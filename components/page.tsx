@@ -3,11 +3,7 @@ import Header from 'components/header'
 import NowPlaying from 'components/nowplaying'
 import Link from 'next/link'
 import PageTransition from 'components/pagetransition'
-import styles from './page.module.scss'
-
-type PageProps = {
-  children: ReactNode
-}
+import { Box } from 'components'
 
 const footerLinks = [
   { name: 'Home', url: '/' },
@@ -24,26 +20,36 @@ const footerLinks = [
   { name: 'Changelog', url: '/changelog' },
 ]
 
+const Links = () => (
+  <Box as="ul" display="grid" marginBottom="xxlarge" gridGap="large" gridTemplateColumns="repeat(3, 1fr)" listStyle="none" padding="none">
+    {footerLinks.map(link => (
+      <Box as="li" key={link.name} color={{ base: 'textTinted', hover: 'text' }} fontWeight="medium">
+        <Link href={link.url}>
+          <a>{link.name}</a>
+        </Link>
+      </Box>
+    ))}
+  </Box>
+)
+
+type PageProps = {
+  children: ReactNode
+}
+
 const Page = ({ children }: PageProps): JSX.Element => (
-  <div className={styles.container}>
+  <Box maxWidth="site" marginX="auto" paddingX={{ small: 'medium', medium: 'large' }}>
     <Header />
-    <main className={styles.main}>
+    <Box as="main" marginBottom={{ small: 'xxlarge', medium: 'xxxlarge' }}>
       <PageTransition>{children}</PageTransition>
-    </main>
-    <footer className={styles.footer}>
-      <ul className={styles.links}>
-        {footerLinks.map(link => (
-          <li key={link.name}>
-            <Link href={link.url}>
-              <a>{link.name}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
+    </Box>
+    <Box as="footer">
+      <Links />
       <NowPlaying />
-      <p className={styles.copyright}>&copy; Samuel Kraft {new Date().getFullYear()}</p>
-    </footer>
-  </div>
+      <Box as="p" textAlign="center">
+        &copy; Samuel Kraft {new Date().getFullYear()}
+      </Box>
+    </Box>
+  </Box>
 )
 
 export default Page

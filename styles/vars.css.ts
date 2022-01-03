@@ -23,9 +23,13 @@ export const widths = {
   viewHeight: '100vh',
   viewWidth: '100vw',
   none: '0',
+  site: '83ch',
 }
 
 export const space = {
+  '0': '0',
+  px: '1px',
+  '-px': '-1px',
   none: '0',
   xxsmall: '4px',
   xsmall: '8px',
@@ -34,6 +38,8 @@ export const space = {
   large: '24px',
   xlarge: '32px',
   xxlarge: '48px',
+  xxxlarge: '64px',
+  auto: 'auto',
 }
 
 export const fontWeights = {
@@ -45,12 +51,12 @@ export const fontWeights = {
 }
 
 export const fontSizes = {
-  h1: '3rem',
-  h2: '1.875rem',
-  small: '0.9rem',
-  base: '1rem',
+  h1: '2.375rem',
+  h2: '1.75rem',
   large: '1.2rem',
+  base: '1rem',
   root: '16px',
+  small: '0.9rem',
 }
 
 const global = createGlobalTheme('html', {
@@ -64,7 +70,9 @@ const global = createGlobalTheme('html', {
 
 export const colors = createThemeContract({
   background: null,
+  headerBackground: null,
   text: null,
+  textTinted: null,
   // shared
   transparent: null,
   white: null,
@@ -85,13 +93,17 @@ const sharedColors = {
 
 export const lightTheme = createTheme(colors, {
   background: '#fff',
+  headerBackground: 'rgba(255, 255, 255, 0.6)',
   text: '#000',
+  textTinted: 'rgba(0, 0, 0, 0.5)',
   ...sharedColors,
 })
 
 export const darkTheme = createTheme(colors, {
   background: '#161515',
+  headerBackground: 'rgba(22, 21, 21, 0.6)',
   text: '#fff',
+  textTinted: 'rgba(255, 255, 255, 0.5)',
   ...sharedColors,
 })
 

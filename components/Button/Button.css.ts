@@ -10,7 +10,15 @@ export const button = recipe({
       fontFamily: 'inherit',
       transition: 'all 0.15s ease-in-out',
     }),
-    sprinkles({ cursor: 'pointer', borderRadius: 'full', fontWeight: 'bold', paddingY: 'none', margin: 'none' }),
+    sprinkles({
+      display: 'inline-flex',
+      alignItems: 'center',
+      cursor: 'pointer',
+      borderRadius: 'full',
+      fontWeight: 'bold',
+      paddingY: 'none',
+      margin: 'none',
+    }),
   ],
   variants: {
     variant: {

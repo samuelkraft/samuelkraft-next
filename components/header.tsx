@@ -3,7 +3,8 @@ import ThemeChanger from 'components/themechanger'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import avatar from 'public/avatar.png'
-import styles from './header.module.scss'
+import * as styles from './header.css'
+import Box from './Box/Box'
 
 const links = [
   { name: 'Home', path: '/' },
@@ -17,8 +18,17 @@ const Header = (): JSX.Element => {
   const pathname = router.pathname.split('/[')[0] // active paths on dynamic subpages
   return (
     <>
-      <header className={styles.header}>
-        <div className={styles.container}>
+      <Box as="header" position="fixed" top="-px" right="0" left="0" backgroundColor="headerBackground" zIndex="3" className={styles.blur}>
+        <Box
+          display="flex"
+          flexDirection="row"
+          justifyContent="space-between"
+          alignItems="center"
+          maxWidth="site"
+          marginX="auto"
+          paddingX={{ small: 'medium', medium: 'large' }}
+          paddingY={{ small: 'small', medium: 'medium' }}
+        >
           <Link href="/">
             <a className={styles.logo}>
               <Image src={avatar} alt="Samuel Kraft" layout="fixed" width="45" height="45" priority placeholder="blur" />
@@ -36,8 +46,8 @@ const Header = (): JSX.Element => {
             </ol>
           </nav>
           <ThemeChanger />
-        </div>
-      </header>
+        </Box>
+      </Box>
       <div className={styles.spacer} />
     </>
   )

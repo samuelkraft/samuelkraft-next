@@ -1,7 +1,8 @@
-import Button from 'components/button'
+import { Box, Button } from 'components'
 import PageHeader from 'components/pageheader'
 import Project from 'components/project'
 import Page from 'components/page'
+import Link from 'next/link'
 
 import bitrefill from 'public/projects/bitrefill.png'
 import routes from 'public/projects/routes.png'
@@ -19,9 +20,13 @@ const Home = (): JSX.Element => (
       title="Hi, my name is Samuel."
       description="I’m a frontend developer &amp; designer currently working at Bitrefill. This is my personal website - where you’ll find all the stuff I’m currently thinking about."
     >
-      <Button href="/about">More about me</Button>
+      <Link href="/about">
+        <Button as="a">More about me</Button>
+      </Link>
     </PageHeader>
-    <h2>Selected Projects</h2>
+    <Box as="h2" fontSize="h2" marginBottom="xlarge">
+      Selected Projects
+    </Box>
     {projects.map(project => (
       <Project key={project.title} {...project} />
     ))}
