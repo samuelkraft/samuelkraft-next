@@ -1,4 +1,5 @@
 import faunadb from 'faunadb'
+import { getMentionsForSlug } from 'lib/webmentions'
 
 module.exports = async (req, res) => {
   const q = faunadb.query
@@ -27,9 +28,7 @@ module.exports = async (req, res) => {
   const document = (await client.query(q.Get(q.Match(q.Index('likes_by_slug'), slug)))) as documentType
 
   // Fetch webmentions
-  const webmentions = await fetch(`https://webmention.io/api/mentions?target=https://samuelkraft.com/blog/${slug}&per-page=10000`)
-  const mentions = await webmentions.json()
-  const numberOfmentions = mentions?.links?.length
+  const numberOfmentions = await getMentionsForSlug(slug)
 
   if (req.method === 'POST') {
     await client.query(

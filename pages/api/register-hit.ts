@@ -3,7 +3,7 @@ import faunadb from 'faunadb'
 module.exports = async (req, res) => {
   const q = faunadb.query
   const client = new faunadb.Client({
-    secret: process.env.FAUNA_SECRET_KEY,
+    secret: process.env.FAUNA_SECRET_KEY || '',
   })
   const { slug } = req.query
   if (!slug) {
