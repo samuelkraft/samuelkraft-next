@@ -10,7 +10,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     secret: process.env.FAUNA_SECRET_KEY || '',
   })
 
-  const posts = allPosts.map(post => pick(post, ['slug', 'title', 'publishedAt']))
+  const posts = allPosts.map(post => pick(post, ['slug', 'title', 'publishedAt', 'image', 'tags', 'summary']))
 
   const postsWithLikes = await Promise.all(
     posts
