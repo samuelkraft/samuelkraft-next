@@ -10,7 +10,13 @@ import tracklib from 'public/projects/tracklib.png'
 const projects = [
   { title: 'Tracklib', description: 'Clear samples from real music', link: 'tracklib.com', image: tracklib },
   { title: 'Bitrefill', description: 'Live on Crypto', link: 'bitrefill.com', image: bitrefill },
-  { title: 'Trail Routes', description: 'Curated running & hiking routes', link: 'routes.samuelkraft.com', image: routes },
+  {
+    title: 'Trail Routes',
+    description: 'Curated running & hiking routes',
+    link: 'routes.samuelkraft.com',
+    github: 'github.com/samuelkraft/routes',
+    image: routes,
+  },
 ]
 
 const Home = (): JSX.Element => (

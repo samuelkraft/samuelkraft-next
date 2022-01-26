@@ -58,6 +58,16 @@
     font-size: 18px;
   }
 }
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  @media (min-width: 480px) {
+    flex-direction: row;
+    gap: initial;
+  }
+}
 
 .link {
   display: inline-flex;
@@ -79,6 +89,16 @@
   svg {
     width: 20px;
     height: auto;
-    margin-left: 10px;
+    margin-left: 8px;
+  }
+}
+
+.dividerDot {
+  display: none;
+  margin: 0 10px;
+  opacity: 0.6;
+
+  @media (min-width: 480px) {
+    display: inline;
   }
 }
