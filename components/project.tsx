@@ -16,7 +16,7 @@ type ProjectProps = {
 
 const Project = ({ title, description, link, image, linkText, small, priority, github }: ProjectProps): JSX.Element => {
   return (
-    <div className={styles.project}>
+    <div className={styles.project} key={title}>
       <a href={`https://${link}`} target="_blank" rel="noreferrer" aria-label={title}>
         <div className={cn(styles.background, small && styles.backgroundSmall)}>
           {image && (

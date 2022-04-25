@@ -32,6 +32,7 @@ module.exports = {
     'import/extensions': 0,
     '@typescript-eslint/explicit-module-boundary-types': 0,
     'no-underscore-dangle': 0,
+    camelcase: 0,
   },
   globals: {
     JSX: true,
