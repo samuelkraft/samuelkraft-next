@@ -33,6 +33,9 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 0,
     'no-underscore-dangle': 0,
     camelcase: 0,
+    'import/no-useless-path-segments': 0,
+    'react/function-component-definition': 0,
+    'react/jsx-no-useless-fragment': 0,
   },
   globals: {
     JSX: true,

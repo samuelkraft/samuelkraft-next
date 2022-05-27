@@ -14,8 +14,7 @@ import PostList from 'components/postlist'
 // Utils
 import * as gtag from 'lib/gtag'
 import { pick } from '@contentlayer/client'
-import { allPosts } from '.contentlayer/data'
-import type { Post } from '.contentlayer/types'
+import { allPosts, Post } from 'contentlayer/generated'
 
 import styles from './index.module.scss'
 

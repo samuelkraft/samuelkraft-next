@@ -9,10 +9,9 @@ import PostList from 'components/postlist'
 
 // Utils
 import { pick } from '@contentlayer/client'
-import { allPosts } from '.contentlayer/data'
+import { allPosts, Post } from 'contentlayer/generated'
 
-// Types
-import type { Post } from '.contentlayer/types'
+const FormattedSlug = ({ slug }: { slug: string }) => <span style={{ textTransform: 'capitalize' }}>{slug.replace('-', ' ')}</span>
 
 type TagProps = {
   posts: Post[]
@@ -22,15 +21,13 @@ const Tag = ({ posts }: TagProps): JSX.Element => {
   const { query } = useRouter()
   const { slug } = query as { slug: string }
 
-  const FormattedSlug = () => <span style={{ textTransform: 'capitalize' }}>{slug.replace('-', ' ')}</span>
-
   return (
     <Page>
       <PageHeader
-        title={<FormattedSlug />}
+        title={<FormattedSlug slug={slug} />}
         description={
           <>
-            Posts &amp; tutorials about <FormattedSlug />
+            Posts &amp; tutorials about <FormattedSlug slug={slug} />
           </>
         }
       />

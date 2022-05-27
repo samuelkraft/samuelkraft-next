@@ -6,7 +6,7 @@ import ParallaxCover from 'components/blog/parallaxcover'
 
 // Utils
 import { formatDate } from 'lib/formatdate'
-import type { Post } from '.contentlayer/types'
+import type { Post } from 'contentlayer/generated'
 
 import styles from './postlist.module.scss'
 

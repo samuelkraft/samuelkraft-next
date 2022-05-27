@@ -26,8 +26,7 @@ import { RatingPlayground } from 'components/blog/rating'
 
 // Utils
 import { pick } from '@contentlayer/client'
-import { allPosts } from '.contentlayer/data'
-import type { Post as PostType } from '.contentlayer/types'
+import { allPosts, Post as PostType } from 'contentlayer/generated'
 
 import styles from './post.module.scss'
 
