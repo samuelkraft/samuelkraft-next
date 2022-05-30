@@ -5,7 +5,7 @@ import { components } from "../../components/MDX";
 
 import { allComponents } from "contentlayer/generated";
 import type { Component } from "contentlayer/generated";
-import { Stack } from "design-system/src";
+import { Stack } from "design-system";
 import PageTitle from "src/components/PageTitle";
 
 export default function Page({ component }: { component: Component }) {

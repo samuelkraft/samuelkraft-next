@@ -3,7 +3,7 @@ import Link from "next/link";
 import { allComponents, allDocs } from "contentlayer/generated";
 import * as styles from "./Layout.css";
 import ThemeChanger from "./ThemeChanger";
-import { Box, Stack } from "design-system/src";
+import { Stack } from "design-system";
 import { useRouter } from "next/router";
 
 const searchFilter = (query: string, item: any) =>

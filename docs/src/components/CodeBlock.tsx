@@ -1,6 +1,6 @@
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
 import * as styles from "./CodeBlock.css";
-import * as dscomponents from "design-system/src";
+import * as dscomponents from "design-system";
 
 type CodeProps = {
   code: string;

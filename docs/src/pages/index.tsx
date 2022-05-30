@@ -1,4 +1,4 @@
-import { Button, Stack } from "design-system/src";
+import { Button, Stack } from "design-system";
 import PageTitle from "src/components/PageTitle";
 
 const Home = () => {

@@ -1,6 +1,6 @@
 import CodeBlock from "./CodeBlock";
 import PropsTable from "./PropsTable";
-import * as dscomponents from "design-system/src";
+import * as dscomponents from "design-system";
 
 export const components = {
   code: (props: any) => <CodeBlock {...props} />,

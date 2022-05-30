@@ -1,5 +1,6 @@
 {
   "name": "design-system",
+  "main": "./src/index.ts",
   "private": true,
   "version": "1.0.0",
   "dependencies": {

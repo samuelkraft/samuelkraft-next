@@ -1,4 +1,4 @@
-import { Stack } from "design-system/src";
+import { Stack } from "design-system";
 import * as styles from "./PageTitle.css";
 
 type PageTitleProps = {

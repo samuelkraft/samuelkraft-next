@@ -4,7 +4,7 @@ import { components } from "src/components/MDX";
 
 import { allDocs } from "contentlayer/generated";
 import type { Doc } from "contentlayer/generated";
-import { Stack } from "design-system/src";
+import { Stack } from "design-system";
 import PageTitle from "src/components/PageTitle";
 
 export default function Page({ doc }: { doc: Doc }) {
