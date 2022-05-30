@@ -1,0 +1,36 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc",
+    "cache-clear": "./node_modules/.bin/contentlayer build --verbose --clearCache"
+  },
+  "dependencies": {
+    "@radix-ui/colors": "^0.1.8",
+    "@types/glob": "^7.2.0",
+    "@vanilla-extract/css": "^1.7.0",
+    "@vanilla-extract/next-plugin": "^2.0.2",
+    "contentlayer": "^0.2.5",
+    "design-system": "*",
+    "glob": "^7.2.0",
+    "lodash": "^4.17.21",
+    "next": "^12.1.4",
+    "next-contentlayer": "^0.2.5",
+    "next-themes": "^0.2.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-live": "^2.4.1"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.182",
+    "@types/react": "^18.0.9",
+    "react-docgen-typescript": "^2.2.2",
+    "typescript": "4.7.2"
+  }
+}

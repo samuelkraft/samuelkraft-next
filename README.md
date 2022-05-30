@@ -1,3 +1,6 @@
-# samuelkraft.com
+# samuelkraft
 
-My personal website/portfolio/blog. Written with Next.js/Typescript and deployed on Vercel. Book data fetched from Notion and prerendered with next's getinitialprops ✨
+My portfolio website, design system & docs built with Next.js, Contentlayer, Vanilla Extract.
+
+Portfolio: https://samuelkraft.com
+Design system: https://designsystem.samuelkraft.com

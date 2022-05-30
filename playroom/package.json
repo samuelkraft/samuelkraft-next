@@ -1,0 +1,9 @@
+{
+  "name": "playroom",
+  "private": true,
+  "version": "1.0.0",
+  "dependencies": {
+    "@vanilla-extract/css": "^1.7.0",
+    "design-system": "*"
+  }
+}
