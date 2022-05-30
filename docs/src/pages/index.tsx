@@ -4,12 +4,12 @@ import PageTitle from "src/components/PageTitle";
 const Home = () => {
   return (
     <article>
-      <Stack space={2} orientation="vertical">
+      <Stack space={2} direction="column">
         <PageTitle
           title="Design System"
           description="Welcome to the design system documentation"
         />
-        <Stack orientation="vertical" space={2} align="start">
+        <Stack direction="column" space={2} align="flex-start">
           <p>
             This is an example documentation website build with Next.js,
             Typescript, Vanilla Extract &amp; ContentLayer. See the source on{" "}

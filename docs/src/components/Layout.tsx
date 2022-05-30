@@ -53,7 +53,7 @@ export const Layout = ({ children }: { children: ReactNode }) => {
           <Link href="/">
             <a className={styles.logo}>Design System</a>
           </Link>
-          <Stack space={2} align="center">
+          <Stack space={5} align="center">
             <ThemeChanger />
             <input
               value={query}
@@ -67,13 +67,13 @@ export const Layout = ({ children }: { children: ReactNode }) => {
       </header>
       <div className={styles.wrapper}>
         <aside className={styles.sidebar}>
-          <Stack space={2} orientation="vertical">
+          <Stack space={5} direction="column">
             <section>
               <NavLink href="/">Home</NavLink>
             </section>
-            <Stack space={2} orientation="vertical">
+            <Stack space={5} direction="column">
               <p className={styles.sidebarTitle}>Getting started</p>
-              <Stack space={2} orientation="vertical">
+              <Stack space={5} direction="column">
                 {allDocs
                   .filter((x) => x.category === "getting-started")
                   .map((doc) => (
@@ -83,9 +83,9 @@ export const Layout = ({ children }: { children: ReactNode }) => {
                   ))}
               </Stack>
             </Stack>
-            <Stack space={2} orientation="vertical">
+            <Stack space={5} direction="column">
               <p className={styles.sidebarTitle}>Content</p>
-              <Stack space={2} orientation="vertical">
+              <Stack space={5} direction="column">
                 {allDocs
                   .filter((x) => x.category === "content")
                   .map((doc) => (
@@ -95,9 +95,9 @@ export const Layout = ({ children }: { children: ReactNode }) => {
                   ))}
               </Stack>
             </Stack>
-            <Stack space={2} orientation="vertical">
+            <Stack space={5} direction="column">
               <p className={styles.sidebarTitle}>Brand</p>
-              <Stack space={2} orientation="vertical">
+              <Stack space={5} direction="column">
                 {allDocs
                   .filter((x) => x.category === "brand")
                   .map((doc) => (
@@ -107,9 +107,9 @@ export const Layout = ({ children }: { children: ReactNode }) => {
                   ))}
               </Stack>
             </Stack>
-            <Stack space={2} orientation="vertical">
+            <Stack space={5} direction="column">
               <p className={styles.sidebarTitle}>Components</p>
-              <Stack space={2} orientation="vertical">
+              <Stack space={5} direction="column">
                 {allComponents.map((component) => (
                   <NavLink
                     key={component.title}

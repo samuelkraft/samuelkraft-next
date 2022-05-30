@@ -8,8 +8,8 @@ type PageTitleProps = {
 };
 
 const PageTitle = ({ title, description, link }: PageTitleProps) => (
-  <Stack orientation="vertical" space={2}>
-    <Stack orientation="horizontal" space={2} justify="between" align="center">
+  <Stack space={2} direction="column">
+    <Stack direction="row" space={2} justify="space-between" align="center">
       <h1 className={styles.title}>{title}</h1>
       {link ? <a href={link}>View source on GitHub</a> : <div />}
     </Stack>

@@ -16,7 +16,7 @@ export default function Page({ component }: { component: Component }) {
 
   return (
     <article>
-      <Stack orientation="vertical" space={2}>
+      <Stack direction="column" space={2}>
         <PageTitle
           title={component.title}
           description={component.description}

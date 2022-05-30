@@ -13,7 +13,7 @@ export default function Page({ doc }: { doc: Doc }) {
 
   return (
     <article>
-      <Stack orientation="vertical" space={1}>
+      <Stack direction="column" space={1}>
         <PageTitle title={doc.title} description={doc.description} />
         <Component components={components} />
         <a href={doc.docsLink}>Edit this page</a>

@@ -1,22 +1,31 @@
 import { ReactNode } from "react";
-import * as styles from "./Stack.css";
+import { Box, BoxProps } from "../Box";
 
 export type StackProps = {
+  as?: any;
   children: ReactNode[];
-  space?: styles.Space;
-  orientation?: styles.Orientation;
-  align?: styles.Align;
-  justify?: styles.Justify;
+  space?: BoxProps["gap"];
+  direction?: BoxProps["flexDirection"];
+  align?: BoxProps["alignItems"];
+  justify?: BoxProps["justifyContent"];
 };
 
 export const Stack = ({
+  as,
   children,
   space,
-  orientation = "horizontal",
+  direction,
   align,
   justify,
 }: StackProps) => (
-  <div className={styles.stack({ space, orientation, align, justify })}>
+  <Box
+    as={as}
+    display="flex"
+    flexDirection={direction}
+    alignItems={align}
+    justifyContent={justify}
+    gap={space}
+  >
     {children}
-  </div>
+  </Box>
 );
