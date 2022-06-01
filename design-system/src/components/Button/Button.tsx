@@ -22,11 +22,12 @@ export const Button = ({
 }: ButtonProps) => {
   const router = useRouter();
   return (
-    <button
+    <Box
+      as="button"
       className={styles.button({ variant, size })}
       onClick={() => (href ? router.push(href) : null)}
     >
       {children}
-    </button>
+    </Box>
   );
 };

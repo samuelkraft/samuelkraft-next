@@ -83,30 +83,7 @@ export const Layout = ({ children }: { children: ReactNode }) => {
                   ))}
               </Stack>
             </Stack>
-            <Stack space={5} direction="column">
-              <p className={styles.sidebarTitle}>Content</p>
-              <Stack space={5} direction="column">
-                {allDocs
-                  .filter((x) => x.category === "content")
-                  .map((doc) => (
-                    <NavLink key={doc.title} href={`/${doc.slug}`}>
-                      {doc.title}
-                    </NavLink>
-                  ))}
-              </Stack>
-            </Stack>
-            <Stack space={5} direction="column">
-              <p className={styles.sidebarTitle}>Brand</p>
-              <Stack space={5} direction="column">
-                {allDocs
-                  .filter((x) => x.category === "brand")
-                  .map((doc) => (
-                    <NavLink key={doc.title} href={`/${doc.slug}`}>
-                      {doc.title}
-                    </NavLink>
-                  ))}
-              </Stack>
-            </Stack>
+
             <Stack space={5} direction="column">
               <p className={styles.sidebarTitle}>Components</p>
               <Stack space={5} direction="column">
