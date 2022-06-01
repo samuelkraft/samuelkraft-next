@@ -4,7 +4,7 @@ import {
   createThemeContract,
 } from "@vanilla-extract/css";
 
-import { blue, blueDark, sand, sandDark } from "@radix-ui/colors";
+import { blue, blueDark, sand, sandDark, red, redDark } from "@radix-ui/colors";
 
 export const radii = {
   none: "0",
@@ -79,6 +79,7 @@ export const colors = createThemeContract({
   link: null,
   border: null,
   code: null,
+  brand: null,
 });
 
 export const lightTheme = createTheme(colors, {
@@ -90,6 +91,7 @@ export const lightTheme = createTheme(colors, {
   link: blue.blue11,
   border: sand.sand5,
   code: sand.sand12,
+  brand: red.red10,
 });
 
 export const darkTheme = createTheme(colors, {
@@ -101,6 +103,7 @@ export const darkTheme = createTheme(colors, {
   link: blueDark.blue11,
   border: sandDark.sand4,
   code: sandDark.sand3,
+  brand: redDark.red10,
 });
 
 export const vars = { ...global, colors };

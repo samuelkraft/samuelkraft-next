@@ -1,10 +1,10 @@
 import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
 import { red, sand } from "@radix-ui/colors";
-import { sprinkles } from "../../styles/sprinkles.css";
+import { vars } from "../../styles";
 
 const variant = {
   primary: {
-    backgroundColor: red.red10,
+    backgroundColor: vars.colors.brand,
     color: "white",
     ":hover": {
       backgroundColor: red.red9,
