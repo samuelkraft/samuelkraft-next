@@ -13,25 +13,6 @@ export const radii = {
   rounded: "9999px",
 };
 
-export const heights = {
-  none: "0",
-  small: "32px",
-  medium: "40px",
-  large: "48px",
-};
-
-export const widths = {
-  auto: "auto",
-  full: "100%",
-  fit: "fit-content",
-  max: "max-content",
-  min: "min-content",
-  viewHeight: "100vh",
-  viewWidth: "100vw",
-  none: "0",
-  site: "83ch",
-};
-
 export const space = {
   "-1": "-1px",
   0: "0",
@@ -45,6 +26,28 @@ export const space = {
   8: "48px",
   9: "64px",
   auto: "auto",
+};
+
+export const heights = {
+  none: "0",
+  small: "32px",
+  medium: "40px",
+  large: "48px",
+  full: "100%",
+  ...space,
+};
+
+export const widths = {
+  full: "100%",
+  fit: "fit-content",
+  max: "max-content",
+  min: "min-content",
+  viewHeight: "100vh",
+  viewWidth: "100vw",
+  none: "0",
+  site: "1500px",
+  blog: "750px",
+  ...space,
 };
 
 export const fontWeights = {

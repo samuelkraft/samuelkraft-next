@@ -122,6 +122,7 @@ const responsiveProperties = defineProperties({
     bottom: space,
     left: space,
     zIndex: ["0", "1", "2", "3"],
+    overflow: ["visible", "hidden", "scroll", "auto"],
   },
   shorthands: {
     padding: ["paddingTop", "paddingBottom", "paddingLeft", "paddingRight"],
