@@ -1,20 +1,20 @@
 import type { NextPage } from "next";
-import { Box, Text } from "design-system";
+import { Box, Stack, Text } from "design-system";
 import * as styles from "./index.css";
 import { Project, ProjectType } from "components/Project";
 import Container from "components/Container";
 
 export const projects: ProjectType[] = [
   {
-    title: "Tracklib",
-    description: "Clear samples from real music",
-    slug: "tracklib",
-    media: "",
-  },
-  {
     title: "Bitrefill",
     description: "Live on Crypto",
     slug: "bitrefill",
+    media: "",
+  },
+  {
+    title: "Tracklib",
+    description: "Clear samples from real music",
+    slug: "tracklib",
     media: "",
   },
   {
@@ -57,8 +57,16 @@ const Home: NextPage = () => {
         </Container>
       </Box>
       <Container>
-        <Text as="h2">Selected projects</Text>
-        {projects.map(Project)}
+        <Stack space={4} direction="column">
+          <Text as="h2">Selected projects</Text>
+          <Box
+            display="grid"
+            gridGap={7}
+            gridTemplateColumns={{ large: "repeat(2, 1fr)" }}
+          >
+            {projects.map(Project)}
+          </Box>
+        </Stack>
       </Container>
     </>
   );

@@ -62,6 +62,7 @@ export const fontSizes = {
   base: "1rem",
   root: "16px",
   small: "0.9rem",
+  inherit: "inherit",
 };
 
 const global = createGlobalTheme("html", {

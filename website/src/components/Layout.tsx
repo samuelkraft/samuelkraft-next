@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { ReactNode } from "react";
 import { IconBlog, IconHealth, IconUser, IconAvatar } from "components/Icons";
+import Container from "./Container";
 
 const links = [
   {
@@ -52,7 +53,7 @@ const Navigation = () => {
                   paddingY={3}
                   cursor="pointer"
                   color={isOpen ? "background" : "text"}
-                  backgroundColor={{ hover: "textSecondary" }}
+                  opacity={!isOpen ? { hover: "0.75" } : {}}
                   borderRadius="rounded"
                 >
                   {isOpen ? (
@@ -86,10 +87,27 @@ const Navigation = () => {
   );
 };
 
+const Footer = () => (
+  <>
+    <Spacer space={9} />
+    <Box
+      display="flex"
+      justifyContent="center"
+      paddingY={7}
+      backgroundColor="code"
+    >
+      <Container>
+        <Text color="background">&copy; Samuel Kraft</Text>
+      </Container>
+    </Box>
+  </>
+);
+
 const Layout = ({ children }: { children: ReactNode }) => (
   <Box>
     <Navigation />
     {children}
+    <Footer />
   </Box>
 );
 

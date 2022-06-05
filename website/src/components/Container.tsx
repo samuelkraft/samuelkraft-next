@@ -7,7 +7,7 @@ type ContainerProps = {
 };
 
 const Container = ({ width = "site", children }: ContainerProps) => (
-  <Box maxWidth={width} marginX="auto" paddingX={7}>
+  <Box maxWidth={width} marginX="auto" paddingX={{ small: 6, medium: 7 }}>
     {children}
   </Box>
 );

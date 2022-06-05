@@ -113,7 +113,6 @@ const responsiveProperties = defineProperties({
       "repeat(12, 1fr)",
     ],
     listStyle: ["none", "disc", "decimal"],
-    opacity: ["0", "0.25", "0.5", "0.75", "1"],
     letterSpacing: ["0", "-0.3px"],
     lineHeight: ["1", "1.25", "1.5", "1.75", "2"],
     position: ["static", "relative", "absolute", "fixed", "sticky"],
@@ -123,6 +122,7 @@ const responsiveProperties = defineProperties({
     left: space,
     zIndex: ["0", "1", "2", "3"],
     overflow: ["visible", "hidden", "scroll", "auto"],
+    aspectRatio: ["1/1", "16/9", "3/2"],
   },
   shorthands: {
     padding: ["paddingTop", "paddingBottom", "paddingLeft", "paddingRight"],
@@ -153,6 +153,7 @@ const selectorProperties = defineProperties({
     backgroundColor: colors,
     borderColor: colors,
     color: colors,
+    opacity: ["0", "0.25", "0.5", "0.75", "1"],
   },
 });
 

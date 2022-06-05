@@ -14,24 +14,37 @@ export type ProjectType = {
 export const Project = ({ title, description, slug, media }: ProjectType) => (
   <Link href={`/work/${slug}`}>
     <MotionBox as="a" whileHover="hover">
-      <Text as="h3">
-        {title}{" "}
-        <Box as="span" fontWeight="normal">
-          {description}
-          <MotionBox
-            marginLeft={3}
-            as="div"
-            display="inline-flex"
-            variants={{
-              hover: {
-                x: 3,
-              },
-            }}
+      <Stack space={4} direction="column">
+        <Box backgroundColor="textSecondary" width="full" aspectRatio="3/2" />
+        <Text as="h3">
+          <Stack
+            as="span"
+            space={{ small: 1, large: 3 }}
+            direction={{ small: "column", large: "row" }}
           >
-            →
-          </MotionBox>
-        </Box>
-      </Text>
+            {title}
+            <Box
+              as="span"
+              fontWeight="normal"
+              fontSize={{ small: "base", large: "inherit" }}
+            >
+              {description}
+              <MotionBox
+                marginLeft={3}
+                as="div"
+                display="inline-flex"
+                variants={{
+                  hover: {
+                    x: 3,
+                  },
+                }}
+              >
+                →
+              </MotionBox>
+            </Box>
+          </Stack>
+        </Text>
+      </Stack>
     </MotionBox>
   </Link>
 );
