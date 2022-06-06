@@ -7,3 +7,15 @@ export const hero = style({
   backgroundImage: "url(/blur.png)",
   backgroundSize: "cover",
 });
+
+export const h1 = style({
+  fontSize: 38,
+  textTransform: "uppercase",
+  letterSpacing: 3,
+  "@media": {
+    "screen and (min-width: 768px)": {
+      fontSize: 104,
+      textAlign: "center",
+    },
+  },
+});

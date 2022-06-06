@@ -23,6 +23,26 @@ export type TextProps = {
   textAlign?: BoxProps["textAlign"];
 };
 
+const getFontSize = (
+  as: TextProps["as"],
+  size?: TextProps["size"]
+): TextProps["size"] => {
+  if (size) {
+    return size;
+  }
+  switch (as) {
+    case "h1":
+      return { small: "xxlarge", large: "huge" };
+    case "h2":
+      return { small: "xlarge", large: "xxlarge" };
+    case "h3":
+      return { small: "large", large: "large" };
+    case "p":
+    default:
+      return "base";
+  }
+};
+
 export const Text = ({
   as = "p",
   children,
@@ -32,16 +52,19 @@ export const Text = ({
   size,
   weight,
   textAlign,
-}: TextProps) => (
-  <Box
-    as={as}
-    color={color}
-    letterSpacing={letterSpacing}
-    lineHeight={lineHeight}
-    fontSize={size}
-    fontWeight={weight}
-    textAlign={textAlign}
-  >
-    {children}
-  </Box>
-);
+}: TextProps) => {
+  const fontSize = getFontSize(as, size);
+  return (
+    <Box
+      as={as}
+      color={color}
+      letterSpacing={letterSpacing}
+      lineHeight={lineHeight}
+      fontSize={fontSize}
+      fontWeight={weight}
+      textAlign={textAlign}
+    >
+      {children}
+    </Box>
+  );
+};

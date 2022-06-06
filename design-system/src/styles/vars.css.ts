@@ -56,12 +56,12 @@ export const fontWeights = {
 };
 
 export const fontSizes = {
-  h1: "2.375rem",
-  h2: "1.75rem",
-  large: "1.2rem",
-  base: "1rem",
-  root: "16px",
-  small: "0.9rem",
+  huge: "5rem", // 80px
+  xxxlarge: "2.375rem", // 38px
+  xxlarge: "2rem", // 32px
+  xlarge: "1.75rem", // 28px
+  large: "1.5rem", // 24px
+  base: "1.125rem", // 18px
   inherit: "inherit",
 };
 
