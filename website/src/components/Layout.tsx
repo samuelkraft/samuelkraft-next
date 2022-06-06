@@ -39,6 +39,7 @@ const Navigation = () => {
         borderRadius="rounded"
         position="absolute"
         top={7}
+        boxShadow="small"
       >
         <Stack space={3}>
           {links.map((link) => {

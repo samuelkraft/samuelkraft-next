@@ -10,7 +10,6 @@ export const IconAvatar = () => (
     height="24"
     layout="fixed"
     priority
-    placeholder="blur"
     className={sprinkles({ borderRadius: "rounded", overflow: "hidden" })}
   />
 );

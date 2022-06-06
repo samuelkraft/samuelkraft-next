@@ -13,6 +13,7 @@ import {
   fontSizes,
   heights,
   widths,
+  shadows,
 } from "./vars.css";
 
 import { globalStyle } from "@vanilla-extract/css";
@@ -27,6 +28,7 @@ globalStyle("*", {
 
 globalStyle("html, body", {
   height: "100%",
+  padding: 0,
 });
 
 globalStyle("body", {
@@ -58,6 +60,10 @@ globalStyle("#root, #__next", {
 globalStyle("a", {
   color: "inherit",
   textDecoration: "none",
+});
+
+globalStyle("a:hover", {
+  cursor: "pointer",
 });
 
 const responsiveProperties = defineProperties({
@@ -123,6 +129,7 @@ const responsiveProperties = defineProperties({
     zIndex: ["0", "1", "2", "3"],
     overflow: ["visible", "hidden", "scroll", "auto"],
     aspectRatio: ["1/1", "16/9", "3/2"],
+    boxShadow: shadows,
   },
   shorthands: {
     padding: ["paddingTop", "paddingBottom", "paddingLeft", "paddingRight"],

@@ -12,7 +12,7 @@ export type ProjectType = {
 };
 
 export const Project = ({ title, description, slug, media }: ProjectType) => (
-  <Link href={`/work/${slug}`}>
+  <Link href={`/work/${slug}`} key={title}>
     <MotionBox as="a" whileHover="hover">
       <Stack space={4} direction="column">
         <Box backgroundColor="textSecondary" width="full" aspectRatio="3/2" />

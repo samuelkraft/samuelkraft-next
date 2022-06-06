@@ -46,12 +46,14 @@ const Home: NextPage = () => {
         width="full"
         className={styles.hero}
       >
-        <Box as="h1" className={styles.h1}>
-          Samuel Kraft
-        </Box>
+        <Container>
+          <Box as="h1" className={styles.h1}>
+            Samuel Kraft
+          </Box>
+        </Container>
         <Container width="blog">
           <Text
-            textAlign={{ large: "center" }}
+            textAlign={{ medium: "center" }}
             size={{ small: "base", large: "large" }}
           >
             Frontend developer &amp; product designer excited by delightful

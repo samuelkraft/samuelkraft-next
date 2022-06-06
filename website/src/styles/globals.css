@@ -21,22 +21,3 @@
   src: url("/fonts/GTWalsheimPro-Bold.woff2") format("woff2");
   font-display: optional;
 }
-
-html,
-body {
-  padding: 0;
-  margin: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-a:hover {
-  cursor: pointer;
-}
-
-* {
-  box-sizing: border-box;
-}

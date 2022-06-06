@@ -65,6 +65,10 @@ export const fontSizes = {
   inherit: "inherit",
 };
 
+export const shadows = {
+  small: "0px 1px 2px 0px rgba(0, 0, 0, 0.09)",
+};
+
 const global = createGlobalTheme("html", {
   space,
   radii,
