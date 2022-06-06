@@ -6,7 +6,6 @@ const About: NextPage = () => {
   return (
     <>
       <Spacer space={9} />
-      <Spacer space={9} />
       <Container width="blog">
         <Stack space={6} direction="column">
           <Text size="large">

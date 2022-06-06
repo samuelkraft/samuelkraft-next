@@ -1,9 +1,11 @@
 import { Stack, Box, Spacer, Text } from "design-system";
+import { vars } from "design-system/src/styles/vars.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { ReactNode } from "react";
 import { IconBlog, IconHealth, IconUser, IconAvatar } from "components/Icons";
 import Container from "./Container";
+import { motion } from "framer-motion";
 
 const links = [
   {
@@ -28,7 +30,9 @@ const links = [
   },
 ];
 
-const Navigation = () => {
+const MotionBox = motion(Box);
+
+const Navigation = ({ absolute }: { absolute?: boolean }) => {
   const router = useRouter();
   return (
     <Box
@@ -43,8 +47,9 @@ const Navigation = () => {
         backgroundColor="background"
         padding={2}
         borderRadius="rounded"
-        position="absolute"
-        top={7}
+        position={absolute ? "absolute" : "relative"}
+        top={absolute ? 7 : 0}
+        marginTop={absolute ? 0 : 7}
         boxShadow="small"
       >
         <Stack space={3}>
@@ -52,39 +57,39 @@ const Navigation = () => {
             const isOpen = router.pathname === link.url;
             return (
               <Link href={link.url} key={link.name}>
-                <Box
+                <MotionBox
                   as="a"
                   position="relative"
                   display="flex"
                   paddingX={4}
                   paddingY={3}
                   cursor="pointer"
-                  color={isOpen ? "background" : "text"}
-                  opacity={!isOpen ? { hover: "0.75" } : {}}
+                  animate={{
+                    color: isOpen ? vars.colors.background : vars.colors.text,
+                  }}
+                  transition={{ duration: 0.1 }}
+                  opacity={!isOpen ? { hover: "0.75" } : "1"}
                   borderRadius="rounded"
                 >
                   {isOpen ? (
                     <>
-                      <Box
+                      <MotionBox
                         backgroundColor="text"
-                        borderRadius="rounded"
                         position="absolute"
                         top={0}
                         left={0}
                         right={0}
                         bottom={0}
+                        layoutId="navigation-active"
+                        style={{ borderRadius: 9999 }}
                       />
-                      <Box position="relative" height={5}>
-                        {link.icon}
-                      </Box>
-                      <Spacer space={2} />
                     </>
                   ) : null}
                   {link.url === "/" && <Spacer space={2} />}
                   <Box zIndex="1">
                     <Text weight="bold">{link.name}</Text>
                   </Box>
-                </Box>
+                </MotionBox>
               </Link>
             );
           })}
@@ -110,12 +115,31 @@ const Footer = () => (
   </>
 );
 
-const Layout = ({ children }: { children: ReactNode }) => (
-  <Box>
-    <Navigation />
-    {children}
-    <Footer />
-  </Box>
-);
+const Layout = ({
+  children,
+  full,
+}: {
+  children: ReactNode;
+  full?: boolean;
+}) => {
+  if (full) {
+    return (
+      <Box>
+        <Navigation absolute />
+        {children}
+        <Footer />
+      </Box>
+    );
+  }
+  return (
+    <>
+      <Container>
+        <Navigation />
+        {children}
+      </Container>
+      <Footer />
+    </>
+  );
+};
 
 export default Layout;

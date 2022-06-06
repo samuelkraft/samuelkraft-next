@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         dark: darkTheme,
       }}
     >
-      <Layout>
+      <Layout full={pageProps.layoutFull}>
         <Component {...pageProps} />
       </Layout>
     </ThemeProvider>

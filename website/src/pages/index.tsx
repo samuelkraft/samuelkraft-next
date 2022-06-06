@@ -1,4 +1,4 @@
-import type { NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 import { Box, Stack, Text } from "design-system";
 import * as styles from "./index.css";
 import { Project, ProjectType } from "components/Project";
@@ -86,6 +86,12 @@ const Home: NextPage = () => {
       </Container>
     </>
   );
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: { layoutFull: true },
+  };
 };
 
 export default Home;
