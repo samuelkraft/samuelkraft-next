@@ -37,6 +37,14 @@ export const projects: ProjectType[] = [
   },
 ];
 
+const Video = () => (
+  <div className={styles.videoWrapper}>
+    <video autoPlay muted loop id="myVideo" className={styles.video}>
+      <source src="/blur.mp4" type="video/mp4" />
+    </video>
+  </div>
+);
+
 const Home: NextPage = () => {
   return (
     <>
@@ -46,20 +54,23 @@ const Home: NextPage = () => {
         width="full"
         className={styles.hero}
       >
-        <Container>
-          <Box as="h1" className={styles.h1}>
-            Samuel Kraft
-          </Box>
-        </Container>
-        <Container width="blog">
-          <Text
-            textAlign={{ medium: "center" }}
-            size={{ small: "base", large: "large" }}
-          >
-            Frontend developer &amp; product designer excited by delightful
-            interfaces and endurance sports.
-          </Text>
-        </Container>
+        <Video />
+        <Box position="relative" zIndex="1">
+          <Container>
+            <Box as="h1" className={styles.h1}>
+              Samuel Kraft
+            </Box>
+          </Container>
+          <Container width="blog">
+            <Text
+              textAlign={{ medium: "center" }}
+              size={{ small: "base", large: "large" }}
+            >
+              Frontend developer &amp; product designer excited by delightful
+              interfaces and endurance sports.
+            </Text>
+          </Container>
+        </Box>
       </Box>
       <Container>
         <Stack space={4} direction="column">

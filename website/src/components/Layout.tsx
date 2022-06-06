@@ -31,7 +31,13 @@ const links = [
 const Navigation = () => {
   const router = useRouter();
   return (
-    <Box display="flex" flexDirection="column" alignItems="center">
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      zIndex="1"
+      position="relative"
+    >
       <Box
         as="nav"
         backgroundColor="background"

@@ -3,9 +3,11 @@ import { vars } from "design-system/src/styles/vars.css";
 
 export const hero = style({
   paddingTop: "300px",
-  paddingBottom: "300px",
+  paddingBottom: "220px",
   backgroundImage: "url(/blur.png)",
   backgroundSize: "cover",
+  position: "relative",
+  overflow: "hidden",
 });
 
 const displayFont = fontFace({
@@ -27,4 +29,28 @@ export const h1 = style({
       fontSize: 104,
     },
   },
+});
+
+export const videoWrapper = style({
+  position: "absolute",
+  inset: 0,
+  selectors: {
+    "&:after": {
+      content: "",
+      position: "absolute",
+      bottom: 0,
+      left: 0,
+      right: 0,
+      top: 0,
+      background:
+        "linear-gradient(0deg, hsl(0deg 0% 100%) 0%, hsl(0deg 100% 100% / 0%) 100%);",
+    },
+  },
+});
+
+export const video = style({
+  transform: "scale(1.2)",
+  height: "100%",
+  width: "100%",
+  objectFit: "cover",
 });
