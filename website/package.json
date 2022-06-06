@@ -11,12 +11,19 @@
   "dependencies": {
     "@vanilla-extract/css": "^1.7.1",
     "@vanilla-extract/next-plugin": "^2.0.2",
+    "contentlayer": "^0.2.5",
     "design-system": "*",
     "framer-motion": "^6.3.6",
     "next": "12.1.6",
+    "next-contentlayer": "^0.2.5",
+    "next-seo": "^5.4.0",
     "next-themes": "^0.2.0",
     "react": "18.1.0",
-    "react-dom": "18.1.0"
+    "react-dom": "18.1.0",
+    "reading-time": "^1.5.0",
+    "rehype-prism-plus": "^1.4.0",
+    "remark-code-titles": "^0.1.2",
+    "slugify": "^1.6.5"
   },
   "devDependencies": {
     "@types/node": "17.0.36",
