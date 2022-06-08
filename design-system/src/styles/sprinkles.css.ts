@@ -18,6 +18,11 @@ import {
 
 import { globalStyle } from "@vanilla-extract/css";
 
+// Ensure reset has lowest specificity
+/* DO NOT MOVE THIS LINE */
+import "./reset.css";
+/* DO NOT MOVE THIS LINE */
+
 globalStyle("*, *:before, *:after", {
   boxSizing: "border-box",
 });

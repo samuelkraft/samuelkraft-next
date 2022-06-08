@@ -2,6 +2,7 @@ import React from "react";
 import cn from "classnames";
 import { sprinkles } from "../../styles/sprinkles.css";
 import type { Sprinkles } from "../../styles/sprinkles.css";
+import * as resetStyles from "../../styles/reset.css";
 
 type HTMLProperties = Omit<
   React.AllHTMLAttributes<HTMLElement>,
@@ -29,11 +30,22 @@ export const Box = React.forwardRef<HTMLElement, BoxProps>(
     }
 
     const atomicClasses = sprinkles({
+      // reset: typeof as === 'string' ? (as as Atoms['reset']) : 'div',
       ...atomProps,
     });
 
+    const listReset = sprinkles({
+      listStyle: "none",
+      margin: 0,
+      padding: 0,
+    });
+
     return React.createElement(as, {
-      className: cn(atomicClasses, className),
+      className: cn(
+        as && [resetStyles.base, resetStyles.element[as]],
+        atomicClasses,
+        className
+      ),
       ...nativeProps,
       ref,
     });
