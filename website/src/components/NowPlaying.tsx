@@ -1,7 +1,7 @@
 import useSWR from "swr";
 import fetcher from "lib/fetcher";
-import Image from "next/image";
-import { Box } from "design-system";
+import { Box, Spacer } from "design-system";
+import * as styles from "./NowPlaying.css";
 
 const truncate = (str: string, num: number) => {
   if (str.length > num) {
@@ -10,25 +10,17 @@ const truncate = (str: string, num: number) => {
   return str;
 };
 
-export const NowPlayingIcon = ({
-  albumImageUrl,
-}: {
-  albumImageUrl?: string;
-}) => (
-  <Box position="relative">
-    <span />
-    <span />
-    <span />
-    {/* {albumImageUrl && (
-      <Box
-        position="absolute"
-        inset={0}
-        overflow="hidden"
-        borderRadius="medium"
-      >
-        <Image src={albumImageUrl} width={13} height={13} alt="Album cover" />
-      </Box>
-    )} */}
+export const NowPlayingIcon = () => (
+  <Box
+    position="relative"
+    display="inline-flex"
+    justifyContent="space-between"
+    width={4}
+    height={4}
+  >
+    <span className={styles.bar} />
+    <span className={styles.bar} />
+    <span className={styles.bar} />
   </Box>
 );
 
@@ -48,7 +40,8 @@ const NowPlaying = () => {
           rel="noreferrer noopener"
           title={`Currently playing on Spotify: ${nowPlaying}`}
         >
-          <NowPlayingIcon albumImageUrl={data.albumImageUrl} />
+          <NowPlayingIcon />
+          <Spacer space={3} />
           {truncate(nowPlaying, 46)}
         </Box>
       ) : (

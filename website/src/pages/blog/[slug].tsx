@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import Head from "next/head";
@@ -11,7 +12,7 @@ import dynamic from "next/dynamic";
 // import Warning from "components/warning";
 // import HitCounter from "components/hitcounter";
 // import LikeButton from "components/likebutton";
-// import { NowPlayingIcon } from "components/nowplaying";
+import { NowPlayingIcon } from "components/NowPlaying";
 // import Subscribe from "components/subscribe";
 // import SegmentedControl from "components/segmentedcontrol";
 // import Messages, { TailBreakdown } from "components/messages";
@@ -20,6 +21,7 @@ import dynamic from "next/dynamic";
 // import Tags from "components/tags";
 import PostList from "components/PostList";
 import { Box, Button } from "design-system";
+import { vars } from "design-system/src/styles/vars.css";
 // import { RatingPlayground } from "components/blog/rating";
 
 // Utils
@@ -58,16 +60,16 @@ const CustomLink = (props: { href: string }) => {
 const components = {
   Head,
   a: CustomLink,
-  Image: Text,
-  Warning: Text,
+  Image: Fragment,
+  Warning: Fragment,
   Link: CustomLink,
-  NowPlayingIcon: Text,
-  SegmentedControl: Text,
-  Messages: Text,
-  AnimatedMessages: Text,
-  TailBreakdown: Text,
-  Parallax: Text,
-  Rating: Text,
+  NowPlayingIcon,
+  SegmentedControl: Fragment,
+  Messages: Fragment,
+  AnimatedMessages: Fragment,
+  TailBreakdown: Fragment,
+  Parallax: Fragment,
+  Rating: Fragment,
 };
 
 type PostProps = {
@@ -76,7 +78,9 @@ type PostProps = {
 };
 
 const Post = ({ post, related }: PostProps): JSX.Element => {
-  const MDXContent = useMDXComponent(post.body.code);
+  const MDXContent = useMDXComponent(post.body.code, {
+    vars,
+  });
 
   const formattedPublishDate = new Date(post.publishedAt).toLocaleString(
     "en-US",
