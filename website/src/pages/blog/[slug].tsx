@@ -29,6 +29,7 @@ import { allPosts, Post as PostType } from "contentlayer/generated";
 import { Text } from "design-system";
 import Image from "next/image";
 import HitCounter from "components/HitCounter";
+import Tags from "components/Tags";
 
 // const ParallaxCover = dynamic(() => import("components/blog/parallaxcover"));
 
@@ -153,8 +154,9 @@ const Post = ({ post, related }: PostProps): JSX.Element => {
       {/* <div className={styles.buttons}>
         <LikeButton slug={post.slug} />
       </div>
-      <Tags tags={post.tags} />
+      
       <Subscribe className={styles.subscribe} /> */}
+      <Tags tags={post.tags} />
       {related.length > 0 && (
         <>
           <Text as="h2">Related Posts</Text>
