@@ -3,7 +3,7 @@ import { NextSeo } from "next-seo";
 
 // Components
 import { Text } from "design-system";
-import PostList from "components/postlist";
+import PostList from "components/PostList";
 
 // Utils
 import { pick } from "@contentlayer/client";
@@ -21,8 +21,6 @@ const Blog = ({ posts }: BlogProps): JSX.Element => {
     (a, b) =>
       new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
   );
-
-  console.log("posts", posts);
 
   return (
     <>

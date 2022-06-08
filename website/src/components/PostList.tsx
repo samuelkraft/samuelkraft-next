@@ -1,14 +1,15 @@
 import type { Post } from "contentlayer/generated";
-import { Box, Text } from "design-system";
+import { Box, Stack, Text } from "design-system";
 import Link from "next/link";
 import { formatDate } from "lib/formatdate";
+import Image from "next/image";
 
 type PostListProps = {
   posts: Post[];
 };
 
 const PostList = ({ posts }: PostListProps) => (
-  <Box as="ul">
+  <Stack as="ul" space={8} direction="column">
     {posts.map((post) => {
       const {
         summary,
@@ -19,16 +20,26 @@ const PostList = ({ posts }: PostListProps) => (
         slug,
       } = post;
       return (
-        <Box as="li" key={slug}>
+        <Box as="li" key={slug} listStyle="none">
           {image && (
             <Link as={`/blog/${slug}`} href="/blog/[slug]">
-              <a aria-label={title}>{image}</a>
+              <a aria-label={title}>
+                <Image
+                  src={image}
+                  alt={title}
+                  width={2024}
+                  height={1012}
+                  layout="responsive"
+                />
+              </a>
             </Link>
           )}
           <Link as={`/blog/${slug}`} href="/blog/[slug]">
-            <a>{title}</a>
+            <a>
+              <Text as="h2">{title}</Text>
+            </a>
           </Link>
-          <Text>{summary}</Text>
+          <Text size="large">{summary}</Text>
           <Text size="base">
             Published on{" "}
             <time dateTime={publishedAt}>{formatDate(publishedAt)}</time>{" "}
@@ -37,7 +48,7 @@ const PostList = ({ posts }: PostListProps) => (
         </Box>
       );
     })}
-  </Box>
+  </Stack>
 );
 
 export default PostList;

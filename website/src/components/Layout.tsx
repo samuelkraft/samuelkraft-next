@@ -133,7 +133,7 @@ const Layout = ({
   }
   return (
     <>
-      <Container>
+      <Container width="blog">
         <Navigation />
         {children}
       </Container>

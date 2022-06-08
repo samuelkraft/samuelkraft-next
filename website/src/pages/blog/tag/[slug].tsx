@@ -3,7 +3,7 @@ import slugify from "slugify";
 import { useRouter } from "next/router";
 
 // Components
-import PostList from "components/postlist";
+import PostList from "components/PostList";
 import { Text } from "design-system";
 
 // Utils
@@ -26,7 +26,7 @@ const Tag = ({ posts }: TagProps): JSX.Element => {
 
   return (
     <>
-      <Text>
+      <Text as="h1">
         Posts &amp; tutorials about <FormattedSlug />
       </Text>
       <PostList posts={posts} />

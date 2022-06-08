@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
-import { Box } from "design-system";
+import { Text } from "design-system";
 
 const Health: NextPage = () => {
-  return <Box>Health</Box>;
+  return <Text as="h1">Health</Text>;
 };
 
 export default Health;
