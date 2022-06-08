@@ -28,6 +28,7 @@ import { allPosts, Post as PostType } from "contentlayer/generated";
 
 import { Text } from "design-system";
 import Image from "next/image";
+import HitCounter from "components/HitCounter";
 
 // const ParallaxCover = dynamic(() => import("components/blog/parallaxcover"));
 
@@ -143,7 +144,7 @@ const Post = ({ post, related }: PostProps): JSX.Element => {
         <time dateTime={post.publishedAt}>{formattedPublishDate}</time>
         {post.updatedAt ? ` (Updated ${formattedUpdatedDate})` : ""}{" "}
         <span>&middot;</span> {post.readingTime.text}
-        {/* <HitCounter slug={post.slug} /> */}
+        <HitCounter slug={post.slug} />
       </Text>
 
       <article>
