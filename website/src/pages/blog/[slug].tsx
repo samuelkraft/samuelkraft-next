@@ -58,16 +58,16 @@ const CustomLink = (props: { href: string }) => {
 const components = {
   Head,
   a: CustomLink,
-  Image: <Text>WIP</Text>,
-  Warning: <Text>WIP</Text>,
+  Image: Text,
+  Warning: Text,
   Link: CustomLink,
-  NowPlayingIcon: <Text>WIP</Text>,
-  SegmentedControl: <Text>WIP</Text>,
-  Messages: <Text>WIP</Text>,
-  AnimatedMessages: <Text>WIP</Text>,
-  TailBreakdown: <Text>WIP</Text>,
-  Parallax: <Text>WIP</Text>,
-  Rating: <Text>WIP</Text>,
+  NowPlayingIcon: Text,
+  SegmentedControl: Text,
+  Messages: Text,
+  AnimatedMessages: Text,
+  TailBreakdown: Text,
+  Parallax: Text,
+  Rating: Text,
 };
 
 type PostProps = {
