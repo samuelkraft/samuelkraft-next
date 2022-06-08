@@ -35,6 +35,8 @@ const size = {
 
 export const button = recipe({
   base: {
+    display: "inline-flex",
+    alignItems: "center",
     border: "none",
     borderRadius: 9999,
     fontFamily: "sans-serif",

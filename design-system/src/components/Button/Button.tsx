@@ -12,6 +12,10 @@ export type ButtonProps = {
   size?: styles.Size;
   /** Sets the link of the button */
   href?: string;
+  /** Sets if the button is clickable or not */
+  disabled?: boolean;
+  /** Sets the target of the button */
+  onClick?: () => void;
 };
 
 export const Button = ({
@@ -19,13 +23,16 @@ export const Button = ({
   variant = "primary",
   size = "medium",
   href,
+  disabled,
+  onClick,
 }: ButtonProps) => {
   const router = useRouter();
   return (
     <Box
       as="button"
       className={styles.button({ variant, size })}
-      onClick={() => (href ? router.push(href) : null)}
+      onClick={() => (href ? router.push(href) : onClick)}
+      disabled={disabled}
     >
       {children}
     </Box>

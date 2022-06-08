@@ -30,6 +30,7 @@ import { Text } from "design-system";
 import Image from "next/image";
 import HitCounter from "components/HitCounter";
 import Tags from "components/Tags";
+import LikeButton from "components/LikeButton";
 
 // const ParallaxCover = dynamic(() => import("components/blog/parallaxcover"));
 
@@ -151,11 +152,9 @@ const Post = ({ post, related }: PostProps): JSX.Element => {
       <article>
         <MDXContent components={components} />
       </article>
-      {/* <div className={styles.buttons}>
-        <LikeButton slug={post.slug} />
-      </div>
-      
-      <Subscribe className={styles.subscribe} /> */}
+      <LikeButton slug={post.slug} />
+
+      {/*<Subscribe className={styles.subscribe} /> */}
       <Tags tags={post.tags} />
       {related.length > 0 && (
         <>
