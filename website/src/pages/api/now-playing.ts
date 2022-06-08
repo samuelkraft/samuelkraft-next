@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getNowPlaying } from "lib/spotify";
 
-export default async (_: NextApiRequest, res: NextApiResponse) => {
+const nowPlaying = async (_: NextApiRequest, res: NextApiResponse) => {
   const response = await getNowPlaying();
 
   if (response.status === 204 || response.status > 400) {
@@ -35,3 +35,5 @@ export default async (_: NextApiRequest, res: NextApiResponse) => {
     title,
   });
 };
+
+export default nowPlaying;

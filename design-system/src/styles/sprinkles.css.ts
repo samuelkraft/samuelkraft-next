@@ -131,6 +131,7 @@ const responsiveProperties = defineProperties({
     right: space,
     bottom: space,
     left: space,
+    inset: space,
     zIndex: ["0", "1", "2", "3"],
     overflow: ["visible", "hidden", "scroll", "auto"],
     aspectRatio: ["1/1", "16/9", "3/2"],

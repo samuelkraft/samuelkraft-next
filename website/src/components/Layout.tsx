@@ -6,6 +6,7 @@ import { ReactNode } from "react";
 import { IconBlog, IconHealth, IconUser, IconAvatar } from "components/Icons";
 import Container from "./Container";
 import { motion } from "framer-motion";
+import NowPlaying from "./NowPlaying";
 
 const links = [
   {
@@ -104,10 +105,12 @@ const Footer = () => (
     <Spacer space={9} />
     <Box
       display="flex"
+      flexDirection="column"
       justifyContent="center"
       paddingY={7}
       backgroundColor="code"
     >
+      <NowPlaying />
       <Container>
         <Text color="background">&copy; Samuel Kraft</Text>
       </Container>

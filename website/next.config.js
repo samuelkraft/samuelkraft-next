@@ -4,7 +4,6 @@ const withVanillaExtract = createVanillaExtractPlugin();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  pageExtensions: ["js", "tsx", "md", "mdx"],
   reactStrictMode: true,
   experimental: {
     externalDir: true,
