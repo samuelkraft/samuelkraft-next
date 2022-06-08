@@ -16,6 +16,8 @@ export type ButtonProps = {
   disabled?: boolean;
   /** Sets the target of the button */
   onClick?: () => void;
+  /** Sets the type of the button */
+  type?: "button" | "submit" | "reset";
 };
 
 export const Button = ({
@@ -25,11 +27,13 @@ export const Button = ({
   href,
   disabled,
   onClick,
+  type = "button",
 }: ButtonProps) => {
   const router = useRouter();
   return (
     <Box
       as="button"
+      type={type}
       className={styles.button({ variant, size })}
       onClick={() => (href ? router.push(href) : onClick)}
       disabled={disabled}

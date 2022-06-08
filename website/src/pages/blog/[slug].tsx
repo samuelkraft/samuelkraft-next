@@ -19,7 +19,7 @@ import dynamic from "next/dynamic";
 // import Parallax from "components/parallax";
 // import Tags from "components/tags";
 import PostList from "components/PostList";
-import { Button } from "design-system";
+import { Box, Button } from "design-system";
 // import { RatingPlayground } from "components/blog/rating";
 
 // Utils
@@ -31,6 +31,7 @@ import Image from "next/image";
 import HitCounter from "components/HitCounter";
 import Tags from "components/Tags";
 import LikeButton from "components/LikeButton";
+import Subscribe from "components/Subscribe";
 
 // const ParallaxCover = dynamic(() => import("components/blog/parallaxcover"));
 
@@ -149,13 +150,12 @@ const Post = ({ post, related }: PostProps): JSX.Element => {
         <HitCounter slug={post.slug} />
       </Text>
 
-      <article>
+      <Box as="article">
         <MDXContent components={components} />
-      </article>
+      </Box>
       <LikeButton slug={post.slug} />
-
-      {/*<Subscribe className={styles.subscribe} /> */}
       <Tags tags={post.tags} />
+      <Subscribe />
       {related.length > 0 && (
         <>
           <Text as="h2">Related Posts</Text>

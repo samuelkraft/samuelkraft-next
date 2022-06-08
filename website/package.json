@@ -13,6 +13,7 @@
     "@vanilla-extract/next-plugin": "^2.0.2",
     "contentlayer": "^0.2.5",
     "design-system": "*",
+    "faunadb": "^4.5.4",
     "framer-motion": "^6.3.6",
     "next": "12.1.6",
     "next-contentlayer": "^0.2.5",
