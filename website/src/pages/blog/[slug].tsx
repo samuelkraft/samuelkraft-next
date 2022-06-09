@@ -42,6 +42,7 @@ const TailBreakdown = dynamic(() => import("components/blog/TailBreakdown"));
 const AnimatedMessages = dynamic(
   () => import("components/blog/AnimatedMessages")
 );
+const Rating = dynamic(() => import("components/blog/Rating"));
 
 const CustomLink = (props: { href: string }) => {
   const { href } = props;
@@ -75,7 +76,7 @@ const components = {
   AnimatedMessages,
   TailBreakdown,
   Parallax: Fragment,
-  Rating: Fragment,
+  Rating,
 };
 
 type PostProps = {
