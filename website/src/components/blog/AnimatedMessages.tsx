@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import cn from "classnames";
 import { motion, AnimatePresence } from "framer-motion";
 import randomWords from "random-words";
-import styles from "./messages.module.css";
+import styles from "./Messages.module.css";
 
 function useInterval(callback: any, delay: any) {
   const savedCallback = useRef();
