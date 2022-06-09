@@ -22,7 +22,9 @@ export const Project = ({ title, description, slug, media }: ProjectType) => (
             space={{ small: 1, large: 3 }}
             direction={{ small: "column", large: "row" }}
           >
-            {title}
+            <Box as="span" whiteSpace="nowrap">
+              {title}
+            </Box>
             <Box
               as="span"
               fontWeight="normal"
