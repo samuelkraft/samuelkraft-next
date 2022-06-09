@@ -1,5 +1,5 @@
 import type { GetStaticProps, NextPage } from "next";
-import { Box, Stack, Text } from "design-system";
+import { Box, Grid, Stack, Text } from "design-system";
 import * as styles from "./index.css";
 import { Project, ProjectType } from "components/Project";
 import Container from "components/Container";
@@ -75,13 +75,9 @@ const Home: NextPage = () => {
       <Container>
         <Stack space={4} direction="column">
           <Text as="h2">Selected projects</Text>
-          <Box
-            display="grid"
-            gridGap={7}
-            gridTemplateColumns={{ large: "repeat(2, 1fr)" }}
-          >
+          <Grid gap={7} templateColumns={{ large: "repeat(2, 1fr)" }}>
             {projects.map(Project)}
-          </Box>
+          </Grid>
         </Stack>
       </Container>
     </>
