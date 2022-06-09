@@ -11,6 +11,7 @@
   "dependencies": {
     "@vanilla-extract/css": "^1.7.1",
     "@vanilla-extract/next-plugin": "^2.0.2",
+    "classnames": "^2.3.1",
     "contentlayer": "^0.2.5",
     "design-system": "*",
     "faunadb": "^4.5.4",
@@ -19,6 +20,7 @@
     "next-contentlayer": "^0.2.5",
     "next-seo": "^5.4.0",
     "next-themes": "^0.2.0",
+    "random-words": "^1.1.2",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "reading-time": "^1.5.0",
@@ -29,6 +31,7 @@
   },
   "devDependencies": {
     "@types/node": "17.0.36",
+    "@types/random-words": "^1.1.2",
     "@types/react": "18.0.9",
     "@types/react-dom": "18.0.5",
     "eslint": "8.16.0",

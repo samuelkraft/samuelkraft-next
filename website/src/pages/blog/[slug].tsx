@@ -37,6 +37,11 @@ import Subscribe from "components/Subscribe";
 const SegmentedControl = dynamic(
   () => import("components/blog/SegmentedControl")
 );
+const Messages = dynamic(() => import("components/blog/Messages"));
+const TailBreakdown = dynamic(() => import("components/blog/TailBreakdown"));
+const AnimatedMessages = dynamic(
+  () => import("components/blog/AnimatedMessages")
+);
 
 const CustomLink = (props: { href: string }) => {
   const { href } = props;
@@ -66,9 +71,9 @@ const components = {
   Link: CustomLink,
   NowPlayingIcon,
   SegmentedControl,
-  Messages: Fragment,
-  AnimatedMessages: Fragment,
-  TailBreakdown: Fragment,
+  Messages,
+  AnimatedMessages,
+  TailBreakdown,
   Parallax: Fragment,
   Rating: Fragment,
 };
