@@ -80,7 +80,15 @@ const responsiveProperties = defineProperties({
   },
   defaultCondition: "small",
   properties: {
-    display: ["none", "flex", "block", "inline", "grid", "inline-flex"],
+    display: [
+      "none",
+      "flex",
+      "block",
+      "inline",
+      "inline-block",
+      "grid",
+      "inline-flex",
+    ],
     flexDirection: ["row", "column"],
     justifyContent: [
       "stretch",

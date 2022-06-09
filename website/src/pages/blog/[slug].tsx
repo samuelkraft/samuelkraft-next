@@ -8,7 +8,7 @@ import dynamic from "next/dynamic";
 
 // Components
 // import PageHeader from "components/pageheader";
-// import CustomImage from "components/image";
+import CustomImage from "components/Image";
 // import Warning from "components/warning";
 // import HitCounter from "components/hitcounter";
 // import LikeButton from "components/likebutton";
@@ -67,7 +67,7 @@ const CustomLink = (props: { href: string }) => {
 const components = {
   Head,
   a: CustomLink,
-  Image: Fragment,
+  Image: CustomImage,
   Warning: Fragment,
   Link: CustomLink,
   NowPlayingIcon,

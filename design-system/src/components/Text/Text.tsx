@@ -13,7 +13,8 @@ export type TextProps = {
     | "h6"
     | "label"
     | "p"
-    | "span";
+    | "span"
+    | "figcaption";
   children: string | ReactNode;
   color?: BoxProps["color"];
   letterSpacing?: BoxProps["letterSpacing"];
