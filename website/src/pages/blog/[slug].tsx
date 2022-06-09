@@ -34,8 +34,9 @@ import HitCounter from "components/HitCounter";
 import Tags from "components/Tags";
 import LikeButton from "components/LikeButton";
 import Subscribe from "components/Subscribe";
-
-// const ParallaxCover = dynamic(() => import("components/blog/parallaxcover"));
+const SegmentedControl = dynamic(
+  () => import("components/blog/SegmentedControl")
+);
 
 const CustomLink = (props: { href: string }) => {
   const { href } = props;
@@ -64,7 +65,7 @@ const components = {
   Warning: Fragment,
   Link: CustomLink,
   NowPlayingIcon,
-  SegmentedControl: Fragment,
+  SegmentedControl,
   Messages: Fragment,
   AnimatedMessages: Fragment,
   TailBreakdown: Fragment,
