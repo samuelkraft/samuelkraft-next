@@ -1,7 +1,7 @@
 ---
-title: 'Styling Radix UI with CSS'
-publishedAt: '2021-12-15'
-summary: 'Quick tip for styling Radix Primitives with plain CSS, CSS Modules, Vanilla Extract and more.'
+title: "Styling Radix UI with CSS"
+publishedAt: "2021-12-15"
+summary: "Quick tip for styling Radix Primitives with plain CSS, CSS Modules, Vanilla Extract and more."
 tags: ["CSS", "React", "Radix UI"]
 ---
 
@@ -29,11 +29,11 @@ import * as AccordionPrimitive from '@radix-ui/react-accordion';
 Most often you won't use the primitives out-of-the-box like this though. Chances are high that you want to incorporate Radix primitives into your own design system and add extra styles. If you want to expose the same API to the design system consumer you'll need to re-export the Primitives. [The docs](https://www.radix-ui.com/docs/primitives/overview/styling) explain how easily you can do this with Stitches/CSS-IN-JS:
 
 ```tsx
-import { styled } from '@stitches/react';
-import * as Accordion from '@radix-ui/react-accordion';
+import { styled } from "@stitches/react";
+import * as Accordion from "@radix-ui/react-accordion";
 
 const StyledItem = styled(Accordion.Item, {
-  borderBottom: '1px solid gainsboro',
+  borderBottom: "1px solid gainsboro",
 });
 
 const StyledPanel = styled(Accordion.Panel, {
@@ -41,11 +41,11 @@ const StyledPanel = styled(Accordion.Panel, {
 });
 ```
 
-Very clean! What about plain css,  vanilla extract or any other css solution?
+Very clean! What about plain css, vanilla extract or any other css solution?
 
 ```tsx
-import * as React from 'react';
-import * as AccordionPrimitive from '@radix-ui/react-accordion';
+import * as React from "react";
+import * as AccordionPrimitive from "@radix-ui/react-accordion";
 
 const AccordionItem = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Item>,
@@ -56,7 +56,7 @@ const AccordionItem = React.forwardRef<
     <AccordionPrimitive.Item
       {...itemProps}
       ref={forwardedRef}
-      className={'accordion-item ' + className}
+      className={"accordion-item " + className}
     />
   );
 });
@@ -70,7 +70,7 @@ const AccordionPanel = React.forwardRef<
     <AccordionPrimitive.Panel
       {...itemProps}
       ref={forwardedRef}
-      className={'accordion-panel ' + className}
+      className={"accordion-panel " + className}
     />
   );
 });
@@ -82,18 +82,28 @@ That's a lot of boilerplate for essentially adding a className…
 
 Since we are not changing anything about the component, simply adding a className we can make a small HOC that removes all the boilerplate for us. You might be familiar with the concept of HOC from Redux's `connect()`.
 
-<Warning type="info">A higher-order component is a function that takes a component and returns a new component. <Link href="https://reactjs.org/docs/higher-order-components.html">Learn more in the React Docs</Link></Warning>
+<Alert>
+  A higher-order component is a function that takes a component and returns a
+  new component.{" "}
+  <Link href="https://reactjs.org/docs/higher-order-components.html">
+    Learn more in the React Docs
+  </Link>
+</Alert>
 
 Lets create a file called `withClassName` that will contain the HOC:
 
 ```tsx
-import { ComponentProps, createElement, JSXElementConstructor } from 'react';
+import { ComponentProps, createElement, JSXElementConstructor } from "react";
 
-export const withClassName = <T extends keyof JSX.IntrinsicElements | JSXElementConstructor<any>>(
+export const withClassName = <
+  T extends keyof JSX.IntrinsicElements | JSXElementConstructor<any>
+>(
   component: T,
   ...classes: string[]
 ) => {
-  const name = `${typeof component === 'string' ? component : ''}_${classes[0]}`;
+  const name = `${typeof component === "string" ? component : ""}_${
+    classes[0]
+  }`;
 
   return {
     [name](props: ComponentProps<T>) {
@@ -111,12 +121,15 @@ The code accepts a component (in this case a radix Primitive) and a list of clas
 Now we can refactor our example above:
 
 ```tsx {3-6}
-import * as React from 'react';
-import * as AccordionPrimitive from '@radix-ui/react-accordion';
-import { withClassName } from './withClassName'
+import * as React from "react";
+import * as AccordionPrimitive from "@radix-ui/react-accordion";
+import { withClassName } from "./withClassName";
 
-const AccordionItem = withClassName(AccordionPrimitive.Item, 'accordion-item')
-const AccordionPanel = withClassName(AccordionPrimitive.Panel, 'accordion-panel')
+const AccordionItem = withClassName(AccordionPrimitive.Item, "accordion-item");
+const AccordionPanel = withClassName(
+  AccordionPrimitive.Panel,
+  "accordion-panel"
+);
 ```
 
 Now the API is much closer to the styled() version and we don't need to type/copy-paste all that typescript/component boilerplate for each component. Repeat this process for all primitives that should have custom styling.

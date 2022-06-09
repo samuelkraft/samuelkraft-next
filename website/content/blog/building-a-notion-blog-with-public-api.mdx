@@ -1,8 +1,8 @@
 ---
-title: 'Building a blog with Notions public API'
-publishedAt: '2021-05-17'
-updatedAt: '2021-08-24'
-summary: 'How to use Notion as a CMS using their public API and Next.js'
+title: "Building a blog with Notions public API"
+publishedAt: "2021-05-17"
+updatedAt: "2021-08-24"
+summary: "How to use Notion as a CMS using their public API and Next.js"
 tags: ["Next.js", "Notion", "React"]
 ---
 
@@ -14,11 +14,12 @@ Notions public API is finally here! I put together [an example repo](https://git
 
 If you're new to the notion API the first thing you need to do in order to start using it is to retrieve a `NOTION_TOKEN` by following their [Getting Started guide](https://developers.notion.com/docs/getting-started). When following the guide create either a table or a list as the database for your content. After finishing you should have a `NOTION_TOKEN` as well as a database id.
 
-Create a Next.js project by following the [Next.js app setup](https://nextjs.org/learn/basics/create-nextjs-app/setup). The neat thing about using Next.js is that you can statically render all blog posts, while still updating them with *incremental static generation* making your blog super snappy ⚡️.
+Create a Next.js project by following the [Next.js app setup](https://nextjs.org/learn/basics/create-nextjs-app/setup). The neat thing about using Next.js is that you can statically render all blog posts, while still updating them with _incremental static generation_ making your blog super snappy ⚡️.
 
-<Warning type="info">
-  This guide assumes you are using Next.js but you can use plain javascript or whatever framework you wish, the Notion code is the same.
-</Warning>
+<Alert>
+  This guide assumes you are using Next.js but you can use plain javascript or
+  whatever framework you wish, the Notion code is the same.
+</Alert>
 
 Save your `NOTION_TOKEN` and `NOTION_TABLE_ID` to a `.env.local` file in your projects root directory, then install their javascript client by running `yarn add @notionhq/client` .
 
@@ -34,7 +35,7 @@ const notion = new Client({
 });
 ```
 
-Then we need to add the functions we need. To get a list of our posts we need to be able to query a specific database (`getDatabase`), to get the information for a specific post we need to get a specific page (`getPage`), and to actually get the content of the page we need get its blocks (`getBlocks`).   
+Then we need to add the functions we need. To get a list of our posts we need to be able to query a specific database (`getDatabase`), to get the information for a specific post we need to get a specific page (`getPage`), and to actually get the content of the page we need get its blocks (`getBlocks`).
 
 ```jsx {7-25}
 import { Client } from "@notionhq/client";
@@ -68,28 +69,36 @@ export const getBlocks = async (blockId) => {
 
 Add a function called `getInitialProps` to `pages/index.js` where you use the getDatabase function to fetch all posts. The response will contain a [Database Object](https://developers.notion.com/reference/database) containing information like the database title, when it was last edited as well as its properties (in our case blogposts).
 
-<Warning type="info">
-  If you're new to Next.js getStaticProps allows you to pre-render the page at build time using the props returned by the function. Combining this with the revalidate prop will allow the page to get updated in the background as new traffic comes in without the need to rebuild your entire site. Learn more about <a href="https://nextjs.org/docs/basic-features/data-fetching#incremental-static-regeneration">Incremental Static Generation</a>.
-</Warning>
+<Alert>
+  If you're new to Next.js getStaticProps allows you to pre-render the page at
+  build time using the props returned by the function. Combining this with the
+  revalidate prop will allow the page to get updated in the background as new
+  traffic comes in without the need to rebuild your entire site. Learn more
+  about{" "}
+  <a href="https://nextjs.org/docs/basic-features/data-fetching#incremental-static-regeneration">
+    Incremental Static Generation
+  </a>
+  .
+</Alert>
 
 ```jsx
 import Link from "next/link";
 import { getDatabase } from "../lib/notion";
 import { Text } from "./[id].js";
 
-export const databaseId = process.env.NOTION_DATABASE_ID
+export const databaseId = process.env.NOTION_DATABASE_ID;
 
 export default function Home({ posts }) {
-  return (  
+  return (
     <ol className={styles.posts}>
       {posts.map((post) => (
         <li key={post.id}>
           <Link href={`/${post.id}`}>
-             <Text text={post.properties.Name.title} />
+            <Text text={post.properties.Name.title} />
           </Link>
         </li>
       ))}
-    </ol> 
+    </ol>
   );
 }
 
@@ -100,7 +109,7 @@ export const getStaticProps = async () => {
     props: {
       posts: database,
     },
-		// Next.js will attempt to re-generate the page:
+    // Next.js will attempt to re-generate the page:
     // - When a request comes in
     // - At most once every second
     revalidate: 1, // In seconds
@@ -108,11 +117,15 @@ export const getStaticProps = async () => {
 };
 ```
 
-<Warning type="info">
-We're using the post id as slug for sake of simplicity in this tutorial. For SEO purposes it would be better to use a prettier slug based on the title. You can do this by either manually adding a slug property to each post in Notion or generating a slug with a package like <a href="https://www.npmjs.com/package/slugify">slugify</a>.
-</Warning>
+<Alert type="info">
+  We're using the post id as slug for sake of simplicity in this tutorial. For
+  SEO purposes it would be better to use a prettier slug based on the title. You
+  can do this by either manually adding a slug property to each post in Notion
+  or generating a slug with a package like{" "}
+  <a href="https://www.npmjs.com/package/slugify">slugify</a>.
+</Alert>
 
-Uhm, what is that `<Text />` component you might ask? Notion has a lot of rich text tools allowing you to **format** <ins>text</ins> ~~like~~ *this,* so instead of just returning a plain text value each text-like field returns an array of [Rich text objects](https://developers.notion.com/reference/rich-text) like this:
+Uhm, what is that `<Text />` component you might ask? Notion has a lot of rich text tools allowing you to **format** <ins>text</ins> ~~like~~ _this,_ so instead of just returning a plain text value each text-like field returns an array of [Rich text objects](https://developers.notion.com/reference/rich-text) like this:
 
 ```jsx
 {
@@ -137,7 +150,7 @@ Uhm, what is that `<Text />` component you might ask? Notion has a lot of rich t
 In order to handle links and annotations let's create a component that we can re-use for all types of text:
 
 ```jsx
-import styles from './text.module.css'
+import styles from "./text.module.css";
 
 export const Text = ({ text }) => {
   if (!text) {
@@ -199,7 +212,7 @@ Let's create a `pages/[id].js` page that will show the content of each blog post
 import { Fragment } from "react";
 import { getDatabase, getPage, getBlocks } from "../lib/notion";
 import { databaseId } from "./index.js";
-import Text from 'components/text'
+import Text from "components/text";
 
 const renderBlock = (block) => {
   const { type, id } = block;
@@ -280,7 +293,7 @@ export default function Post({ page, blocks }) {
   if (!page || !blocks) {
     return <div />;
   }
-  return (   
+  return (
     <article>
       <h1>
         <Text text={page.properties.Name.title} />
@@ -345,7 +358,6 @@ Just as on the index page we are using getStaticProps to get the data so the pag
 
 For performance reasons any nested child blocks won't be returned with the original call. If you need to get a complete representation including child blocks (for example toggle blocks) then you need to run the getBlocks function for each block containing the `has_children` property. When you have received all the children you can then merge the original blocks array with the childblock data (`blocksWithChildren`).
 
-
 When using dynamic routes we also need to specify a list of availables routes and we'll do that with `getStaticPaths` by mapping over the pages and returning the page id's.
 
 ## Rendering Notion blocks
@@ -385,7 +397,8 @@ During the Notion API beta unfortunately not all block types are supported. The 
 - `to_do`
 - `toggle`
 
-*Update 2020/08/24* - New media block types added:
+_Update 2020/08/24_ - New media block types added:
+
 - `child_page`
 - `image`
 - `embed`
@@ -407,7 +420,7 @@ You now have a blog powered by Notion! If you add a new blogpost or edit a post 
 <Image
   alt="Blog powered by Notion and Next.js"
   caption="Blog powered by Notion and Next.js"
-  src={'/blog/building-a-notion-blog-with-public-api/screenshot.png'}
+  src={"/blog/building-a-notion-blog-with-public-api/screenshot.png"}
   width={2216}
   height={1504}
 />

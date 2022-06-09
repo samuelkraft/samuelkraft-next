@@ -1,7 +1,7 @@
 ---
-title: 'Generating Open Graph images with Mapbox & Canvas'
-publishedAt: '2021-05-10'
-summary: 'How to use Mapbox static image API and Node Canvas to generate custom sharing images'
+title: "Generating Open Graph images with Mapbox & Canvas"
+publishedAt: "2021-05-10"
+summary: "How to use Mapbox static image API and Node Canvas to generate custom sharing images"
 tags: ["Mapbox", "React"]
 ---
 
@@ -10,92 +10,106 @@ Mapbox is one of the nicest way to embed custom dynamic maps in an app as there 
 <Image
   alt="Nyckelviken Trail Route"
   caption="Custom Open Graph Image for Nyckelviken Trail Route"
-  src={'/blog/mapbox-static-image-api/nyckelviken.png'}
+  src={"/blog/mapbox-static-image-api/nyckelviken.png"}
   width={1012}
   height={516}
 />
 
 The code used looks like this:
-```jsx
-const fs = require('fs')
-const path = require('path')
-const gp = require('geojson-precision')
-const simplify = require('simplify-geojson')
-const polyline = require('@mapbox/polyline')
-const { createCanvas, loadImage } = require('canvas')
-const { routes } = require('../utils/gpxutils.js')
 
-const width = 1012
-const height = 516
+```jsx
+const fs = require("fs");
+const path = require("path");
+const gp = require("geojson-precision");
+const simplify = require("simplify-geojson");
+const polyline = require("@mapbox/polyline");
+const { createCanvas, loadImage } = require("canvas");
+const { routes } = require("../utils/gpxutils.js");
+
+const width = 1012;
+const height = 516;
 
 async function generate() {
   await Promise.all(
-    routes.map(async route => {
+    routes.map(async (route) => {
       // simplify the geojson and strip extra points from coordinates to fit mapbox's api
-      const geoJson = simplify(gp(route.geoJson, 4), 0.0001)
+      const geoJson = simplify(gp(route.geoJson, 4), 0.0001);
       // Encode our geoJson to a polyline - replace any "?" with encoded value or mapbox will break
-      const poly = polyline.fromGeoJSON(geoJson.features[0].geometry).replace(/\?/g, '%3F')
+      const poly = polyline
+        .fromGeoJSON(geoJson.features[0].geometry)
+        .replace(/\?/g, "%3F");
       // Mapbox wants a hash-less hex value
-      const color = route.color.replace('#', '')
-      const padding = '80, 80, 120'
-      const mapboxImage = `https://api.mapbox.com/styles/v1/mapbox/outdoors-v11/static/path-5+${color}-1(${poly})/auto/${width}x${height}?padding=${padding}&access_token=${process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}`
+      const color = route.color.replace("#", "");
+      const padding = "80, 80, 120";
+      const mapboxImage = `https://api.mapbox.com/styles/v1/mapbox/outdoors-v11/static/path-5+${color}-1(${poly})/auto/${width}x${height}?padding=${padding}&access_token=${process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}`;
 
-      const canvas = createCanvas(width, height)
-      const context = canvas.getContext('2d')
+      const canvas = createCanvas(width, height);
+      const context = canvas.getContext("2d");
 
       // Load the mapbox image onto a canvas
-      const map = await loadImage(mapboxImage)
-      context.drawImage(map, 0, 0)
+      const map = await loadImage(mapboxImage);
+      context.drawImage(map, 0, 0);
 
       // Add gradient in the bottom so overlayed text is visible
-      const gradient = context.createLinearGradient(0, height * 0.7, 0, height)
-      gradient.addColorStop(0, 'rgba(0,0,0,0)')
-      gradient.addColorStop(1, 'rgba(0,0,0,0.5)')
-      context.fillStyle = gradient
-      context.fillRect(0, height * 0.7, width, height)
+      const gradient = context.createLinearGradient(0, height * 0.7, 0, height);
+      gradient.addColorStop(0, "rgba(0,0,0,0)");
+      gradient.addColorStop(1, "rgba(0,0,0,0.5)");
+      context.fillStyle = gradient;
+      context.fillRect(0, height * 0.7, width, height);
 
       // Add image in top corner
-      const logo = await loadImage('./public/logo.png')
-      context.drawImage(logo, 40, 40)
+      const logo = await loadImage("./public/logo.png");
+      context.drawImage(logo, 40, 40);
 
-      const titleY = 470
-      const labelY = titleY - 45
-      const distanceX = 40
-      const elevationX = width * 0.25 + distanceX
-      const stifaX = width * 0.5 + distanceX
-      const ratingX = width * 0.75 + distanceX
+      const titleY = 470;
+      const labelY = titleY - 45;
+      const distanceX = 40;
+      const elevationX = width * 0.25 + distanceX;
+      const stifaX = width * 0.5 + distanceX;
+      const ratingX = width * 0.75 + distanceX;
 
       // Add titles
-      context.fillStyle = '#fff'
-      context.font = 'bold 30pt Proxima Nova'
-      context.fillText(`${Math.round(route.distance * 10) / 10} km`, distanceX, titleY)
-      context.fillText(`${Math.round(route.elevation)} m`, elevationX, titleY)
-      context.fillText(`${Math.round(route.elevation / route.distance)}`, stifaX, titleY)
-      context.fillText(`${route.rating}/5`, ratingX, titleY)
+      context.fillStyle = "#fff";
+      context.font = "bold 30pt Proxima Nova";
+      context.fillText(
+        `${Math.round(route.distance * 10) / 10} km`,
+        distanceX,
+        titleY
+      );
+      context.fillText(`${Math.round(route.elevation)} m`, elevationX, titleY);
+      context.fillText(
+        `${Math.round(route.elevation / route.distance)}`,
+        stifaX,
+        titleY
+      );
+      context.fillText(`${route.rating}/5`, ratingX, titleY);
 
       // Add labels
-      context.font = 'bold 16pt Proxima Nova'
-      context.fillText(`DISTANCE`, distanceX, labelY)
-      context.fillText(`ELEVATION`, elevationX, labelY)
-      context.fillText(`STIFA`, stifaX, labelY)
-      context.fillText(`RATING`, ratingX, labelY)
+      context.font = "bold 16pt Proxima Nova";
+      context.fillText(`DISTANCE`, distanceX, labelY);
+      context.fillText(`ELEVATION`, elevationX, labelY);
+      context.fillText(`STIFA`, stifaX, labelY);
+      context.fillText(`RATING`, ratingX, labelY);
 
-      const buffer = canvas.toBuffer('image/png')
-      fs.writeFileSync(path.join(process.cwd(), `public/og/${route.slug}.png`), buffer)
-    }),
-  )
+      const buffer = canvas.toBuffer("image/png");
+      fs.writeFileSync(
+        path.join(process.cwd(), `public/og/${route.slug}.png`),
+        buffer
+      );
+    })
+  );
 }
 
-generate()
+generate();
 ```
 
 That's quite a lot to take in so let's break it down step by step!
 
 ## Setup
 
-In order to use Mapbox static image api you first need an access token. If you don't already have one you can get one from your [account page](https://account.mapbox.com/access-tokens/). 
+In order to use Mapbox static image api you first need an access token. If you don't already have one you can get one from your [account page](https://account.mapbox.com/access-tokens/).
 
-The [Static Image API](https://docs.mapbox.com/help/glossary/static-images-api/) allows us to request a static map by providing a couple of parameters like coordinates & zoom level, but you can also add layers like paths and geoJson. 
+The [Static Image API](https://docs.mapbox.com/help/glossary/static-images-api/) allows us to request a static map by providing a couple of parameters like coordinates & zoom level, but you can also add layers like paths and geoJson.
 
 Here's an example of a map generated with the following code:
 
@@ -106,12 +120,12 @@ https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/
 
 <Image
   alt="Mapbox Static Api Example image"
-  src={'/blog/mapbox-static-image-api/example.png'}
+  src={"/blog/mapbox-static-image-api/example.png"}
   width={1000}
   height={600}
 />
 
-First we have specified the style of the map, in this case `streets-v11`. [Their documentation](https://docs.mapbox.com/api/maps/styles/#mapbox-styles) lists all the available styles. I've mainly used the `outdoors-v11` style but you can also desig a custom one specific for your needs. 
+First we have specified the style of the map, in this case `streets-v11`. [Their documentation](https://docs.mapbox.com/api/maps/styles/#mapbox-styles) lists all the available styles. I've mainly used the `outdoors-v11` style but you can also desig a custom one specific for your needs.
 
 In this example we have used specific coordinates to specify what we want rendered but we can also make our map automatically fit the bounds to whatever is displayed, like geoJson or a path with the `auto` paramter.
 
@@ -122,7 +136,12 @@ Our route data is in the form of a geoJson object. Check out my article [Buildin
 The api supports geoJson using a `geoJson=({})` parameter, however it only accepts 8,192 or fewer characters. Even after simplifying the geojson and removing redundant coordinates to get it below the limit I did not manage to get it working. Instead I opted for the [Path](https://docs.mapbox.com/api/maps/static-images/#path) parameter which looks like this and accepts an encoded polyline:
 
 ```jsx
-path-{strokeWidth}+{strokeColor}-{strokeOpacity}+{fillColor}-{fillOpacity}({polyline})
+path -
+  { strokeWidth } +
+  { strokeColor } -
+  { strokeOpacity } +
+  { fillColor } -
+  { fillOpacity }({ polyline });
 ```
 
 ## Encoding geoJson to polyline
@@ -130,129 +149,148 @@ path-{strokeWidth}+{strokeColor}-{strokeOpacity}+{fillColor}-{fillOpacity}({poly
 To create a polyline from geoJson we can use mapbox's polyline package. In order to make the polyline a bit more lean we can also simplify it with simplify-geojson and geojson-precision.
 
 ```jsx
-const gp = require('geojson-precision')
-const simplify = require('simplify-geojson')
-const polyline = require('@mapbox/polyline')
+const gp = require("geojson-precision");
+const simplify = require("simplify-geojson");
+const polyline = require("@mapbox/polyline");
 
-routes.map(async route => {
+routes.map(async (route) => {
   // simplify the geojson and strip extra points from coordinates to fit mapbox's api
-  const geoJson = simplify(gp(route.geoJson, 4), 0.0001)
+  const geoJson = simplify(gp(route.geoJson, 4), 0.0001);
   // Encode our geoJson to a polyline - replace any "?" with encoded value or mapbox will break
-  const poly = polyline.fromGeoJSON(geoJson.features[0].geometry).replace(/\?/g, '%3F')
-})
+  const poly = polyline
+    .fromGeoJSON(geoJson.features[0].geometry)
+    .replace(/\?/g, "%3F");
+});
 ```
 
-<Warning type="info">
-  It took me a while to figure out that the api does not accept polylines containing question marks "<strong>?</strong>" as that breaks the url parameters. Be sure to replace all instances with it's encoded counterpart.
-</Warning>
+<Alert>
+  It took me a while to figure out that the api does not accept polylines
+  containing question marks "<strong>?</strong>" as that breaks the url
+  parameters. Be sure to replace all instances with it's encoded counterpart.
+</Alert>
 
 Another thing we need to do is remove the `#` from the color we wish to have, specify the width and height and how much padding we want.
 
 ```jsx {10-15}
-const gp = require('geojson-precision')
-const simplify = require('simplify-geojson')
-const polyline = require('@mapbox/polyline')
+const gp = require("geojson-precision");
+const simplify = require("simplify-geojson");
+const polyline = require("@mapbox/polyline");
 
-routes.map(async route => {
+routes.map(async (route) => {
   // simplify the geojson and strip extra points from coordinates to fit mapbox's api
-  const geoJson = simplify(gp(route.geoJson, 4), 0.0001)
+  const geoJson = simplify(gp(route.geoJson, 4), 0.0001);
   // Encode our geoJson to a polyline - replace any "?" with encoded value or mapbox will break
-  const poly = polyline.fromGeoJSON(geoJson.features[0].geometry).replace(/\?/g, '%3F')
+  const poly = polyline
+    .fromGeoJSON(geoJson.features[0].geometry)
+    .replace(/\?/g, "%3F");
   // Mapbox wants a hash-less hex value
-  const color = route.color.replace('#', '')
+  const color = route.color.replace("#", "");
   // Extra padding in the bottom to make space for text
-  const padding = '80, 80, 120'
-  const width = 1012
-  const height = 516
-})
+  const padding = "80, 80, 120";
+  const width = 1012;
+  const height = 516;
+});
 ```
 
 Now let's use the polyline in the api url and we have a working map 🎉
 
 ```jsx {16}
-const gp = require('geojson-precision')
-const simplify = require('simplify-geojson')
-const polyline = require('@mapbox/polyline')
+const gp = require("geojson-precision");
+const simplify = require("simplify-geojson");
+const polyline = require("@mapbox/polyline");
 
-routes.map(async route => {
+routes.map(async (route) => {
   // simplify the geojson and strip extra points from coordinates to fit mapbox's api
-  const geoJson = simplify(gp(route.geoJson, 4), 0.0001)
+  const geoJson = simplify(gp(route.geoJson, 4), 0.0001);
   // Encode our geoJson to a polyline - replace any "?" with encoded value or mapbox will break
-  const poly = polyline.fromGeoJSON(geoJson.features[0].geometry).replace(/\?/g, '%3F')
+  const poly = polyline
+    .fromGeoJSON(geoJson.features[0].geometry)
+    .replace(/\?/g, "%3F");
   // Mapbox wants a hash-less hex value
-  const color = route.color.replace('#', '')
+  const color = route.color.replace("#", "");
   // Extra padding in the bottom to make space for text
-  const padding = '80, 80, 120'
-  const width = 1012
-  const height = 516
-  const mapboxImage = `https://api.mapbox.com/styles/v1/mapbox/outdoors-v11/static/path-5+${color}-1(${poly})/auto/${width}x${height}?padding=${padding}&access_token=${MAPBOX_ACCESS_TOKEN}`
-})
+  const padding = "80, 80, 120";
+  const width = 1012;
+  const height = 516;
+  const mapboxImage = `https://api.mapbox.com/styles/v1/mapbox/outdoors-v11/static/path-5+${color}-1(${poly})/auto/${width}x${height}?padding=${padding}&access_token=${MAPBOX_ACCESS_TOKEN}`;
+});
 ```
 
 ## Adding text on the image with node canvas
 
-In order to add metadata like distance, elevation and logo on top of the image we can use [node-canvas](https://github.com/Automattic/node-canvas). It implements the web canvas API as closely as possible and is perfect for this use case. 
+In order to add metadata like distance, elevation and logo on top of the image we can use [node-canvas](https://github.com/Automattic/node-canvas). It implements the web canvas API as closely as possible and is perfect for this use case.
 
-If you have ever used Sketch, Photoshop or another application that uses layers you can think of canvas the same way. What is written first (bottom of the layers list in sketch) is the bottom layer, and everthing after that is stacked on top. 
+If you have ever used Sketch, Photoshop or another application that uses layers you can think of canvas the same way. What is written first (bottom of the layers list in sketch) is the bottom layer, and everthing after that is stacked on top.
 
 <Image
   alt="Sketch layers example"
   caption="Layers in Sketch"
-  src={'/blog/mapbox-static-image-api/layers.png'}
+  src={"/blog/mapbox-static-image-api/layers.png"}
   width={1406}
   height={592}
 />
 
-In the code below I am adding a gradient *before* I add the text, that way the gradient will be positioned beneath the text in the final image.
+In the code below I am adding a gradient _before_ I add the text, that way the gradient will be positioned beneath the text in the final image.
 
-I have commented what each line does in the code below. 
+I have commented what each line does in the code below.
 
 ```jsx
 // Create a canvas context the same size as out mapbox image
-const canvas = createCanvas(width, height)
-const context = canvas.getContext('2d')
+const canvas = createCanvas(width, height);
+const context = canvas.getContext("2d");
 
 // Load the mapbox image onto a canvas
-const map = await loadImage(mapboxImage)
-context.drawImage(map, 0, 0)
+const map = await loadImage(mapboxImage);
+context.drawImage(map, 0, 0);
 
 // Add gradient in the bottom so overlayed text is visible
-const gradient = context.createLinearGradient(0, height * 0.7, 0, height)
-gradient.addColorStop(0, 'rgba(0,0,0,0)')
-gradient.addColorStop(1, 'rgba(0,0,0,0.5)')
-context.fillStyle = gradient
-context.fillRect(0, height * 0.7, width, height)
+const gradient = context.createLinearGradient(0, height * 0.7, 0, height);
+gradient.addColorStop(0, "rgba(0,0,0,0)");
+gradient.addColorStop(1, "rgba(0,0,0,0.5)");
+context.fillStyle = gradient;
+context.fillRect(0, height * 0.7, width, height);
 
 // Add logo in top left corner
-const logo = await loadImage('./public/logo.png')
-context.drawImage(logo, 40, 40)
+const logo = await loadImage("./public/logo.png");
+context.drawImage(logo, 40, 40);
 
 // Specify the positions of the text overlays
-const titleY = 470
-const labelY = titleY - 45
-const distanceX = 40
-const elevationX = width * 0.25 + distanceX
-const stifaX = width * 0.5 + distanceX
-const ratingX = width * 0.75 + distanceX
+const titleY = 470;
+const labelY = titleY - 45;
+const distanceX = 40;
+const elevationX = width * 0.25 + distanceX;
+const stifaX = width * 0.5 + distanceX;
+const ratingX = width * 0.75 + distanceX;
 
 // Add titles
-context.fillStyle = '#fff'
-context.font = 'bold 30pt Proxima Nova'
-context.fillText(`${Math.round(route.distance * 10) / 10} km`, distanceX, titleY)
-context.fillText(`${Math.round(route.elevation)} m`, elevationX, titleY)
-context.fillText(`${Math.round(route.elevation / route.distance)}`, stifaX, titleY)
-context.fillText(`${route.rating}/5`, ratingX, titleY)
+context.fillStyle = "#fff";
+context.font = "bold 30pt Proxima Nova";
+context.fillText(
+  `${Math.round(route.distance * 10) / 10} km`,
+  distanceX,
+  titleY
+);
+context.fillText(`${Math.round(route.elevation)} m`, elevationX, titleY);
+context.fillText(
+  `${Math.round(route.elevation / route.distance)}`,
+  stifaX,
+  titleY
+);
+context.fillText(`${route.rating}/5`, ratingX, titleY);
 
 // Add labels
-context.font = 'bold 16pt Proxima Nova'
-context.fillText(`DISTANCE`, distanceX, labelY)
-context.fillText(`ELEVATION`, elevationX, labelY)
-context.fillText(`STIFA`, stifaX, labelY)
-context.fillText(`RATING`, ratingX, labelY)
+context.font = "bold 16pt Proxima Nova";
+context.fillText(`DISTANCE`, distanceX, labelY);
+context.fillText(`ELEVATION`, elevationX, labelY);
+context.fillText(`STIFA`, stifaX, labelY);
+context.fillText(`RATING`, ratingX, labelY);
 
-const buffer = canvas.toBuffer('image/png')
+const buffer = canvas.toBuffer("image/png");
 // Write the image to a specified directory
-fs.writeFileSync(path.join(process.cwd(), `public/og/${route.slug}.png`), buffer)
+fs.writeFileSync(
+  path.join(process.cwd(), `public/og/${route.slug}.png`),
+  buffer
+);
 ```
 
 That's it! Find the full source code [here](https://github.com/samuelkraft/routes/blob/master/scripts/generate-images.js) and check out a few examples of images I generated:
@@ -260,7 +298,7 @@ That's it! Find the full source code [here](https://github.com/samuelkraft/route
 <Image
   alt="A-trail + Gröna Trail Route"
   caption="A-trail + Gröna Trail Route"
-  src={'/blog/mapbox-static-image-api/grona_atrail.png'}
+  src={"/blog/mapbox-static-image-api/grona_atrail.png"}
   width={1012}
   height={516}
 />
@@ -268,7 +306,7 @@ That's it! Find the full source code [here](https://github.com/samuelkraft/route
 <Image
   alt="Nyckelviken Trail Route"
   caption="Nyckelviken Trail Route"
-  src={'/blog/mapbox-static-image-api/nyckelviken.png'}
+  src={"/blog/mapbox-static-image-api/nyckelviken.png"}
   width={1012}
   height={516}
 />
@@ -276,7 +314,7 @@ That's it! Find the full source code [here](https://github.com/samuelkraft/route
 <Image
   alt="Booleden + Värmdöleden Trail Route"
   caption="Booleden + Värmdöleden Trail Route"
-  src={'/blog/mapbox-static-image-api/booleden_varmdoleden.png'}
+  src={"/blog/mapbox-static-image-api/booleden_varmdoleden.png"}
   width={1012}
   height={516}
 />

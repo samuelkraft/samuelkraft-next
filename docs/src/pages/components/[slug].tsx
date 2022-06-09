@@ -9,14 +9,14 @@ import { Stack } from "design-system";
 import PageTitle from "src/components/PageTitle";
 
 export default function Page({ component }: { component: Component }) {
-  // useLiveReload();
+  useLiveReload();
   const Component = useMDXComponent(component.body.code, {
     types: component.types,
   });
 
   return (
     <article>
-      <Stack direction="column" space={2}>
+      <Stack direction="column" space={7}>
         <PageTitle
           title={component.title}
           description={component.description}

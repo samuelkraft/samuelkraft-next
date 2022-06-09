@@ -9,31 +9,20 @@ import dynamic from "next/dynamic";
 // Components
 // import PageHeader from "components/pageheader";
 import CustomImage from "components/Image";
-// import Warning from "components/warning";
-// import HitCounter from "components/hitcounter";
-// import LikeButton from "components/likebutton";
 import { NowPlayingIcon } from "components/NowPlaying";
-// import Subscribe from "components/subscribe";
-// import SegmentedControl from "components/segmentedcontrol";
-// import Messages, { TailBreakdown } from "components/messages";
-// import AnimatedMessages from "components/animatedmessages";
-// import Parallax from "components/parallax";
-// import Tags from "components/tags";
 import PostList from "components/PostList";
-import { Box, Button } from "design-system";
+import { Box, Button, Alert, Text } from "design-system";
 import { vars } from "design-system/src/styles/vars.css";
-// import { RatingPlayground } from "components/blog/rating";
-
-// Utils
-import { pick } from "@contentlayer/client";
-import { allPosts, Post as PostType } from "contentlayer/generated";
-
-import { Text } from "design-system";
 import Image from "next/image";
 import HitCounter from "components/HitCounter";
 import Tags from "components/Tags";
 import LikeButton from "components/LikeButton";
 import Subscribe from "components/Subscribe";
+
+// Utils
+import { pick } from "@contentlayer/client";
+import { allPosts, Post as PostType } from "contentlayer/generated";
+
 const SegmentedControl = dynamic(
   () => import("components/blog/SegmentedControl")
 );
@@ -68,7 +57,7 @@ const components = {
   Head,
   a: CustomLink,
   Image: CustomImage,
-  Warning: Fragment,
+  Alert,
   Link: CustomLink,
   NowPlayingIcon,
   SegmentedControl,

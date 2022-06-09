@@ -1,8 +1,8 @@
 ---
-title: 'How to create iOS chat bubbles in CSS'
-publishedAt: '2021-02-21'
-updatedAt: '2021-03-08'
-summary: 'Creating a chat messaging app ui with CSS (with a sprinkle of JS and Framer Motion)'
+title: "How to create iOS chat bubbles in CSS"
+publishedAt: "2021-02-21"
+updatedAt: "2021-03-08"
+summary: "Creating a chat messaging app ui with CSS (with a sprinkle of JS and Framer Motion)"
 tags: ["CSS", "Framer Motion"]
 ---
 
@@ -17,29 +17,39 @@ I'm building this in a Next.js/react app with css modules & sass. If you're look
 Let's start by creating a list of messages, we'll add a `sent` key to our objects in order to differentiate between you own sent messages and the received messages. Add a .shared class for each message, and another class based on the sent key.
 
 ```tsx
-import cn from 'classnames'
-import styles from './messages.module.scss'
+import cn from "classnames";
+import styles from "./messages.module.scss";
 
 const messages = [
   { text: "Hey there! What's up", sent: true },
-  { text: 'Checking out iOS7 you know..' },
-  { text: 'Check out this bubble!', sent: true },
+  { text: "Checking out iOS7 you know.." },
+  { text: "Check out this bubble!", sent: true },
   { text: "It's pretty cool!" },
   { text: "And it's in css?" },
   { text: "Yeah it's pure CSS &amp; HTML", sent: true },
-  { text: "(ok.. almost, I added a tiny bit of JS to remove sibling message tails)", sent: true },
-  { text: "Wow that's impressive. But what's even more impressive is that this bubble is really high." },
-]
+  {
+    text: "(ok.. almost, I added a tiny bit of JS to remove sibling message tails)",
+    sent: true,
+  },
+  {
+    text: "Wow that's impressive. But what's even more impressive is that this bubble is really high.",
+  },
+];
 
 const Messages = (): JSX.Element => (
   <ol className={styles.list}>
     {messages.map(({ text, sent }) => (
-      <li key={text} className={cn(styles.shared, sent ? styles.sent : styles.received)}>{text}</li>
+      <li
+        key={text}
+        className={cn(styles.shared, sent ? styles.sent : styles.received)}
+      >
+        {text}
+      </li>
     ))}
   </ol>
-)
+);
 
-export default Messages
+export default Messages;
 ```
 
 That's all we need for the markup, let's create our css (or scss) file and add some styling!
@@ -62,16 +72,24 @@ If you don't already have a theme setup this is also a good place to add some cs
   list-style: none;
 }
 
-[data-theme='dark'] {
+[data-theme="dark"] {
   .list {
     --bg: #161515;
   }
 }
 ```
 
-<Warning type="info">
-  If you don't know your background-color or if your background is an image I'm pretty sure you can accomplish the same effect with css <Link href="https://developer.mozilla.org/en-US/docs/Web/CSS/mask-image">mask-image</Link> and a background-gradient. Let me know if this is something you'd like to see, or why not open a <Link href="https://github.com/samuelkraft/samuelkraft-next">PR</Link>?
-</Warning>
+<Alert>
+  If you don't know your background-color or if your background is an image I'm
+  pretty sure you can accomplish the same effect with css{" "}
+  <Link href="https://developer.mozilla.org/en-US/docs/Web/CSS/mask-image">
+    mask-image
+  </Link>
+  and a background-gradient. Let me know if this is something you'd like to see,
+  or why not open a <Link href="https://github.com/samuelkraft/samuelkraft-next">
+    PR
+  </Link>?
+</Alert>
 
 There are some shared styles both sending and receiving messages should have, so let's make a .shared class. It's styles are pretty basic; we set the max-width of each message to a little bit more than half of our list width, add some padding and margin etc.
 
@@ -103,20 +121,27 @@ Since all tails will all have the same size and be positioned absolutely at the 
     position: absolute;
     bottom: 0;
     height: 25px; /* height of our bubble "tail" - should match the border-radius above */
-    content: '';
+    content: "";
   }
 }
 ```
 
-Let's continue to the specific messages, starting with the 'sent' styles. As mentioned before we want to make sure our message collapses if it's a very short one and we can do this by adding  `align-self: flex-end` . Our element will then only take up as much space as the content needs (maxing out at 255px which we set in our shared class), aligned to flex-end which in this case is right. For our receiving message we'll instead use `align-self: flex-start` as we want those aligned to the left.
+Let's continue to the specific messages, starting with the 'sent' styles. As mentioned before we want to make sure our message collapses if it's a very short one and we can do this by adding `align-self: flex-end` . Our element will then only take up as much space as the content needs (maxing out at 255px which we set in our shared class), aligned to flex-end which in this case is right. For our receiving message we'll instead use `align-self: flex-start` as we want those aligned to the left.
 
 ## Styling our tails
 
 If we take a closer look at the tails we're trying to accomplish we'll notice that there are basically two curved shapes. One curved shape extending from the bottom edge (the colored section, marked as blue below) and another one extending from the outer edge (our cutout/backgrund, marked as green below). Hover the message below and see how the blue creates our tail shape when overlaid with the green one.
 
-<div style={{ padding: '50px', backgroundColor: 'var(--boxBg)', borderRadius: '5px', textAlign: 'center' }}>
+<div
+  style={{
+    padding: "50px",
+    backgroundColor: "var(--boxBg)",
+    borderRadius: "5px",
+    textAlign: "center",
+  }}
+>
   <TailBreakdown />
-  <p style={{margin: 0, opacity: 0.75}}>Hover to arrange tail 👆</p>
+  <p style={{ margin: 0, opacity: 0.75 }}>Hover to arrange tail 👆</p>
 </div>
 
 Let's recreate these shapes with our pseudo elements. Start by setting the color of our bordered shape, then set the curve using border-radius, we can mimic the iOS one using different values for the horizontal and vertical axis. Then tweak the `right` value until it's positioned correctly.
@@ -166,16 +191,26 @@ For our received messages we do the same thing but to the left instead of to the
 We're almost there but there's one tiny detail left. Notice that when there are multiple messages in a row from the same person there's a tail for each message? We only want to add a tail for the most recent message in that case. Unfortunately there is no "previous sibling selector" in css so we have to go back to our markup and add a `noTail` class. We'll add the class if the next message's sent key is the same as the current message.
 
 ```typescript
-{messages.map(({ text, sent }, i) => {
-  const isLast = i === messages.length - 1
-  const noTail = !isLast && messages[i + 1]?.sent === sent
-  return (
-    <li key={text} className={cn(styles.shared, sent ? styles.sent : styles.received, noTail && styles.noTail)}>
-      {text}
-    </li>
-  )
-})}
+{
+  messages.map(({ text, sent }, i) => {
+    const isLast = i === messages.length - 1;
+    const noTail = !isLast && messages[i + 1]?.sent === sent;
+    return (
+      <li
+        key={text}
+        className={cn(
+          styles.shared,
+          sent ? styles.sent : styles.received,
+          noTail && styles.noTail
+        )}
+      >
+        {text}
+      </li>
+    );
+  });
+}
 ```
+
 Back in our css we can now hide the tail when the class is applied. We can also optionally decrease the margin a bit so our messages feel more "connected".
 
 ```scss
@@ -188,6 +223,7 @@ Back in our css we can now hide the tail when the class is applied. We can also 
   }
 }
 ```
+
 That's it! We can now display a list of nicely styled messages, and based on the "sent" key the messages will either display as sending or receiving. If there are multiple messages in a row from the same person only the most recent message will get a tail.
 
 ## ✨ Bonus: Animating our messages!
@@ -197,15 +233,15 @@ Building a chat app? We can easily animate our component with just a couple of l
 Wrap your messages in `AnimatePresence` and then make each message a `motion.li`. Apply the `layout` prop to make our messages magically animate smoothly when messages are added or removed. Then specify how the enter animation should look like by adding the initial state (slightly offset with 0 opacity) and the entered state (reset position and full opacity). This time I'm generating the messages with [random-words](https://www.npmjs.com/package/random-words) to make sure our component works with different types of content. [See the full source code on my GitHub](https://github.com/samuelkraft/samuelkraft-next/blob/master/components/animatedmessages.tsx).
 
 ```tsx
-import { motion, AnimatePresence } from 'framer-motion'
-import styles from './messages.module.scss'
+import { motion, AnimatePresence } from "framer-motion";
+import styles from "./messages.module.scss";
 
 const transition = {
-  type: 'spring',
+  type: "spring",
   stiffness: 200,
   mass: 0.2,
   damping: 20,
-}
+};
 
 const variants = {
   initial: {
@@ -217,26 +253,26 @@ const variants = {
     y: 0,
     transition,
   },
-}
+};
 
 const Messages = (): JSX.Element => (
   <AnimatePresence>
     <ol className={styles.list}>
       {messages.map(({ text, sent }) => (
-          <motion.li
-            key={text}
-            className={cn(styles.shared, sent ? styles.sent : styles.received)}
-            initial="initial"
-            animate="enter"
-            variants={variants}
-            layout
-          >
-            {text}
-          </motion.li>
-        ))}
+        <motion.li
+          key={text}
+          className={cn(styles.shared, sent ? styles.sent : styles.received)}
+          initial="initial"
+          animate="enter"
+          variants={variants}
+          layout
+        >
+          {text}
+        </motion.li>
+      ))}
     </ol>
   </AnimatePresence>
-)
+);
 ```
 
 That's it! If this helped press the like button below or let me know on [twitter](https://twitter.com/samuelkraft).

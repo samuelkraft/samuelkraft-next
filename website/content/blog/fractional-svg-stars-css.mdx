@@ -1,13 +1,12 @@
 ---
-title: 'Fractional SVG stars with CSS'
-publishedAt: '2021-09-07'
-updatedAt: '2021-12-02'
-summary: 'Create a rating component with svg stars that support fractional values'
+title: "Fractional SVG stars with CSS"
+publishedAt: "2021-09-07"
+updatedAt: "2021-12-02"
+summary: "Create a rating component with svg stars that support fractional values"
 tags: ["CSS", "SVG"]
 ---
 
 **Building a stars/rating component and need to support fractional values like 4.2 or 3.7 but don't want to use images? This post explains how to make fractional stars using just CSS and inline SVGs.**
-
 
 I was working on displaying reviews on an ecommerce site when needing a component displaying the customers ratings. The previous version of the website used multiple png images overlayed on top of each other, contributing to unnessecary requests and [CLS](https://web.dev/cls/) issues. The criteria for the new component was:
 
@@ -24,40 +23,39 @@ Here's the component we are building:
 The code:
 
 ```jsx
-import IconStar from 'star.svg';
+import IconStar from "star.svg";
 
 const Rating = ({ value, max, className }) => {
-	/* Calculate how much of the stars should be "filled" */
+  /* Calculate how much of the stars should be "filled" */
   const percentage = Math.round((value / max) * 100);
 
   return (
     <div className={styles.container}>
-    {
-      /* Create an array based on the max rating, render a star for each */
-    }
+      {/* Create an array based on the max rating, render a star for each */}
       {Array.from(Array(max).keys()).map((_, i) => (
         <IconStar key={i} className={styles.star} />
       ))}
-    {
-      /* Render a div overlayed on top of the stars that should not be not filled */
-    }
-      <div className={styles.overlay} style={{ width: `${100 - percentage}%` }} />
+      {/* Render a div overlayed on top of the stars that should not be not filled */}
+      <div
+        className={styles.overlay}
+        style={{ width: `${100 - percentage}%` }}
+      />
     </div>
   );
-}
+};
 ```
 
 The component basically consists of two parts:
 
 1. A list of star icons based on the max rating (`max` prop)
-2. An "overlay" div that will be responsible for changing the color of the stars underneath. This is the magic that makes the fractional part work. 
+2. An "overlay" div that will be responsible for changing the color of the stars underneath. This is the magic that makes the fractional part work.
 
 The overlay is just a plain div the same size as the part of the stars that should be a different color/unfilled. We calculate the width of the div by first dividing the rating with the maximum, then subtracting that value from 100.
 
 ```jsx
 const percentage = Math.round((value / max) * 100);
 
-<div className={styles.overlay} style={{ width: `${100 - percentage}%` }} />
+<div className={styles.overlay} style={{ width: `${100 - percentage}%` }} />;
 ```
 
 Add the styles below in order to lay out the stars:
@@ -98,7 +96,11 @@ The final step is making the overlay div only affect the star SVGs beneath, not 
 
 The color spec reads as following:
 
-<Warning type="info">Creates a color with the hue and saturation of the source color and the luminosity of the backdrop color. This preserves the gray levels of the backdrop and is useful for coloring monochrome images or tinting color images.</Warning>
+<Alert>
+  Creates a color with the hue and saturation of the source color and the
+  luminosity of the backdrop color. This preserves the gray levels of the
+  backdrop and is useful for coloring monochrome images or tinting color images.
+</Alert>
 
 Tinting color images is exactly what we want to do, so let's add the property and see what happens:
 
@@ -118,7 +120,7 @@ This is exactly what we want! It changes the hue and saturation of the stars, bu
 
 The browser support is pretty good (supported in all modern browsers) but for older browsers we can fall back to opacity instead. We can do this by setting the default styles to the fallback, and progressively adding the mix-blend-mode if the browser supports it:
 
-__Update:__ Thanks to reader Chris Morgan for pointing out that we need to reverse our properties and start with the fallback, as all browsers that don’t support `mix-blend-mode` also don’t support `@supports`.
+**Update:** Thanks to reader Chris Morgan for pointing out that we need to reverse our properties and start with the fallback, as all browsers that don’t support `mix-blend-mode` also don’t support `@supports`.
 
 ```css
 .overlay {
