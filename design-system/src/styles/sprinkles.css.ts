@@ -7,7 +7,7 @@ import {
 } from "@vanilla-extract/sprinkles";
 import {
   space,
-  colors,
+  colors as themeColors,
   radii,
   fontWeights,
   fontSizes,
@@ -17,6 +17,8 @@ import {
 } from "./vars.css";
 
 import { globalStyle } from "@vanilla-extract/css";
+
+const colors = themeColors || "inherit" || "transparent";
 
 // Ensure reset has lowest specificity
 /* DO NOT MOVE THIS LINE */
@@ -110,11 +112,16 @@ const responsiveProperties = defineProperties({
     marginRight: space,
     height: heights,
     width: widths,
+    minWidth: widths,
     borderRadius: radii,
+    borderWidth: space,
+    borderStyle: ["solid", "dotted", "dashed", "double"],
+    borderColor: colors,
     fontWeight: fontWeights,
     fontSize: fontSizes,
     textAlign: ["left", "center", "right"],
     textDecoration: ["none", "underline", "line-through"],
+    textTransform: ["none", "uppercase", "lowercase", "capitalize"],
     whiteSpace: ["nowrap", "normal"],
     gap: space,
     maxWidth: widths,
@@ -135,17 +142,18 @@ const responsiveProperties = defineProperties({
     ],
     listStyle: ["none", "disc", "decimal"],
     letterSpacing: ["0", "-0.3px"],
-    lineHeight: ["1", "1.25", "1.5", "1.75", "2"],
+    lineHeight: ["0", "1", "1.25", "1.5", "1.75", "2"],
     position: ["static", "relative", "absolute", "fixed", "sticky"],
     top: space,
     right: space,
     bottom: space,
     left: space,
     inset: space,
-    zIndex: ["0", "1", "2", "3"],
+    zIndex: ["-1", "0", "1", "2", "3"],
     overflow: ["visible", "hidden", "scroll", "auto"],
     aspectRatio: ["1/1", "16/9", "3/2"],
     boxShadow: shadows,
+    isolation: ["auto", "isolate"],
   },
   shorthands: {
     padding: ["paddingTop", "paddingBottom", "paddingLeft", "paddingRight"],

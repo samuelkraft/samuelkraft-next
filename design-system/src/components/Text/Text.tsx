@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { Box, BoxProps } from "../Box";
+import * as styles from "./Text.css";
 
 export type TextProps = {
   as?:
@@ -22,6 +23,8 @@ export type TextProps = {
   size?: BoxProps["fontSize"];
   weight?: BoxProps["fontWeight"];
   textAlign?: BoxProps["textAlign"];
+  transform?: BoxProps["textTransform"];
+  ellipsis?: boolean;
 };
 
 const getFontSize = (
@@ -33,7 +36,7 @@ const getFontSize = (
   }
   switch (as) {
     case "h1":
-      return { small: "xxlarge", large: "huge" };
+      return { small: "xxlarge", large: "xxxlarge" };
     case "h2":
       return { small: "xlarge", large: "xxlarge" };
     case "h3":
@@ -53,10 +56,13 @@ export const Text = ({
   size,
   weight,
   textAlign,
+  transform,
+  ellipsis,
 }: TextProps) => {
   const fontSize = getFontSize(as, size);
   return (
     <Box
+      className={ellipsis ? styles.ellipsis : undefined}
       as={as}
       color={color}
       letterSpacing={letterSpacing}
@@ -64,6 +70,7 @@ export const Text = ({
       fontSize={fontSize}
       fontWeight={weight}
       textAlign={textAlign}
+      textTransform={transform}
     >
       {children}
     </Box>

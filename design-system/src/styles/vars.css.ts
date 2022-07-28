@@ -14,7 +14,6 @@ export const radii = {
 };
 
 export const space = {
-  "-1": "-1px",
   0: "0",
   1: "1px",
   2: "4px",
@@ -25,7 +24,18 @@ export const space = {
   7: "32px",
   8: "48px",
   9: "64px",
+  10: "128px",
   auto: "auto",
+  "-1": "-1px",
+  "-2": "-4px",
+  "-3": "-8px",
+  "-4": "-12px",
+  "-5": "-16px",
+  "-6": "-24px",
+  "-7": "-32px",
+  "-8": "-48px",
+  "-9": "-64px",
+  "-10": "-128px",
 };
 
 export const heights = {
@@ -45,8 +55,8 @@ export const widths = {
   viewHeight: "100vh",
   viewWidth: "100vw",
   none: "0",
-  site: "1500px",
-  blog: "750px",
+  site: "1194px",
+  blog: "914px",
   ...space,
 };
 
@@ -61,12 +71,14 @@ export const fontSizes = {
   xxlarge: "2rem", // 32px
   xlarge: "1.75rem", // 28px
   large: "1.5rem", // 24px
-  base: "1.125rem", // 18px
+  base: "1.25rem", // 20px
+  small: "1rem", // 16px
   inherit: "inherit",
 };
 
 export const shadows = {
   small: "0px 1px 2px 0px rgba(0, 0, 0, 0.09)",
+  medium: "0px 2px 4px 0px #0000001F, 0px 3px 6px 0px #00000026",
 };
 
 const global = createGlobalTheme("html", {
@@ -87,7 +99,9 @@ export const colors = createThemeContract({
   link: null,
   border: null,
   code: null,
+  brandLight: null,
   brand: null,
+  white: null,
 });
 
 export const lightTheme = createTheme(colors, {
@@ -99,7 +113,9 @@ export const lightTheme = createTheme(colors, {
   link: blue.blue11,
   border: sand.sand5,
   code: sand.sand12,
+  brandLight: red.red5,
   brand: red.red10,
+  white: "white",
 });
 
 export const darkTheme = createTheme(colors, {
@@ -111,7 +127,9 @@ export const darkTheme = createTheme(colors, {
   link: blueDark.blue11,
   border: sandDark.sand4,
   code: sandDark.sand3,
+  brandLight: redDark.red3,
   brand: redDark.red10,
+  white: "white",
 });
 
 export const vars = { ...global, colors };

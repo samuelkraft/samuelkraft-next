@@ -3,6 +3,7 @@ import { Box, Grid, Stack, Text } from "design-system";
 import * as styles from "./index.css";
 import { Project, ProjectType } from "components/Project";
 import Container from "components/Container";
+import Link from "next/link";
 
 export const projects: ProjectType[] = [
   {
@@ -48,46 +49,23 @@ const Video = () => (
 const Home: NextPage = () => {
   return (
     <>
-      <Box
-        backgroundColor="brand"
-        paddingY={9}
-        width="full"
-        className={styles.hero}
-      >
-        <Video />
+      <Box paddingY={9} width="full">
         <Box position="relative" zIndex="1">
-          <Container>
-            <Box as="h1" className={styles.h1}>
-              Samuel Kraft
-            </Box>
-          </Container>
-          <Container width="blog">
-            <Text
-              textAlign={{ medium: "center" }}
-              size={{ small: "base", large: "large" }}
-            >
-              Frontend developer &amp; product designer excited by delightful
-              interfaces and endurance sports.
-            </Text>
-          </Container>
+          <Text as="h1">Hi, I’m Samuel</Text>
+          <Text size={{ small: "base", large: "large" }}>
+            I design &amp; build delightful interfaces.{" "}
+            <Link href="/about">Learn more →</Link>
+          </Text>
         </Box>
       </Box>
-      <Container>
-        <Stack space={4} direction="column">
-          <Text as="h2">Selected projects</Text>
-          <Grid gap={7} templateColumns={{ large: "repeat(2, 1fr)" }}>
-            {projects.map(Project)}
-          </Grid>
-        </Stack>
-      </Container>
+      <Stack space={4} direction="column">
+        <Text as="h2">Selected projects</Text>
+        <Grid gap={7} templateColumns={{ large: "repeat(2, 1fr)" }}>
+          {projects.map(Project)}
+        </Grid>
+      </Stack>
     </>
   );
-};
-
-export const getStaticProps: GetStaticProps = async () => {
-  return {
-    props: { layoutFull: true },
-  };
 };
 
 export default Home;

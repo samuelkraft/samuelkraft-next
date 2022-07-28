@@ -59,7 +59,7 @@ export const getStaticProps: GetStaticProps = async () => {
   );
 
   return {
-    props: { posts, layoutFull: true },
+    props: { posts, layout: "small" },
   };
 };
 

@@ -17,6 +17,13 @@ const variant = {
       backgroundColor: sand.sand8,
     },
   },
+  transparent: {
+    backgroundColor: "transparent",
+    color: sand.sand12,
+    ":hover": {
+      backgroundColor: sand.sand8,
+    },
+  },
 };
 
 export type Size = keyof typeof size;

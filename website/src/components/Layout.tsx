@@ -1,18 +1,18 @@
-import { Stack, Box, Spacer, Text } from "design-system";
+import { Stack, Box, Spacer, Text, Button } from "design-system";
 import { vars } from "design-system/src/styles/vars.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { ReactNode } from "react";
-import { IconBlog, IconHealth, IconUser, IconAvatar } from "components/Icons";
+import { IconBlog, IconUser, IconHome, IconTheme } from "components/Icons";
 import Container from "./Container";
 import { motion } from "framer-motion";
-import NowPlaying from "./NowPlaying";
+import * as styles from "./Layout.css";
 
 const links = [
   {
-    name: "Work",
+    name: "Home",
     url: "/",
-    icon: <IconAvatar />,
+    icon: <IconHome />,
   },
   {
     name: "About",
@@ -24,78 +24,73 @@ const links = [
     url: "/blog",
     icon: <IconBlog />,
   },
-  {
-    name: "Health",
-    url: "/health",
-    icon: <IconHealth />,
-  },
 ];
+
+const ThemeButton = () => {
+  return (
+    <Button variant="transparent">
+      <IconTheme />
+    </Button>
+  );
+};
 
 const MotionBox = motion(Box);
 
-const Navigation = ({ absolute }: { absolute?: boolean }) => {
+const Navigation = () => {
   const router = useRouter();
   return (
     <Box
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
+      className={styles.navigation}
+      as="nav"
+      backgroundColor="background"
+      padding={2}
+      borderRadius="rounded"
+      boxShadow="medium"
+      position="fixed"
       zIndex="1"
-      position="relative"
+      bottom={6}
     >
-      <Box
-        as="nav"
-        backgroundColor="background"
-        padding={2}
-        borderRadius="rounded"
-        position={absolute ? "absolute" : "relative"}
-        top={absolute ? 7 : 0}
-        marginTop={absolute ? 0 : 7}
-        boxShadow="small"
-      >
-        <Stack space={3}>
-          {links.map((link) => {
-            const isOpen = router.pathname === link.url;
-            return (
-              <Link href={link.url} key={link.name}>
-                <MotionBox
-                  as="a"
-                  position="relative"
-                  display="flex"
-                  paddingX={4}
-                  paddingY={3}
-                  cursor="pointer"
-                  animate={{
-                    color: isOpen ? vars.colors.background : vars.colors.text,
-                  }}
-                  transition={{ duration: 0.1 }}
-                  opacity={!isOpen ? { hover: "0.75" } : "1"}
-                  borderRadius="rounded"
-                >
-                  {isOpen ? (
-                    <>
-                      <MotionBox
-                        backgroundColor="text"
-                        position="absolute"
-                        top={0}
-                        left={0}
-                        right={0}
-                        bottom={0}
-                        layoutId="navigation-active"
-                        style={{ borderRadius: 9999 }}
-                      />
-                    </>
-                  ) : null}
-                  {link.url === "/" && <Spacer space={2} />}
-                  <Box zIndex="1">
-                    <Text weight="bold">{link.name}</Text>
-                  </Box>
-                </MotionBox>
-              </Link>
-            );
-          })}
-        </Stack>
-      </Box>
+      <Stack space={3} align="center">
+        {links.map((link) => {
+          const isOpen = router.pathname === link.url;
+          return (
+            <Link href={link.url} key={link.name}>
+              <MotionBox
+                as="a"
+                position="relative"
+                display="flex"
+                paddingX={4}
+                paddingY={3}
+                cursor="pointer"
+                animate={{
+                  color: isOpen ? vars.colors.brand : vars.colors.text,
+                }}
+                transition={{ duration: 0.1 }}
+                opacity={!isOpen ? { hover: "0.75" } : "1"}
+                borderRadius="rounded"
+              >
+                {isOpen ? (
+                  <>
+                    <MotionBox
+                      backgroundColor="brandLight"
+                      position="absolute"
+                      top={0}
+                      left={0}
+                      right={0}
+                      bottom={0}
+                      borderRadius="rounded"
+                      layoutId="navigation-active"
+                    />
+                  </>
+                ) : null}
+                <Box zIndex="1">{link.icon}</Box>
+              </MotionBox>
+            </Link>
+          );
+        })}
+        <Box width={1} height={6} backgroundColor="border" />
+        <ThemeButton />
+      </Stack>
     </Box>
   );
 };
@@ -107,41 +102,36 @@ const Footer = () => (
       display="flex"
       flexDirection="column"
       justifyContent="center"
-      paddingY={7}
+      paddingTop={7}
       backgroundColor="code"
     >
-      <NowPlaying />
       <Container>
         <Text color="background">&copy; Samuel Kraft</Text>
       </Container>
+      <Spacer space={9} />
+      <Spacer space={9} />
     </Box>
   </>
 );
 
+const Background = () => <div className={styles.background} />;
+
 const Layout = ({
   children,
-  full,
+  size,
 }: {
   children: ReactNode;
-  full?: boolean;
+  size?: "small" | "medium";
 }) => {
-  if (full) {
-    return (
-      <Box>
-        <Navigation absolute />
-        {children}
-        <Footer />
-      </Box>
-    );
-  }
   return (
-    <>
-      <Container width="blog">
-        <Navigation />
-        {children}
+    <Box paddingTop={10}>
+      <Background />
+      <Container width={size === "small" ? "blog" : "site"}>
+        <Box paddingTop={6}>{children}</Box>
       </Container>
+      <Navigation />
       <Footer />
-    </>
+    </Box>
   );
 };
 

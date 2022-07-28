@@ -199,6 +199,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       post,
       related,
+      layout: "small",
     },
   };
 };

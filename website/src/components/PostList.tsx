@@ -9,12 +9,7 @@ type PostListProps = {
 };
 
 const PostList = ({ posts }: PostListProps) => (
-  <Box
-    as="ul"
-    display="grid"
-    gridGap={7}
-    gridTemplateColumns={{ large: "repeat(2, 1fr)" }}
-  >
+  <Stack direction="column" as="ul" space={6}>
     {posts.map((post) => {
       const {
         summary,
@@ -53,7 +48,7 @@ const PostList = ({ posts }: PostListProps) => (
         </Box>
       );
     })}
-  </Box>
+  </Stack>
 );
 
 export default PostList;
