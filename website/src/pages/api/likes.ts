@@ -1,6 +1,7 @@
 import faunadb from "faunadb";
+import { NextApiRequest, NextApiResponse } from "next";
 
-module.exports = async (req, res) => {
+module.exports = async (_: NextApiRequest, res: NextApiResponse) => {
   const q = faunadb.query;
   const client = new faunadb.Client({
     secret: process.env.FAUNA_SECRET_KEY,
