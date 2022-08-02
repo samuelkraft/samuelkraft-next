@@ -1,4 +1,6 @@
-export default async (req, res) => {
+import { NextApiRequest, NextApiResponse } from "next";
+
+export default async (_: NextApiRequest, res: NextApiResponse) => {
   const { email } = req.body;
 
   if (!email) {

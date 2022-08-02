@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { Text, Stack, Grid, Box } from "design-system";
+import { Text, Stack, Grid, Box, Button } from "design-system";
 
 import Photo from "components/Photo";
 
@@ -8,10 +8,16 @@ import photoRace from "/public/photos/sometimes_i_race.jpg";
 import photoTravel from "/public/photos/travelling.jpg";
 import WorkHistory from "components/WorkHistory";
 import NowPlaying from "components/NowPlaying";
-import Workout from "components/Workout";
+import Activity from "components/Activity";
 import DesignBuildSticker from "components/DesignBuildSticker";
 
-const About: NextPage = () => {
+import { getActivities } from "lib/strava";
+
+type AboutProps = {
+  lastActivity: any;
+};
+
+const About: NextPage<AboutProps> = ({ lastActivity }) => {
   return (
     <Grid gap={6} templateColumns="repeat(2, 1fr)">
       <Box isolation="isolate" position="relative">
@@ -44,7 +50,7 @@ const About: NextPage = () => {
             height={250}
             rotate={7}
           />
-          <Workout />
+          <Activity activity={lastActivity} />
           <NowPlaying />
         </Stack>
       </Box>
@@ -95,6 +101,15 @@ const About: NextPage = () => {
       </Stack>
     </Grid>
   );
+};
+
+export const getStaticProps = async () => {
+  const activities = await getActivities();
+  return {
+    props: {
+      lastActivity: activities[0],
+    },
+  };
 };
 
 export default About;
