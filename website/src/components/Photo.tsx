@@ -1,5 +1,4 @@
-import { Box, Stack, Text } from "design-system";
-import { motion } from "framer-motion";
+import { Box, MotionBox, Stack, Text } from "design-system";
 import Image, { StaticImageData } from "next/image";
 import * as styles from "./Photo.css";
 
@@ -12,8 +11,6 @@ type PhotoProps = {
   rotate?: number;
   zIndex?: number;
 };
-
-const MotionBox = motion(Box);
 
 const Photo = ({
   src,

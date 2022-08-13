@@ -1,6 +1,6 @@
 import useSWR from "swr";
 import fetcher from "lib/fetcher";
-import { Box, Spacer, Stack, Text } from "design-system";
+import { Box, MotionBox, Spacer, Stack, Text } from "design-system";
 import * as styles from "./NowPlaying.css";
 import { SpotifyLogo } from "./Icons";
 import { motion } from "framer-motion";
@@ -25,8 +25,6 @@ export const NowPlayingIcon = () => (
     <span className={styles.bar} />
   </Box>
 );
-
-const MotionBox = motion(Box);
 
 const NowPlaying = () => {
   const { data } = useSWR("/api/now-playing", fetcher);

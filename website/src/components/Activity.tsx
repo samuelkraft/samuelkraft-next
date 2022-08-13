@@ -1,5 +1,4 @@
-import { Box, Stack, Text } from "design-system";
-import { motion } from "framer-motion";
+import { Box, MotionBox, Stack, Text } from "design-system";
 import convertPolyline from "@mapbox/polyline";
 import Map from "./Map";
 import { useState } from "react";
@@ -26,8 +25,6 @@ const getSpeedForSportType = (speed: number, sportType: string) => {
       };
   }
 };
-
-const MotionBox = motion(Box);
 
 type ActivityProps = {
   activity: any;

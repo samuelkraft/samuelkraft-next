@@ -1,7 +1,4 @@
-import { Box, vars } from "design-system";
-import { motion } from "framer-motion";
-
-const MotionBox = motion(Box);
+import { Box, MotionBox, vars } from "design-system";
 
 const DesignBuildSticker = () => {
   return (

@@ -3,6 +3,7 @@ import cn from "classnames";
 import { sprinkles } from "../../styles/sprinkles.css";
 import type { Sprinkles } from "../../styles/sprinkles.css";
 import * as resetStyles from "../../styles/reset.css";
+import { motion } from "framer-motion";
 
 type HTMLProperties = Omit<
   React.AllHTMLAttributes<HTMLElement>,
@@ -34,12 +35,6 @@ export const Box = React.forwardRef<HTMLElement, BoxProps>(
       ...atomProps,
     });
 
-    const listReset = sprinkles({
-      listStyle: "none",
-      margin: 0,
-      padding: 0,
-    });
-
     return React.createElement(as, {
       className: cn(
         as && [resetStyles.base, resetStyles.element[as]],
@@ -51,5 +46,7 @@ export const Box = React.forwardRef<HTMLElement, BoxProps>(
     });
   }
 );
+
+export const MotionBox = motion(Box);
 
 export default Box;

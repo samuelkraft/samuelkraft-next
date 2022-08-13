@@ -1,9 +1,6 @@
 import { Box, Text, Spacer, Stack } from "design-system";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { BoxProps } from "design-system/src/components/Box";
-
-const MotionBox = motion(Box);
+import { BoxProps, MotionBox } from "design-system/src/components/Box";
 
 export type ProjectType = {
   title: string;

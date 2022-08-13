@@ -1,6 +1,5 @@
-import { Box, Button, Stack } from "design-system";
+import { Box, Button, MotionBox, Stack } from "design-system";
 import { vars } from "design-system/src/styles/vars.css";
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { IconBlog, IconHome, IconTheme, IconUser } from "./Icons";
@@ -32,8 +31,6 @@ const ThemeButton = () => {
     </Button>
   );
 };
-
-const MotionBox = motion(Box);
 
 const Navigation = () => {
   const router = useRouter();
