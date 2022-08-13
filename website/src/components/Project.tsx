@@ -1,6 +1,7 @@
 import { Box, Text, Spacer, Stack } from "design-system";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { BoxProps } from "design-system/src/components/Box";
 
 const MotionBox = motion(Box);
 
@@ -9,13 +10,24 @@ export type ProjectType = {
   description: string;
   slug: string;
   media: string;
+  aspectRatio?: BoxProps["aspectRatio"];
 };
 
-export const Project = ({ title, description, slug, media }: ProjectType) => (
+export const Project = ({
+  title,
+  description,
+  slug,
+  media,
+  aspectRatio = "3/2",
+}: ProjectType) => (
   <Link href={`/work/${slug}`} key={title}>
     <MotionBox as="a" whileHover="hover">
       <Stack space={4} direction="column">
-        <Box backgroundColor="textSecondary" width="full" aspectRatio="3/2" />
+        <Box
+          backgroundColor="textSecondary"
+          width="full"
+          aspectRatio={aspectRatio}
+        />
         <Text as="h3">
           <Stack
             as="span"
