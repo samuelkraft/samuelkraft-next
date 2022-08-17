@@ -38,8 +38,6 @@ const Blog = ({ posts }: BlogProps): JSX.Element => {
           cardType: "summary_large_image",
         }}
       />
-      <Spacer space={9} />
-      <Spacer space={9} />
       <Text as="h1">Blog</Text>
       <PostList posts={sortedPosts} />
     </Container>
