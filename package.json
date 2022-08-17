@@ -25,7 +25,7 @@
     "lodash.debounce": "^4.0.8",
     "next": "12.1.6",
     "next-contentlayer": "^0.2.5",
-    "next-seo": "^5.4.0",
+    "next-seo": "^5.5.0",
     "next-themes": "^0.2.0",
     "querystring": "^0.2.1",
     "random-words": "^1.1.2",
