@@ -154,6 +154,7 @@ const responsiveProperties = defineProperties({
     aspectRatio: ["1/1", "16/9", "3/2", "2.35/1"],
     boxShadow: shadows,
     isolation: ["auto", "isolate"],
+    pointerEvents: ["auto", "none"],
   },
   shorthands: {
     padding: ["paddingTop", "paddingBottom", "paddingLeft", "paddingRight"],

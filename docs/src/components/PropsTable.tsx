@@ -17,6 +17,10 @@ type Prop = {
 };
 
 const PropsTable = ({ types }: { types: Prop[] }) => {
+  if (!types) {
+    return null;
+  }
+
   const props = Object.values(types);
 
   return (

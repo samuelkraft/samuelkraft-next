@@ -3,6 +3,7 @@ import {
   Button,
   MotionBox,
   Popover,
+  Select,
   Slider,
   Stack,
   Text,
@@ -10,7 +11,7 @@ import {
 import { vars } from "design-system/src/styles/vars.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { IconBlog, IconHome, IconTheme, IconUser } from "./Icons";
 import { GrainContext } from "./Layout";
 
@@ -34,7 +35,10 @@ const links = [
   },
 ];
 
+const appearances = ["Auto", "Light", "Dark"];
+
 const ThemeButton = () => {
+  const [appearance, setAppearance] = useState(appearances[0]);
   const { grain, setGrain } = useContext(GrainContext);
   return (
     <Popover>
@@ -45,13 +49,14 @@ const ThemeButton = () => {
       </Popover.Trigger>
       <Popover.Content>
         <Stack space={5} direction="column">
-          <Stack space={2}>
-            <Button>h</Button>
-            <Button>h</Button>
-            <Button>h</Button>
-            <Button>h</Button>
-            <Button>h</Button>
-            <Button>h</Button>
+          <Stack space={3}>
+            <Button>1</Button>
+            <Button>2</Button>
+            <Button>3</Button>
+            <Button>4</Button>
+            <Button>5</Button>
+            <Button>6</Button>
+            <Button>7</Button>
           </Stack>
           <Stack space={5} align="center">
             <Text as="label" color="textSecondary">
@@ -68,7 +73,14 @@ const ThemeButton = () => {
             <Text as="label" color="textSecondary">
               Appearance
             </Text>
-            <div>auto</div>
+            <Select
+              value={appearance}
+              onChange={(e) => setAppearance(e.target.value)}
+            >
+              {appearances.map((theme) => (
+                <option key={theme}>{theme}</option>
+              ))}
+            </Select>
           </Stack>
         </Stack>
       </Popover.Content>

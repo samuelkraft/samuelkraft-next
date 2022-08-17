@@ -8,7 +8,7 @@ export const Popover = PopoverPrimitive.Root;
 Popover.Trigger = PopoverPrimitive.Trigger;
 Popover.Content = forwardRef(({ children, ...props }, forwardedRef) => (
   <PopoverPrimitive.Content
-    sideOffset={5}
+    sideOffset={16}
     {...props}
     ref={forwardedRef}
     asChild

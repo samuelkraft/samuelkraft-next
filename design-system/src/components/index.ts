@@ -8,4 +8,5 @@ export { Spacer } from "./Spacer";
 export { Text } from "./Text";
 export { Popover } from "./Popover";
 export { Slider } from "./Slider";
+export { Select } from "./Select";
 export * from "./Icons";

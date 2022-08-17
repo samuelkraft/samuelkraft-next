@@ -1,0 +1,22 @@
+---
+title: Select
+description: A Select component
+---
+
+```tsx
+import { Select } from "design-system";
+```
+
+## Props
+
+<PropsTable types={types} />
+
+```tsx expand=true live=true
+<Select>
+  {["Auto", "Light", "Dark"].map((option) => (
+    <option key={option} value={option}>
+      {option}
+    </option>
+  ))}
+</Select>
+```
