@@ -36,6 +36,9 @@ module.exports = {
     'import/no-useless-path-segments': 0,
     'react/function-component-definition': 0,
     'react/jsx-no-useless-fragment': 0,
+    'import/no-import-module-exports': 0,
+    'react/no-array-index-key': 0,
+    'react/no-invalid-html-attribute': 0
   },
   globals: {
     JSX: true,
