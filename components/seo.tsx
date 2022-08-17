@@ -10,7 +10,7 @@ const config = {
     site_name: 'Samuel Kraft',
     images: [
       {
-        url: 'https://samuelkraft.com/og.png',
+        url: 'https://samuelkraft.com/og.jpg',
         alt: 'Samuel Kraft',
       },
     ],

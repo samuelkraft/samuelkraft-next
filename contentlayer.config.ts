@@ -12,11 +12,11 @@ const computedFields: ComputedFields = {
   },
   image: {
     type: 'string',
-    resolve: doc => `/blog/${getSlug(doc)}/image.png`,
+    resolve: doc => `/blog/${getSlug(doc)}/image.jpg`,
   },
   og: {
     type: 'string',
-    resolve: doc => `/blog/${getSlug(doc)}/og.png`,
+    resolve: doc => `/blog/${getSlug(doc)}/og.jpg`,
   },
   readingTime: { type: 'json', resolve: doc => readingTime(doc.body.raw) },
 }

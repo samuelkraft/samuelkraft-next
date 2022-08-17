@@ -22,7 +22,7 @@ const NewsletterPage = (): JSX.Element => {
           site_name: 'Samuel Kraft',
           images: [
             {
-              url: 'https://samuelkraft.com/newsletter.png',
+              url: 'https://samuelkraft.com/newsletter.jpg',
               alt: 'A newsletter in the realm between design & development',
             },
           ],

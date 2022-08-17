@@ -39,7 +39,7 @@ const PercentageChange = (): JSX.Element => {
           site_name: 'Samuel Kraft',
           images: [
             {
-              url: 'https://samuelkraft.com/percentagechange.png',
+              url: 'https://samuelkraft.com/percentagechange.jpg',
               alt: title,
             },
           ],
