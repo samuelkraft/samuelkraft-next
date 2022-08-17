@@ -1,8 +1,18 @@
-import { Box, Button, MotionBox, Stack } from "design-system";
+import {
+  Box,
+  Button,
+  MotionBox,
+  Popover,
+  Slider,
+  Stack,
+  Text,
+} from "design-system";
 import { vars } from "design-system/src/styles/vars.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useContext } from "react";
 import { IconBlog, IconHome, IconTheme, IconUser } from "./Icons";
+import { GrainContext } from "./Layout";
 
 import * as styles from "./Navigation.css";
 
@@ -25,10 +35,44 @@ const links = [
 ];
 
 const ThemeButton = () => {
+  const { grain, setGrain } = useContext(GrainContext);
   return (
-    <Button variant="transparent">
-      <IconTheme />
-    </Button>
+    <Popover>
+      <Popover.Trigger asChild>
+        <Button variant="transparent">
+          <IconTheme />
+        </Button>
+      </Popover.Trigger>
+      <Popover.Content>
+        <Stack space={5} direction="column">
+          <Stack space={2}>
+            <Button>h</Button>
+            <Button>h</Button>
+            <Button>h</Button>
+            <Button>h</Button>
+            <Button>h</Button>
+            <Button>h</Button>
+          </Stack>
+          <Stack space={5} align="center">
+            <Text as="label" color="textSecondary">
+              Grain
+            </Text>
+            <Slider
+              min={1}
+              max={5}
+              value={[grain]}
+              onValueChange={(value: number[]) => setGrain(+value)}
+            />
+          </Stack>
+          <Stack space={4} align="center" justify="space-between">
+            <Text as="label" color="textSecondary">
+              Appearance
+            </Text>
+            <div>auto</div>
+          </Stack>
+        </Stack>
+      </Popover.Content>
+    </Popover>
   );
 };
 

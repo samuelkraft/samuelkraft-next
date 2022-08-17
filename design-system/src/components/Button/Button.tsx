@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { forwardRef, ReactNode } from "react";
 import { useRouter } from "next/router";
 import * as styles from "./Button.css";
 import { Box } from "../Box";
@@ -15,30 +15,42 @@ export type ButtonProps = {
   /** Sets if the button is clickable or not */
   disabled?: boolean;
   /** Sets the target of the button */
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   /** Sets the type of the button */
   type?: "button" | "submit" | "reset";
 };
 
-export const Button = ({
-  children,
-  variant = "primary",
-  size = "medium",
-  href,
-  disabled,
-  onClick,
-  type = "button",
-}: ButtonProps) => {
-  const router = useRouter();
-  return (
-    <Box
-      as="button"
-      type={type}
-      className={styles.button({ variant, size })}
-      onClick={() => (href ? router.push(href) : onClick)}
-      disabled={disabled}
-    >
-      {children}
-    </Box>
-  );
-};
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (props, ref) => {
+    const router = useRouter();
+    const {
+      children,
+      variant = "primary",
+      size = "medium",
+      href,
+      disabled,
+      onClick,
+      type = "button",
+      ...rest
+    } = props;
+    return (
+      <Box
+        as="button"
+        type={type}
+        className={styles.button({ variant, size })}
+        onClick={(e) => {
+          if (href) {
+            e.preventDefault();
+            router.push(href);
+          }
+          onClick?.(e);
+        }}
+        disabled={disabled}
+        ref={ref}
+        {...rest} // Need to spread props here for radix asChild to work
+      >
+        {children}
+      </Box>
+    );
+  }
+);

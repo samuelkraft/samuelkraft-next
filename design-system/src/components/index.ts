@@ -6,4 +6,6 @@ export { Grid } from "./Grid";
 export { Stack } from "./Stack";
 export { Spacer } from "./Spacer";
 export { Text } from "./Text";
+export { Popover } from "./Popover";
+export { Slider } from "./Slider";
 export * from "./Icons";

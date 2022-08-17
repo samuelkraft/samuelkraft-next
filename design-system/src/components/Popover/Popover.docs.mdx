@@ -1,0 +1,30 @@
+---
+title: Popover
+description: A Popover component
+---
+
+```tsx
+import { Popover } from "design-system";
+```
+
+## Props
+
+<PropsTable types={types} />
+
+```tsx expand=true live=true
+<Popover>
+  <Popover.Trigger>Popover trigger</Popover.Trigger>
+  <Popover.Content>Popover content</Popover.Content>
+</Popover>
+```
+
+### asChild
+
+```tsx expand=true live=true
+<Popover>
+  <Popover.Trigger asChild>
+    <Button>Popover trigger</Button>
+  </Popover.Trigger>
+  <Popover.Content>Popover content</Popover.Content>
+</Popover>
+```

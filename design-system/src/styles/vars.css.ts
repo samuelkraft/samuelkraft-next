@@ -10,6 +10,7 @@ export const radii = {
   none: "0",
   medium: "4px",
   large: "8px",
+  huge: "16px",
   rounded: "9999px",
 };
 

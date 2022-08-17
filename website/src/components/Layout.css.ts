@@ -2,6 +2,7 @@ import { style } from "@vanilla-extract/css";
 import { vars } from "design-system/src/styles/vars.css";
 
 export const background = style({
+  filter: "url(#backgroundNoise)",
   background: `linear-gradient(180deg, ${vars.colors.brandLight} 0%, ${vars.colors.background} 100%);`,
   width: "100vw",
   height: "100vh",
