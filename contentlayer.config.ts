@@ -12,7 +12,7 @@ const computedFields: ComputedFields = {
   },
   image: {
     type: 'string',
-    resolve: doc => `/blog/${getSlug(doc)}/image.jpg`,
+    resolve: doc => `/blog/${getSlug(doc)}/image.png`,
   },
   og: {
     type: 'string',
