@@ -1,5 +1,6 @@
 import { ReactNode, SelectHTMLAttributes } from "react";
 import { Box } from "../Box";
+import { IconArrows } from "../Icons";
 import * as styles from "./Select.css";
 
 type NativeSelectProps = SelectHTMLAttributes<HTMLSelectElement>;
@@ -27,7 +28,7 @@ const Arrow = () => (
     fontWeight="bold"
     pointerEvents="none"
   >
-    ↕
+    <IconArrows />
   </Box>
 );
 
