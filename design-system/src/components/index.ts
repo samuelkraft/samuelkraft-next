@@ -9,4 +9,5 @@ export { Text } from "./Text";
 export { Popover } from "./Popover";
 export { Slider } from "./Slider";
 export { Select } from "./Select";
+export { RadioGroup } from "./RadioGroup";
 export * from "./Icons";

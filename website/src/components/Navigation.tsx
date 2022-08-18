@@ -3,6 +3,7 @@ import {
   Button,
   MotionBox,
   Popover,
+  RadioGroup,
   Select,
   Slider,
   Stack,
@@ -49,15 +50,13 @@ const ThemeButton = () => {
       </Popover.Trigger>
       <Popover.Content>
         <Stack space={5} direction="column">
-          <Stack space={3}>
-            <Button>1</Button>
-            <Button>2</Button>
-            <Button>3</Button>
-            <Button>4</Button>
-            <Button>5</Button>
-            <Button>6</Button>
-            <Button>7</Button>
-          </Stack>
+          <RadioGroup defaultValue="red">
+            <Stack space={4}>
+              <RadioGroup.Item value="red" />
+              <RadioGroup.Item value="green" />
+              <RadioGroup.Item value="blue" />
+            </Stack>
+          </RadioGroup>
           <Stack space={5} align="center">
             <Text as="label" color="textSecondary">
               Grain
