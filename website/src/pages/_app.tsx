@@ -1,6 +1,6 @@
 import type { AppProps } from "next/app";
 import { ThemeProvider } from "next-themes";
-import { lightTheme, darkTheme } from "design-system";
+import { lightTheme, darkTheme, Tooltip } from "design-system";
 import "../styles/globals.css";
 import Layout from "../components/Layout";
 
@@ -13,9 +13,11 @@ function MyApp({ Component, pageProps }: AppProps) {
         dark: darkTheme,
       }}
     >
-      <Layout size={pageProps.layout}>
-        <Component {...pageProps} />
-      </Layout>
+      <Tooltip.Provider>
+        <Layout size={pageProps.layout}>
+          <Component {...pageProps} />
+        </Layout>
+      </Tooltip.Provider>
     </ThemeProvider>
   );
 }

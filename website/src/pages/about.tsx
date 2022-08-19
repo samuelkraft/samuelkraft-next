@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { Text, Stack, Grid, Box, Button } from "design-system";
+import { Text, Stack, Grid, Box, Button, Tooltip } from "design-system";
 
 import Photo from "components/Photo";
 
@@ -89,8 +89,18 @@ const About: NextPage<AboutProps> = ({ lastActivity }) => {
           background of studying Photography.
         </Text>
         <Text>
-          Outside of work I’m obsessed with endurance sports and travelling with
-          my family (check out{" "}
+          Outside of work I’m obsessed with{" "}
+          <Tooltip content="Triathlon, Nordic Skiing, Swimrun, etc…">
+            <Box
+              as="em"
+              textDecoration="dotted underline"
+              fontStyle="normal"
+              cursor="help"
+            >
+              endurance sports
+            </Box>
+          </Tooltip>{" "}
+          and travelling with my family (check out{" "}
           <a href="https://www.instagram.com/thejetlagfamily/">
             @thejetlagfamily
           </a>{" "}

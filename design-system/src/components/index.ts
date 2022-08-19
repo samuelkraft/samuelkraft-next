@@ -10,4 +10,5 @@ export { Popover } from "./Popover";
 export { Slider } from "./Slider";
 export { Select } from "./Select";
 export { RadioGroup } from "./RadioGroup";
+export { Tooltip } from "./Tooltip";
 export * from "./Icons";

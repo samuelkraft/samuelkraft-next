@@ -119,8 +119,9 @@ const responsiveProperties = defineProperties({
     borderColor: colors,
     fontWeight: fontWeights,
     fontSize: fontSizes,
+    fontStyle: ["normal", "italic"],
     textAlign: ["left", "center", "right"],
-    textDecoration: ["none", "underline", "line-through"],
+    textDecoration: ["none", "underline", "line-through", "dotted underline"],
     textTransform: ["none", "uppercase", "lowercase", "capitalize"],
     whiteSpace: ["nowrap", "normal"],
     gap: space,
@@ -168,7 +169,7 @@ const responsiveProperties = defineProperties({
 
 const unresponsiveProperties = defineProperties({
   properties: {
-    cursor: ["default", "pointer", "not-allowed"],
+    cursor: ["default", "pointer", "not-allowed", "help"],
     target: ["_blank", "_self", "_parent", "_top"],
   },
 });
