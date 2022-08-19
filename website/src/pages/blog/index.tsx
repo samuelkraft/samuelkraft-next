@@ -2,13 +2,12 @@ import { GetStaticProps } from "next";
 import { NextSeo } from "next-seo";
 
 // Components
-import { Spacer, Stack, Text } from "design-system";
+import { Stack, Text } from "design-system";
 import PostList from "components/PostList";
 
 // Utils
 import { pick } from "@contentlayer/client";
 import { allPosts, Post } from "contentlayer/generated";
-import Container from "components/Container";
 
 type BlogProps = {
   posts: Post[];
@@ -24,7 +23,7 @@ const Blog = ({ posts }: BlogProps): JSX.Element => {
   );
 
   return (
-    <Container>
+    <>
       <NextSeo
         title={seoTitle}
         description={seoDesc}
@@ -47,7 +46,7 @@ const Blog = ({ posts }: BlogProps): JSX.Element => {
         </Stack>
         <PostList posts={sortedPosts} />
       </Stack>
-    </Container>
+    </>
   );
 };
 

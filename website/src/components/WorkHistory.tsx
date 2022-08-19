@@ -88,29 +88,32 @@ const Workplace = ({ imageSrc, title, description }: WorkplaceProps) => {
 };
 
 const WorkHistory = () => (
-  <>
-    <Stack direction="column">
-      <Text as="h2">Work experience</Text>
-      <Text>
-        {new Date().getFullYear() - 2013}+ years experience working with
-        startups, both in design &amp; egineering.
-      </Text>
+  <Stack direction="column" space={8}>
+    <Stack direction="column" space={6}>
+      <Stack direction="column" space={2}>
+        <Text as="h2">Work experience</Text>
+        <Text>
+          {new Date().getFullYear() - 2013}+ years experience working with
+          startups, both in design &amp; egineering.
+        </Text>
+      </Stack>
+      <Stack direction="column" space={6}>
+        {workplaces.map(Workplace)}
+      </Stack>
     </Stack>
-    <Stack direction="column" space={7}>
-      {workplaces.map(Workplace)}
+    <Stack direction="column" space={6}>
+      <Stack direction="column" space={2}>
+        <Text as="h2">Side Projects</Text>
+        <Text>
+          I enjoy hacking on something on the side, especially things I use
+          personally like Trail Routes or for learning new things.
+        </Text>
+      </Stack>
+      <Stack direction="column" space={6}>
+        {sideProjects.map(Workplace)}
+      </Stack>
     </Stack>
-
-    <Stack direction="column">
-      <Text as="h2">Side Projects</Text>
-      <Text>
-        I enjoy hacking on something on the side, especially things I use
-        personally like Trail Routes or for learning new things.
-      </Text>
-    </Stack>
-    <Stack direction="column" space={7}>
-      {sideProjects.map(Workplace)}
-    </Stack>
-  </>
+  </Stack>
 );
 
 export default WorkHistory;

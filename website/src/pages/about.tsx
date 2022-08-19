@@ -20,7 +20,7 @@ type AboutProps = {
 
 const About: NextPage<AboutProps> = ({ lastActivity }) => {
   return (
-    <Grid gap={8} templateColumns="repeat(2, 1fr)">
+    <Grid gap={8} templateColumns={{ medium: "repeat(2, 1fr)" }}>
       <Box isolation="isolate" position="relative">
         <Box position="absolute" style={{ top: 200 }} right={9} zIndex="2">
           <DesignBuildSticker />
