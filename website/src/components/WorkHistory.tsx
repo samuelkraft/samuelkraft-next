@@ -69,6 +69,7 @@ const Workplace = ({ imageSrc, title, description }: WorkplaceProps) => {
         overflow="hidden"
         lineHeight="0"
         flexShrink={0}
+        boxShadow={title === "notion-blog-nextjs" ? "border" : undefined}
       >
         <Image
           src={imageSrc}

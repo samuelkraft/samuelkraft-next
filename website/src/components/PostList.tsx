@@ -1,6 +1,6 @@
 import type { Post } from "contentlayer/generated";
 import { Box, Stack, Text } from "design-system";
-import Link from "next/link";
+import Link from "components/Link";
 import { formatDate } from "lib/formatdate";
 import Image from "next/image";
 
@@ -22,17 +22,13 @@ const Post = ({
     <Box as="li" key={slug} listStyle="none">
       <Stack direction="column" space={5}>
         {image && (
-          <Link as={`/blog/${slug}`} href="/blog/[slug]">
-            <a>
-              <PostImage src={image} alt={title} />
-            </a>
+          <Link href={`/blog/${slug}`}>
+            <PostImage src={image} alt={title} />
           </Link>
         )}
         <Stack direction="column" space={2}>
-          <Link as={`/blog/${slug}`} href="/blog/[slug]">
-            <a>
-              <Text as="h2">{title}</Text>
-            </a>
+          <Link href={`/blog/${slug}`} unstyled>
+            <Text as="h2">{title}</Text>
           </Link>
           <Stack direction="column" space={3}>
             <Text size="base">{summary}</Text>

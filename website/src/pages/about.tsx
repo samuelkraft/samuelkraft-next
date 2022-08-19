@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { Text, Stack, Grid, Box, Button, Tooltip } from "design-system";
+import { Text, Stack, Grid, Box, Tooltip } from "design-system";
 
 import Photo from "components/Photo";
 
@@ -12,6 +12,7 @@ import Activity from "components/Activity";
 import DesignBuildSticker from "components/DesignBuildSticker";
 
 import { getActivities } from "lib/strava";
+import Link from "components/Link";
 
 type AboutProps = {
   lastActivity: any;
@@ -67,15 +68,16 @@ const About: NextPage<AboutProps> = ({ lastActivity }) => {
         <Text>
           Hi there! I’m a designer/frontend developer hybrid that loves to build
           great products with{" "}
-          <a href="https://www.nngroup.com/articles/theory-user-delight/">
+          <Link href="https://www.nngroup.com/articles/theory-user-delight/">
             delightful interfaces ✨
-          </a>
+          </Link>
           .
         </Text>
         <Text>
-          Currently working at <a href="https://bitrefill.com/">Bitrefill</a>,
-          making living on crypto possible. Before that I worked at music
-          startup <a href="https://www.tracklib.com/">Tracklib</a>, the record
+          Currently working at{" "}
+          <Link href="https://bitrefill.com/">Bitrefill</Link>, making living on
+          crypto possible. Before that I worked at music startup{" "}
+          <Link href="https://www.tracklib.com/">Tracklib</Link>, the record
           store for sampling.
         </Text>
         <Text>
@@ -101,9 +103,9 @@ const About: NextPage<AboutProps> = ({ lastActivity }) => {
             </Box>
           </Tooltip>{" "}
           and travelling with my family (check out{" "}
-          <a href="https://www.instagram.com/thejetlagfamily/">
+          <Link href="https://www.instagram.com/thejetlagfamily/">
             @thejetlagfamily
-          </a>{" "}
+          </Link>{" "}
           ✈️).
         </Text>
 

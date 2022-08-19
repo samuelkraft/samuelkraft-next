@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import Head from "next/head";
-import Link from "next/link";
+import Link from "components/Link";
 import { NextSeo } from "next-seo";
 import dynamic from "next/dynamic";
 
@@ -38,11 +38,7 @@ const CustomLink = (props: { href: string }) => {
 
   /* eslint-disable */
   if (href?.startsWith("/")) {
-    return (
-      <Link href={href}>
-        <a {...props} />
-      </Link>
-    );
+    return <Link {...props} />;
   }
 
   if (href.startsWith("#")) {

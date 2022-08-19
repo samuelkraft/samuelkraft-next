@@ -1,5 +1,5 @@
 import { Box, Text, Spacer, Stack } from "design-system";
-import Link from "next/link";
+import Link from "components/Link";
 import { BoxProps, MotionBox } from "design-system/src/components/Box";
 
 export type ProjectType = {
@@ -17,8 +17,8 @@ export const Project = ({
   media,
   aspectRatio = "3/2",
 }: ProjectType) => (
-  <Link href={`/work/${slug}`} key={title}>
-    <MotionBox as="a" whileHover="hover">
+  <Link href={`/work/${slug}`} key={title} unstyled>
+    <MotionBox as="span" whileHover="hover">
       <Stack space={4} direction="column">
         <Box
           backgroundColor="textSecondary"

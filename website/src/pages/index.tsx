@@ -1,12 +1,9 @@
-import type { GetStaticProps, NextPage } from "next";
+import type { NextPage } from "next";
 import { Box, Grid, Spacer, sprinkles, Stack, Text } from "design-system";
-import * as styles from "./index.css";
 import { Project, ProjectType } from "components/Project";
-import Container from "components/Container";
 import avatar from "/public/avatar.png";
-
-import Link from "next/link";
 import Image from "next/image";
+import Link from "components/Link";
 
 export const projects: ProjectType[] = [
   {
