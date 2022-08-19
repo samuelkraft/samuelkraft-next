@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { useRouter, NextRouter } from "next/router";
 
-import { Box, Button, Stack, Text } from "design-system";
+import { Box, Button, Input, Stack, Text } from "design-system";
 import { IconBlog as Send, IconUser as CheckCircle } from "components/Icons";
 
 type SubscribeProps = { title?: string; header?: boolean; className?: string };
@@ -78,17 +78,15 @@ const Subscribe = ({ title, header = true, className }: SubscribeProps) => {
               </Box>
             </>
           )}
-          <label htmlFor="email-input" className="sr-only">
-            Email address
-          </label>
           <Stack space={4}>
-            <input
+            <Input
               id="email-input"
               name="email"
               placeholder="Email address"
               ref={inputEl}
               required
               type="email"
+              width="full"
             />
             <Button disabled={loading} type="submit">
               Subscribe
