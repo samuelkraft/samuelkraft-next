@@ -11,7 +11,7 @@ import {
   Tooltip,
 } from "design-system";
 import { vars } from "design-system/src/styles/vars.css";
-import Link from "next/link";
+import Link from "components/Link";
 import { useRouter } from "next/router";
 import { forwardRef, useContext, useState } from "react";
 import { IconBlog, IconHome, IconTheme, IconUser } from "./Icons";
@@ -107,15 +107,20 @@ const Navigation = () => {
     <Box
       className={styles.wrapper}
       as="nav"
-      backgroundColor="background"
-      padding={2}
-      borderRadius="rounded"
-      boxShadow="medium"
+      backgroundColor="backgroundOpaque"
+      padding={{ small: 3, medium: 2 }}
+      borderRadius={{ small: "none", medium: "rounded" }}
+      boxShadow={{ small: "border", medium: "medium" }}
       position="fixed"
       zIndex="1"
-      bottom={6}
+      width={{ small: "full", medium: "auto" }}
+      bottom={{ small: 0, medium: 6 }}
     >
-      <Stack space={3} align="center">
+      <Stack
+        space={3}
+        align="center"
+        justify={{ small: "space-around", medium: "center" }}
+      >
         {links.map((link) => {
           const isOpen = router.pathname === link.url;
           return (
@@ -123,7 +128,7 @@ const Navigation = () => {
               <Box>
                 <Link href={link.url}>
                   <MotionBox
-                    as="a"
+                    as="span"
                     position="relative"
                     display="flex"
                     paddingX={4}
