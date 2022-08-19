@@ -2,7 +2,7 @@ import { GetStaticProps } from "next";
 import { NextSeo } from "next-seo";
 
 // Components
-import { Spacer, Text } from "design-system";
+import { Spacer, Stack, Text } from "design-system";
 import PostList from "components/PostList";
 
 // Utils
@@ -38,8 +38,15 @@ const Blog = ({ posts }: BlogProps): JSX.Element => {
           cardType: "summary_large_image",
         }}
       />
-      <Text as="h1">Blog</Text>
-      <PostList posts={sortedPosts} />
+      <Stack direction="column" space={9}>
+        <Stack direction="column" space={3}>
+          <Text as="h1">Blog</Text>
+          <Text as="h2" size="base" weight="normal">
+            I write about development, design, React, CSS, animation and more!
+          </Text>
+        </Stack>
+        <PostList posts={sortedPosts} />
+      </Stack>
     </Container>
   );
 };

@@ -33,6 +33,7 @@ const Photo = ({
       <MotionBox
         className={styles.flipper}
         borderWidth={3}
+        backgroundColor="white"
         borderColor="white"
         borderStyle="solid"
         boxShadow="medium"

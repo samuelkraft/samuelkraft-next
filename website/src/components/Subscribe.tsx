@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { useRouter, NextRouter } from "next/router";
 
-import { Box, Button, Text } from "design-system";
+import { Box, Button, Stack, Text } from "design-system";
 import { IconBlog as Send, IconUser as CheckCircle } from "components/Icons";
 
 type SubscribeProps = { title?: string; header?: boolean; className?: string };
@@ -40,55 +40,64 @@ const Subscribe = ({ title, header = true, className }: SubscribeProps) => {
 
   if (query.confirmed) {
     return (
-      <div>
-        <header className={styles.header}>
+      <Box backgroundColor="card" padding={6} borderRadius="huge">
+        <Stack as="header">
           <CheckCircle />
-          <h4 className={styles.title}>Thanks for confirming your email!</h4>
-        </header>
-        <p className={styles.description} style={{ marginBottom: 0 }}>
+          <Text as="h3">Thanks for confirming your email!</Text>
+        </Stack>
+        <Text color="textSecondary">
           You&apos;re on the list and will get updates when new content is
           published.
-        </p>
-      </div>
+        </Text>
+      </Box>
     );
   }
 
   return (
-    <form onSubmit={subscribe}>
-      {header && (
-        <>
-          <header>
-            <Send />
-            <Text>
-              {title || "Enjoyed this post? Subscribe to the newsletter!"}
-            </Text>
-          </header>
-          <Text>
-            A newsletter in the realm between <em>design &amp; development</em>.
-            Learn animations, CSS, web development tips &amp; tricks and
-            creating delightful and useful interfaces!
-          </Text>
-          <Text>No spam, unsubcribe at any time!</Text>
-        </>
-      )}
-      <label htmlFor="email-input" className="sr-only">
-        Email address
-      </label>
-      <Box>
-        <input
-          id="email-input"
-          name="email"
-          placeholder="Email address"
-          ref={inputEl}
-          required
-          type="email"
-        />
-        <Button disabled={loading} type="submit">
-          Subscribe
-        </Button>
-        {message && <Text>{message}</Text>}
-      </Box>
-    </form>
+    <Box backgroundColor="card" padding={6} borderRadius="huge">
+      <form onSubmit={subscribe}>
+        <Stack direction="column" space={3}>
+          {header && (
+            <>
+              <Stack as="header" align="center" space={3}>
+                <Send />
+                <Text as="h3">
+                  {title || "Enjoyed this post? Subscribe to the newsletter!"}
+                </Text>
+              </Stack>
+              <Box>
+                <Text color="textSecondary">
+                  A newsletter in the realm between{" "}
+                  <em>design &amp; development</em>. Learn animations, CSS, web
+                  development tips &amp; tricks and creating delightful and
+                  useful interfaces!
+                </Text>
+                <Text color="textSecondary">
+                  No spam, unsubcribe at any time!
+                </Text>
+              </Box>
+            </>
+          )}
+          <label htmlFor="email-input" className="sr-only">
+            Email address
+          </label>
+          <Stack space={4}>
+            <input
+              id="email-input"
+              name="email"
+              placeholder="Email address"
+              ref={inputEl}
+              required
+              type="email"
+            />
+            <Button disabled={loading} type="submit">
+              Subscribe
+            </Button>
+          </Stack>
+          {message && <Text>{message}</Text>}
+        </Stack>
+      </form>
+    </Box>
   );
 };
 

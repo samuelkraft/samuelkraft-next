@@ -10,8 +10,8 @@ import dynamic from "next/dynamic";
 // import PageHeader from "components/pageheader";
 import CustomImage from "components/Image";
 import { NowPlayingIcon } from "components/NowPlaying";
-import PostList from "components/PostList";
-import { Box, Button, Alert, Text } from "design-system";
+import PostList, { PostImage } from "components/PostList";
+import { Box, Button, Alert, Text, Stack } from "design-system";
 import { vars } from "design-system/src/styles/vars.css";
 import Image from "next/image";
 import HitCounter from "components/HitCounter";
@@ -130,39 +130,37 @@ const Post = ({ post, related }: PostProps): JSX.Element => {
           cardType: "summary_large_image",
         }}
       />
+      <Stack space={7} direction="column">
+        <Stack as="header" space={7} direction="column">
+          {post.image && <PostImage src={post.image} alt={post.title} />}
+          <Stack space={2} direction="column">
+            <Text as="h1">{post.title}</Text>
+            <Text>
+              Published on{" "}
+              <time dateTime={post.publishedAt}>{formattedPublishDate}</time>
+              {post.updatedAt ? ` (Updated ${formattedUpdatedDate})` : ""}{" "}
+              <span>&middot;</span> {post.readingTime.text}
+              <HitCounter slug={post.slug} />
+            </Text>
+          </Stack>
+        </Stack>
 
-      {post.image && (
-        <Image
-          src={post.image}
-          alt={post.title}
-          width={2024}
-          height={1012}
-          layout="responsive"
-        />
-      )}
-
-      <Text as="h1">{post.title}</Text>
-      <Text>
-        Published on{" "}
-        <time dateTime={post.publishedAt}>{formattedPublishDate}</time>
-        {post.updatedAt ? ` (Updated ${formattedUpdatedDate})` : ""}{" "}
-        <span>&middot;</span> {post.readingTime.text}
-        <HitCounter slug={post.slug} />
-      </Text>
-
-      <Box as="article">
-        <MDXContent components={components} />
-      </Box>
-      <LikeButton slug={post.slug} />
-      <Tags tags={post.tags} />
-      <Subscribe />
-      {related.length > 0 && (
-        <>
-          <Text as="h2">Related Posts</Text>
-          <PostList posts={related} />
-        </>
-      )}
-      <Button href="/blog">Back to the blog</Button>
+        <Box as="article">
+          <MDXContent components={components} />
+        </Box>
+        <LikeButton slug={post.slug} />
+        <Tags tags={post.tags} />
+        <Subscribe />
+        {related.length > 0 && (
+          <>
+            <Text as="h2">Related Posts</Text>
+            <PostList posts={related} />
+          </>
+        )}
+        <Box justifyContent="center" display="flex">
+          <Button href="/blog">Back to the blog</Button>
+        </Box>
+      </Stack>
     </>
   );
 };

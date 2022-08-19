@@ -32,7 +32,7 @@ const workplaces = [
   },
 ];
 
-const sideprojects = [
+const sideProjects = [
   {
     imageSrc: logoTrailRoutes,
     title: "Trail Routes",
@@ -64,7 +64,12 @@ type WorkplaceProps = {
 const Workplace = ({ imageSrc, title, description }: WorkplaceProps) => {
   return (
     <Stack align="center" space={6} key={description}>
-      <Box borderRadius="rounded" overflow="hidden" lineHeight="0">
+      <Box
+        borderRadius="rounded"
+        overflow="hidden"
+        lineHeight="0"
+        flexShrink={0}
+      >
         <Image
           src={imageSrc}
           alt={description}
@@ -102,7 +107,7 @@ const WorkHistory = () => (
       </Text>
     </Stack>
     <Stack direction="column" space={7}>
-      {sideprojects.map(Workplace)}
+      {sideProjects.map(Workplace)}
     </Stack>
   </>
 );

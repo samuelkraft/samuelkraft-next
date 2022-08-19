@@ -24,6 +24,7 @@ export const Project = ({
           backgroundColor="textSecondary"
           width="full"
           aspectRatio={aspectRatio}
+          borderRadius="huge"
         />
         <Text as="h3">
           <Stack

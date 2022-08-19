@@ -78,6 +78,7 @@ export const fontSizes = {
 };
 
 export const shadows = {
+  border: "0 0 0 1px rgba(0, 0, 0, 0.05)",
   small: "0px 1px 2px 0px rgba(0, 0, 0, 0.09)",
   medium: "0px 2px 4px 0px #0000001F, 0px 3px 6px 0px #00000026",
 };
