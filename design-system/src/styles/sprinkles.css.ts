@@ -121,7 +121,6 @@ const responsiveProperties = defineProperties({
     fontSize: fontSizes,
     fontStyle: ["normal", "italic"],
     textAlign: ["left", "center", "right"],
-    textDecoration: ["none", "underline", "line-through", "dotted underline"],
     textTransform: ["none", "uppercase", "lowercase", "capitalize"],
     whiteSpace: ["nowrap", "normal"],
     gap: space,
@@ -187,6 +186,7 @@ const selectorProperties = defineProperties({
     borderColor: colors,
     color: colors,
     opacity: ["0", "0.25", "0.5", "0.75", "1"],
+    textDecoration: ["none", "underline", "line-through", "dotted underline"],
   },
 });
 

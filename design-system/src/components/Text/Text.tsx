@@ -24,6 +24,7 @@ export type TextProps = {
   weight?: BoxProps["fontWeight"];
   textAlign?: BoxProps["textAlign"];
   transform?: BoxProps["textTransform"];
+  decoration?: BoxProps["textDecoration"];
   ellipsis?: boolean;
 };
 
@@ -57,6 +58,7 @@ export const Text = ({
   weight,
   textAlign,
   transform,
+  decoration,
   ellipsis,
 }: TextProps) => {
   const fontSize = getFontSize(as, size);
@@ -71,6 +73,7 @@ export const Text = ({
       fontWeight={weight}
       textAlign={textAlign}
       textTransform={transform}
+      textDecoration={decoration}
     >
       {children}
     </Box>

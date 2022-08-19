@@ -21,7 +21,7 @@ const LikeButton = ({ slug }: { slug: string }): JSX.Element | null => {
   };
 
   if (!mounted) return null;
-  1;
+
   return (
     <Button disabled={liked} onClick={onLike}>
       <Heart />

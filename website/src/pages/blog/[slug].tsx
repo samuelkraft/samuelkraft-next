@@ -11,7 +11,7 @@ import dynamic from "next/dynamic";
 import CustomImage from "components/Image";
 import { NowPlayingIcon } from "components/NowPlaying";
 import PostList, { PostImage } from "components/PostList";
-import { Box, Button, Alert, Text, Stack } from "design-system";
+import { Box, Button, Alert, Text, Stack, Spacer } from "design-system";
 import { vars } from "design-system/src/styles/vars.css";
 import Image from "next/image";
 import HitCounter from "components/HitCounter";
@@ -144,9 +144,13 @@ const Post = ({ post, related }: PostProps): JSX.Element => {
         <Box as="article">
           <MDXContent components={components} />
         </Box>
-        <LikeButton slug={post.slug} />
-        <Tags tags={post.tags} />
-        <Subscribe />
+        <Stack space={9} direction="column" align="center">
+          <LikeButton slug={post.slug} />
+          <Tags tags={post.tags} />
+
+          <Subscribe />
+        </Stack>
+        <Spacer space={5} />
         {related.length > 0 && (
           <>
             <Text as="h2">Related Posts</Text>

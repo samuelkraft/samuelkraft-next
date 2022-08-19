@@ -4,7 +4,7 @@ import {
   createThemeContract,
 } from "@vanilla-extract/css";
 
-import { blue, blueDark, sand, sandDark, red, redDark } from "@radix-ui/colors";
+import { sand, sandDark, red, redDark } from "@radix-ui/colors";
 
 export const radii = {
   none: "0",
