@@ -5,6 +5,8 @@ import * as styles from "./Layout.css";
 import Navigation from "./Navigation";
 import Footer from "./Footer";
 
+const Gradient = () => <div className={styles.gradient} />;
+
 type GrainContextType = {
   grain: number;
   setGrain: (grain: number) => void;
@@ -30,11 +32,11 @@ const getStrength = (grain: number) => {
   }
 };
 
-const Background = () => {
+const Grain = () => {
   const { grain } = useContext(GrainContext);
   return (
     <>
-      <div className={styles.background} />
+      <div className={styles.grain} />
       <svg
         width="0"
         height="0"
@@ -76,9 +78,12 @@ const Layout = ({
       }}
     >
       <Box paddingTop={10}>
-        <Background />
+        <Grain />
+        <Gradient />
         <Container width={size === "small" ? "blog" : "site"}>
-          <Box paddingTop={6}>{children}</Box>
+          <Box paddingTop={6} zIndex="1" position="relative">
+            {children}
+          </Box>
         </Container>
         <Navigation />
         <Footer />
