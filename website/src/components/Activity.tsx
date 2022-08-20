@@ -3,24 +3,29 @@ import convertPolyline from "@mapbox/polyline";
 import Map from "./Map";
 import { useState } from "react";
 
-const getSpeedForSportType = (speed: number, sportType: string) => {
+const getSpeedForSportType = (
+  speed: number,
+  sportType: string,
+  custom?: string
+) => {
   switch (sportType) {
     case "Swim":
       return {
         name: "Pace",
-        // km/h to minutes per 100m
-        value: `${(speed * 3.6) / 100}/100m`,
+        // m/s to min/100m
+        value: custom,
       };
     case "Run":
-      const elapsedTime = 44 / 7;
-      // const minutes = speed/
+      const pace = 1 / (speed * 0.06);
       return {
         name: "Pace",
-        value: `${(0.06 / speed).toFixed(1)}/min`,
+        // m/s to min/km
+        value: `${Math.floor(pace)}:${Math.floor((pace % 1) * 60)}/km`,
       };
     default:
       return {
         name: "Speed",
+        // m/s to km/h
         value: `${(speed * 3.6).toFixed(1)} km/h`,
       };
   }
@@ -39,6 +44,13 @@ const Activity = ({ activity }: ActivityProps) => {
     ? convertPolyline.toGeoJSON(summary_polyline)
     : null;
 
+  // Calculate swim pace
+  // TODO: Move inside getSpeedForSportType calculating from activity.average_speed
+  const paceInSeconds = (activity.moving_time / activity.distance) * 100;
+  const minutes = Math.floor(paceInSeconds / 60);
+  const seconds = Math.round(paceInSeconds - minutes * 60);
+  const swimPace = `${minutes}:${seconds}/100m`;
+
   const getFormattedStats = () => {
     return [
       {
@@ -48,7 +60,11 @@ const Activity = ({ activity }: ActivityProps) => {
             ? `${distance}m`
             : (distance / 1000).toFixed(2) + "km",
       },
-      getSpeedForSportType(activity.average_speed, activity.sport_type),
+      getSpeedForSportType(
+        activity.average_speed,
+        activity.sport_type,
+        swimPace
+      ),
       {
         name: "Duration",
         value: new Date(activity.moving_time * 1000)
