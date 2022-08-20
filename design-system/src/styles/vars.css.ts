@@ -68,8 +68,8 @@ export const fontWeights = {
 
 export const fontSizes = {
   huge: "5rem", // 80px
-  xxxlarge: "2.375rem", // 38px
-  xxlarge: "2rem", // 32px
+  xxxlarge: "2.25rem", // 36px
+  xxlarge: "1.875rem", // 30px
   xlarge: "1.75rem", // 28px
   large: "1.5rem", // 24px
   base: "1.25rem", // 20px

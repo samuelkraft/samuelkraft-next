@@ -52,6 +52,26 @@ const CustomLink = (props: { href: string }) => {
 const components = {
   Head,
   a: CustomLink,
+  h2: (props: any) => (
+    <Box marginTop={6} marginBottom={2}>
+      <Text as="h2" weight="bold" {...props} />
+    </Box>
+  ),
+  pre: (props: any) => {
+    return (
+      <Box
+        as="pre"
+        padding={6}
+        borderRadius="medium"
+        backgroundColor="code"
+        color="white"
+        marginY={6}
+        {...props}
+      />
+    );
+  },
+  code: (props: any) => <Text as="code" {...props} />,
+  p: Text,
   Image: CustomImage,
   Alert,
   Link: CustomLink,
@@ -131,7 +151,7 @@ const Post = ({ post, related }: PostProps): JSX.Element => {
           {post.image && <PostImage src={post.image} alt={post.title} />}
           <Stack space={2} direction="column">
             <Text as="h1">{post.title}</Text>
-            <Text>
+            <Text color="textSecondary">
               Published on{" "}
               <time dateTime={post.publishedAt}>{formattedPublishDate}</time>
               {post.updatedAt ? ` (Updated ${formattedUpdatedDate})` : ""}{" "}
@@ -141,9 +161,12 @@ const Post = ({ post, related }: PostProps): JSX.Element => {
           </Stack>
         </Stack>
 
-        <Box as="article">
+        <Stack as="article" space={3} direction="column">
           <MDXContent components={components} />
-        </Box>
+          {/* Stack requires multiple children and doesn't know MDXContent renders that */}
+          <></>
+        </Stack>
+
         <Stack space={9} direction="column" align="center">
           <LikeButton slug={post.slug} />
           <Tags tags={post.tags} />

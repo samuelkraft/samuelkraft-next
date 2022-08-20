@@ -42,7 +42,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Box paddingY={9}>
-        <Stack space={3} direction="column">
+        <Stack space={2} direction="column">
           <Stack space={5} direction="column">
             <Image
               src={avatar}
@@ -58,8 +58,9 @@ const Home: NextPage = () => {
             />
             <Text as="h1">Hi, I’m Samuel</Text>
           </Stack>
-          <Text size={{ small: "base", large: "large" }}>
-            I design &amp; build delightful interfaces.{" "}
+          <Text size="base" color="textSecondary">
+            I design &amp; build delightful interfaces.
+            <br />
             <Link href="/about">Learn more →</Link>
           </Text>
         </Stack>

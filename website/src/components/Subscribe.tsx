@@ -40,7 +40,7 @@ const Subscribe = ({ title, header = true, className }: SubscribeProps) => {
 
   if (query.confirmed) {
     return (
-      <Box backgroundColor="card" padding={6} borderRadius="huge">
+      <Box backgroundColor="card" padding={7} borderRadius="huge">
         <Stack as="header">
           <CheckCircle />
           <Text as="h3">Thanks for confirming your email!</Text>
@@ -54,11 +54,11 @@ const Subscribe = ({ title, header = true, className }: SubscribeProps) => {
   }
 
   return (
-    <Box backgroundColor="card" padding={6} borderRadius="huge">
+    <Box backgroundColor="card" padding={7} borderRadius="huge">
       <form onSubmit={subscribe}>
-        <Stack direction="column" space={3}>
+        <Stack direction="column" space={6}>
           {header && (
-            <>
+            <Stack direction="column" space={3}>
               <Stack as="header" align="center" space={3}>
                 <Send />
                 <Text as="h3">
@@ -76,7 +76,7 @@ const Subscribe = ({ title, header = true, className }: SubscribeProps) => {
                   No spam, unsubcribe at any time!
                 </Text>
               </Box>
-            </>
+            </Stack>
           )}
           <Stack space={4}>
             <Input

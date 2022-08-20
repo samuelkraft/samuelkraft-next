@@ -42,6 +42,9 @@ const getFontSize = (
       return { small: "xlarge", large: "xxlarge" };
     case "h3":
       return { small: "large", large: "large" };
+    case "code": {
+      return "small";
+    }
     case "p":
     default:
       return "base";

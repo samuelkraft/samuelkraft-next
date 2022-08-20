@@ -24,6 +24,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
       borderRadius="medium"
       paddingX={3}
       className={styles.input}
+      fontSize="base"
       {...(rest as BoxProps)}
     />
   );

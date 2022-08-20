@@ -31,8 +31,8 @@ const Post = ({
             <Text as="h2">{title}</Text>
           </Link>
           <Stack direction="column" space={3}>
-            <Text size="base">{summary}</Text>
-            <Text size="small" color="textSecondary">
+            <Text>{summary}</Text>
+            <Text color="textSecondary">
               Published on{" "}
               <time dateTime={publishedAt}>{formatDate(publishedAt)}</time>{" "}
               &middot; {readTime.text}

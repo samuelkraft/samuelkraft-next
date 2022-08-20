@@ -108,7 +108,7 @@ const Navigation = () => {
       className={styles.wrapper}
       as="nav"
       backgroundColor="backgroundOpaque"
-      padding={{ small: 3, medium: 2 }}
+      padding={3}
       borderRadius={{ small: "none", medium: "rounded" }}
       boxShadow={{ small: "border", medium: "medium" }}
       position="fixed"
