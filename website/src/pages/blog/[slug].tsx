@@ -13,7 +13,6 @@ import { NowPlayingIcon } from "components/NowPlaying";
 import PostList, { PostImage } from "components/PostList";
 import { Box, Button, Alert, Text, Stack, Spacer } from "design-system";
 import { vars } from "design-system/src/styles/vars.css";
-import Image from "next/image";
 import HitCounter from "components/HitCounter";
 import Tags from "components/Tags";
 import LikeButton from "components/LikeButton";
@@ -22,6 +21,9 @@ import Subscribe from "components/Subscribe";
 // Utils
 import { pick } from "@contentlayer/client";
 import { allPosts, Post as PostType } from "contentlayer/generated";
+import { AlertProps } from "design-system/src/components/Alert";
+import { TextProps } from "design-system/src/components/Text";
+import { BoxProps } from "design-system/src/components/Box";
 
 const SegmentedControl = dynamic(
   () => import("components/blog/SegmentedControl")
@@ -72,8 +74,17 @@ const components = {
   },
   code: (props: any) => <Text as="code" {...props} />,
   p: Text,
+  li: (props: BoxProps) => (
+    <Box as="li" {...props}>
+      <Text>{props.children}</Text>
+    </Box>
+  ),
   Image: CustomImage,
-  Alert,
+  Alert: (props: AlertProps) => (
+    <Box marginY={6}>
+      <Alert {...props} />
+    </Box>
+  ),
   Link: CustomLink,
   NowPlayingIcon,
   SegmentedControl,

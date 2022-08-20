@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 
 // Components
 import PostList from "components/PostList";
-import { Text } from "design-system";
+import { Stack, Text } from "design-system";
 
 // Utils
 import { pick } from "@contentlayer/client";
@@ -25,12 +25,12 @@ const Tag = ({ posts }: TagProps): JSX.Element => {
   );
 
   return (
-    <>
+    <Stack direction="column" space={9}>
       <Text as="h1">
         Posts &amp; tutorials about <FormattedSlug />
       </Text>
       <PostList posts={posts} />
-    </>
+    </Stack>
   );
 };
 
@@ -69,7 +69,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
         "readingTime",
       ])
     );
-  return { props: { posts } };
+  return { props: { posts, layout: "small" } };
 };
 
 export default Tag;

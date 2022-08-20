@@ -8,6 +8,7 @@ import logoTrailRoutes from "/public/logos/trail-routes.png";
 import logoNotion from "/public/logos/notion.png";
 import logoStrength from "/public/logos/strength.png";
 import avatar from "/public/avatar.png";
+import { ReactNode } from "react";
 
 const workplaces = [
   {
@@ -87,32 +88,40 @@ const Workplace = ({ imageSrc, title, description }: WorkplaceProps) => {
   );
 };
 
+type WorkplacesProps = {
+  title: string;
+  description: string;
+  items: WorkplaceProps[];
+};
+
+const Workplaces = ({ title, description, items }: WorkplacesProps) => (
+  <Stack direction="column" space={6}>
+    <Stack direction="column" space={2}>
+      <Text as="h2">{title}</Text>
+      <Text>{description}</Text>
+    </Stack>
+    <Stack direction="column" space={6}>
+      {items.map(Workplace)}
+    </Stack>
+  </Stack>
+);
+
 const WorkHistory = () => (
   <Stack direction="column" space={8}>
-    <Stack direction="column" space={6}>
-      <Stack direction="column" space={2}>
-        <Text as="h2">Work experience</Text>
-        <Text>
-          {new Date().getFullYear() - 2013}+ years experience working with
-          startups, both in design &amp; egineering.
-        </Text>
-      </Stack>
-      <Stack direction="column" space={6}>
-        {workplaces.map(Workplace)}
-      </Stack>
-    </Stack>
-    <Stack direction="column" space={6}>
-      <Stack direction="column" space={2}>
-        <Text as="h2">Side Projects</Text>
-        <Text>
-          I enjoy hacking on something on the side, especially things I use
-          personally like Trail Routes or for learning new things.
-        </Text>
-      </Stack>
-      <Stack direction="column" space={6}>
-        {sideProjects.map(Workplace)}
-      </Stack>
-    </Stack>
+    <Workplaces
+      title="Work experience"
+      description={`${
+        new Date().getFullYear() - 2013
+      }+ years experience working with
+      startups, both in design & egineering.`}
+      items={workplaces}
+    />
+    <Workplaces
+      title="Side projects"
+      description="I enjoy hacking on something on the side, especially things I use
+      personally like Trail Routes or for learning new things."
+      items={sideProjects}
+    />
   </Stack>
 );
 

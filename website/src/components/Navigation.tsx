@@ -15,7 +15,7 @@ import Link from "components/Link";
 import { useRouter } from "next/router";
 import { forwardRef, useContext, useState } from "react";
 import { IconBlog, IconHome, IconTheme, IconUser } from "./Icons";
-import { GrainContext } from "./Layout";
+import { GrainContext } from "components/Grain";
 
 import * as styles from "./Navigation.css";
 

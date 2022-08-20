@@ -40,7 +40,7 @@ const Blog = ({ posts }: BlogProps): JSX.Element => {
       <Stack direction="column" space={9}>
         <Stack direction="column" space={3}>
           <Text as="h1">Blog</Text>
-          <Text as="h2" size="base" weight="normal">
+          <Text as="h2" size="base" weight="normal" color="textSecondary">
             I write about development, design, React, CSS, animation and more!
           </Text>
         </Stack>
