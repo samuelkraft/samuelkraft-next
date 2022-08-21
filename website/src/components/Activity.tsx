@@ -1,19 +1,37 @@
 import { Box, MotionBox, Stack, Text } from "design-system";
 import convertPolyline from "@mapbox/polyline";
 import Map from "./Map";
-import { useState } from "react";
 import { IconBike, IconRun, IconSwim, IconWalk } from "./Icons";
 
-const activityIcons = {
-  Swim: IconSwim,
-  Bike: IconBike,
-  Run: IconRun,
-  Hike: IconWalk,
+type Activity = {
+  id: string;
+  name: string;
+  start_date: string;
+  moving_time: number;
+  sport_type: "Swim" | "Run" | "Bike" | "Hike";
+  distance: number;
+  average_speed: number;
+  map: {
+    summary_polyline: string;
+  };
+};
+
+const getIconForSportType = (sportType: Activity["sport_type"]) => {
+  switch (sportType) {
+    case "Swim":
+      return IconSwim;
+    case "Run":
+      return IconRun;
+    case "Bike":
+      return IconBike;
+    default:
+      return IconWalk;
+  }
 };
 
 const getSpeedForSportType = (
   speed: number,
-  sportType: string,
+  sportType: Activity["sport_type"],
   custom?: string
 ) => {
   switch (sportType) {
@@ -39,19 +57,7 @@ const getSpeedForSportType = (
   }
 };
 
-type ActivityProps = {
-  activity: any;
-};
-
-const Activity = ({ activity }: ActivityProps) => {
-  const {
-    distance,
-    map: { summary_polyline },
-  } = activity;
-  const geoJson = summary_polyline
-    ? convertPolyline.toGeoJSON(summary_polyline)
-    : null;
-
+const getFormattedStats = (activity: Activity) => {
   // Calculate swim pace
   // TODO: Move inside getSpeedForSportType calculating from activity.average_speed
   const paceInSeconds = (activity.moving_time / activity.distance) * 100;
@@ -59,33 +65,38 @@ const Activity = ({ activity }: ActivityProps) => {
   const seconds = Math.round(paceInSeconds - minutes * 60);
   const swimPace = `${minutes}:${seconds}/100m`;
 
-  const getFormattedStats = () => {
-    return [
-      {
-        name: "Distance",
-        value:
-          distance < 1000
-            ? `${distance}m`
-            : (distance / 1000).toFixed(2) + "km",
-      },
-      getSpeedForSportType(
-        activity.average_speed,
-        activity.sport_type,
-        swimPace
-      ),
-      {
-        name: "Duration",
-        value: new Date(activity.moving_time * 1000)
-          .toISOString()
-          .substring(14, 19),
-      },
-    ];
-  };
+  const { distance } = activity;
+  return [
+    {
+      name: "Distance",
+      value:
+        distance < 1000 ? `${distance}m` : (distance / 1000).toFixed(2) + "km",
+    },
+    getSpeedForSportType(activity.average_speed, activity.sport_type, swimPace),
+    {
+      name: "Duration",
+      value: new Date(activity.moving_time * 1000)
+        .toISOString()
+        .substring(14, 19),
+    },
+  ];
+};
 
-  const [isOpen, setIsOpen] = useState(false);
+type ActivityProps = {
+  activity: Activity;
+};
 
-  const Icon = activityIcons[activity.sport_type];
+const Activity = ({ activity }: ActivityProps) => {
+  console.log("activity", activity);
+  const {
+    map: { summary_polyline },
+  } = activity;
+  const geoJson = summary_polyline
+    ? convertPolyline.toGeoJSON(summary_polyline)
+    : null;
 
+  const Icon = getIconForSportType(activity.sport_type);
+  const stats = getFormattedStats(activity);
   return (
     <MotionBox
       // as="a"
@@ -108,6 +119,7 @@ const Activity = ({ activity }: ActivityProps) => {
           </Text>
           <Text weight="bold">
             <Box
+              as="span"
               display="inline-flex"
               marginRight={2}
               position="relative"
@@ -124,7 +136,7 @@ const Activity = ({ activity }: ActivityProps) => {
           </Box>
         )}
         <Stack space={6}>
-          {getFormattedStats().map(({ name, value }) => (
+          {stats.map(({ name, value }) => (
             <Stack direction="column" key={name}>
               <Text color="textSecondary" size="small">
                 {name}
