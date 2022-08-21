@@ -197,8 +197,7 @@ const WorkHistory = ({ repos }: WorkHistoryProps) => {
       />
       <Workplaces
         title="Side projects"
-        description="I enjoy hacking on something on the side, especially things I use
-      personally like Trail Routes or for learning new things."
+        description="I enjoy hacking on the side, especially things that are useful to me personally like Trail Routes or just for learning new things."
         items={sideProjects}
       />
     </Stack>
