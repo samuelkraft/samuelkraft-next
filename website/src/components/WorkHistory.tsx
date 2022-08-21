@@ -109,7 +109,7 @@ const Workplace = ({
         <Box
           display="block"
           backgroundColor={{ hover: "card" }}
-          borderRadius="large"
+          borderRadius="medium"
           paddingX={4}
           marginX="-4"
           paddingY={3}

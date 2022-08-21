@@ -8,6 +8,7 @@ import PostList from "components/PostList";
 // Utils
 import { pick } from "@contentlayer/client";
 import { allPosts, Post } from "contentlayer/generated";
+import PageHeader from "components/PageHeader";
 
 type BlogProps = {
   posts: Post[];
@@ -38,12 +39,10 @@ const Blog = ({ posts }: BlogProps): JSX.Element => {
         }}
       />
       <Stack direction="column" space={9}>
-        <Stack direction="column" space={3}>
-          <Text as="h1">Blog</Text>
-          <Text as="h2" size="base" weight="normal" color="textSecondary">
-            I write about development, design, React, CSS, animation and more!
-          </Text>
-        </Stack>
+        <PageHeader
+          title="Blog"
+          description="I write about development, design, React, CSS, animation and more!"
+        />
         <PostList posts={sortedPosts} />
       </Stack>
     </>
