@@ -1,3 +1,5 @@
+import { ActivityType } from "components/Activity";
+
 const clientId = process.env.STRAVA_CLIENT_ID;
 const clientSecret = process.env.STRAVA_CLIENT_SECRET;
 const refreshToken = process.env.STRAVA_REFRESH_TOKEN;
@@ -34,7 +36,7 @@ export const getActivities = async () => {
   const json = await response.json();
 
   const publicActivities = json.filter(
-    (activity) => activity.visibility === "everyone"
+    (activity: ActivityType) => activity.visibility === "everyone"
   );
 
   return publicActivities;

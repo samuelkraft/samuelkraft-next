@@ -169,7 +169,6 @@ const responsiveProperties = defineProperties({
 const unresponsiveProperties = defineProperties({
   properties: {
     cursor: ["default", "pointer", "not-allowed", "help"],
-    target: ["_blank", "_self", "_parent", "_top"],
   },
 });
 

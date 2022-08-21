@@ -1,12 +1,13 @@
 import { Box, Text, Spacer, Stack } from "design-system";
 import Link from "components/Link";
 import { BoxProps, MotionBox } from "design-system/src/components/Box";
+import Image, { StaticImageData } from "next/image";
 
 export type ProjectType = {
   title: string;
   description: string;
   slug: string;
-  media: string;
+  media: StaticImageData;
   aspectRatio?: BoxProps["aspectRatio"];
 };
 
@@ -21,11 +22,18 @@ export const Project = ({
     <MotionBox as="span" whileHover="hover">
       <Stack space={4} direction="column">
         <Box
-          backgroundColor="textSecondary"
+          backgroundColor="black"
           width="full"
           aspectRatio={aspectRatio}
           borderRadius="huge"
-        />
+          position="relative"
+        >
+          {media && (
+            <Box position="absolute" bottom={0} left={4} right={4}>
+              <Image src={media} layout="responsive" alt={title} />
+            </Box>
+          )}
+        </Box>
         <Text as="h3">
           <Stack
             as="span"

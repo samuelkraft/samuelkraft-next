@@ -1,3 +1,4 @@
+import { Text } from "design-system";
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
 import { projects } from "..";
 import type { ProjectType } from "../../components/Project";
@@ -7,7 +8,7 @@ type ProjectPageProps = {
 };
 
 const ProjectPage = ({ project }: ProjectPageProps) => {
-  return <>{project.title}</>;
+  return <Text as="h1">{project.title}</Text>;
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {

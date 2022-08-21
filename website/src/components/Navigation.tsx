@@ -166,7 +166,6 @@ const Navigation = () => {
           );
         })}
         <Box width={1} height={6} backgroundColor="border" />
-
         <ThemeButton />
       </Stack>
     </Box>

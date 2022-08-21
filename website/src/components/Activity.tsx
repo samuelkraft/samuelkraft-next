@@ -3,7 +3,7 @@ import convertPolyline from "@mapbox/polyline";
 import Map from "./Map";
 import { IconBike, IconRun, IconSwim, IconWalk } from "./Icons";
 
-type Activity = {
+export type ActivityType = {
   id: string;
   name: string;
   start_date: string;
@@ -11,12 +11,13 @@ type Activity = {
   sport_type: "Swim" | "Run" | "Bike" | "Hike";
   distance: number;
   average_speed: number;
+  visibility: "everyone" | "followers" | "me";
   map: {
     summary_polyline: string;
   };
 };
 
-const getIconForSportType = (sportType: Activity["sport_type"]) => {
+const getIconForSportType = (sportType: ActivityType["sport_type"]) => {
   switch (sportType) {
     case "Swim":
       return IconSwim;
@@ -31,7 +32,7 @@ const getIconForSportType = (sportType: Activity["sport_type"]) => {
 
 const getSpeedForSportType = (
   speed: number,
-  sportType: Activity["sport_type"],
+  sportType: ActivityType["sport_type"],
   custom?: string
 ) => {
   switch (sportType) {
@@ -83,7 +84,7 @@ const getFormattedStats = (activity: Activity) => {
 };
 
 type ActivityProps = {
-  activity: Activity;
+  activity: ActivityType;
 };
 
 const Activity = ({ activity }: ActivityProps) => {

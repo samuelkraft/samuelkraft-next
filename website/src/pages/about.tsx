@@ -1,24 +1,26 @@
 import type { NextPage } from "next";
 import { Text, Stack, Grid, Box, Tooltip } from "design-system";
 
-import Photo from "components/Photo";
-
 import photoAvatar from "/public/photos/hey_thats_me.jpg";
 import photoRace from "/public/photos/sometimes_i_race.jpg";
 import photoTravel from "/public/photos/travelling.jpg";
+
+import Photo from "components/Photo";
 import WorkHistory from "components/WorkHistory";
 import NowPlaying from "components/NowPlaying";
-import Activity from "components/Activity";
+import Activity, { ActivityType } from "components/Activity";
 import DesignBuildSticker from "components/DesignBuildSticker";
-
-import { getActivities } from "lib/strava";
 import Link from "components/Link";
 
+import { getActivities } from "lib/strava";
+import { getRepos, Repo } from "lib/github";
+
 type AboutProps = {
-  lastActivity: any;
+  lastActivity: ActivityType;
+  repos: Repo[];
 };
 
-const About: NextPage<AboutProps> = ({ lastActivity }) => {
+const About: NextPage<AboutProps> = ({ lastActivity, repos }) => {
   return (
     <Grid gap={8} templateColumns={{ medium: "repeat(2, 1fr)" }}>
       <Box isolation="isolate" position="relative">
@@ -112,7 +114,7 @@ const About: NextPage<AboutProps> = ({ lastActivity }) => {
           </Text>
         </Stack>
 
-        <WorkHistory />
+        <WorkHistory repos={repos} />
       </Stack>
     </Grid>
   );
@@ -120,9 +122,11 @@ const About: NextPage<AboutProps> = ({ lastActivity }) => {
 
 export const getStaticProps = async () => {
   const activities = await getActivities();
+  const repos = await getRepos();
   return {
     props: {
       lastActivity: activities[0],
+      repos,
     },
   };
 };

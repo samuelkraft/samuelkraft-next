@@ -4,37 +4,42 @@ import { Project, ProjectType } from "components/Project";
 import avatar from "/public/avatar.png";
 import Image from "next/image";
 import Link from "components/Link";
+import bitrefillImage from "/public/projects/bitrefill.png";
+import tracklibImage from "/public/projects/tracklib.png";
+import routesImage from "/public/projects/routes.png";
+import styleroomImage from "/public/projects/styleroom.png";
+import designSystemImage from "/public/projects/designsystem.png";
 
 export const projects: ProjectType[] = [
   {
     title: "Bitrefill",
     description: "Live on Crypto",
     slug: "bitrefill",
-    media: "",
+    media: bitrefillImage,
   },
   {
     title: "Tracklib",
     description: "Clear samples from real music",
     slug: "tracklib",
-    media: "",
+    media: tracklibImage,
   },
   {
     title: "Trail Routes",
     description: "Curated running routes",
     slug: "trail-routes",
-    media: "",
+    media: routesImage,
   },
   {
     title: "Styleroom",
     description: "Home design Inspiration",
     slug: "styleroom",
-    media: "",
+    media: styleroomImage,
   },
   {
     title: "Design System",
     description: "TBD",
     slug: "design-system",
-    media: "",
+    media: designSystemImage,
   },
 ];
 

@@ -104,6 +104,7 @@ export const colors = createThemeContract({
   brandLight: null,
   brand: null,
   white: null,
+  black: null,
 });
 
 export const lightTheme = createTheme(colors, {
@@ -118,6 +119,7 @@ export const lightTheme = createTheme(colors, {
   brandLight: red.red5,
   brand: red.red10,
   white: "white",
+  black: "black",
 });
 
 export const darkTheme = createTheme(colors, {
@@ -132,6 +134,7 @@ export const darkTheme = createTheme(colors, {
   brandLight: redDark.red3,
   brand: redDark.red10,
   white: "white",
+  black: "black",
 });
 
 export const vars = { ...global, colors };

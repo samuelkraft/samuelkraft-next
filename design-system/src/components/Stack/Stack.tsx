@@ -8,6 +8,7 @@ export type StackProps = {
   direction?: BoxProps["flexDirection"];
   align?: BoxProps["alignItems"];
   justify?: BoxProps["justifyContent"];
+  width?: BoxProps["width"];
 };
 
 export const Stack = ({
@@ -17,6 +18,7 @@ export const Stack = ({
   direction,
   align,
   justify,
+  width,
 }: StackProps) => (
   <Box
     as={as}
@@ -25,6 +27,7 @@ export const Stack = ({
     alignItems={align}
     justifyContent={justify}
     gap={space}
+    width={width}
   >
     {children}
   </Box>
