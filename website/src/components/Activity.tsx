@@ -100,10 +100,10 @@ const Activity = ({ activity }: ActivityProps) => {
   const stats = getFormattedStats(activity);
   return (
     <MotionBox
-      // as="a"
-      // href={`https://www.strava.com/activities/${activity.id}`}
-      // target="_blank"
-      // rel="noreferrer noopener"
+      as="a"
+      href={`https://www.strava.com/activities/${activity.id}`}
+      target="_blank"
+      rel="noreferrer noopener"
       padding={6}
       boxShadow="medium"
       borderRadius="medium"
@@ -112,6 +112,7 @@ const Activity = ({ activity }: ActivityProps) => {
       style={{ width: 350 }}
       initial={{ rotate: -2 }}
       whileHover={{ y: -2 }}
+      cursor="pointer"
     >
       <Stack direction="column" space={6}>
         <Stack direction="column">

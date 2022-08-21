@@ -38,9 +38,12 @@ const MapComponent = ({ geoJson }: MapComponentProps) => {
           height: "100%",
           position: "absolute",
           inset: 0,
+          cursor: "default",
         }}
         mapStyle="mapbox://styles/mapbox/outdoors-v11"
         mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN}
+        scrollZoom={false}
+        doubleClickZoom={false}
       >
         <Source id="route" type="geojson" data={geoJson}>
           <Layer {...layerStyle} />
