@@ -4,9 +4,24 @@ import Link from "components/Link";
 import { formatDate } from "lib/formatdate";
 import Image from "next/image";
 
-export const PostImage = ({ src, alt }: { src: string; alt: string }) => (
+export const PostImage = ({
+  src,
+  alt,
+  priority,
+}: {
+  src: string;
+  alt: string;
+  priority?: boolean;
+}) => (
   <Box overflow="hidden" borderRadius="huge" boxShadow="border">
-    <Image src={src} alt={alt} width={2024} height={1012} layout="responsive" />
+    <Image
+      src={src}
+      alt={alt}
+      width={2024}
+      height={1012}
+      layout="responsive"
+      priority={priority}
+    />
   </Box>
 );
 

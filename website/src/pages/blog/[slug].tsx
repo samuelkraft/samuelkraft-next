@@ -159,7 +159,9 @@ const Post = ({ post, related }: PostProps): JSX.Element => {
       />
       <Stack space={7} direction="column">
         <Stack as="header" space={7} direction="column">
-          {post.image && <PostImage src={post.image} alt={post.title} />}
+          {post.image && (
+            <PostImage src={post.image} alt={post.title} priority />
+          )}
           <Stack space={2} direction="column">
             <Text as="h1">{post.title}</Text>
             <Text color="textSecondary">
@@ -172,7 +174,7 @@ const Post = ({ post, related }: PostProps): JSX.Element => {
           </Stack>
         </Stack>
 
-        <Stack as="article" space={3} direction="column">
+        <Stack as="article" space={4} direction="column">
           <MDXContent components={components} />
           {/* Stack requires multiple children and doesn't know MDXContent renders that */}
           <></>
