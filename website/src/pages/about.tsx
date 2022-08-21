@@ -60,7 +60,7 @@ const About: NextPage<AboutProps> = ({ lastActivity, repos }) => {
       </Box>
       <Stack direction="column" space={8}>
         <Stack direction="column" space={6}>
-          <Stack direction="column" space={2}>
+          <Stack direction="column" space={1}>
             <Text size="small" transform="uppercase" color="brand">
               About me
             </Text>
@@ -70,12 +70,8 @@ const About: NextPage<AboutProps> = ({ lastActivity, repos }) => {
             </Text>
           </Stack>
           <Text>
-            Hi there! I’m a designer/frontend developer hybrid that loves to
-            build great products with{" "}
-            <Link href="https://www.nngroup.com/articles/theory-user-delight/">
-              delightful interfaces ✨
-            </Link>
-            .
+            Hi there! I’m a designer &amp; frontend developer that loves to
+            build great products with delightful interfaces ✨
           </Text>
           <Text>
             Currently working at{" "}
@@ -90,9 +86,9 @@ const About: NextPage<AboutProps> = ({ lastActivity, repos }) => {
             Kits, UI Animation and making interfaces feel fun and human.
           </Text>
           <Text>
-            I grew up in Nacka just outside of Stockholm (the perfect distance
+            I grew up just outside of Stockholm, Sweden (the perfect distance
             from town while living next door to amazing nature 🏕) and come from
-            a background of studying Photography.
+            a background of studying photography.
           </Text>
           <Text>
             Outside of work I’m obsessed with{" "}
@@ -111,6 +107,10 @@ const About: NextPage<AboutProps> = ({ lastActivity, repos }) => {
               @thejetlagfamily
             </Link>{" "}
             ✈️).
+          </Text>
+          <Text>
+            Interested in working together? Reach out by{" "}
+            <Link href="mailto:samuelkraft@me.com">email</Link>.
           </Text>
         </Stack>
 

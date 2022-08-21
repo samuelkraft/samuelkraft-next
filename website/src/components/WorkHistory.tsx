@@ -7,8 +7,9 @@ import logoStyleroom from "/public/logos/styleroom.png";
 import logoTrailRoutes from "/public/logos/trail-routes.png";
 import logoNotion from "/public/logos/notion.png";
 import logoStrength from "/public/logos/strength.png";
+import logoBlogStats from "/public/logos/blogstats.png";
 import avatar from "/public/avatar.png";
-import { ReactNode } from "react";
+
 import { Repo } from "lib/github";
 import { IconFork, IconStar } from "./Icons";
 import Link from "./Link";
@@ -62,7 +63,11 @@ const Workplace = ({
           overflow="hidden"
           lineHeight="0"
           flexShrink={0}
-          boxShadow={title === "notion-blog-nextjs" ? "border" : undefined}
+          boxShadow={
+            title === "notion-blog-nextjs" || title === "Blog Stats"
+              ? "border"
+              : undefined
+          }
         >
           <Image
             src={imageSrc}
@@ -76,7 +81,7 @@ const Workplace = ({
           <Stack justify="space-between">
             <Text as="h4">{title}</Text>
             <Stack space={5}>
-              {stars && (
+              {stars ? (
                 <Stack space={2} align="center">
                   <Box color="textSecondary">
                     <IconStar width={16} height={16} />
@@ -85,8 +90,8 @@ const Workplace = ({
                     {stars}
                   </Text>
                 </Stack>
-              )}
-              {forks && (
+              ) : null}
+              {forks ? (
                 <Stack space={2} align="center">
                   <Box color="textSecondary">
                     <IconFork width={16} height={16} />
@@ -95,7 +100,7 @@ const Workplace = ({
                     {forks}
                   </Text>
                 </Stack>
-              )}
+              ) : null}
             </Stack>
           </Stack>
           <Text color="textSecondary">{description}</Text>
@@ -178,6 +183,14 @@ const WorkHistory = ({ repos }: WorkHistoryProps) => {
       forks: getRepoFromName("samuelkraft-next", repos)?.forks_count,
     },
     {
+      imageSrc: logoBlogStats,
+      title: "Blog Stats",
+      description: "SwiftUI app for tracking likes & visits to my blog",
+      url: getRepoFromName("BlogStats", repos)?.html_url,
+      stars: getRepoFromName("BlogStats", repos)?.stargazers_count,
+      forks: getRepoFromName("BlogStats", repos)?.forks_count,
+    },
+    {
       imageSrc: logoStrength,
       title: "Apple Watch Strength ",
       description: "iOS & WatchOS strength tracking app design",
@@ -197,7 +210,7 @@ const WorkHistory = ({ repos }: WorkHistoryProps) => {
       />
       <Workplaces
         title="Side projects"
-        description="I enjoy hacking on the side, especially things that are useful to me personally like Trail Routes or just for learning new things."
+        description="I enjoy hacking on the side, especially things that are useful to me personally or just to learn new things."
         items={sideProjects}
       />
     </Stack>
