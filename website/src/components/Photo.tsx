@@ -10,6 +10,7 @@ type PhotoProps = {
   height: number;
   rotate?: number;
   zIndex?: number;
+  flipDirection?: "left" | "right";
 };
 
 const Photo = ({
@@ -20,6 +21,7 @@ const Photo = ({
   height = 480,
   rotate,
   zIndex,
+  flipDirection,
 }: PhotoProps) => {
   const fileName = `${src.src.split("/").at(-1)?.split(".")[0]}.jpg`;
   return (
@@ -43,7 +45,7 @@ const Photo = ({
         variants={{
           flipped: {
             scale: 1.1,
-            rotateY: 180,
+            rotateY: flipDirection === "right" ? -180 : 180,
             rotateX: 5,
           },
         }}
