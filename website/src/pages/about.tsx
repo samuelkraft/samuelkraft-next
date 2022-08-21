@@ -92,7 +92,7 @@ const About: NextPage<AboutProps> = ({ lastActivity, repos }) => {
           </Text>
           <Text>
             Outside of work I’m obsessed with{" "}
-            <Tooltip content="Triathlon, Nordic Skiing, Swimrun, etc…">
+            <Tooltip content="Triathlon, Skiing, Swimrun, etc…">
               <Box
                 as="em"
                 textDecoration="dotted underline"
