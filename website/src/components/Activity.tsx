@@ -2,6 +2,14 @@ import { Box, MotionBox, Stack, Text } from "design-system";
 import convertPolyline from "@mapbox/polyline";
 import Map from "./Map";
 import { useState } from "react";
+import { IconBike, IconRun, IconSwim, IconWalk } from "./Icons";
+
+const activityIcons = {
+  Swim: IconSwim,
+  Bike: IconBike,
+  Run: IconRun,
+  Hike: IconWalk,
+};
 
 const getSpeedForSportType = (
   speed: number,
@@ -76,6 +84,8 @@ const Activity = ({ activity }: ActivityProps) => {
 
   const [isOpen, setIsOpen] = useState(false);
 
+  const Icon = activityIcons[activity.sport_type];
+
   return (
     <MotionBox
       // as="a"
@@ -97,7 +107,15 @@ const Activity = ({ activity }: ActivityProps) => {
             Last workout
           </Text>
           <Text weight="bold">
-            [{activity.sport_type}] {activity.name}
+            <Box
+              display="inline-flex"
+              marginRight={2}
+              position="relative"
+              top={2}
+            >
+              <Icon />
+            </Box>
+            {activity.name}
           </Text>
         </Stack>
         {geoJson && (
