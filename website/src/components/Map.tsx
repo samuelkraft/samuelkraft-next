@@ -14,9 +14,13 @@ const layerStyle = {
     "line-color": "red",
     "line-width": 4,
   },
+} as any;
+
+type MapComponentProps = {
+  geoJson: any;
 };
 
-const MapComponent = ({ geoJson }) => {
+const MapComponent = ({ geoJson }: MapComponentProps) => {
   if (!geoJson) {
     return null;
   }
