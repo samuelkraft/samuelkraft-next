@@ -122,7 +122,10 @@ const Navigation = () => {
         justify={{ small: "space-around", medium: "center" }}
       >
         {links.map((link) => {
-          const isOpen = router.pathname === link.url;
+          const isOpen =
+            link.url == "/"
+              ? router.pathname === link.url
+              : router.pathname.startsWith(link.url);
           return (
             <Tooltip key={link.name} content={link.name}>
               <Box>
