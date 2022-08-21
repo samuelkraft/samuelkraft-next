@@ -1,4 +1,5 @@
 import { Box, MotionBox, vars } from "design-system";
+import Grain from "./Grain";
 
 const DesignBuildSticker = () => {
   return (
@@ -7,7 +8,9 @@ const DesignBuildSticker = () => {
       backgroundColor="brandLight"
       borderRadius="rounded"
       width="auto"
+      position="relative"
       style={{ cursor: "grab" }}
+      overflow="hidden"
       drag
       whileTap={{ scale: 1.2, cursor: "grabbing" }}
       whileDrag={{ scale: 1.2, cursor: "grabbing" }}
@@ -58,6 +61,7 @@ const DesignBuildSticker = () => {
           <textPath xlinkHref="#textcircle">DESIGN → BUILD →&nbsp;</textPath>
         </Box>
       </svg>
+      <Grain variant="absolute" />
     </MotionBox>
   );
 };

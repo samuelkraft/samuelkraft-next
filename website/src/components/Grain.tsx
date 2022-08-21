@@ -1,4 +1,6 @@
+import { Box } from "design-system";
 import { createContext, useContext } from "react";
+import cn from "classnames";
 import * as styles from "./Grain.css";
 
 type GrainContextType = {
@@ -26,11 +28,23 @@ const getStrength = (grain: number) => {
   }
 };
 
-const Grain = () => {
+type GrainProps = {
+  variant?: "absolute" | "fixed";
+};
+
+const Grain = ({ variant }: GrainProps) => {
   const { grain } = useContext(GrainContext);
   return (
     <>
-      <div className={styles.grain} />
+      <Box
+        className={cn(styles.grain, variant === "absolute" && styles.absolute)}
+        position={variant === "absolute" ? "absolute" : "fixed"}
+        top={0}
+        left={0}
+        width={variant === "absolute" ? "full" : "viewWidth"}
+        height="full"
+        backgroundColor="background"
+      />
       <svg
         width="0"
         height="0"
