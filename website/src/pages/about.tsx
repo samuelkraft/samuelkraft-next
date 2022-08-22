@@ -128,6 +128,7 @@ export const getStaticProps = async () => {
       lastActivity: activities[0],
       repos,
     },
+    revalidate: 3600, // 1 hour
   };
 };
 
