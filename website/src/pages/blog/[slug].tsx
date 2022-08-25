@@ -175,7 +175,11 @@ const Post = ({ post, related }: PostProps): JSX.Element => {
           <Stack space={2} direction="column">
             <Text as="h1">{post.title}</Text>
             <Stack align="center" space={3}>
-              <IconAvatar />
+              <Text lineHeight="1">
+                <Link href="/">
+                  <IconAvatar />
+                </Link>
+              </Text>
               <Stack space={5}>
                 <Text color="textSecondary">
                   Samuel Kraft on{" "}
