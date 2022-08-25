@@ -1,4 +1,6 @@
+import { Stack, Text } from "design-system";
 import { useEffect, useState } from "react";
+import { IconEye } from "./Icons";
 
 const HitCounter = ({ slug }: { slug: string }): JSX.Element => {
   const [hits, setHits] = useState(undefined);
@@ -20,9 +22,14 @@ const HitCounter = ({ slug }: { slug: string }): JSX.Element => {
   }, [slug]);
 
   return (
-    <>
-      <span> &middot;</span> {typeof hits === "undefined" ? "--" : hits} Views
-    </>
+    <Stack space={3} align="center">
+      <Text color="textSecondary">
+        <IconEye />
+      </Text>
+      <Text color="textSecondary">
+        {typeof hits === "undefined" ? "--" : hits} Views
+      </Text>
+    </Stack>
   );
 };
 

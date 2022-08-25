@@ -3,6 +3,7 @@ import { Box, Stack, Text } from "design-system";
 import Link from "components/Link";
 import { formatDate } from "lib/formatdate";
 import Image from "next/image";
+import { ReadingTime } from "pages/blog/[slug]";
 
 export const PostImage = ({
   src,
@@ -47,11 +48,13 @@ const Post = ({
           </Link>
           <Stack direction="column" space={3}>
             <Text>{summary}</Text>
-            <Text color="textSecondary">
-              Published on{" "}
-              <time dateTime={publishedAt}>{formatDate(publishedAt)}</time>{" "}
-              &middot; {readTime.text}
-            </Text>
+            <Stack space={5}>
+              <Text color="textSecondary">
+                Published on{" "}
+                <time dateTime={publishedAt}>{formatDate(publishedAt)}</time>
+              </Text>
+              <ReadingTime time={readTime.text} />
+            </Stack>
           </Stack>
         </Stack>
       </Stack>

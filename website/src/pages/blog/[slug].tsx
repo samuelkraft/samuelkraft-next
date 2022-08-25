@@ -24,6 +24,7 @@ import { allPosts, Post as PostType } from "contentlayer/generated";
 import { AlertProps } from "design-system/src/components/Alert";
 import { TextProps } from "design-system/src/components/Text";
 import { BoxProps } from "design-system/src/components/Box";
+import { IconAvatar, IconClock, IconEye } from "components/Icons";
 
 const SegmentedControl = dynamic(
   () => import("components/blog/SegmentedControl")
@@ -95,6 +96,15 @@ const components = {
   Rating,
 };
 
+export const ReadingTime = ({ time }: { time: string }) => (
+  <Stack align="center" space={2}>
+    <Text color="textSecondary">
+      <IconClock />
+    </Text>
+    <Text color="textSecondary">{time}</Text>
+  </Stack>
+);
+
 type PostProps = {
   post: PostType;
   related: PostType[];
@@ -164,13 +174,20 @@ const Post = ({ post, related }: PostProps): JSX.Element => {
           )}
           <Stack space={2} direction="column">
             <Text as="h1">{post.title}</Text>
-            <Text color="textSecondary">
-              Published on{" "}
-              <time dateTime={post.publishedAt}>{formattedPublishDate}</time>
-              {post.updatedAt ? ` (Updated ${formattedUpdatedDate})` : ""}{" "}
-              <span>&middot;</span> {post.readingTime.text}
-              <HitCounter slug={post.slug} />
-            </Text>
+            <Stack align="center" space={3}>
+              <IconAvatar />
+              <Stack space={5}>
+                <Text color="textSecondary">
+                  Samuel Kraft on{" "}
+                  <time dateTime={post.publishedAt}>
+                    {formattedPublishDate}
+                  </time>
+                  {post.updatedAt ? ` (Updated ${formattedUpdatedDate})` : ""}
+                </Text>
+                <ReadingTime time={post.readingTime.text} />
+                <HitCounter slug={post.slug} />
+              </Stack>
+            </Stack>
           </Stack>
         </Stack>
 
