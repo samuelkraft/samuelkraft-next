@@ -88,7 +88,6 @@ type ActivityProps = {
 };
 
 const Activity = ({ activity }: ActivityProps) => {
-  console.log("activity", activity);
   const {
     map: { summary_polyline },
   } = activity;
