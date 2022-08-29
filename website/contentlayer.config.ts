@@ -9,7 +9,34 @@ import codeTitle from "remark-code-titles";
 
 const getSlug = (doc) => doc._raw.sourceFileName.replace(/\.mdx$/, "");
 
-const computedFields: ComputedFields = {
+const projectComputedFields: ComputedFields = {
+  slug: {
+    type: "string",
+    resolve: (doc) => getSlug(doc),
+  },
+  image: {
+    type: "string",
+    resolve: (doc) => `/projects/${getSlug(doc)}.png`,
+  },
+  og: {
+    type: "string",
+    resolve: (doc) => `/projects/${getSlug(doc)}.png`,
+  },
+};
+
+export const Project = defineDocumentType(() => ({
+  name: "Project",
+  filePathPattern: `projects/**/*.mdx`,
+  contentType: "mdx",
+  fields: {
+    title: { type: "string", required: true },
+    summary: { type: "string", required: true },
+    publishedAt: { type: "string", required: true },
+  },
+  computedFields: projectComputedFields,
+}));
+
+const postComputedFields: ComputedFields = {
   slug: {
     type: "string",
     resolve: (doc) => getSlug(doc),
@@ -27,7 +54,7 @@ const computedFields: ComputedFields = {
 
 export const Post = defineDocumentType(() => ({
   name: "Post",
-  filePathPattern: `**/*.mdx`,
+  filePathPattern: `blog/**/*.mdx`,
   contentType: "mdx",
   fields: {
     title: { type: "string", required: true },
@@ -36,12 +63,12 @@ export const Post = defineDocumentType(() => ({
     updatedAt: { type: "string", required: false },
     tags: { type: "json", required: false },
   },
-  computedFields,
+  computedFields: postComputedFields,
 }));
 
 export default makeSource({
-  contentDirPath: "content/blog",
-  documentTypes: [Post],
+  contentDirPath: "content",
+  documentTypes: [Post, Project],
   mdx: {
     rehypePlugins: [rehypePrism],
     remarkPlugins: [codeTitle],

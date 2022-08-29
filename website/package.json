@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cache-clear": "./node_modules/.bin/contentlayer build --verbose --clearCache"
   },
   "dependencies": {
     "@mapbox/polyline": "^1.1.1",

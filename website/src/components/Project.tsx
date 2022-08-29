@@ -7,7 +7,7 @@ export type ProjectType = {
   title: string;
   description: string;
   slug: string;
-  media: StaticImageData;
+  media: StaticImageData | string;
   aspectRatio?: BoxProps["aspectRatio"];
 };
 
@@ -18,7 +18,7 @@ export const Project = ({
   media,
   aspectRatio = "3/2",
 }: ProjectType) => (
-  <Link href={`/work/${slug}`} key={title} unstyled>
+  <Link href={`/project/${slug}`} key={title} unstyled>
     <MotionBox as="span" whileHover="hover">
       <Stack space={4} direction="column">
         <Box
@@ -29,8 +29,8 @@ export const Project = ({
           position="relative"
         >
           {media && (
-            <Box position="absolute" bottom={0} left={4} right={4}>
-              <Image src={media} layout="responsive" alt={title} />
+            <Box position="absolute" bottom={0} left={4} right={4} top={0}>
+              <Image src={media} layout="fill" alt={title} />
             </Box>
           )}
         </Box>
@@ -41,7 +41,9 @@ export const Project = ({
             direction={{ small: "column", large: "row" }}
           >
             <Box as="span" whiteSpace="nowrap">
-              {title}
+              <Text transform="capitalize" size="inherit">
+                {title}
+              </Text>
             </Box>
             <Box
               as="span"

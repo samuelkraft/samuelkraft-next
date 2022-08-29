@@ -1,15 +1,10 @@
-import { Fragment } from "react";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { useMDXComponent } from "next-contentlayer/hooks";
-import Head from "next/head";
 import Link from "components/Link";
 import { NextSeo } from "next-seo";
-import dynamic from "next/dynamic";
 
 // Components
 // import PageHeader from "components/pageheader";
-import CustomImage from "components/Image";
-import { NowPlayingIcon } from "components/NowPlaying";
 import PostList, { PostImage } from "components/PostList";
 import { Box, Button, Alert, Text, Stack, Spacer } from "design-system";
 import { vars } from "design-system/src/styles/vars.css";
@@ -17,84 +12,12 @@ import HitCounter from "components/HitCounter";
 import Tags from "components/Tags";
 import LikeButton from "components/LikeButton";
 import Subscribe from "components/Subscribe";
+import MDXComponents from "components/MDXComponents";
 
 // Utils
 import { pick } from "@contentlayer/client";
 import { allPosts, Post as PostType } from "contentlayer/generated";
-import { AlertProps } from "design-system/src/components/Alert";
-import { TextProps } from "design-system/src/components/Text";
-import { BoxProps } from "design-system/src/components/Box";
 import { IconAvatar, IconClock, IconEye } from "components/Icons";
-
-const SegmentedControl = dynamic(
-  () => import("components/blog/SegmentedControl")
-);
-const Messages = dynamic(() => import("components/blog/Messages"));
-const TailBreakdown = dynamic(() => import("components/blog/TailBreakdown"));
-const AnimatedMessages = dynamic(
-  () => import("components/blog/AnimatedMessages")
-);
-const Rating = dynamic(() => import("components/blog/Rating"));
-
-const CustomLink = (props: { href: string }) => {
-  const { href } = props;
-
-  /* eslint-disable */
-  if (href?.startsWith("/")) {
-    return <Link {...props} />;
-  }
-
-  if (href.startsWith("#")) {
-    return <a {...props} />;
-  }
-
-  return <a target="_blank" rel="noopener noreferrer" {...props} />;
-  /* eslint-enable */
-};
-
-const components = {
-  Head,
-  a: CustomLink,
-  h2: (props: any) => (
-    <Box marginTop={6} marginBottom={2}>
-      <Text as="h2" weight="bold" {...props} />
-    </Box>
-  ),
-  pre: (props: any) => {
-    return (
-      <Box
-        as="pre"
-        padding={6}
-        borderRadius="medium"
-        backgroundColor="code"
-        color="white"
-        marginY={6}
-        {...props}
-      />
-    );
-  },
-  code: (props: any) => <Text as="code" {...props} />,
-  p: Text,
-  li: (props: BoxProps) => (
-    <Box as="li" {...props}>
-      <Text>{props.children}</Text>
-    </Box>
-  ),
-  Image: CustomImage,
-  Alert: (props: AlertProps) => (
-    <Box marginY={6}>
-      <Alert {...props} />
-    </Box>
-  ),
-  Link: CustomLink,
-  NowPlayingIcon,
-  SegmentedControl,
-  Messages,
-  AnimatedMessages,
-  TailBreakdown,
-  Parallax: Fragment,
-  Rating,
-};
 
 export const ReadingTime = ({ time }: { time: string }) => (
   <Stack align="center" space={2}>
@@ -196,7 +119,7 @@ const Post = ({ post, related }: PostProps): JSX.Element => {
         </Stack>
 
         <Stack as="article" space={4} direction="column">
-          <MDXContent components={components} />
+          <MDXContent components={MDXComponents} />
           {/* Stack requires multiple children and doesn't know MDXContent renders that */}
           <></>
         </Stack>
@@ -235,7 +158,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     /* remove current post */
     .filter((p) => p.slug !== params?.slug)
     /* Find other posts where tags are matching */
-    .filter((p) => p.tags?.some((tag) => post.tags?.includes(tag)))
+    .filter((p) => p.tags?.some((tag: string) => post.tags?.includes(tag)))
     /* return the first three */
     .filter((_, i) => i < 3)
     /* only return what's needed to render the list */

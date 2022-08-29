@@ -2,7 +2,7 @@ import { GetStaticProps } from "next";
 import { NextSeo } from "next-seo";
 
 // Components
-import { Stack, Text } from "design-system";
+import { Stack } from "design-system";
 import PostList from "components/PostList";
 
 // Utils

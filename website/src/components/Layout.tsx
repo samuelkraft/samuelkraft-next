@@ -29,7 +29,7 @@ const Layout = ({
         <Grain />
         <Gradient />
         <Container width={size === "small" ? "blog" : "site"}>
-          <Box paddingTop={6} zIndex="1" position="relative">
+          <Box zIndex="1" position="relative">
             {children}
           </Box>
         </Container>
