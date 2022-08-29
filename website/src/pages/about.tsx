@@ -36,6 +36,7 @@ const About: NextPage<AboutProps> = ({ lastActivity, repos }) => {
             height={215}
             rotate={2}
             zIndex={1}
+            index={0}
           />
           <Photo
             meta="Photo 0344 (2022-06-24)"
@@ -45,6 +46,7 @@ const About: NextPage<AboutProps> = ({ lastActivity, repos }) => {
             height={402}
             rotate={-12}
             flipDirection="right"
+            index={1}
           />
           <Photo
             meta="Photo 0445 (2021-04-12)"
@@ -53,6 +55,7 @@ const About: NextPage<AboutProps> = ({ lastActivity, repos }) => {
             width={300}
             height={250}
             rotate={7}
+            index={2}
           />
           <Activity activity={lastActivity} />
           <NowPlaying />
@@ -74,16 +77,16 @@ const About: NextPage<AboutProps> = ({ lastActivity, repos }) => {
             build great products with delightful interfaces ✨
           </Text>
           <Text>
+            I enjoy the realm between design and code, working on things like
+            Design Systems, CSS, Building accessible components, UI Animation
+            and making interfaces feel fun and human!
+          </Text>
+          <Text>
             Currently working at{" "}
             <Link href="https://bitrefill.com/">Bitrefill</Link>, making living
             on crypto possible. Before that I worked at music startup{" "}
             <Link href="https://www.tracklib.com/">Tracklib</Link>, the record
             store for sampling.
-          </Text>
-          <Text>
-            I love working in the realm between design and code. Some things
-            that makes me excited are CSS, React, Design Systems, Component
-            Kits, UI Animation and making interfaces feel fun and human.
           </Text>
           <Text>
             I grew up just outside of Stockholm, Sweden (the perfect distance

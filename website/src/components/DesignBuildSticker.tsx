@@ -14,14 +14,9 @@ const DesignBuildSticker = () => {
       drag
       whileTap={{ scale: 1.2, cursor: "grabbing" }}
       whileDrag={{ scale: 1.2, cursor: "grabbing" }}
-      dragElastic={0.7}
-      dragSnapToOrigin
-      dragConstraints={{
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-      }}
+      initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
+      transition={{ delay: 2, type: "spring", bounce: 0.5, duration: 0.8 }}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

@@ -3,6 +3,7 @@ import { style } from "@vanilla-extract/css";
 export const container = style({
   perspective: 1000,
   margin: "0 auto",
+  cursor: "grab",
   selectors: {
     /* When the image is flipped its boundaries change, so we need to expand its space to keep the hover being active */
     "&:hover:before": {

@@ -10,6 +10,7 @@ type PhotoProps = {
   height: number;
   rotate?: number;
   zIndex?: number;
+  index?: number;
   flipDirection?: "left" | "right";
 };
 
@@ -21,6 +22,7 @@ const Photo = ({
   height = 480,
   rotate,
   zIndex,
+  index = 0,
   flipDirection,
 }: PhotoProps) => {
   const fileName = `${src.src.split("/").at(-1)?.split(".")[0]}.jpg`;
@@ -28,9 +30,28 @@ const Photo = ({
     <MotionBox
       className={styles.container}
       whileHover="flipped"
-      initial={{ zIndex }}
+      initial={{
+        zIndex,
+        width,
+        height,
+        rotate: (rotate || 0) - 20,
+        y: 200 + index * 20,
+        x: index % 2 === 1 ? index * 30 : -index * 30,
+        opacity: 0,
+      }}
+      transition={{
+        default: {
+          duration: 1,
+          ease: [0.23, 0.64, 0.13, 0.99],
+          delay: index * 0.7 + 0.2,
+        },
+        scale: { duration: 0.2 },
+      }}
+      animate={{ width, height, rotate, y: 0, opacity: 1, x: 0 }}
       variants={{ flipped: { zIndex: 2 } }}
-      style={{ width, height, transform: rotate ? `rotate(${rotate}deg)` : "" }}
+      drag
+      whileTap={{ scale: 1.1, cursor: "grabbing" }}
+      whileDrag={{ scale: 1.1, cursor: "grabbing" }}
     >
       <MotionBox
         className={styles.flipper}
