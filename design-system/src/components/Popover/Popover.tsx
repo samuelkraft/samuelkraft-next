@@ -46,6 +46,7 @@ Popover.Content = forwardRef(({ children, ...props }, forwardedRef) => {
           {...props}
           ref={forwardedRef}
           asChild
+          forceMount
         >
           <MotionBox
             backgroundColor="background"
