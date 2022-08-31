@@ -185,7 +185,7 @@ const WorkHistory = ({ repos }: WorkHistoryProps) => {
     {
       imageSrc: logoBlogStats,
       title: "Blog Stats",
-      description: "SwiftUI app for tracking likes & visits to my blog",
+      description: "SwiftUI app for tracking likes & visits on my blog",
       url: getRepoFromName("BlogStats", repos)?.html_url,
       stars: getRepoFromName("BlogStats", repos)?.stargazers_count,
       forks: getRepoFromName("BlogStats", repos)?.forks_count,

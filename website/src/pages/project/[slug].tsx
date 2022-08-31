@@ -4,6 +4,7 @@ import { allProjects, Project as ProjectType } from "contentlayer/generated";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import { vars } from "design-system/src/styles/vars.css";
 import MDXComponents from "components/MDXComponents";
+import Link from "components/Link";
 
 type ProjectPageProps = {
   project: ProjectType;
@@ -24,6 +25,11 @@ const ProjectPage = ({ project }: ProjectPageProps) => {
         paddingX={{ small: 6, medium: 7 }}
         paddingY={10}
       >
+        <Link href="/" unstyled>
+          <Text as="span" color="white">
+            Back
+          </Text>
+        </Link>
         <Text as="h1" color="white">
           {title}
         </Text>
