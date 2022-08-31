@@ -63,7 +63,10 @@ const getFormattedStats = (activity: Activity) => {
   // TODO: Move inside getSpeedForSportType calculating from activity.average_speed
   const paceInSeconds = (activity.moving_time / activity.distance) * 100;
   const minutes = Math.floor(paceInSeconds / 60);
-  const seconds = Math.round(paceInSeconds - minutes * 60);
+  const seconds = String(Math.round(paceInSeconds - minutes * 60)).padStart(
+    2,
+    "0"
+  );
   const swimPace = `${minutes}:${seconds}/100m`;
 
   const { distance } = activity;
