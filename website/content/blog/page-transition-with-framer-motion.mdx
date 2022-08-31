@@ -1,59 +1,56 @@
 ---
-title: 'Page Transitions with Framer Motion'
-publishedAt: '2021-02-05'
-summary: 'Using framer motion to animate page transitions'
+title: "Page Transitions with Framer Motion"
+publishedAt: "2021-02-05"
+updatedAt: "2022-08-31"
+summary: "Using framer motion to animate page transitions"
 tags: ["Framer Motion", "Animation", "React"]
 ---
 
-Click around on this webpage and you'll notice a small transition between each page. In this post I'll show you how to create this page transition using Framer Motion.
-
-## Let's get started
-
-We'll start by installing framer motion
+Start by installing framer motion
 
 ```bash
 yarn add framer-motion
 ```
 
-Then create a new component, PageTransition.tsx to house our transition. We want to animate any children of this component so we'll pass children as a prop.
+Then create a new component, PageTransition.tsx to house the transition. We want to animate any children of this component so we'll pass children as a prop.
 
 ```tsx
-import { ReactNode } from 'react'
+import { ReactNode } from "react";
 
-const PageTransition = ({ children }: { children: ReactNode }): JSX.Element => <div>{children}</div>
+const PageTransition = ({ children }: { children: ReactNode }): JSX.Element => (
+  <div>{children}</div>
+);
 
-export default PageTransition
+export default PageTransition;
 ```
 
-Use this component as a wrapper to any pages you want to animate. In my case I'll add it to my [Page component](https://github.com/samuelkraft/samuelkraft-next/blob/master/components/page.tsx#L29), which sets the layout and shows my footer on all pages.
+Use this component as a wrapper to any pages you want to animate. In a Next.js project you would add this to a custom [\_app](https://nextjs.org/docs/advanced-features/custom-app), which wraps the content on all pages.
 
 ```tsx {5}
-const Page = ({ children }: PageProps): JSX.Element => (
-  <div className={styles.container}>
-    <Header />
-    <main className={styles.main}>
-      <PageTransition>{children}</PageTransition>
-    </main>
-    <Footer />
-  </div>
-)
+import type { AppProps } from "next/app";
+
+function MyApp({ Component, pageProps }: AppProps) {
+  return (
+    <PageTransition>
+      <Component {...pageProps} />
+    </PageTransition>
+  )
+});
 ```
 
 Framer motion have a couple of different apis to use, and since we want to animate the entry of our children we'll use [AnimatePresence](https://www.framer.com/api/motion/animate-presence/) and [motion components](https://www.framer.com/api/motion/component/). AnimatePresence will animate components when they are added or removed from the React tree. Let's replace our placeholder div with AnimatePresence and nest a motion component that will contain our animation logic.
 
 ```tsx
-import { ReactNode } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { ReactNode } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 const PageTransition = ({ children }: { children: ReactNode }): JSX.Element => (
   <AnimatePresence>
-    <motion.div>
-      {children}
-    </motion.div>
+    <motion.div>{children}</motion.div>
   </AnimatePresence>
-)
+);
 
-export default PageTransition
+export default PageTransition;
 ```
 
 [Motion components](https://www.framer.com/api/motion/component/) are used to specify how we want our animation to look like by passing props like animate (how the animation will finish), initial (our initial state of the animation), exit (how our animation looks like when the component dismounts) etc.
@@ -108,7 +105,7 @@ const variants = {
       ease: [0.61, 1, 0.88, 1],
     },
   },
-}
+};
 ```
 
 In our motion component we'll then pass our variant variable and can then simply reference our variant names in intial & animate:
@@ -120,9 +117,10 @@ In our motion component we'll then pass our variant variable and can then simply
 ```
 
 Our complete final example now looks like this:
+
 ```tsx
-import { ReactNode } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { ReactNode } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 const variants = {
   initial: {
@@ -137,7 +135,7 @@ const variants = {
       ease: [0.61, 1, 0.88, 1],
     },
   },
-}
+};
 
 const PageTransition = ({ children }: { children: ReactNode }): JSX.Element => (
   <AnimatePresence>
@@ -145,9 +143,9 @@ const PageTransition = ({ children }: { children: ReactNode }): JSX.Element => (
       {children}
     </motion.div>
   </AnimatePresence>
-)
+);
 
-export default PageTransition
+export default PageTransition;
 ```
 
 Feel free to play with transitions and easings, maybe add an exit animation as well? As you've noticed framer motion makes it super easy to create fun and performant transitions. 👌
