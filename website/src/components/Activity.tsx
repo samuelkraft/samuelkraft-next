@@ -58,7 +58,7 @@ const getSpeedForSportType = (
   }
 };
 
-const getFormattedStats = (activity: Activity) => {
+const getFormattedStats = (activity: ActivityType) => {
   // Calculate swim pace
   // TODO: Move inside getSpeedForSportType calculating from activity.average_speed
   const paceInSeconds = (activity.moving_time / activity.distance) * 100;
