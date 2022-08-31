@@ -48,7 +48,6 @@ const Photo = ({
         scale: { duration: 0.2 },
       }}
       animate={{ width, height, rotate, y: 0, opacity: 1, x: 0 }}
-      variants={{ flipped: { zIndex: 2 } }}
       drag
       whileTap={{ scale: 1.1, cursor: "grabbing" }}
       whileDrag={{ scale: 1.1, cursor: "grabbing" }}
