@@ -29,10 +29,7 @@ type HomeProps = {
 
 const Home = ({ repos }: HomeProps) => (
   <Page>
-    <PageHeader
-      title="Hi, I'm Samuel."
-      description="I design & build delightful interfaces."
-    >
+    <PageHeader title="Hi, I'm Samuel." description="I design & build delightful interfaces.">
       <Button href="/about">Learn more</Button>
     </PageHeader>
     <h2>Selected Projects</h2>
