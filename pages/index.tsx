@@ -30,10 +30,10 @@ type HomeProps = {
 const Home = ({ repos }: HomeProps) => (
   <Page>
     <PageHeader
-      title="Hi, my name is Samuel."
-      description="I’m a frontend developer &amp; designer currently working at Bitrefill. This is my personal website - where you’ll find all the stuff I’m currently thinking about."
+      title="Hi, I'm Samuel."
+      description="I design & build delightful interfaces."
     >
-      <Button href="/about">More about me</Button>
+      <Button href="/about">Learn more</Button>
     </PageHeader>
     <h2>Selected Projects</h2>
     {projects.map(Project)}
