@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
+import { Analytics } from '@vercel/analytics/react' // eslint-disable-line
 import { ThemeProvider } from 'next-themes'
 import type { AppProps } from 'next/app'
 import { AnimatePresence } from 'framer-motion'
@@ -29,6 +30,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
       <AnimatePresence initial={false}>
         <Component {...pageProps} key={router.route} />
       </AnimatePresence>
+      <Analytics />
     </ThemeProvider>
   )
 }
