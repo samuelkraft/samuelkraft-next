@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "@contentlayer/client": "^0.2.5",
-    "@linear/sdk": "^1.22.0",
     "@types/gtag.js": "^0.0.10",
     "@vercel/analytics": "^0.1.1",
     "add": "^2.0.6",
