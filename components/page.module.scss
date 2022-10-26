@@ -2,6 +2,7 @@
   max-width: var(--siteWidth);
   margin: 0 auto;
   padding: 0 15px;
+  overflow-x: hidden;
 
   @media (min-width: 480px) {
     padding: 0 30px;

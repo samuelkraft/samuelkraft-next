@@ -1,7 +1,6 @@
 const { withContentlayer } = require('next-contentlayer') // eslint-disable-line
 
 module.exports = withContentlayer({
-  webpack5: true,
   images: {
     domains: ['www.notion.so', 'i.scdn.co'],
     formats: ['image/avif', 'image/webp'],

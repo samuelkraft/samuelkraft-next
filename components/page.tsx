@@ -34,9 +34,7 @@ const Page = ({ children }: PageProps): JSX.Element => (
       <ul className={styles.links}>
         {footerLinks.map(link => (
           <li key={link.name}>
-            <Link href={link.url}>
-              <a>{link.name}</a>
-            </Link>
+            <Link href={link.url}>{link.name}</Link>
           </li>
         ))}
       </ul>

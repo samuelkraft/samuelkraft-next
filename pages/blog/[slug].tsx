@@ -37,11 +37,7 @@ const CustomLink = (props: { href: string }) => {
 
   /* eslint-disable */
   if (href?.startsWith('/')) {
-    return (
-      <Link href={href}>
-        <a {...props} />
-      </Link>
-    )
+    return <Link href={href} {...props} />
   }
 
   if (href.startsWith('#')) {

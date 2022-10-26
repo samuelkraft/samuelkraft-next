@@ -93,14 +93,12 @@ const Books = ({ published, reading }: BooksProps): JSX.Element => {
             return (
               <li className={styles.book} key={id}>
                 <Link href={`books/${slug}`}>
-                  <a>
-                    <motion.div whileHover={{ y: -3 }}>
-                      <Image src={image[0].url} width={218} height={328} className={styles.cover} />
-                    </motion.div>
-                    <strong className={styles.title}>{title}</strong>
-                    <p className={styles.author}>{author}</p>
-                    <Rating rating={rating} />
-                  </a>
+                  <motion.div whileHover={{ y: -3 }}>
+                    <Image src={image[0].url} width={218} height={328} alt="book cover" className={styles.cover} />
+                  </motion.div>
+                  <strong className={styles.title}>{title}</strong>
+                  <p className={styles.author}>{author}</p>
+                  <Rating rating={rating} />
                 </Link>
               </li>
             )
@@ -111,7 +109,7 @@ const Books = ({ published, reading }: BooksProps): JSX.Element => {
         {reading.map(({ Name: title, Author: author, Image: image, id }) => {
           return (
             <li className={styles.book} key={id}>
-              <Image src={image[0].url} width={218} height={328} className={styles.cover} />
+              <Image src={image[0].url} width={218} height={328} className={styles.cover} alt={`${title} book cover`} />
               <strong className={styles.title}>{title}</strong>
               <p className={styles.author}>{author}</p>
             </li>

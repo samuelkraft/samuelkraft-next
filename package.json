@@ -18,19 +18,19 @@
     "@linear/sdk": "^1.22.0",
     "@types/gtag.js": "^0.0.10",
     "add": "^2.0.6",
-    "classnames": "^2.3.1",
+    "classnames": "^2.3.2",
     "contentlayer": "^0.2.5",
     "faunadb": "^4.5.4",
-    "framer-motion": "^4.1.11",
+    "framer-motion": "^7.6.1",
     "lodash.debounce": "^4.0.8",
-    "next": "12.1.6",
+    "next": "13.0.0",
     "next-contentlayer": "^0.2.5",
     "next-seo": "^5.5.0",
-    "next-themes": "^0.2.0",
+    "next-themes": "^0.2.1",
     "querystring": "^0.2.1",
     "random-words": "^1.1.2",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "react-feather": "^2.0.9",
     "react-intersection-observer": "^8.32.2",
     "react-notion": "^0.9.3",
@@ -44,8 +44,8 @@
     "yarn": "^1.22.18"
   },
   "devDependencies": {
-    "@types/node": "^17.0.35",
-    "@types/react": "^17.0.11",
+    "@types/node": "^18.11.6",
+    "@types/react": "^18.0.23",
     "@typescript-eslint/eslint-plugin": "^5.26.0",
     "@typescript-eslint/parser": "^5.26.0",
     "eslint": "^8.16.0",
@@ -67,7 +67,7 @@
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-standard": "^22.0.0",
     "stylelint-order": "^4.1.0",
-    "typescript": "^4.7.2"
+    "typescript": "^4.8.4"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"

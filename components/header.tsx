@@ -19,18 +19,14 @@ const Header = (): JSX.Element => {
     <>
       <header className={styles.header}>
         <div className={styles.container}>
-          <Link href="/">
-            <a className={styles.logo}>
-              <Image src={avatar} alt="Samuel Kraft" layout="fixed" width="45" height="45" priority placeholder="blur" />
-            </a>
+          <Link href="/" className={styles.logo}>
+            <Image src={avatar} alt="Samuel Kraft" width="45" height="45" priority placeholder="blur" />
           </Link>
           <nav className={styles.nav}>
             <ol className={styles.links}>
               {links.map(({ name, path }) => (
                 <li key={path} className={pathname === path ? styles.linkActive : styles.link}>
-                  <Link href={path}>
-                    <a>{name}</a>
-                  </Link>
+                  <Link href={path}>{name}</Link>
                 </li>
               ))}
             </ol>
