@@ -100,19 +100,8 @@ const Changelog = ({ inProgress, inBacklog }: ChangelogProps): JSX.Element => {
         </Entry>
         <Entry date="2021-03-19" title="Added blogpost tags" commit="4b357bc6307a628b9d71244d36d5d295448c851d">
           <p>
-            Easily find posts on a specific topic, try out{' '}
-            <Link href="/blog/tag/react">
-              <a>#React</a>
-            </Link>
-            ,{' '}
-            <Link href="/blog/tag/framer-motion">
-              <a>#Framer Motion</a>
-            </Link>{' '}
-            or{' '}
-            <Link href="/blog/tag/css">
-              <a>#CSS</a>
-            </Link>
-            .
+            Easily find posts on a specific topic, try out <Link href="/blog/tag/react">#React</Link>,{' '}
+            <Link href="/blog/tag/framer-motion">#Framer Motion</Link> or <Link href="/blog/tag/css">#CSS</Link>.
           </p>
         </Entry>
         <Entry date="2021-03-14" title="Added Changelog" commit="3b6ac85a642a35586a03acc3623a171cd860d5b4">
@@ -134,12 +123,8 @@ const Changelog = ({ inProgress, inBacklog }: ChangelogProps): JSX.Element => {
         </Entry>
         <Entry date="2021-03-09" title="🔍 Added search to /blog" commit="0030768083320b0cd37dc82c428a97e5e5fdc0a7">
           <p>
-            You can now search for posts on{' '}
-            <Link href="/blog">
-              <a>the blog</a>
-            </Link>{' '}
-            to quickly find what you&apos;re looking for. It&apos;s also a great way for me to see what people are interested in reading
-            about.
+            You can now search for posts on <Link href="/blog">the blog</Link> to quickly find what you&apos;re looking for. It&apos;s also
+            a great way for me to see what people are interested in reading about.
           </p>
           <strong>Other changes:</strong>
           <ul>
@@ -152,11 +137,7 @@ const Changelog = ({ inProgress, inBacklog }: ChangelogProps): JSX.Element => {
         </Entry>
         <Entry date="2021-02-12" title="🖼 Added images to all blogposts" commit="2648c44eb12be873a986f910a38c27033d72e641">
           <p>
-            The posts in{' '}
-            <Link href="/blog">
-              <a>the blog</a>
-            </Link>{' '}
-            are now a lot more clickable!
+            The posts in <Link href="/blog">the blog</Link> are now a lot more clickable!
           </p>
         </Entry>
         <Entry date="2021-02-12" title="👍 Added like button to blogposts" commit="13aa0dbef7abe5cad2f90755956923ce65842d87">
@@ -171,10 +152,7 @@ const Changelog = ({ inProgress, inBacklog }: ChangelogProps): JSX.Element => {
         <Entry date="2021-02-04" title="💌 Added newsletter" commit="45f860afc2d5deb05d5319a407bb60ed72c15bb4">
           <p>
             Learn animations, CSS, web development tips &amp; tricks and creating delightful and useful interfaces!{' '}
-            <Link href="/newsletter">
-              <a>Sign up here</a>
-            </Link>
-            .
+            <Link href="/newsletter">Sign up here</Link>.
           </p>
         </Entry>
         <Entry date="2021-01-30" title="🎶 Add now playing widget to footer" commit="5898535acfa8619b25c082a9ed86da909312354a">
@@ -220,7 +198,7 @@ const Changelog = ({ inProgress, inBacklog }: ChangelogProps): JSX.Element => {
         </Entry>
         <Entry date="2021-01-04" title="Initial commit" commit="26085f345f076461cce5d645d6d973f33837ef10" />
       </section>
-      {inProgress.length && (
+      {inProgress.length ? (
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>Currently working on…</h2>
           {inProgress.map(issue => (
@@ -233,15 +211,15 @@ const Changelog = ({ inProgress, inBacklog }: ChangelogProps): JSX.Element => {
             />
           ))}
         </section>
-      )}
-      {inBacklog.length && (
+      ) : null}
+      {inBacklog.length ? (
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>In the backlog…</h2>
           {inBacklog.map(issue => (
             <Entry key={issue.id} title={issue.title} type="inBacklog" identifier={issue.identifier} />
           ))}
         </section>
-      )}
+      ) : null}
     </Page>
   )
 }

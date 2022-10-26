@@ -23,11 +23,9 @@ const Button = ({ children, type, href, variant, onClick, disabled }: ButtonProp
   if (href.startsWith('/')) {
     return (
       <Link href={href} passHref>
-        <a>
-          <button className={classes} type={type === 'submit' ? 'submit' : 'button'} disabled={disabled}>
-            {children}
-          </button>
-        </a>
+        <button className={classes} type={type === 'submit' ? 'submit' : 'button'} disabled={disabled}>
+          {children}
+        </button>
       </Link>
     )
   }

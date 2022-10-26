@@ -20,6 +20,8 @@
 
 .cover {
   border-radius: 8px;
+  aspect-ratio: 1 / 1.5;
+  object-fit: cover;
 }
 
 .title {

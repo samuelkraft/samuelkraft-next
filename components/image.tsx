@@ -7,14 +7,12 @@ type CustomImageProps = {
   height: number
   alt: string
   caption?: string
-  layout?: 'intrinsic' | 'fixed' | 'responsive'
 }
-const CustomImage = ({ src, width, height, alt, caption, layout = 'intrinsic' }: CustomImageProps): JSX.Element => (
+
+const CustomImage = ({ src, width, height, alt, caption }: CustomImageProps): JSX.Element => (
   <figure className={styles.wrapper}>
-    <div>
-      <Image src={src} width={width} height={height} alt={alt} layout={layout} />
-      {caption && <figcaption className={styles.caption}>{caption}</figcaption>}
-    </div>
+    <Image src={src} width={width} height={height} alt={alt} />
+    {caption && <figcaption className={styles.caption}>{caption}</figcaption>}
   </figure>
 )
 

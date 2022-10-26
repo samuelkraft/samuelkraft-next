@@ -23,23 +23,19 @@ const PostList = ({ posts }: PostListProps): JSX.Element => (
         <li key={slug}>
           {slug === 'spring-parallax-framer-motion-guide' ? (
             <Link href="/blog/spring-parallax-framer-motion-guide">
-              <a>
-                <ParallaxCover />
-              </a>
+              <ParallaxCover />
             </Link>
           ) : (
             <>
               {image && (
-                <Link as={`/blog/${slug}`} href="/blog/[slug]">
-                  <a aria-label={title}>
-                    <BlogImage src={image} alt={title} />
-                  </a>
+                <Link as={`/blog/${slug}`} href="/blog/[slug]" aria-label={title}>
+                  <BlogImage src={image} alt={title} />
                 </Link>
               )}
             </>
           )}
-          <Link as={`/blog/${slug}`} href="/blog/[slug]">
-            <a className={styles.title}>{title}</a>
+          <Link as={`/blog/${slug}`} href="/blog/[slug]" className={styles.title}>
+            {title}
           </Link>
           <p className={styles.summary}>{summary}</p>
           <p className={styles.meta}>

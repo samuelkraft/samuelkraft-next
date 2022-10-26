@@ -9,9 +9,9 @@ type BlogImageProps = {
 }
 
 const BlogImage = ({ src, alt, className }: BlogImageProps): JSX.Element => (
-  <span className={cn(styles.wrapper, className)}>
-    <Image src={src} alt={alt} width={2024} height={1012} layout="responsive" />
-  </span>
+  <div className={cn(styles.wrapper, className)}>
+    <Image src={src} alt={alt} width={746} height={373} />
+  </div>
 )
 
 export default BlogImage
