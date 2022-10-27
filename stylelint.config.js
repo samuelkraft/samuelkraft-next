@@ -20,6 +20,7 @@ module.exports = {
         ignoreProperties: ['composes'],
       },
     ],
+    'custom-property-pattern': null,
     'value-keyword-case': null,
     'selector-list-comma-newline-after': ['always-multi-line'],
     'no-descending-specificity': null,
