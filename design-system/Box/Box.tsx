@@ -10,7 +10,7 @@ interface ExtendedBoxProps extends Sprinkles {
   className?: string
 }
 
-type BoxProps = Omit<AllHTMLAttributes<HTMLElement>, keyof ExtendedBoxProps> & ExtendedBoxProps
+export type BoxProps = Omit<AllHTMLAttributes<HTMLElement>, keyof ExtendedBoxProps> & ExtendedBoxProps
 
 export const Box = forwardRef<HTMLElement, BoxProps>(({ as = 'div', className, ...props }, ref) => {
   const atomProps: Record<string, unknown> = {}
