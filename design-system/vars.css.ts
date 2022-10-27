@@ -1,5 +1,4 @@
 import { createGlobalTheme, createTheme, createThemeContract } from '@vanilla-extract/css'
-
 import { sand, sandDark, red, redDark } from '@radix-ui/colors'
 
 export const radii = {
@@ -89,18 +88,18 @@ const global = createGlobalTheme('html', {
 })
 
 export const colors = createThemeContract({
-  background: null,
-  backgroundOpaque: null,
-  card: null,
-  text: null,
-  textSecondary: null,
-  link: null,
-  border: null,
-  code: null,
-  brandLight: null,
-  brand: null,
-  white: null,
-  black: null,
+  background: '',
+  backgroundOpaque: '',
+  card: '',
+  text: '',
+  textSecondary: '',
+  link: '',
+  border: '',
+  code: '',
+  brandLight: '',
+  brand: '',
+  white: '',
+  black: '',
 })
 
 export const lightTheme = createTheme(colors, {
