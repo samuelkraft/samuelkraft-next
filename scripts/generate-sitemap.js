@@ -1,6 +1,7 @@
 /* eslint-disable */
+const dynamic = require('next/dynamic')
 const fs = require('fs')
-const globby = require('globby')
+const globby = dynamic(() => import('globby'))
 const prettier = require('prettier')
 
 ;(async () => {
