@@ -52,7 +52,7 @@ const Messages = (): JSX.Element => {
           const noTail = !isLast && messages[i + 1]?.sent === sent
           return (
             <motion.li
-              key={text}
+              key={text as unknown as string}
               className={cn(styles.shared, sent ? styles.sent : styles.received, noTail && styles.noTail)}
               initial="initial"
               animate="enter"
