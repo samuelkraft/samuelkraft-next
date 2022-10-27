@@ -25,41 +25,41 @@
 :root {
   --bg: #fff;
   --text: #000;
-  --textTinted: rgba(0, 0, 0, 0.5);
+  --textTinted: rgb(0 0 0 / 50%);
   --brand: #e38356;
   --brandActive: #b3613b;
-  --brandTinted: rgba(227, 131, 86, 0.2);
-  --brandTintedActive: rgba(227, 131, 86, 0.33);
-  --headerBg: rgba(255, 255, 255, 0.6);
-  --border: rgba(0, 0, 0, 0.08);
-  --borderActive: rgba(0, 0, 0, 0.25);
+  --brandTinted: rgb(227 131 86 / 20%);
+  --brandTintedActive: rgb(227 131 86 / 33%);
+  --headerBg: rgb(255 255 255 / 60%);
+  --border: rgb(0 0 0 / 8%);
+  --borderActive: rgb(0 0 0 / 25%);
   --star: #fece02;
   --fontFamily: 'GT Walsheim Pro', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
     Helvetica Neue, sans-serif;
   --boxBg: #f3f3f3;
   --siteWidth: 83ch;
   --inputBg: white;
-  --likeButton: rgba(0, 0, 0, 0.05);
-  --likeButtonHover: rgba(0, 0, 0, 0.1);
-  --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --likeButton: rgb(0 0 0 / 5%);
+  --likeButtonHover: rgb(0 0 0 / 10%);
+  --shadow: 0 1px 3px rgb(0 0 0 / 10%);
   --secondary: #caca28;
-  --transparent: rgba(255, 255, 255, 0);
+  --transparent: rgb(255 255 255 / 0%);
 }
 
-[data-theme='dark'] {
+[style='color-scheme: dark;'] {
   --bg: #161515;
   --text: #fff;
-  --textTinted: rgba(255, 255, 255, 0.5);
-  --headerBg: rgba(22, 21, 21, 0.6);
-  --border: rgba(255, 255, 255, 0.08);
-  --borderActive: rgba(255, 255, 255, 0.25);
+  --textTinted: rgb(255 255 255 / 50%);
+  --headerBg: rgb(22 21 21 / 60%);
+  --border: rgb(255 255 255 / 8%);
+  --borderActive: rgb(255 255 255 / 25%);
   --boxBg: #1f1e1d;
   --star: #fef102;
   --inputBg: #292929;
-  --likeButton: rgba(255, 255, 255, 0.2);
-  --likeButtonHover: rgba(255, 255, 255, 0.3);
+  --likeButton: rgb(255 255 255 / 20%);
+  --likeButtonHover: rgb(255 255 255 / 30%);
   --secondary: yellow;
-  --transparent: rgba(0, 0, 0, 0);
+  --transparent: rgb(0 0 0 / 0%);
 }
 
 html,
@@ -122,9 +122,9 @@ pre[class*='language-'] {
   direction: ltr;
   text-align: left;
   tab-size: 4;
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
+  hyphens: none;
+  hyphens: none;
+  hyphens: none;
   hyphens: none;
   background: #322931;
 

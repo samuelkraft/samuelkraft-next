@@ -10,6 +10,7 @@ import Repo, { RepoProps } from 'components/repo'
 import bitrefill from 'public/projects/bitrefill.png'
 import routes from 'public/projects/routes.png'
 import tracklib from 'public/projects/tracklib.png'
+import { Box, Stack } from 'design-system'
 
 const projects = [
   { title: 'Tracklib', description: 'Clear samples from real music', link: 'tracklib.com', image: tracklib },
@@ -29,6 +30,11 @@ type HomeProps = {
 
 const Home = ({ repos }: HomeProps) => (
   <Page>
+    <Stack space={4}>
+      <Box color="brand">hej</Box>
+      <Box color="brand">hej</Box>
+      <Box color="brand">hej</Box>
+    </Stack>
     <PageHeader title="Hi, I'm Samuel." description="I design & build interfaces.">
       <Button href="/about">Learn more</Button>
     </PageHeader>
