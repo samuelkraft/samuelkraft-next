@@ -7,12 +7,12 @@ import styles from './messages.module.scss'
 
 const messageConfig = { min: 3, max: 10, join: ' ' }
 const initialMessages = [
-  { text: randomWords(messageConfig), sent: true },
-  { text: randomWords(messageConfig) },
-  { text: randomWords(messageConfig), sent: true },
-  { text: randomWords(messageConfig) },
-  { text: randomWords(messageConfig) },
-  { text: randomWords(messageConfig), sent: true },
+  { text: randomWords(messageConfig).join(' '), sent: true },
+  { text: randomWords(messageConfig).join(' ') },
+  { text: randomWords(messageConfig).join(' '), sent: true },
+  { text: randomWords(messageConfig).join(' ') },
+  { text: randomWords(messageConfig).join(' ') },
+  { text: randomWords(messageConfig).join(' '), sent: true },
 ]
 
 const transition = {
@@ -40,7 +40,7 @@ const Messages = (): JSX.Element => {
   useInterval(() => {
     setMessages(curr => {
       const first = curr.shift() // eslint-disable-line
-      return [...curr, { text: randomWords(messageConfig), sent: Math.random() > 0.5 }]
+      return [...curr, { text: randomWords(messageConfig).join(' '), sent: Math.random() > 0.5 }]
     })
   }, 2000)
 
