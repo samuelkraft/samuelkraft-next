@@ -1,6 +1,14 @@
 const { withContentlayer } = require('next-contentlayer') // eslint-disable-line
+const { createVanillaExtractPlugin } = require('@vanilla-extract/next-plugin') // eslint-disable-line
+const withVanillaExtract = createVanillaExtractPlugin()
 
-module.exports = withContentlayer({
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  experimental: {
+    externalDir: true,
+    appDir: true,
+  },
   images: {
     domains: ['www.notion.so', 'i.scdn.co'],
     formats: ['image/avif', 'image/webp'],
@@ -13,4 +21,6 @@ module.exports = withContentlayer({
 
     return config
   },
-})
+}
+
+module.exports = withContentlayer(withVanillaExtract(nextConfig))
