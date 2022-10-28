@@ -1,3 +1,4 @@
+import { createContainer, style } from '@vanilla-extract/css'
 import { defineProperties, createSprinkles, createMapValueFn, ConditionalValue, RequiredConditionalValue } from '@vanilla-extract/sprinkles'
 import { space, colors, radii, fontWeights, fontSizes, heights, widths, shadows } from './vars.css'
 
@@ -6,12 +7,29 @@ import { space, colors, radii, fontWeights, fontSizes, heights, widths, shadows 
 import './reset.css'
 /* DO NOT MOVE THIS LINE */
 
+const containerName = createContainer()
+
+export const container = style({
+  containerName,
+  containerType: 'inline-size',
+})
+
 const responsiveProperties = defineProperties({
   conditions: {
     small: {},
     medium: { '@media': 'screen and (min-width: 480px)' },
     large: { '@media': 'screen and (min-width: 768px)' },
     xlarge: { '@media': 'screen and (min-width: 1024px)' },
+    smallContainer: {},
+    mediumContainer: {
+      '@container': `${containerName} (min-width: 480px)`,
+    },
+    largeContainer: {
+      '@container': `${containerName} (min-width:768px)`,
+    },
+    xLargeContainer: {
+      '@container': `${containerName} (min-width: 1024px)`,
+    },
   },
   defaultCondition: 'small',
   properties: {
