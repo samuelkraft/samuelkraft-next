@@ -8,7 +8,9 @@ import Head from 'next/head'
 import SEO from 'components/seo'
 import * as gtag from 'lib/gtag'
 import { darkTheme, lightTheme } from 'design-system/vars.css'
-import '../styles/globals.scss'
+import { Inter } from '@next/font/google'
+
+const inter = Inter({ subsets: ['latin'], fallback: ['system-ui', 'sans-serif'] })
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const router = useRouter()
@@ -23,22 +25,24 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     }
   }, [router.events])
   return (
-    <ThemeProvider
-      attribute="class"
-      value={{
-        light: lightTheme,
-        dark: darkTheme,
-      }}
-    >
-      <SEO />
-      <Head>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      </Head>
-      <AnimatePresence initial={false}>
-        <Component {...pageProps} key={router.route} />
-      </AnimatePresence>
-      <Analytics />
-    </ThemeProvider>
+    <div className={inter.className}>
+      <ThemeProvider
+        attribute="class"
+        value={{
+          light: lightTheme,
+          dark: darkTheme,
+        }}
+      >
+        <SEO />
+        <Head>
+          <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        </Head>
+        <AnimatePresence initial={false}>
+          <Component {...pageProps} key={router.route} />
+        </AnimatePresence>
+        <Analytics />
+      </ThemeProvider>
+    </div>
   )
 }
 
