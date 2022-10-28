@@ -3,7 +3,6 @@ import cn from 'classnames'
 import { motion } from 'framer-motion'
 import { sprinkles } from '../sprinkles.css'
 import type { Sprinkles } from '../sprinkles.css'
-import * as resetStyles from '../reset.css'
 
 interface ExtendedBoxProps extends Sprinkles {
   as?: ElementType
@@ -28,7 +27,7 @@ export const Box = forwardRef<HTMLElement, BoxProps>(({ as = 'div', className, .
   const atomicClasses = sprinkles(atomProps)
 
   return createElement(as, {
-    className: cn(as && [resetStyles.base, resetStyles.element[as as string]], atomicClasses, className),
+    className: cn(atomicClasses, className),
     ...nativeProps,
     ref,
   })

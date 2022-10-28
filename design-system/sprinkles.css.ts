@@ -1,5 +1,3 @@
-import { globalStyle } from '@vanilla-extract/css'
-
 import { defineProperties, createSprinkles, createMapValueFn, ConditionalValue, RequiredConditionalValue } from '@vanilla-extract/sprinkles'
 import { space, colors, radii, fontWeights, fontSizes, heights, widths, shadows } from './vars.css'
 
@@ -7,54 +5,6 @@ import { space, colors, radii, fontWeights, fontSizes, heights, widths, shadows 
 /* DO NOT MOVE THIS LINE */
 import './reset.css'
 /* DO NOT MOVE THIS LINE */
-
-globalStyle('*, *:before, *:after', {
-  boxSizing: 'border-box',
-})
-
-globalStyle('*', {
-  margin: 0,
-})
-
-globalStyle('html, body', {
-  height: '100%',
-  padding: 0,
-})
-
-globalStyle('body', {
-  lineHeight: 1.5,
-  WebkitFontSmoothing: 'antialiased',
-  background: colors.background,
-  color: colors.text,
-  fontFamily:
-    "'GT Walsheim Pro', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, 'Helvetica Neue', 'sans-serif'",
-})
-
-globalStyle('img, picture, video, canvas, svg', {
-  display: 'block',
-  maxWidth: '100%',
-})
-
-globalStyle('input, button, textarea, select', {
-  font: 'inherit',
-})
-
-globalStyle('p, h1, h2, h3, h4, h5, h6', {
-  overflowWrap: 'break-word',
-})
-
-globalStyle('#root, #__next', {
-  isolation: 'isolate',
-})
-
-globalStyle('a', {
-  color: 'inherit',
-  textDecoration: 'none',
-})
-
-globalStyle('a:hover', {
-  cursor: 'pointer',
-})
 
 const responsiveProperties = defineProperties({
   conditions: {

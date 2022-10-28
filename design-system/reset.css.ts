@@ -1,34 +1,53 @@
-import { style } from '@vanilla-extract/css'
+import { globalStyle } from '@vanilla-extract/css'
+import { colors } from './vars.css'
 
-export const base = style({
+globalStyle('*, *:before, *:after', {
   boxSizing: 'border-box',
+})
+
+globalStyle('*', {
   margin: 0,
   padding: 0,
 })
 
-const block = style({
-  display: 'block',
+globalStyle('html, body', {
+  height: '100%',
+  padding: 0,
 })
 
-const list = style({
+globalStyle('body', {
+  lineHeight: 1.5,
+  WebkitFontSmoothing: 'antialiased',
+  background: colors.background,
+  color: colors.text,
+})
+
+globalStyle('img, picture, video, canvas, svg', {
+  display: 'block',
+  maxWidth: '100%',
+})
+
+globalStyle('input, button, textarea, select', {
+  font: 'inherit',
+})
+
+globalStyle('p, h1, h2, h3, h4, h5, h6', {
+  overflowWrap: 'break-word',
+})
+
+globalStyle('#root, #__next', {
+  isolation: 'isolate',
+})
+
+globalStyle('a', {
+  color: 'inherit',
+  textDecoration: 'none',
+})
+
+globalStyle('a:hover', {
+  cursor: 'pointer',
+})
+
+globalStyle('ul, li', {
   listStyle: 'none',
 })
-
-export const element = {
-  article: block,
-  aside: block,
-  details: block,
-  div: block,
-  figcaption: block,
-  figure: block,
-  footer: block,
-  header: block,
-  hgroup: block,
-  menu: block,
-  nav: block,
-  section: block,
-  ul: list,
-  ol: list,
-}
-
-export type Element = keyof typeof element
