@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useState, Fragment } from 'react'
 import { useTheme } from 'next-themes'
 import { motion, AnimateSharedLayout, AnimatePresence } from 'framer-motion'
