@@ -3999,10 +3999,10 @@ next-contentlayer@^0.2.8:
     "@contentlayer/core" "0.2.8"
     "@contentlayer/utils" "0.2.8"
 
-next-seo@^5.11.0:
-  version "5.11.0"
-  resolved "https://registry.yarnpkg.com/next-seo/-/next-seo-5.11.0.tgz#02d1f2908dd7788e2fca7c363bb38e5fc6a070cc"
-  integrity sha512-TdGJKh6dVi2b5Ibkz3SF8/xMNx8lBx1Zvtr0/fxsh0IdNPKBHrJamAp9HOacToeVfC0TfWJk3SBVQw4MvzH0hQ==
+next-seo@^5.13.0:
+  version "5.13.0"
+  resolved "https://registry.yarnpkg.com/next-seo/-/next-seo-5.13.0.tgz#69c0773ce7b641e719173d4f32a9758711d62b6b"
+  integrity sha512-3n6cOjXydxXlrbMIWcU+D6TllKj72C2rg7IdgoxoKOnfC8ah3U0VUIGRApKXK0wi5ME1m+TBq9isAFFbFdbWXQ==
 
 next-themes@^0.2.1:
   version "0.2.1"
