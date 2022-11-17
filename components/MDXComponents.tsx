@@ -7,6 +7,7 @@ import Video from "components/blog/video";
 import Link from "components/Link";
 import Warning from "components/warning";
 import { NowPlayingIcon } from "components/blog/nowplaying";
+import SegmentedControl from "components/blog/segmentedcontrol";
 
 const CustomLink = (props: { href: string; children: ReactNode }) => {
   const href = props.href;
@@ -30,6 +31,7 @@ const MDXComponents = {
   AnimatedMessages: AnimatedMessages,
   TailBreakdown: TailBreakdown,
   NowPlayingIcon: NowPlayingIcon,
+  SegmentedControl: SegmentedControl,
 };
 
 export default MDXComponents;
