@@ -8,6 +8,7 @@ import Link from "components/Link";
 import Warning from "components/warning";
 import { NowPlayingIcon } from "components/blog/nowplaying";
 import SegmentedControl from "components/blog/segmentedcontrol";
+import Parallax from "components/blog/parallax";
 
 const CustomLink = (props: { href: string; children: ReactNode }) => {
   const href = props.href;
@@ -32,6 +33,7 @@ const MDXComponents = {
   TailBreakdown: TailBreakdown,
   NowPlayingIcon: NowPlayingIcon,
   SegmentedControl: SegmentedControl,
+  Parallax: Parallax,
 };
 
 export default MDXComponents;
