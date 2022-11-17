@@ -1,95 +1,32 @@
-import { GetStaticProps, GetStaticPaths } from 'next'
-import { useMDXComponent } from 'next-contentlayer/hooks' // eslint-disable-line
-import Head from 'next/head'
-import Link from 'next/link'
-import { NextSeo } from 'next-seo'
-import dynamic from 'next/dynamic'
+import { pick } from "@contentlayer/client";
+import { useMDXComponent } from "next-contentlayer/hooks";
+import { allPosts, Post as PostType } from ".contentlayer/generated";
+import { GetStaticPaths, GetStaticProps } from "next";
+import { NextSeo } from "next-seo";
 
-// Components
-import Page from 'components/page'
-import PageHeader from 'components/pageheader'
-import CustomImage from 'components/image'
-import Warning from 'components/warning'
-import HitCounter from 'components/hitcounter'
-import LikeButton from 'components/likebutton'
-import { NowPlayingIcon } from 'components/nowplaying'
-import Subscribe from 'components/subscribe'
-import BlogImage from 'components/blogimage'
-import SegmentedControl from 'components/segmentedcontrol'
-import Messages, { TailBreakdown } from 'components/messages'
-import AnimatedMessages from 'components/animatedmessages'
-import Parallax from 'components/parallax'
-import Tags from 'components/tags'
-import PostList from 'components/postlist'
-import Button from 'components/button'
-import { RatingPlayground } from 'components/blog/rating'
-
-// Utils
-import { pick } from '@contentlayer/client'
-import { allPosts, Post as PostType } from 'contentlayer/generated'
-
-import styles from './post.module.scss'
-
-const ParallaxCover = dynamic(() => import('components/blog/parallaxcover'))
-
-const CustomLink = (props: { href: string }) => {
-  const { href } = props
-
-  /* eslint-disable */
-  if (href?.startsWith('/')) {
-    return <Link href={href} {...props} />
-  }
-
-  if (href.startsWith('#')) {
-    return <a {...props} />
-  }
-
-  return <a target="_blank" rel="noopener noreferrer" {...props} />
-  /* eslint-enable */
-}
-
-const components = {
-  Head,
-  a: CustomLink,
-  Image: CustomImage,
-  Warning,
-  Link: CustomLink,
-  NowPlayingIcon,
-  SegmentedControl,
-  Messages,
-  AnimatedMessages,
-  TailBreakdown,
-  Parallax,
-  Rating: RatingPlayground,
-}
+import { formatDate } from "lib/formatdate";
+import HitCounter from "components/hitcounter";
+import PostList from "components/PostList";
+import Link from "components/Link";
+import Image from "next/image";
+import NewsletterInput from "components/NewsletterInput";
+import Tags from "components/tags";
+import LikeButton from "components/likebutton";
+import MDXComponents from "components/MDXComponents";
 
 type PostProps = {
-  post: PostType
-  related: PostType[]
-}
+  post: PostType;
+  related: PostType[];
+};
 
-const Post = ({ post, related }: PostProps): JSX.Element => {
-  const Component = useMDXComponent(post.body.code)
-
-  const formattedPublishDate = new Date(post.publishedAt).toLocaleString('en-US', {
-    month: 'short',
-    day: '2-digit',
-    year: 'numeric',
-  })
-  const formattedUpdatedDate = post.updatedAt
-    ? new Date(post.updatedAt).toLocaleString('en-US', {
-        month: 'short',
-        day: '2-digit',
-        year: 'numeric',
-      })
-    : null
-
-  const seoTitle = `${post.title} | Samuel Kraft`
-  const seoDesc = `${post.summary}`
-  const url = `https://samuelkraft.com/blog/${post.slug}`
+export default function Post({ post, related }: PostProps) {
+  const seoTitle = `${post.title} | Samuel Kraft`;
+  const seoDesc = `${post.summary}`;
+  const url = `https://samuelkraft.com/blog/${post.slug}`;
+  const Component = useMDXComponent(post.body.code);
 
   return (
-    <Page>
+    <>
       <NextSeo
         title={seoTitle}
         description={seoDesc}
@@ -102,83 +39,99 @@ const Post = ({ post, related }: PostProps): JSX.Element => {
             {
               url: post.og
                 ? `https://samuelkraft.com${post.og}`
-                : `https://og-image.samuelkraft.vercel.app/${encodeURIComponent(post.title)}?desc=${encodeURIComponent(
-                    seoDesc,
-                  )}&theme=dark.png`,
+                : `https://og-image.samuelkraft.vercel.app/${encodeURIComponent(
+                    post.title
+                  )}?desc=${encodeURIComponent(seoDesc)}&theme=dark.png`,
               alt: post.title,
             },
           ],
-          site_name: 'Samuel Kraft',
-          type: 'article',
+          site_name: "Samuel Kraft",
+          type: "article",
           article: {
             publishedTime: post.publishedAt,
             modifiedTime: post.updatedAt,
-            authors: ['https://samuelkrat.com'],
+            authors: ["https://samuelkraft.com"],
           },
-        }}
-        twitter={{
-          cardType: 'summary_large_image',
         }}
       />
 
-      {post.slug === 'spring-parallax-framer-motion-guide' ? (
-        <ParallaxCover />
-      ) : (
-        <>{post.image && <BlogImage src={post.image} alt={post.title} className={styles.image} />}</>
-      )}
-      <PageHeader title={post.title} compact>
-        <p className={styles.meta}>
-          Published on <time dateTime={post.publishedAt}>{formattedPublishDate}</time>
-          {post.updatedAt ? ` (Updated ${formattedUpdatedDate})` : ''} <span>&middot;</span> {post.readingTime.text}
-          <HitCounter slug={post.slug} />
-        </p>
-      </PageHeader>
-      <article className={styles.article}>
-        <Component components={components} />
-      </article>
-      <div className={styles.buttons}>
+      <div className="flex flex-col gap-20">
+        <article>
+          <Image
+            src={post.image}
+            alt={`${post.title} post image`}
+            width={700}
+            height={350}
+            className="w-[calc(100%+32px)] -ml-4 md:rounded-xl max-w-none border  border-primary"
+            priority
+          />
+          <div className="h-8" />
+          <div className="flex flex-col gap-3">
+            <h1 className="text-2xl font-semibold">{post.title}</h1>
+            <p className="text-secondary">
+              <time dateTime={post.publishedAt}>
+                {formatDate(post.publishedAt)}
+              </time>
+              {post.updatedAt ? ` (Updated ${formatDate(post.updatedAt)})` : ""}{" "}
+              <HitCounter slug={post.slug} />
+            </p>
+          </div>
+          <div className="h-8" />
+          <div className="prose prose-h2:text-lg prose-h2:mb-2 prose-h2:font-semibold">
+            <Component components={MDXComponents} />
+          </div>
+        </article>
+
         <LikeButton slug={post.slug} />
+
+        <Tags tags={post.tags} />
+
+        <div className="flex flex-col gap-4">
+          <h3 className="text-xl">Subscribe</h3>
+          <p className="text-secondary">
+            Get an email when i write new posts. Learn animation techniques,
+            CSS, design systems and more
+          </p>
+          <NewsletterInput />
+        </div>
+
+        {related.length ? (
+          <div className="flex flex-col items-start gap-10">
+            <h3 className="text-xl">Related posts</h3>
+            <PostList posts={related} />
+            <Link href="/blog" underline>
+              ← See all
+            </Link>
+          </div>
+        ) : null}
       </div>
-      <Tags tags={post.tags} />
-      <Subscribe className={styles.subscribe} />
-      {related.length > 0 && (
-        <>
-          <h2 className={styles.relatedHeading}>Related Posts</h2>
-          <PostList posts={related} />
-        </>
-      )}
-      <div className={styles.buttons}>
-        <Button href="/blog">Back to the blog</Button>
-      </div>
-    </Page>
-  )
+    </>
+  );
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: allPosts.map(p => ({ params: { slug: p.slug } })),
+    paths: allPosts.map((p) => ({ params: { slug: p.slug } })),
     fallback: false,
-  }
-}
+  };
+};
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const post = allPosts.find(p => p.slug === params?.slug)
+  const post = allPosts.find((p) => p.slug === params?.slug);
   const related = allPosts
     /* remove current post */
-    .filter(p => p.slug !== params?.slug)
+    .filter((p) => p.slug !== params?.slug)
     /* Find other posts where tags are matching */
-    .filter(p => p.tags?.some(tag => post.tags?.includes(tag)))
+    .filter((p) => p.tags?.some((tag: string) => post?.tags?.includes(tag)))
     /* return the first three */
     .filter((_, i) => i < 3)
     /* only return what's needed to render the list */
-    .map(p => pick(p, ['slug', 'title', 'summary', 'publishedAt', 'image', 'readingTime']))
+    .map((p) => pick(p, ["slug", "title", "summary", "publishedAt", "image"]));
 
   return {
     props: {
       post,
       related,
     },
-  }
-}
-
-export default Post
+  };
+};

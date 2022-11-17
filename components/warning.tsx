@@ -1,13 +1,17 @@
-import { ReactNode } from 'react'
-import { AlertTriangle, Info } from 'react-feather'
+import { ReactNode } from "react";
+import { IconInfo } from "./Icons";
 
-import styles from './warning.module.scss'
-
-const Warning = ({ children, type }: { children: ReactNode; type: 'warning' | 'info' }): JSX.Element => (
-  <div className={styles.warning}>
-    {type === 'info' ? <Info /> : <AlertTriangle />}
-    {children}
+const Warning = ({
+  children,
+  type,
+}: {
+  children: ReactNode;
+  type: "warning" | "info";
+}): JSX.Element => (
+  <div className="flex gap-1 px-4 py-3 rounded-lg mt-7 bg-secondary">
+    <IconInfo className="w-6 h-6 shrink-0" />
+    <div>{children}</div>
   </div>
-)
+);
 
-export default Warning
+export default Warning;

@@ -1,15 +1,15 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document'
+import Document, { Html, Head, Main, NextScript } from "next/document";
 
 export default class MyDocument extends Document {
   render(): JSX.Element {
     return (
       <Html lang="en">
         <Head>
-          <link rel="preload" href="/fonts/GTWalsheimPro-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-          <link rel="preload" href="/fonts/GTWalsheimPro-Medium.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-          <link rel="preload" href="/fonts/GTWalsheimPro-Bold.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
           {/* Global Site Tag (gtag.js) - Google Analytics */}
-          <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_TRACKING_ID}`} />
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_TRACKING_ID}`}
+          />
           <script // eslint-disable-next-line
             dangerouslySetInnerHTML={{
               __html: `
@@ -22,9 +22,18 @@ export default class MyDocument extends Document {
           `,
             }}
           />
-          <meta name="google-site-verification" content="RJQJipgMnyEfg3XESXsr7jXnVDOaAr1xtlCGRaoTQSo" />
-          <link rel="webmention" href="https://webmention.io/samuelkraft.com/webmention" />
-          <link rel="pingback" href="https://webmention.io/samuelkraft.com/xmlrpc" />
+          <meta
+            name="google-site-verification"
+            content="RJQJipgMnyEfg3XESXsr7jXnVDOaAr1xtlCGRaoTQSo"
+          />
+          <link
+            rel="webmention"
+            href="https://webmention.io/samuelkraft.com/webmention"
+          />
+          <link
+            rel="pingback"
+            href="https://webmention.io/samuelkraft.com/xmlrpc"
+          />
           <link href="https://github.com/samuelkraft" rel="me" />
         </Head>
         <body>
@@ -32,6 +41,6 @@ export default class MyDocument extends Document {
           <NextScript />
         </body>
       </Html>
-    )
+    );
   }
 }
