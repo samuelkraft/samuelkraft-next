@@ -41,6 +41,7 @@ const Parallax = ({
     const element = ref.current;
     const onResize = () => {
       setElementTop(
+        /* @ts-ignore-next */
         element.getBoundingClientRect().top + window.scrollY ||
           window.pageYOffset
       );
