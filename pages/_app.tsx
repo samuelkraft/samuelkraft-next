@@ -10,7 +10,7 @@ import SEO from "components/seo";
 import * as gtag from "lib/gtag";
 
 import "../styles/globals.css";
-import Header from "components/Header";
+import Header from "components/header";
 import { NextPage } from "next";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {

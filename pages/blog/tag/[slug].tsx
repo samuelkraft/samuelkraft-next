@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 // Utils
 import { pick } from "@contentlayer/client";
 import { allPosts, Post } from "contentlayer/generated";
-import PostList from "components/PostList";
+import PostList from "components/postlist";
 import Link from "components/Link";
 import { NextSeo } from "next-seo";
 

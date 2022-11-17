@@ -4,7 +4,7 @@ import { pick } from "@contentlayer/client";
 
 import Link from "components/Link";
 import Section from "components/Section";
-import PostList from "components/PostList";
+import PostList from "components/postlist";
 import Image from "next/image";
 
 import tracklibImage from "public/projects/tracklib/ui-mobile.png";

@@ -2,7 +2,7 @@ import { pick } from "@contentlayer/client";
 import { allPosts, Post } from ".contentlayer/generated";
 import { GetStaticProps } from "next";
 import { NextSeo } from "next-seo";
-import PostList from "components/PostList";
+import PostList from "components/postlist";
 import Input from "components/input";
 import { useState } from "react";
 import { IconSearch } from "components/Icons";

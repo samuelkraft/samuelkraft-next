@@ -6,7 +6,7 @@ import { NextSeo } from "next-seo";
 
 import { formatDate } from "lib/formatdate";
 import HitCounter from "components/hitcounter";
-import PostList from "components/PostList";
+import PostList from "components/postlist";
 import Link from "components/Link";
 import Image from "next/image";
 import NewsletterInput from "components/NewsletterInput";
