@@ -11,7 +11,7 @@ tags: ["Framer Motion", "Animation", "React"]
   In the meantime I recommend checking the{" "}
   <a href="https://www.framer.com/docs/use-scroll/" target="_blank">
     useScroll
-  </a>{" "}
+  </a>
   documentation.
 </Warning>
 
@@ -162,12 +162,15 @@ There's a lot going on here so let's break it down.
   <li>We've added an <em>offset</em> prop to specify how strong we want our effect to be.</li>
 
 {" "}
+
 <li>We create a ref that we'll use to measure our element</li>
 
 {" "}
+
 <li>We setup our state where we'll save elementTop and clientHeight.</li>
 
 {" "}
+
 <li>
   We add a useLayoutEffect where we set those values so we can calculate the
   start and end for our transformer.
