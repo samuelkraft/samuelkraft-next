@@ -17,7 +17,7 @@ import { ActivityType } from "components/Activity";
 export const connectLinks = [
   { label: "Email", href: "mailto:samuelkraft@me.com" },
   { label: "Twitter", href: "https://twitter.com/samuelkraft" },
-  { label: "Github", href: "https://github.com/samuelkraft" },
+  { label: "GitHub", href: "https://github.com/samuelkraft" },
 ];
 
 const workplaces = [
