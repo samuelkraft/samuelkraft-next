@@ -38,18 +38,12 @@ const About = (): JSX.Element => {
           </a>
           , the record store for sampling.
         </p>
+        <p>I grew up in Nacka just outside of Stockholm, Sweden and come from a background of studying Photography.</p>
         <p>
-          I grew up in Nacka just outside of Stockholm, Sweden and come from
-          a background of studying Photography.
+          I love working in the realm between design and code. Some things that makes me excited are CSS, Design Systems, Animation,
+          crafting excellent component apis and making interfaces feel fun and human.
         </p>
-        <p>
-          I love working in the realm between design and code. Some things
-          that makes me excited are CSS, Design Systems, Animation, crafting
-          excellent component apis and making interfaces feel fun and human.
-        </p>
-        <p>
-         Outside of work I’m obsessed with endurance sports and travelling with my family.
-        </p>
+        <p>Outside of work I’m obsessed with endurance sports and travelling with my family.</p>
       </div>
       <Button href="mailto:samuelkraft@me.com">Contact me</Button>
     </Page>
