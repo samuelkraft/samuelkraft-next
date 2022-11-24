@@ -8,6 +8,7 @@ const nextConfig = {
         protocol: "https",
         hostname: "dgtzuqphqg23d.cloudfront.net",
       },
+      { protocol: "https", hostname: "image.mux.com" },
     ],
   },
   webpack: (config, { isServer }) => {
