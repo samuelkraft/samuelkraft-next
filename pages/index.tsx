@@ -11,6 +11,7 @@ import tracklibImage from "public/projects/tracklib/ui-mobile.png";
 import trailroutesImage from "public/projects/trailroutes/detail.png";
 import BitrefillGraphic from "components/projects/BitrefillGraphic";
 import TrailRoutesGraphic from "components/projects/TrailRoutesGraphic";
+import TracklibGraphic from "components/projects/TracklibGraphic";
 
 type HomeProps = {
   posts: Post[];
@@ -48,13 +49,7 @@ export default function Home({ posts, projects }: HomeProps) {
                       </Link>
                     </div>
                     <Link href={`/project/${project.slug}`}>
-                      {project.slug === "tracklib" && (
-                        <Image
-                          src={tracklibImage}
-                          alt="Tracklib image"
-                          className="rounded-xl"
-                        />
-                      )}
+                      {project.slug === "tracklib" && <TracklibGraphic />}
                       {project.slug === "bitrefill" && <BitrefillGraphic />}
                       {project.slug === "trailroutes" && <TrailRoutesGraphic />}
                     </Link>
