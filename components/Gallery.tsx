@@ -96,7 +96,7 @@ function Photo({
             alt={alt}
             width={width}
             height={height}
-            className="absolute inset-0 object-cover w-full h-full pointer-events-none rounded-2xl"
+            className="absolute inset-0 object-cover w-full h-full bg-gray-400 pointer-events-none rounded-2xl"
             priority
           />
           {children}
