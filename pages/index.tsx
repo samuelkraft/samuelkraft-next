@@ -10,6 +10,7 @@ import Image from "next/image";
 import tracklibImage from "public/projects/tracklib/ui-mobile.png";
 import trailroutesImage from "public/projects/trailroutes/detail.png";
 import BitrefillGraphic from "components/projects/BitrefillGraphic";
+import TrailRoutesGraphic from "components/projects/TrailRoutesGraphic";
 
 type HomeProps = {
   posts: Post[];
@@ -55,13 +56,7 @@ export default function Home({ posts, projects }: HomeProps) {
                         />
                       )}
                       {project.slug === "bitrefill" && <BitrefillGraphic />}
-                      {project.slug === "trailroutes" && (
-                        <Image
-                          src={trailroutesImage}
-                          alt="Trail routes image"
-                          className="rounded-xl"
-                        />
-                      )}
+                      {project.slug === "trailroutes" && <TrailRoutesGraphic />}
                     </Link>
                   </div>
                 </Section>
