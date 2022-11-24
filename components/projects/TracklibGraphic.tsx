@@ -13,7 +13,7 @@ export default function TracklibGraphic() {
 
   return (
     <div
-      className="relative overflow-hidden bg-black aspect-video rounded-xl"
+      className="relative overflow-hidden bg-black h-[283px] rounded-xl"
       ref={ref}
     >
       <motion.div
@@ -33,7 +33,7 @@ export default function TracklibGraphic() {
         height="19"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="absolute z-10 -translate-y-1/2 top-1/2 left-12"
+        className="absolute z-10 hidden -translate-y-1/2 top-1/2 left-12 sm:block"
       >
         <path
           fillRule="evenodd"

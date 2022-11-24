@@ -96,7 +96,9 @@ export default function About({
         }}
       />
       <div className="flex flex-col gap-16 md:gap-24">
-        <Gallery lastActivity={lastActivity} />
+        <div className="hidden sm:block">
+          <Gallery lastActivity={lastActivity} />
+        </div>
         <Section heading="About me" headingAlignment="right">
           <div className="flex flex-col gap-6">
             <p>

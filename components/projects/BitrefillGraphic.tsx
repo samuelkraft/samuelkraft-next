@@ -13,7 +13,7 @@ export default function BitrefillGraphic() {
 
   return (
     <div
-      className="aspect-video bg-[#001413] rounded-xl relative overflow-hidden"
+      className="h-[283px] bg-[#001413] rounded-xl relative overflow-hidden"
       ref={ref}
     >
       <motion.div
@@ -33,7 +33,7 @@ export default function BitrefillGraphic() {
         height="28"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="absolute -translate-y-1/2 top-1/2 left-20"
+        className="absolute hidden -translate-y-1/2 top-1/2 left-20 sm:block"
       >
         <path
           fillRule="evenodd"
