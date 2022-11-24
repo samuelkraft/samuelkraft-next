@@ -45,7 +45,15 @@ export default function Project({ project, rest }: ProjectProps) {
           <div className="h-20" />
           <div className="flex flex-col gap-3 px-4 md:px-6 py-2 max-w-[700px] mx-auto ">
             <h1 className="text-2xl font-semibold">{project.title}</h1>
-            <p className="text-secondary">{project.time}</p>
+            <div className="flex gap-3">
+              <p className="text-secondary">{project.time}</p>
+              {project.url && (
+                <>
+                  <span>&middot;</span>
+                  <Link href={project.url}>Visit Live ↗</Link>
+                </>
+              )}
+            </div>
             {project.description}
           </div>
 
