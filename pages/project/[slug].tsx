@@ -75,7 +75,12 @@ export default function Project({ project, rest }: ProjectProps) {
               </li>
             ))}
           </ul>
+          <div className="h-12"></div>
+          <Link href="/" underline>
+            ← Back home
+          </Link>
         </div>
+
         <div />
       </div>
     </>
