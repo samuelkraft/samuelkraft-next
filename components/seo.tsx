@@ -1,29 +1,27 @@
-import { DefaultSeo } from 'next-seo'
+import { DefaultSeo } from "next-seo";
 
 const config = {
-  title: 'Samuel Kraft - Frontend Developer & Designer',
-  description: 'I’m a frontend developer & designer that loves to create stuff!',
+  title: "Samuel Kraft - Design engineer",
+  description: "I design & build interfaces",
   openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://samuelkraft.com',
-    site_name: 'Samuel Kraft',
+    type: "website",
+    locale: "en_US",
+    url: "https://samuelkraft.com",
+    site_name: "Samuel Kraft",
     images: [
       {
-        url: 'https://samuelkraft.com/og.jpg',
-        alt: 'Samuel Kraft',
+        url: "https://samuelkraft.com/og.jpg",
+        alt: "Samuel Kraft",
       },
     ],
   },
   twitter: {
-    handle: '@samuelkraft',
-    site: '@samuelkraft',
-    cardType: 'summary_large_image',
+    handle: "@samuelkraft",
+    site: "@samuelkraft",
+    cardType: "summary_large_image",
   },
-}
+};
 
-const SEO = (): JSX.Element => {
-  return <DefaultSeo {...config} />
+export default function SEO() {
+  return <DefaultSeo {...config} />;
 }
-
-export default SEO

@@ -1,0 +1,298 @@
+@import "@radix-ui/colors/sand.css";
+@import "@radix-ui/colors/sandA.css";
+@import "@radix-ui/colors/sandDark.css";
+@import "@radix-ui/colors/sandDarkA.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --blurBackground: rgba(255, 255, 255, 0.95);
+    --brand: #e38356;
+    --brandTinted: rgba(227, 131, 86, 0.2);
+
+    /* legacy vars from blogposts */
+    --bg: var(--sand1);
+    --boxBg: var(--sand4);
+  }
+
+  .dark-theme {
+    --blurBackground: rgba(15, 15, 15, 0.95);
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+}
+
+.breakout {
+  width: calc(100vw - 48px);
+  margin-left: calc(50% - 50vw + 36px);
+}
+
+.project {
+  margin: 0 auto;
+  max-width: none;
+}
+
+.project > :not(.not-prose, video) {
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.project > .not-prose,
+.project > video {
+  margin: 16px 16px;
+  width: calc(100% - 32px);
+}
+
+@media (min-width: 768px) {
+  .project > :not(.not-prose, video) {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .project > .not-prose,
+  .project > video {
+    margin: 80px 40px;
+    width: calc(100% - 80px);
+  }
+}
+
+.prose {
+  --tw-prose-body: var(--sand12);
+  --tw-prose-bold: var(--sand12);
+  --tw-prose-links: var(--sand12);
+  --tw-prose-headings: var(--sand12);
+  --tw-prose-code: var(--sand12);
+  --tw-prose-quotes: var(--sand11);
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  display: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.like-button {
+  background: radial-gradient(
+    100% 478.52% at 0% 15.62%,
+    #e38244 0%,
+    #ebad64 100%
+  );
+  animation: pulse 2.5s infinite ease-out;
+}
+
+.radial-fade {
+  background: radial-gradient(
+    100% 100% at 100% 100%,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0px 0px 52px #eaa55f, 0px 0px 20px #ee9950,
+      inset 0px 1px 3px rgba(255, 255, 255, 0.22);
+  }
+  70% {
+    box-shadow: 0px 0px 70px #eaa55f, 0px 0px 40px #ee9950,
+      inset 0px 1px 3px rgba(255, 255, 255, 0.22);
+  }
+  100% {
+    box-shadow: 0px 0px 52px #eaa55f, 0px 0px 20px #ee9950,
+      inset 0px 1px 3px rgba(255, 255, 255, 0.22);
+  }
+}
+
+@media (hover: hover) {
+  .animated-list:hover li {
+    opacity: 0.5;
+  }
+
+  .animated-list:hover li:hover {
+    opacity: 1;
+  }
+}
+
+.animate-in {
+  animation-delay: calc(var(--index) * 130ms);
+}
+
+/*
+ * Hopscotch
+ * by Jan T. Sott
+ * https://github.com/idleberg/Hopscotch
+ *
+ * This work is licensed under the Creative Commons CC0 1.0 Universal License
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #b9b5b8;
+  font-size: 14px;
+  font-family: Menlo, Monaco, "Lucida Console", "Courier New", Courier,
+    monospace;
+  line-height: 1.375;
+  direction: ltr;
+  text-align: left;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+  background: #322931;
+}
+
+@media (min-width: 480px) {
+  code[class*="language-"],
+  pre[class*="language-"] {
+    font-size: 15px;
+  }
+}
+
+pre > code[class*="language-"] {
+  display: block;
+  width: 100%;
+  font-size: 1em;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  margin: 0.5em 0;
+  padding: 1em;
+  overflow: auto;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: 0.1em;
+  border-radius: 0.3em;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #797379;
+}
+
+.token.punctuation {
+  color: #b9b5b8;
+}
+
+.namespace {
+  opacity: 0.7;
+}
+
+.token.null,
+.token.operator,
+.token.boolean,
+.token.number {
+  color: #fd8b19;
+}
+
+.token.property {
+  color: #fdcc59;
+}
+
+.token.tag {
+  color: #1290bf;
+}
+
+.token.string {
+  color: #149b93;
+}
+
+.token.selector {
+  color: #c85e7c;
+}
+
+.token.attr-name {
+  color: #fd8b19;
+}
+
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: #149b93;
+}
+
+.token.attr-value,
+.token.keyword,
+.token.control,
+.token.directive,
+.token.unit {
+  color: #8fc13e;
+}
+
+.token.statement,
+.token.regex,
+.token.atrule {
+  color: #149b93;
+}
+
+.token.placeholder,
+.token.variable {
+  color: #1290bf;
+}
+
+.token.important {
+  color: #dd464c;
+  font-weight: bold;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+pre > code.highlight {
+  outline: 0.4em solid red;
+  outline-offset: 0.4em;
+}
+
+.remark-code-title {
+  padding: 12px 25px;
+  font-weight: 600;
+  font-size: 14px;
+  font-family: Menlo, Monaco, "Lucida Console", "Courier New", Courier,
+    monospace;
+  background-color: var(--boxBg);
+  border-top-left-radius: 0.3em;
+  border-top-right-radius: 0.3em;
+}
+
+article .remark-code-title + pre {
+  margin-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.highlight-line {
+  position: relative;
+  display: block;
+  width: calc(100% + 40px);
+  margin-right: -25px;
+  margin-left: -25px;
+  padding-left: 25px;
+  background-color: var(--brandTinted);
+}
+
+.highlight-line:before {
+  position: absolute;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background-color: var(--brand);
+  content: "";
+}

@@ -1,45 +1,67 @@
-import { defineDocumentType, makeSource, ComputedFields } from 'contentlayer/source-files' // eslint-disable-line
-import readingTime from 'reading-time'
-import rehypePrism from 'rehype-prism-plus'
-import codeTitle from 'remark-code-titles'
+import {
+  defineDocumentType,
+  makeSource,
+  ComputedFields,
+} from "contentlayer/source-files"; // eslint-disable-line
+import rehypePrism from "rehype-prism-plus";
+import codeTitle from "remark-code-titles";
 
-const getSlug = doc => doc._raw.sourceFileName.replace(/\.mdx$/, '')
+const getSlug = (doc: any) => doc._raw.sourceFileName.replace(/\.mdx$/, "");
 
-const computedFields: ComputedFields = {
+const postComputedFields: ComputedFields = {
   slug: {
-    type: 'string',
-    resolve: doc => getSlug(doc),
+    type: "string",
+    resolve: (doc) => getSlug(doc),
   },
   image: {
-    type: 'string',
-    resolve: doc => `/blog/${getSlug(doc)}/image.png`,
+    type: "string",
+    resolve: (doc) => `/blog/${getSlug(doc)}/image.png`,
   },
   og: {
-    type: 'string',
-    resolve: doc => `/blog/${getSlug(doc)}/og.jpg`,
+    type: "string",
+    resolve: (doc) => `/blog/${getSlug(doc)}/og.jpg`,
   },
-  readingTime: { type: 'json', resolve: doc => readingTime(doc.body.raw) },
-}
+};
 
 export const Post = defineDocumentType(() => ({
-  name: 'Post',
-  filePathPattern: `**/*.mdx`,
-  contentType: 'mdx',
+  name: "Post",
+  filePathPattern: `blog/**/*.mdx`,
+  contentType: "mdx",
   fields: {
-    title: { type: 'string', required: true },
-    summary: { type: 'string', required: true },
-    publishedAt: { type: 'string', required: true },
-    updatedAt: { type: 'string', required: false },
-    tags: { type: 'json', required: false },
+    title: { type: "string", required: true },
+    summary: { type: "string", required: true },
+    publishedAt: { type: "string", required: true },
+    updatedAt: { type: "string", required: false },
+    tags: { type: "json", required: false },
   },
-  computedFields,
-}))
+  computedFields: postComputedFields,
+}));
+
+const projectComputedFields: ComputedFields = {
+  slug: {
+    type: "string",
+    resolve: (doc) => getSlug(doc),
+  },
+};
+
+export const Project = defineDocumentType(() => ({
+  name: "Project",
+  filePathPattern: `project/**/*.mdx`,
+  contentType: "mdx",
+  fields: {
+    title: { type: "string", required: true },
+    description: { type: "string", required: true },
+    time: { type: "string", required: true },
+    url: { type: "string", required: false },
+  },
+  computedFields: projectComputedFields,
+}));
 
 export default makeSource({
-  contentDirPath: 'data/blog',
-  documentTypes: [Post],
+  contentDirPath: "data",
+  documentTypes: [Post, Project],
   mdx: {
     rehypePlugins: [rehypePrism],
     remarkPlugins: [codeTitle],
   },
-})
+});

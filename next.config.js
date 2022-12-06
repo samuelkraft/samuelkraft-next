@@ -1,16 +1,23 @@
-const { withContentlayer } = require('next-contentlayer') // eslint-disable-line
+const { withContentlayer } = require("next-contentlayer"); // eslint-disable-line
 
-module.exports = withContentlayer({
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   images: {
-    domains: ['www.notion.so', 'i.scdn.co'],
-    formats: ['image/avif', 'image/webp'],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "dgtzuqphqg23d.cloudfront.net",
+      },
+      { protocol: "https", hostname: "image.mux.com" },
+    ],
   },
   webpack: (config, { isServer }) => {
     if (isServer) {
-      require('./scripts/generate-sitemap') // eslint-disable-line
-      require('./scripts/generate-rss') // eslint-disable-line
+      require("./scripts/generate-sitemap");
     }
 
-    return config
+    return config;
   },
-})
+};
+
+module.exports = withContentlayer(nextConfig);

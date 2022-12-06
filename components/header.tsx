@@ -1,42 +1,38 @@
-import Link from 'next/link'
-import ThemeChanger from 'components/themechanger'
-import { useRouter } from 'next/router'
-import Image from 'next/image'
-import avatar from 'public/avatar.png'
-import styles from './header.module.scss'
+import Image from "next/image";
+import Link from "next/link";
+import avatar from "public/avatar.png";
+import NavLink from "./NavLink";
+import ThemeSwitcher from "./ThemeSwitcher";
 
 const links = [
-  { name: 'Home', path: '/' },
-  { name: 'About', path: '/about' },
-  { name: 'Blog', path: '/blog' },
-  { name: 'Books', path: '/books' },
-]
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Blog", href: "/blog" },
+];
 
-const Header = (): JSX.Element => {
-  const router = useRouter()
-  const pathname = router.pathname.split('/[')[0] // active paths on dynamic subpages
+export default function Header() {
   return (
-    <>
-      <header className={styles.header}>
-        <div className={styles.container}>
-          <Link href="/" className={styles.logo}>
-            <Image src={avatar} alt="Samuel Kraft" width="45" height="45" priority placeholder="blur" />
-          </Link>
-          <nav className={styles.nav}>
-            <ol className={styles.links}>
-              {links.map(({ name, path }) => (
-                <li key={path} className={pathname === path ? styles.linkActive : styles.link}>
-                  <Link href={path}>{name}</Link>
-                </li>
-              ))}
-            </ol>
-          </nav>
-          <ThemeChanger />
+    <header className="sticky top-0 z-10 backdrop-blur-md">
+      <nav className="px-4 md:px-6 py-2 max-w-[700px] mx-auto flex justify-between items-center ">
+        <Link href="/" className="hidden shrink-0 sm:block">
+          <Image
+            src={avatar}
+            alt="Samuel Kraft avatar"
+            className="w-8 h-8"
+            priority
+          />
+        </Link>
+        <ul className="flex items-center gap-6">
+          {links.map((link) => (
+            <li key={link.href}>
+              <NavLink href={link.href}>{link.label}</NavLink>
+            </li>
+          ))}
+        </ul>
+        <div className="flex items-center justify-center w-8 h-8">
+          <ThemeSwitcher />
         </div>
-      </header>
-      <div className={styles.spacer} />
-    </>
-  )
+      </nav>
+    </header>
+  );
 }
-
-export default Header

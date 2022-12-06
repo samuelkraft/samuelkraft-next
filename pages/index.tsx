@@ -1,54 +1,93 @@
-import { GetStaticProps } from 'next'
-import { getRepos } from 'lib/github'
+import { GetStaticProps } from "next";
+import { allPosts, allProjects, Post, Project } from ".contentlayer/generated";
+import { pick } from "@contentlayer/client";
 
-import Button from 'components/button'
-import PageHeader from 'components/pageheader'
-import Project from 'components/project'
-import Page from 'components/page'
-import Repo, { RepoProps } from 'components/repo'
+import Link from "components/Link";
+import Section from "components/Section";
+import PostList from "components/postlist";
+import Image from "next/image";
 
-import bitrefill from 'public/projects/bitrefill.png'
-import routes from 'public/projects/routes.png'
-import tracklib from 'public/projects/tracklib.png'
-
-const projects = [
-  { title: 'Tracklib', description: 'Clear samples from real music', link: 'tracklib.com', image: tracklib },
-  { title: 'Bitrefill', description: 'Live on Crypto', link: 'bitrefill.com', image: bitrefill },
-  {
-    title: 'Trail Routes',
-    description: 'Curated running & hiking routes',
-    link: 'routes.samuelkraft.com',
-    github: 'github.com/samuelkraft/routes',
-    image: routes,
-  },
-]
+import tracklibImage from "public/projects/tracklib/ui-mobile.png";
+import trailroutesImage from "public/projects/trailroutes/detail.png";
+import BitrefillGraphic from "components/projects/BitrefillGraphic";
+import TrailRoutesGraphic from "components/projects/TrailRoutesGraphic";
+import TracklibGraphic from "components/projects/TracklibGraphic";
 
 type HomeProps = {
-  repos: RepoProps[]
-}
+  posts: Post[];
+  projects: Project[];
+};
 
-const Home = ({ repos }: HomeProps) => (
-  <Page>
-    <PageHeader title="Hi, I'm Samuel." description="I design & build interfaces.">
-      <Button href="/about">Learn more</Button>
-    </PageHeader>
-    <h2>Selected Projects</h2>
-    {projects.map(Project)}
-    <br />
-    <h2>Selected Repos</h2>
-    {repos.map(Repo)}
-  </Page>
-)
+export default function Home({ posts, projects }: HomeProps) {
+  return (
+    <>
+      <div className="flex flex-col gap-20 md:gap-28">
+        <div>
+          <h1 className="animate-in">Samuel Kraft</h1>
+          <p
+            className="text-stone-500 animate-in"
+            style={{ "--index": 1 } as React.CSSProperties}
+          >
+            I design & build interfaces
+          </p>
+        </div>
+        <div
+          className="flex flex-col gap-4 animate-in"
+          style={{ "--index": 2 } as React.CSSProperties}
+        >
+          <h2>Selected projects</h2>
+          <ul className="flex flex-col gap-16">
+            {projects.map((project) => (
+              <li key={project.title}>
+                <Section heading={project.time}>
+                  <div className="flex flex-col gap-5">
+                    <div className="flex flex-col gap-1">
+                      <h3>{project.title}</h3>
+                      <p className="text-secondary">{project.description}</p>
+                      <Link href={`/project/${project.slug}`} underline>
+                        Read case study
+                      </Link>
+                    </div>
+                    <Link href={`/project/${project.slug}`}>
+                      {project.slug === "tracklib" && <TracklibGraphic />}
+                      {project.slug === "bitrefill" && <BitrefillGraphic />}
+                      {project.slug === "trailroutes" && <TrailRoutesGraphic />}
+                    </Link>
+                  </div>
+                </Section>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div
+          className="flex flex-col items-start gap-8 animate-in"
+          style={{ "--index": 3 } as React.CSSProperties}
+        >
+          <h2>Selected posts</h2>
+          <PostList posts={posts} />
+          <Link href="/blog" className="items-start underline">
+            See all →
+          </Link>
+        </div>
+      </div>
+    </>
+  );
+}
 
 export const getStaticProps: GetStaticProps = async () => {
-  const repos = await getRepos()
+  const posts = allPosts
+    .sort(
+      (a, b) =>
+        new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+    )
+    .filter((_, i) => i < 4)
+    .map((post) => pick(post, ["slug", "title", "publishedAt"]));
+
+  const projects = allProjects.map((post) =>
+    pick(post, ["slug", "title", "description", "time"])
+  );
 
   return {
-    props: {
-      repos,
-    },
-    revalidate: 3600,
-  }
-}
-
-export default Home
+    props: { posts, projects },
+  };
+};

@@ -1,34 +1,46 @@
 ---
-title: 'Using Bottom Tab Bars on Safari iOS 15'
-publishedAt: '2021-06-17'
-updatedAt: '2021-09-23'
-summary: 'How to safely design and develop web tab bars on Safari 15'
+title: "Using Bottom Tab Bars on Safari iOS 15"
+publishedAt: "2021-06-17"
+updatedAt: "2021-09-23"
+summary: "How to safely design and develop web tab bars on Safari 15"
 tags: ["CSS"]
 ---
 
 **Apple recently announced the latest version of Safari on iOS 15 with a completely new design featuring a bottom floating tab bar. What does this mean for web developers and designers?**
 
-Safari on iOS has had a problem for a long time when it comes to building websites and web apps with bottom-aligned navigation due to the browser toolbar's dynamic height. As you scroll the toolbar disappears making any element that is fixed to the bottom of the screen look great, but as soon as you try to tap any link inside the browser toolbar appears again. 
+Safari on iOS has had a problem for a long time when it comes to building websites and web apps with bottom-aligned navigation due to the browser toolbar's dynamic height. As you scroll the toolbar disappears making any element that is fixed to the bottom of the screen look great, but as soon as you try to tap any link inside the browser toolbar appears again.
 
-<video playsInline autoPlay loop muted width="708" style={{ width: '100%' }}>
-    <source src="/blog/safari-15-bottom-tab-bars-web/twitter-bad.mp4" type="video/mp4" />
-    Sorry, your browser doesn't support embedded videos.
+<video playsInline autoPlay loop muted width="708" style={{ width: "100%" }}>
+  <source
+    src="/blog/safari-15-bottom-tab-bars-web/twitter-bad.mp4"
+    type="video/mp4"
+  />
+  Sorry, your browser doesn't support embedded videos.
 </video>
 
 This makes for a really poor UX so designers and developers have mostly resorted to user "hamburger" menus instead. This is a shame as bottom tab bars increase discoverability by not hiding links behind a tap and are also easier to reach one-handed on todays large mobile devices.
 
 ## Updates with Safari 15
-<br />
+
 <Warning type="info">
   <strong>Updated Sep 23, 2021:</strong>
-  <span style={{display: 'block'}}>Apple reverted some of these changes in the final iOS 15 release. The user can now choose between the old UI (top bar) or the new one. If they choose the new bottom bar UI it does not float as much greatly improving overlap issues. While you might not need safe areas anymore if you're lucky, I would still recommend to implement it as I've seen it cause issues anyways.</span>
+  <span style={{ display: "block" }}>
+    Apple reverted some of these changes in the final iOS 15 release. The user
+    can now choose between the old UI (top bar) or the new one. If they choose
+    the new bottom bar UI it does not float as much greatly improving overlap
+    issues. While you might not need safe areas anymore if you're lucky, I would
+    still recommend to implement it as I've seen it cause issues anyways.
+  </span>
 </Warning>
 
 The new Safari 15 now has a tab bar floating at the bottom of the screen. At first it might seem like this makes it even harder to create tab bar navigations, and by browsing the web using iOS 15 it's easy to spot issues like this:
 
-<video playsInline autoPlay loop muted width="708" style={{ width: '100%' }}>
-    <source src="/blog/safari-15-bottom-tab-bars-web/pinterest-bad.mp4" type="video/mp4" />
-    Sorry, your browser doesn't support embedded videos.
+<video playsInline autoPlay loop muted width="708" style={{ width: "100%" }}>
+  <source
+    src="/blog/safari-15-bottom-tab-bars-web/pinterest-bad.mp4"
+    type="video/mp4"
+  />
+  Sorry, your browser doesn't support embedded videos.
 </video>
 
 ## Fixing Tab Bar Overlap with Safe Areas
@@ -54,9 +66,12 @@ To respect the safe area and make sure that nothing from the browser UI overlaps
 
 Now when scrolling nothing overlaps:
 
-<video playsInline autoPlay loop muted width="708" style={{ width: '100%' }}>
-    <source src="/blog/safari-15-bottom-tab-bars-web/pinterest-good.mp4" type="video/mp4" />
-    Sorry, your browser doesn't support embedded videos.
+<video playsInline autoPlay loop muted width="708" style={{ width: "100%" }}>
+  <source
+    src="/blog/safari-15-bottom-tab-bars-web/pinterest-good.mp4"
+    type="video/mp4"
+  />
+  Sorry, your browser doesn't support embedded videos.
 </video>
 
 Be sure to use `env()` every time something is anchored to the bottom of the screen or overlap will likely appear. `env()` can also be combined with css `calc()` or `min()` and `max()`, so if your design needs more padding you can add it like this:
@@ -77,9 +92,12 @@ The best way to see if you got it right is to use a physical device with iOS 15,
 
 Remember the issue in previous versions of Safari where you had to click twice when using bottom tab bars? Once for showing the safari toolbar and another tap for actually triggering your link? That is no longer an issue 🙌. Safari 15 now respects and follows links or buttons, which is a big improvement! Check out how much better Twitter's tabbar works when switching tabs on Safari 15:
 
-<video playsInline autoPlay loop muted width="708" style={{ width: '100%' }}>
-    <source src="/blog/safari-15-bottom-tab-bars-web/twitter-good.mp4" type="video/mp4" />
-    Sorry, your browser doesn't support embedded videos.
+<video playsInline autoPlay loop muted width="708" style={{ width: "100%" }}>
+  <source
+    src="/blog/safari-15-bottom-tab-bars-web/twitter-good.mp4"
+    type="video/mp4"
+  />
+  Sorry, your browser doesn't support embedded videos.
 </video>
 
 Even if tab bars now technically work better than before we still have to consider the design and UX to create something that people understand and that looks good. The browser UI is now very bottom-heavy and placing more actions next to it might feel cluttered. What do you think? Let me know on twitter [@samuelkraft](https://twitter.com/samuelkraft).
