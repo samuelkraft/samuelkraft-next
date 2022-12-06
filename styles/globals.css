@@ -114,12 +114,14 @@ input:-webkit-autofill:focus {
   }
 }
 
-.animated-list:hover li {
-  opacity: 0.5;
-}
+@media (hover: hover) {
+  .animated-list:hover li {
+    opacity: 0.5;
+  }
 
-.animated-list:hover li:hover {
-  opacity: 1;
+  .animated-list:hover li:hover {
+    opacity: 1;
+  }
 }
 
 .animate-in {
