@@ -13,6 +13,7 @@ import avatar from "public/avatar.png";
 import { NextSeo } from "next-seo";
 import { getActivities, getActivity } from "lib/strava";
 import { ActivityType } from "components/Activity";
+import Image from "next/image";
 
 export const connectLinks = [
   { label: "Email", href: "mailto:samuelkraft@me.com" },
@@ -98,6 +99,14 @@ export default function About({
       <div className="flex flex-col gap-16 md:gap-24">
         <div className="hidden sm:block">
           <Gallery lastActivity={lastActivity} />
+        </div>
+        <div className="-mb-8 sm:hidden">
+          <Image
+            src={avatar}
+            width={48}
+            height={48}
+            alt="avatar of Samuel Kraft"
+          />
         </div>
         <Section heading="About me" headingAlignment="right">
           <div className="flex flex-col gap-6">
