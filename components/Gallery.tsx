@@ -11,7 +11,10 @@ import { ReactNode } from "react";
 import Activity, { ActivityType } from "./Activity";
 import Link from "./Link";
 
-const ticketingFont = localFont({ src: "../public/ticketing.woff2" });
+const ticketingFont = localFont({
+  src: "../public/ticketing.woff2",
+  display: "swap",
+});
 
 type PhotoProps = {
   src: StaticImageData | string;
