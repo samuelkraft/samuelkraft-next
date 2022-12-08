@@ -82,7 +82,7 @@ function Photo({
       whileHover="flipped"
     >
       <motion.div
-        className="relative w-full h-full shadow-md rounded-2xl"
+        className="relative w-full h-full shadow-md rounded-2xl will-change-transform"
         style={{ transformStyle: "preserve-3d" }}
         transition={{ type: "spring", duration: 0.4 }}
         variants={{
