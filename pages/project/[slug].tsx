@@ -1,4 +1,3 @@
-import { pick } from "@contentlayer/client";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import { allProjects, Project as ProjectType } from ".contentlayer/generated";
 import { GetStaticPaths, GetStaticProps } from "next";
@@ -7,6 +6,7 @@ import MDXComponents from "components/MDXComponents";
 import { connectLinks } from "pages/about";
 import Link from "components/Link";
 import { ReactElement } from "react";
+import HitCounter from "components/hitcounter";
 
 type ProjectProps = {
   project: ProjectType;
@@ -21,6 +21,9 @@ export default function Project({ project, rest }: ProjectProps) {
 
   return (
     <>
+      <div className="hidden">
+        <HitCounter slug={`project-${project.slug}`} />
+      </div>
       <NextSeo
         title={seoTitle}
         description={seoDesc}
