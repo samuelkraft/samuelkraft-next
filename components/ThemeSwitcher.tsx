@@ -10,14 +10,25 @@ const themes = [
   { id: "system", label: "Automatic" },
   { id: "light", label: "Light" },
   { id: "dark", label: "Dark" },
+  { id: "arc", label: "Arc" },
 ];
 
 export default function ThemeSwitcher() {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
+  const [isArcBrowser, setIsArcBrowser] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+
+    const timer = setTimeout(() => {
+      const isArc =
+        document.documentElement.style.getPropertyValue(
+          "--arc-palette-foregroundPrimary"
+        ) !== "";
+      if (isArc) setIsArcBrowser(true);
+    }, 800);
+    return () => clearTimeout(timer);
   }, []);
 
   if (!mounted) {
@@ -53,37 +64,41 @@ export default function ThemeSwitcher() {
                   transition={{ type: "spring", bounce: 0.3, duration: 0.3 }}
                   className="absolute right-0 p-2 mt-2 overflow-auto text-base origin-top-right shadow-lg max-h-60 w-42 rounded-xl bg-blurBackground backdrop-blur-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
                 >
-                  {themes.map((theme) => (
-                    <Listbox.Option
-                      key={theme.id}
-                      className={({ active }) =>
-                        `relative cursor-default select-none py-2 pl-10 pr-4 rounded-md ${
-                          active ? "bg-secondaryA" : "text-primary"
-                        }`
-                      }
-                      value={theme.id}
-                    >
-                      {({ selected }) => (
-                        <>
-                          <span
-                            className={`block truncate ${
-                              selected ? "font-medium" : "font-normal"
-                            }`}
-                          >
-                            {theme.label}
-                          </span>
-                          {selected ? (
-                            <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-primary">
-                              <IconCheck
-                                className="w-5 h-5"
-                                aria-hidden="true"
-                              />
+                  {themes
+                    .filter((theme) =>
+                      isArcBrowser ? true : theme.id !== "arc"
+                    )
+                    .map((theme) => (
+                      <Listbox.Option
+                        key={theme.id}
+                        className={({ active }) =>
+                          `relative cursor-default select-none py-2 pl-10 pr-4 rounded-md ${
+                            active ? "bg-secondaryA" : "text-primary"
+                          }`
+                        }
+                        value={theme.id}
+                      >
+                        {({ selected }) => (
+                          <>
+                            <span
+                              className={`block truncate ${
+                                selected ? "font-medium" : "font-normal"
+                              }`}
+                            >
+                              {theme.label}
                             </span>
-                          ) : null}
-                        </>
-                      )}
-                    </Listbox.Option>
-                  ))}
+                            {selected ? (
+                              <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-primary">
+                                <IconCheck
+                                  className="w-5 h-5"
+                                  aria-hidden="true"
+                                />
+                              </span>
+                            ) : null}
+                          </>
+                        )}
+                      </Listbox.Option>
+                    ))}
                 </Listbox.Options>
               )}
             </AnimatePresence>

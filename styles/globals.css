@@ -21,6 +21,17 @@
     --blurBackground: rgba(15, 15, 15, 0.95);
   }
 
+  .arc-theme {
+    --sand1: var(--arc-palette-background);
+    --sand12: var(--arc-palette-foregroundPrimary);
+    --sand11: var(--arc-palette-foregroundSecondary);
+    --sandA4: var(--arc-palette-hover);
+    --sand4: var(--arc-palette-hover);
+    --bg: var(--arc-palette-background);
+    --boxBg: var(--arc-palette-focus);
+    --blurBackground: var(--arc-palette-backgroundExtra);
+  }
+
   body {
     overflow-x: hidden;
   }

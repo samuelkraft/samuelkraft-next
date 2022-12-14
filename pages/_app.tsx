@@ -53,6 +53,7 @@ export default function MyApp({
       value={{
         light: "light-theme",
         dark: "dark-theme",
+        arc: "arc-theme",
       }}
     >
       <style jsx global>{`

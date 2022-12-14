@@ -25,7 +25,7 @@ export default function Home({ posts, projects }: HomeProps) {
         <div>
           <h1 className="animate-in">Samuel Kraft</h1>
           <p
-            className="text-stone-500 animate-in"
+            className="text-secondary animate-in"
             style={{ "--index": 1 } as React.CSSProperties}
           >
             I design & build interfaces
