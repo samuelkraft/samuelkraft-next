@@ -10,19 +10,34 @@ export default async function handler(
     return res.status(400).json({ error: "Email is required" });
   }
 
-  const result = await fetch("https://www.getrevue.co/api/v2/subscribers", {
-    method: "POST",
-    headers: {
-      Authorization: `Token ${process.env.REVUE_API_KEY}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ email }),
-  });
-  const data = await result.json();
+  try {
+    const FORM_ID = process.env.CONVERTKIT_FORM_ID;
+    const API_KEY = process.env.CONVERTKIT_API_KEY;
 
-  if (!result.ok) {
-    return res.status(500).json({ error: data.error.email[0] });
+    const data = {
+      email,
+      api_key: API_KEY,
+    };
+
+    const response = await fetch(
+      `https://api.convertkit.com/v3/forms/${FORM_ID}/subscribe`,
+      {
+        body: JSON.stringify(data),
+        headers: {
+          Authorization: `apikey ${API_KEY}`,
+          "Content-Type": "application/json; charset=utf-8",
+        },
+        method: "POST",
+      }
+    );
+    if (response.status >= 400) {
+      return res.status(400).json({
+        error: `There was an error subscribing to the newsletter…`,
+      });
+    }
+
+    return res.status(201).json({ error: "" });
+  } catch (error: any) {
+    return res.status(500).json({ error: error.message || error.toString() });
   }
-
-  return res.status(201).json({ error: "" });
 }
