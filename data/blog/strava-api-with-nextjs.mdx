@@ -1,0 +1,161 @@
+---
+title: "Using the Strava API with Next.js"
+publishedAt: "2022-12-16"
+summary: "How to access Strava data from a Next.js app"
+tags: ["Strava", "Next.js"]
+---
+
+## 1. Create a Strava Application
+
+Create a Strava application [here](https://www.strava.com/settings/api) (you'll need a strava account), then add the client ID and client secret to your .env.
+
+```bash
+STRAVA_CLIENT_ID=12345
+STRAVA_CLIENT_SECRET=xxxxxxxxxxxxxxxxxxxxx
+```
+
+## 2. Generate a refresh token
+
+In order to make requests to the Strava API you need an access token, and to generate it you need a refresh token. You can find a refresh token on the previous settings page but we cannot use it long-term for our application as it will expire.
+In order to generate a refresh token that does not expire we need to authenticate with the Strava API:
+
+1. Go to <span style={{wordBreak: "break-all"}}>`http://www.strava.com/oauth/authorize?client_id=[REPLACE_WITH_YOUR_CLIENT_ID]&response_type=code&redirect_uri=http://localhost/exchange_token&approval_prompt=force&scope=activity:write`</span> and click "Authorize"
+2. You'll be redirected to a broken page, look at the url and copy the `code` part. This is the autorization code we will use in the next step.
+3. Make a cURL request in your terminal of choice to generate a refresh token that does not expire. It should contain the autorization code from the previous step as well as your client id & client secret:
+
+```bash
+curl -X POST https://www.strava.com/oauth/token \
+	-F client_id=YOURCLIENTID \
+	-F client_secret=YOURCLIENTSECRET \
+	-F code=AUTHORIZATIONCODE \
+	-F grant_type=authorization_code
+```
+
+The response will look something like this:
+
+```bash
+{
+    "token_type": "Bearer",
+    "expires_at": 1562908002,
+    "expires_in": 21600,
+    "refresh_token": "REFRESHTOKEN",
+    "access_token": "ACCESSTOKEN",
+    "athlete": {
+        "id": 123456,
+        "username": "MeowTheCat",
+        "resource_state": 2,
+        "firstname": "Meow",
+        "lastname": "TheCat",
+        "city": "",
+        "state": "",
+        "country": null,
+        ...
+    }
+}
+```
+
+Save the `refresh_token` to your .env
+
+```bash {3}
+STRAVA_CLIENT_ID=12345
+STRAVA_CLIENT_SECRET=xxxxxxxxxxxxxxxxxxxxx
+STRAVA_REFRESH_TOKEN=xxxxxxxxxxxxxxxxxxxxx
+```
+
+For debugging or more information, check Stravas official authentication docs: [https://developers.strava.com/docs/authentication/](https://developers.strava.com/docs/authentication/)
+
+## 3. Connect to Strava API
+
+Create a new file `lib/strava.ts` that will handle all requests to the API. It will use the environment variables we added before in order to generate the access token required by the API.
+
+In the example below I've added a `getActivites()` function that returns a list of recent public activites for the requested user.
+
+```ts
+const clientId = process.env.STRAVA_CLIENT_ID;
+const clientSecret = process.env.STRAVA_CLIENT_SECRET;
+const refreshToken = process.env.STRAVA_REFRESH_TOKEN;
+
+const userId = 18364318; // 👈 Your strava user id, can be found by visiting your strava profile and checking the url
+const TOKEN_ENDPOINT = "https://www.strava.com/oauth/token";
+const ATHLETES_ENDPOINT = `https://www.strava.com/api/v3/athletes/${userId}`;
+
+const getAccessToken = async () => {
+  const body = JSON.stringify({
+    client_id: clientId,
+    client_secret: clientSecret,
+    refresh_token: refreshToken,
+    grant_type: "refresh_token",
+  });
+
+  const response = await fetch(TOKEN_ENDPOINT, {
+    method: "POST",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+    },
+    body,
+  });
+
+  return response.json();
+};
+
+export const getActivities = async () => {
+  const { access_token: accessToken } = await getAccessToken();
+  const response = await fetch(
+    `${ATHLETES_ENDPOINT}/activities?access_token=${accessToken}`
+  );
+  const json = await response.json();
+
+  const publicActivities = json.filter(
+    (activity: ActivityType) => activity.visibility === "everyone"
+  );
+
+  return publicActivities;
+};
+```
+
+<Warning type="info">
+  The getAccessToken function was borrowed from Lee Robinsons excellent guide on{" "}
+  <a href="https://leerob.io/snippets/spotify">using the Spotify API</a>.
+</Warning>
+
+## 4. Usage in Next.js
+
+Call the function from within your app. For example to render the result statically you can use getInitialProps (or a server component if using Next.js app dir).
+
+Be sure to not fetch too often, as you'll get rate limited (currently max 100 requests every 15 minutes, 1000 daily). A good way is by using a higher value for the `revalidate` option.
+
+```tsx
+import { getActivities } from "lib/strava";
+
+export const getStaticProps = async () => {
+  const activities = await getActivities();
+  return {
+    props: {
+      activities,
+    },
+    revalidate: 3600,
+  };
+};
+```
+
+## Getting detailed activity data
+
+To access more detailed data for each activity you need to fetch the full activities separately. It can be done via the following function:
+
+```ts
+const ACTIVITY_ENDPOINT = "https://www.strava.com/api/v3/";
+
+export const getActivity = async (id: number) => {
+  const { access_token: accessToken } = await getAccessToken();
+  const response = await fetch(
+    `${ACTIVITY_ENDPOINT}/activities/${id}?access_token=${accessToken}`
+  );
+  const json = await response.json();
+  return json;
+};
+```
+
+## More features
+
+To fetch more data or learn how to upload activites check out the official [Strava API documentation](https://developers.strava.com/docs/reference/)
