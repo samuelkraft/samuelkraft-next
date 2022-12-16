@@ -93,6 +93,14 @@ input:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
 }
 
+.brand-gradient {
+  background: radial-gradient(
+    100% 478.52% at 0% 15.62%,
+    #e38244 0%,
+    #ebad64 100%
+  );
+}
+
 .like-button {
   background: radial-gradient(
     100% 478.52% at 0% 15.62%,
