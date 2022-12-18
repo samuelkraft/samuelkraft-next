@@ -23,7 +23,7 @@ export default function PostList({ posts }: PostListProps) {
               <Link href={`/blog/${slug}`}>
                 {title}
                 {showNewBadge && (
-                  <span className="inline-block px-1.5 py-[1px] relative -top-[2px] font-bold ml-2 text-[10px] uppercase rounded-full brand-gradient">
+                  <span className="inline-block px-1.5 py-[1px] relative -top-[2px] font-bold ml-2 text-[10px] uppercase rounded-full brand-gradient text-white">
                     New
                   </span>
                 )}
