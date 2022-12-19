@@ -21,7 +21,7 @@
     "d3": "^7.6.1",
     "d3-geo": "^3.0.1",
     "faunadb": "^4.7.1",
-    "framer-motion": "^7.6.4",
+    "framer-motion": "^7.10.2",
     "geojson-to-svg": "^1.1.4",
     "geojson2svg": "^1.3.3",
     "globby": "^13.1.2",
