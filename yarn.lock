@@ -81,6 +81,25 @@
     type-fest "^2.18.0"
     unified "^10.1.2"
 
+"@contentlayer/core@0.2.9":
+  version "0.2.9"
+  resolved "https://registry.yarnpkg.com/@contentlayer/core/-/core-0.2.9.tgz#764d61bffa4a5d3b60b00469f6685f5397db0b70"
+  integrity sha512-QN1urNspjOJkuVoM30AH6afQabUWGq9phsk2vYaFSk1vaW3HUHIlLNHaSBQgiWn+8pZ3ezU3jo3ScNSUkvtLPA==
+  dependencies:
+    "@contentlayer/utils" "0.2.9"
+    camel-case "^4.1.2"
+    comment-json "^4.2.3"
+    esbuild "^0.12.1 || 0.13.x || 0.14.x || 0.15.x"
+    gray-matter "^4.0.3"
+    mdx-bundler "^9.0.1"
+    rehype-stringify "^9.0.3"
+    remark-frontmatter "^4.0.1"
+    remark-parse "^10.0.1"
+    remark-rehype "^10.1.0"
+    source-map-support "^0.5.21"
+    type-fest "^3.2.0"
+    unified "^10.1.2"
+
 "@contentlayer/source-files@0.2.8":
   version "0.2.8"
   resolved "https://registry.yarnpkg.com/@contentlayer/source-files/-/source-files-0.2.8.tgz#87435fe8d3429d06221d1e07fae01b37ade28b0c"
@@ -121,6 +140,30 @@
     oo-ascii-tree "^1.67.0"
     ts-pattern "^4.0.5"
     type-fest "^2.18.0"
+
+"@contentlayer/utils@0.2.9":
+  version "0.2.9"
+  resolved "https://registry.yarnpkg.com/@contentlayer/utils/-/utils-0.2.9.tgz#3a4ac3ab61d16fdfe4b769d6a020624eb036ec5b"
+  integrity sha512-Nxyj5FGu+btv49jSnaFWKdxBoAGFfq1lGW8j6JeW3LE605YhNnQUo0XXo8mOvcdFFwJ6MwZrf3FNJK8pAhXeIg==
+  dependencies:
+    "@effect-ts/core" "^0.60.2"
+    "@effect-ts/otel" "^0.14.0"
+    "@effect-ts/otel-exporter-trace-otlp-grpc" "^0.14.0"
+    "@effect-ts/otel-sdk-trace-node" "^0.14.0"
+    "@js-temporal/polyfill" "^0.4.3"
+    "@opentelemetry/api" "~1.1.0"
+    "@opentelemetry/core" "~1.5.0"
+    "@opentelemetry/exporter-trace-otlp-grpc" "~0.31.0"
+    "@opentelemetry/resources" "~1.5.0"
+    "@opentelemetry/sdk-trace-base" "~1.5.0"
+    "@opentelemetry/sdk-trace-node" "~1.5.0"
+    "@opentelemetry/semantic-conventions" "~1.5.0"
+    chokidar "^3.5.3"
+    hash-wasm "^4.9.0"
+    inflection "^1.13.4"
+    oo-ascii-tree "^1.70.0"
+    ts-pattern "^4.0.5"
+    type-fest "^3.2.0"
 
 "@effect-ts/core@^0.60.2":
   version "0.60.4"
@@ -259,7 +302,7 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@js-temporal/polyfill@^0.4.2":
+"@js-temporal/polyfill@^0.4.2", "@js-temporal/polyfill@^0.4.3":
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/@js-temporal/polyfill/-/polyfill-0.4.3.tgz#e8f8cf86745eb5050679c46a5ebedb9a9cc1f09b"
   integrity sha512-6Fmjo/HlkyVCmJzAPnvtEWlcbQUSRhi8qlN9EtJA/wP7FqXsevLLrlojR44kzNzrRkpf7eDJ+z7b4xQD/Ycypw==
@@ -2407,7 +2450,7 @@ indent-string@^4.0.0:
   resolved "https://registry.yarnpkg.com/indent-string/-/indent-string-4.0.0.tgz#624f8f4497d619b2d9768531d58f4122854d7251"
   integrity sha512-EdDDZu4A2OyIK7Lr/2zG+w5jmbuk1DVBnEwREQvBzspBJkCEbRa8GxU1lghYcaGJCnRWibjDXlq779X1/y5xwg==
 
-inflection@^1.13.2:
+inflection@^1.13.2, inflection@^1.13.4:
   version "1.13.4"
   resolved "https://registry.yarnpkg.com/inflection/-/inflection-1.13.4.tgz#65aa696c4e2da6225b148d7a154c449366633a32"
   integrity sha512-6I/HUDeYFfuNCVS3td055BaXBwKYuzw7K3ExVMStBowKo9oOAMJIXIHvdyR3iboTCp1b+1i5DSkIZTcwIktuDw==
@@ -3325,13 +3368,13 @@ natural-compare@^1.4.0:
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==
 
-next-contentlayer@^0.2.8:
-  version "0.2.8"
-  resolved "https://registry.yarnpkg.com/next-contentlayer/-/next-contentlayer-0.2.8.tgz#59c4a01191d7e1f06d9fcca785377aa45d525f94"
-  integrity sha512-7oRN/CVmiQ+80++c6BoMytyvKz0U2BDGBJpVlYSf3AitmZltMMMzjiBsFC9YAhDDfiqZshT39dKkW6Sn+pFyGA==
+next-contentlayer@^0.2.9:
+  version "0.2.9"
+  resolved "https://registry.yarnpkg.com/next-contentlayer/-/next-contentlayer-0.2.9.tgz#683db6ca1cd4d95889d6c576802f48f07d46245a"
+  integrity sha512-W3sDr86zqfjOc6WaKnIbYtR4mTbwQ/Kql/8FGpbk6cAAn42sHW9tuRpQi0mpdHOIIn1mg/ms/L/r7aM4rdk4gA==
   dependencies:
-    "@contentlayer/core" "0.2.8"
-    "@contentlayer/utils" "0.2.8"
+    "@contentlayer/core" "0.2.9"
+    "@contentlayer/utils" "0.2.9"
 
 next-seo@^5.13.0:
   version "5.13.0"
@@ -3504,6 +3547,11 @@ oo-ascii-tree@^1.67.0:
   version "1.70.0"
   resolved "https://registry.yarnpkg.com/oo-ascii-tree/-/oo-ascii-tree-1.70.0.tgz#30ce0ee1a17b420cbba47a6989f1a69f30749d20"
   integrity sha512-vu/NGcQKC6f3fz2C7qmDW1WP2WFK3CvG1JbweyKlnRsZrdbY0VCH9RKsNaoYUTu9tzafCZ4HWeLEkgXALQMsUg==
+
+oo-ascii-tree@^1.70.0:
+  version "1.72.0"
+  resolved "https://registry.yarnpkg.com/oo-ascii-tree/-/oo-ascii-tree-1.72.0.tgz#189a02f43a855d097cd2b13b11fe3643124a262b"
+  integrity sha512-MDsUvkANZaO6V62LMLSqxOROpMqmgEqC9KxPv1VDo9dwIQ5jTAHugkMEaaN9G/l2HHuzrZUgnZtmuRr8ZzXpHA==
 
 optionator@^0.9.1:
   version "0.9.1"
@@ -4432,6 +4480,11 @@ type-fest@^2.18.0:
   version "2.19.0"
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-2.19.0.tgz#88068015bb33036a598b952e55e9311a60fd3a9b"
   integrity sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==
+
+type-fest@^3.2.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-3.5.0.tgz#df7b2ef54ea775163c56d087b33e901ce9d657f7"
+  integrity sha512-bI3zRmZC8K0tUz1HjbIOAGQwR2CoPQG68N5IF7gm0LBl8QSNXzkmaWnkWccCUL5uG9mCsp4sBwC8SBrNSISWew==
 
 typescript@4.9.4:
   version "4.9.4"
