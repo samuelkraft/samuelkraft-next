@@ -87,29 +87,9 @@ export default function Activity({ activity }: { activity: ActivityType }) {
   var width = 800;
   var height = 600;
 
-  // var geoToScreen = d3geo.geoMercator().fitExtent(
-  //   [
-  //     [padding, padding],
-  //     [width - padding * 2, height - padding * 2],
-  //   ],
-  //   geoJson
-  // );
-
-  // var coordinates = geoJson.coordinates.map(geoToScreen);
-
-  // const draw_svg = (d = "") => `
-  // <svg width='${width}' height='${height}' viewbox='0 0 ${width} ${height}'>
-  //     <path d='${d}' fill='none' stroke='red' stroke-width='2' stroke-linecap='round' stroke-miterlimit='4'/>
-  // </svg>
-  // `;
-
-  // var svg_basic = draw_svg("M " + coordinates.join(" L "));
-
   return (
     <div className="absolute inset-0 flex flex-col justify-between">
-      <header>
-        {/* <div dangerouslySetInnerHTML={{ __html: svg_basic }} /> */}
-      </header>
+      <header></header>
 
       <div className="absolute bottom-0 right-0 w-full h-full radial-fade" />
       <footer className="flex flex-col justify-center items-end gap-1 px-3 pb-3.5 z-10">
