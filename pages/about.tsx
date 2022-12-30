@@ -169,7 +169,14 @@ export default function About({
 export const getStaticProps = async () => {
   const activities: ActivityType[] = await getActivities();
   const lastNonVirtualActivityWithPhoto = activities
-    .filter((activity) => activity.sport_type !== "VirtualRide")
+    .filter(
+      (activity) =>
+        activity.sport_type === "Run" ||
+        activity.sport_type === "TrailRun" ||
+        activity.sport_type === "Bike" ||
+        activity.sport_type === "Swim" ||
+        activity.sport_type === "Hike"
+    )
     .find((activity) => activity.total_photo_count > 0);
   const activity = await getActivity(
     lastNonVirtualActivityWithPhoto?.id as number
