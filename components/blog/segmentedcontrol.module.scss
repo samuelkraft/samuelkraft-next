@@ -5,11 +5,14 @@
   list-style: none;
   background-color: var(--boxBg);
   border-radius: 10px;
+  font-size: 14px;
 
   .item {
     position: relative;
     margin-bottom: 0;
+    margin-top: 0;
     line-height: 1;
+    padding-left: 0;
 
     &:after {
       position: absolute;
@@ -67,8 +70,8 @@
   bottom: 0;
   left: 0;
   z-index: 1;
-  background-color: var(--inputBg);
+  background-color: var(--bg);
   border-radius: 7px;
-  box-shadow: var(--shadow);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   content: "";
 }

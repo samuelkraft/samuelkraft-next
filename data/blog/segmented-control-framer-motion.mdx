@@ -1,28 +1,68 @@
 ---
-title: 'Segmented Control for web with Framer Motion'
-publishedAt: '2021-02-15'
-summary: 'Animating an iOS-like segmented control for the web using Framer Motion'
+title: "Segmented Control for web with Framer Motion"
+publishedAt: "2021-02-15"
+summary: "Animating an iOS-like segmented control for the web using Framer Motion"
 tags: ["Framer Motion", "Animation", "React"]
 ---
 
 Despite its funny name, If you’ve ever used an iOS device you’ll recognise the [UISegmentedControl](https://developer.apple.com/documentation/uikit/uisegmentedcontrol):
 
-<div style={{ padding: '20px', border: '1px solid var(--border)', borderRadius: '5px', textAlign: 'center' }}>
-  <video playsInline autoPlay loop muted width="375" style={{ width: '100%', maxWidth: 375, marginBottom: 20}}>
-      <source src="/blog/segmented-control-framer-motion/segmented-control-ios-two.mp4" type="video/mp4" />
-      Sorry, your browser doesn't support embedded videos.
+<div
+  style={{
+    padding: "20px",
+    border: "1px solid var(--border)",
+    borderRadius: "5px",
+    textAlign: "center",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  }}
+>
+  <video
+    playsInline
+    autoPlay
+    loop
+    muted
+    width="375"
+    style={{ width: "100%", maxWidth: 375, marginBottom: 20 }}
+  >
+    <source
+      src="/blog/segmented-control-framer-motion/segmented-control-ios-two.mp4"
+      type="video/mp4"
+    />
+    Sorry, your browser doesn't support embedded videos.
   </video>
-  <video playsInline autoPlay loop muted width="375" style={{ width: '100%', maxWidth: 375}}>
-      <source src="/blog/segmented-control-framer-motion/segmented-control-ios-five.mp4" type="video/mp4" />
-      Sorry, your browser doesn't support embedded videos.
+  <video
+    playsInline
+    autoPlay
+    loop
+    muted
+    width="375"
+    style={{ width: "100%", maxWidth: 375 }}
+  >
+    <source
+      src="/blog/segmented-control-framer-motion/segmented-control-ios-five.mp4"
+      type="video/mp4"
+    />
+    Sorry, your browser doesn't support embedded videos.
   </video>
 </div>
 
 In this post I’ll show how to recreate it for web using React and Framer Motion resulting in this (try it out by clicking below!):
 
-<div style={{ padding: '80px 7px 50px', border: '1px solid var(--border)', borderRadius: '5px', textAlign: 'center' }}>
+<div
+  style={{
+    padding: "80px 7px 50px",
+    border: "1px solid var(--border)",
+    borderRadius: "5px",
+    textAlign: "center",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: "2rem",
+  }}
+>
   <SegmentedControl items={["Upcoming", "Past"]} />
-  <br />
   <SegmentedControl items={["H", "D", "W", "M", "Y"]} />
 </div>
 
@@ -33,40 +73,53 @@ I’m using a Next.js/React/Typescript/SASS/CSS Modules stack but any react proj
 ## Our finished component
 
 ```tsx
-import { useState } from 'react'
-import { motion, AnimateSharedLayout } from 'framer-motion'
-import styles from './segmentedcontrol.module.scss'
+import { useState } from "react";
+import { motion, AnimateSharedLayout } from "framer-motion";
+import styles from "./segmentedcontrol.module.scss";
 
 type SegmentedControlProps = {
-  items: Array<string>
-}
+  items: Array<string>;
+};
 
 const SegmentedControl = ({ items }: SegmentedControlProps): JSX.Element => {
-  const [activeItem, setActiveitem] = useState(0)
+  const [activeItem, setActiveitem] = useState(0);
   return (
     <AnimateSharedLayout>
       <ol className={styles.list}>
         {items.map((item, i) => {
-          const isActive = i === activeItem
+          const isActive = i === activeItem;
           return (
             <motion.li
-              className={isActive || i === activeItem - 1 ? styles.itemNoDivider : styles.item}
+              className={
+                isActive || i === activeItem - 1
+                  ? styles.itemNoDivider
+                  : styles.item
+              }
               whileTap={isActive ? { scale: 0.95 } : { opacity: 0.6 }}
               key={item}
             >
-              <button onClick={() => setActiveitem(i)} type="button" className={styles.button}>
-                {isActive && <motion.div layoutId="SegmentedControlActive" className={styles.active} />}
+              <button
+                onClick={() => setActiveitem(i)}
+                type="button"
+                className={styles.button}
+              >
+                {isActive && (
+                  <motion.div
+                    layoutId="SegmentedControlActive"
+                    className={styles.active}
+                  />
+                )}
                 <span className={styles.label}>{item}</span>
               </button>
             </motion.li>
-          )
+          );
         })}
       </ol>
     </AnimateSharedLayout>
-  )
-}
+  );
+};
 
-export default SegmentedControl
+export default SegmentedControl;
 ```
 
 ```scss
@@ -78,7 +131,7 @@ export default SegmentedControl
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-[data-theme='dark'] {
+[data-theme="dark"] {
   --boxBg: #1f1e1d;
   --activeBg: #292929;
   --text: #fff;
@@ -109,7 +162,7 @@ export default SegmentedControl
     height: 70%;
     background-color: var(--border);
     transition: opacity 200ms ease-out;
-    content: '';
+    content: "";
   }
 
   &:last-of-type {
@@ -158,7 +211,7 @@ export default SegmentedControl
   background-color: var(--inputBg);
   border-radius: 7px;
   box-shadow: var(--shadow);
-  content: '';
+  content: "";
 }
 ```
 
@@ -183,20 +236,21 @@ const SegmentedControl = ({ items }: SegmentedControlProps): JSX.Element => {
 <Warning type="info">
 In a real-world use case you might opt to keep track of the active item by the page pathname so that you can link to a specific page, in that case you'd get the current pathname with your respective routing solution and then compare it to your items. For Next.js something like:
 
-
 ```tsx
 /* example.com/two */
 
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 
-const { pathname } = useRouter()
+const { pathname } = useRouter();
 
-const items = ['one', 'two', 'three']
-{items.map(item => {
-  const activeItem = pathname.contains(item)
-})}
-
+const items = ["one", "two", "three"];
+{
+  items.map((item) => {
+    const activeItem = pathname.contains(item);
+  });
+}
 ```
+
 </Warning>
 
 Moving on we wrap our component with `AnimateSharedLayout` from [Framer Motion](https://www.framer.com/motion/), it’s a dead simple way of animating between different elements or components. If you’ve used keynote you can think of it like the “Magic Move” transition. In this example we’re using it to animate our active background state when switching items.
@@ -210,21 +264,26 @@ return (
   <AnimateSharedLayout>
     <ol className={styles.list}>
       {items.map((item, i) => {
-        const isActive = i === activeItem
+        const isActive = i === activeItem;
         return (
           <motion.li
-            className={isActive || i === activeItem - 1 ? styles.itemNoDivider : styles.item}
+            className={
+              isActive || i === activeItem - 1
+                ? styles.itemNoDivider
+                : styles.item
+            }
             whileTap={isActive ? { scale: 0.95 } : { opacity: 0.6 }}
             key={item}
           >
             …
           </motion.li>
-        )
+        );
       })}
     </ol>
   </AnimateSharedLayout>
-)
+);
 ```
+
 ```scss
 .item {
   position: relative;
@@ -240,7 +299,7 @@ return (
     height: 70%;
     background-color: var(--border);
     transition: opacity 200ms ease-out;
-    content: '';
+    content: "";
   }
 
   &:last-of-type {
@@ -259,13 +318,17 @@ return (
 }
 ```
 
-
-
 We'll add a button inside each item in order to change item on click. If the current item is the active item we add a `motion.div` for rendering the active background styles. This is where we are telling AnimatePresence which element to animate by passing a `layoutId`. It can be any string but needs to match for all elements that should share the same transition. Let's add some styling to the active div and put our item text inside a span in order to position it above the background div with CSS.
 
 ```tsx
-<button onClick={() => setActiveitem(i)} type="button" className={styles.button}>
-  {isActive && <motion.div layoutId="SegmentedControlActive" className={styles.active} />}
+<button
+  onClick={() => setActiveitem(i)}
+  type="button"
+  className={styles.button}
+>
+  {isActive && (
+    <motion.div layoutId="SegmentedControlActive" className={styles.active} />
+  )}
   <span className={styles.label}>{item}</span>
 </button>
 ```
@@ -302,7 +365,7 @@ We'll add a button inside each item in order to change item on click. If the cur
   background-color: var(--activeBg);
   border-radius: 7px;
   box-shadow: var(--shadow);
-  content: '';
+  content: "";
 }
 ```
 
@@ -310,7 +373,14 @@ When clicking to change items our background will now animate magically 🪄. If
 
 ## Our complete component
 
-<div style={{ padding: '80px 7px 50px', border: '1px solid var(--border)', borderRadius: '5px', textAlign: 'center' }}>
+<div
+  style={{
+    padding: "80px 7px 50px",
+    border: "1px solid var(--border)",
+    borderRadius: "5px",
+    textAlign: "center",
+  }}
+>
   <SegmentedControl items={["One", "Two", "Three"]} />
 </div>
 
