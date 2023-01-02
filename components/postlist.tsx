@@ -1,37 +1,61 @@
-import { formatDate } from "lib/formatdate";
-import type { Post } from ".contentlayer/generated";
-import Section from "./Section";
-import Link from "./Link";
+import type { Post as PostType } from ".contentlayer/generated";
+import Post from "components/Post";
+import React, { useRef, useState } from "react";
+
+function getRelativeCoordinates(
+  event: React.MouseEvent<HTMLUListElement>,
+  referenceElement: any
+) {
+  const position = {
+    x: event.pageX,
+    y: event.pageY,
+  };
+
+  const offset = {
+    left: referenceElement.offsetLeft,
+    top: referenceElement.clientTop,
+    width: referenceElement.clientWidth,
+    height: referenceElement.clientHeight,
+  };
+
+  let reference = referenceElement.offsetParent;
+
+  while (reference) {
+    offset.left += reference.offsetLeft;
+    offset.top += reference.offsetTop;
+    reference = reference.offsetParent;
+  }
+
+  return {
+    x: position.x - offset.left,
+    y: position.y - offset.top,
+  };
+}
 
 type PostListProps = {
-  posts: Post[];
+  posts: PostType[];
 };
 
 export default function PostList({ posts }: PostListProps) {
+  const [mousePosition, setMousePosition] = useState({
+    x: 240,
+    y: 0,
+  });
+  const listRef = useRef(null);
+  const handleMouseMove = (e: React.MouseEvent<HTMLUListElement>) => {
+    setMousePosition(getRelativeCoordinates(e, listRef.current));
+  };
+
   return (
-    <ul className="flex flex-col gap-5 animated-list">
+    <ul
+      ref={listRef}
+      onMouseMove={(e) => handleMouseMove(e)}
+      className="flex flex-col animated-list"
+    >
       {posts.length === 0 && <p>No posts found</p>}
-      {posts.map(({ publishedAt, slug, title }) => {
-        const publishDate = new Date(publishedAt);
-        const showNewBadge =
-          Math.abs(new Date(publishDate).getTime() - new Date().getTime()) /
-            (24 * 60 * 60 * 1000) <
-          30;
-        return (
-          <li key={slug} className="transition-opacity">
-            <Section heading={formatDate(publishedAt)}>
-              <Link href={`/blog/${slug}`}>
-                {title}
-                {showNewBadge && (
-                  <span className="inline-block px-1.5 py-[1px] relative -top-[2px] font-bold ml-2 text-[10px] uppercase rounded-full brand-gradient text-white">
-                    New
-                  </span>
-                )}
-              </Link>
-            </Section>
-          </li>
-        );
-      })}
+      {posts.map((post) => (
+        <Post key={post.slug} post={post} mousePosition={mousePosition} />
+      ))}
     </ul>
   );
 }
