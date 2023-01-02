@@ -1,4 +1,3 @@
-import { ReactNode } from "react";
 import Messages, { TailBreakdown } from "components/blog/messages";
 import AnimatedMessages from "components/blog/animatedmessages";
 import { RatingPlayground } from "components/blog/rating";
@@ -10,12 +9,22 @@ import { NowPlayingIcon } from "components/blog/nowplaying";
 import SegmentedControl from "components/blog/segmentedcontrol";
 import Parallax from "components/blog/parallax";
 
-const CustomLink = (props: { href: string; children: ReactNode }) => {
-  const href = props.href;
+interface CustomLinkProps
+  extends React.DetailedHTMLProps<
+    React.AnchorHTMLAttributes<HTMLAnchorElement>,
+    HTMLAnchorElement
+  > {}
+
+const CustomLink: React.FC<CustomLinkProps> = (props) => {
+  const href = props?.href;
   const isInternalLink = href && (href.startsWith("/") || href.startsWith("#"));
 
   if (isInternalLink) {
-    return <Link {...props}>{props.children}</Link>;
+    return (
+      <Link {...props} href={href} legacyBehavior>
+        <a>{props.children}</a>
+      </Link>
+    );
   }
 
   return <a target="_blank" rel="noopener noreferrer" {...props} />;
