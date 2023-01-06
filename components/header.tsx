@@ -12,7 +12,7 @@ const links = [
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-10 backdrop-blur-md bg-header">
+    <header className="sticky top-0 z-10 main-header backdrop-blur-md bg-header">
       <nav className="px-4 md:px-6 py-2 max-w-[700px] mx-auto flex justify-between items-center ">
         <Link href="/" className="hidden shrink-0 sm:block">
           <Image

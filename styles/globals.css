@@ -23,6 +23,10 @@
     --headerBackground: rgb(21 21 20 / 80%);
   }
 
+  .main-header {
+    -webkit-tap-highlight-color: transparent;
+  }
+
   .arc-theme {
     --sand1: var(--arc-palette-background);
     --sand12: var(--arc-palette-foregroundPrimary);
