@@ -37,7 +37,7 @@ export default function Post({ post, mousePosition }: PostProps) {
             initial={false}
             transition={{ ease: "easeOut" }}
             style={{ width: imageWidth, height: imageHeight }}
-            className="absolute z-10 invisible overflow-hidden rounded shadow-sm pointer-events-none group-hover:visible bg-primary"
+            className="absolute z-10 hidden overflow-hidden rounded shadow-sm pointer-events-none sm:group-hover:block bg-primary"
           >
             <Image
               src={image}
