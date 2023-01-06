@@ -19,7 +19,8 @@ module.exports = {
         secondary: "var(--sand4)",
         secondaryA: "var(--sandA4)",
         tertiary: "var(--sand3)",
-        blurBackground: "var(--blurBackground)",
+        blur: "var(--blurBackground)",
+        header: "var(--headerBackground)",
       },
       borderColor: {
         primary: "var(--sand6)",

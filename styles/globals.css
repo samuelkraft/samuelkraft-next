@@ -8,9 +8,10 @@
 
 @layer base {
   :root {
-    --blurBackground: rgba(255, 255, 255, 0.95);
+    --blurBackground: rgb(255 255 255 / 95%);
+    --headerBackground: rgb(253 253 252 / 80%);
     --brand: #e38356;
-    --brandTinted: rgba(227, 131, 86, 0.2);
+    --brandTinted: rgb(227 131 86 / 20%);
 
     /* legacy vars from blogposts */
     --bg: var(--sand1);
@@ -18,7 +19,8 @@
   }
 
   .dark-theme {
-    --blurBackground: rgba(15, 15, 15, 0.95);
+    --blurBackground: rgb(15 15 15 / 95%);
+    --headerBackground: rgb(21 21 20 / 80%);
   }
 
   .arc-theme {
@@ -30,6 +32,7 @@
     --bg: var(--arc-palette-background);
     --boxBg: var(--arc-palette-focus);
     --blurBackground: var(--arc-palette-backgroundExtra);
+    --headerBackground: var(--arc-palette-background);
   }
 
   body {
