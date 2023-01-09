@@ -3874,10 +3874,10 @@ quick-lru@^5.1.1:
   resolved "https://registry.yarnpkg.com/quick-lru/-/quick-lru-5.1.1.tgz#366493e6b3e42a3a6885e2e99d18f80fb7a8c932"
   integrity sha512-WuyALRjWPDGtt/wzJiadO5AXY+8hZ80hVpe6MyivgraREW751X3SbhRvG3eLKOYN+8VEvqLcf3wdnt44Z4S4SA==
 
-random-words@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/random-words/-/random-words-1.2.0.tgz#94d0cc8061965efe955d60b80ad93392a7edf2f5"
-  integrity sha512-YP2bXrT19pxtBh22DK9CLcWsmBjUBAGzw3JWJycTNbXm1+0aS6PrKuAJ9aLT0GGaPlPp9LExfJIMVkzhrDZE6g==
+random-words@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/random-words/-/random-words-1.2.1.tgz#118d164cc4c5688b161b7960a8239661043f2dee"
+  integrity sha512-LG7ejRI9bhOeJ9+Rde4nRyCgdpfmC6vDZU/KlWdvWfMhK88aEWyl6f8qkLxlgO/qvWAXanhhulzQBZT8uDApCA==
 
 react-dom@18.2.0:
   version "18.2.0"
