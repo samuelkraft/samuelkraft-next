@@ -100,7 +100,7 @@ export default function About({
         <div className="hidden sm:block">
           <Gallery lastActivity={lastActivity} />
         </div>
-        <div className="-mb-8 sm:hidden">
+        <div className="-mb-8 sm:hidden animate-in">
           <Image
             src={avatar}
             width={48}
@@ -108,59 +108,65 @@ export default function About({
             alt="avatar of Samuel Kraft"
           />
         </div>
-        <Section heading="About me" headingAlignment="right">
-          <div className="flex flex-col gap-6">
-            <p>
-              <em className="font-semibold">Hi there!</em>&nbsp; I’m Samuel, a
-              designer/frontend developer hybrid that loves to build great
-              products with delightful interfaces.
-            </p>
-            <p>
-              Currently working at{" "}
-              <Link href="https://bitrefill.com">Bitrefill</Link>, making living
-              on crypto possible. Before that I worked at music startup{" "}
-              <Link href="https://tracklib.com">Tracklib</Link>, the record
-              store for sampling.
-            </p>
-            <p>
-              I love working in the realm between design and code. Some things
-              that makes me excited are CSS, Design Systems, Animation, crafting
-              excellent component apis and making interfaces feel fun and human.
-            </p>
-            <p>
-              I grew up in Nacka just outside of Stockholm, Sweden and come from
-              a background of studying Photography.
-            </p>
-            <p>
-              Outside of work I’m obsessed with endurance sports and travelling
-              with my family.
-            </p>
-          </div>
-        </Section>
-        <Section heading="Connect" headingAlignment="right">
-          <ul className="flex gap-6 animated-list">
-            {connectLinks.map((link) => (
-              <li className="transition-opacity" key={link.label}>
-                <Link href={link.href}>{link.label}</Link>
-              </li>
-            ))}
-          </ul>
-        </Section>
-        <Section heading="Work" headingAlignment="right">
-          <div className="flex flex-col w-full gap-8">
-            <p>
-              {new Date().getFullYear() - 2013}+ years of experience working in
-              both design & engineering.
-            </p>
-            <Workplaces items={workplaces} />
-          </div>
-        </Section>
-        <Section heading="Side projects" headingAlignment="right">
-          <div className="flex flex-col w-full gap-8">
-            <p>I enjoy hacking on the side.</p>
-            <Workplaces items={sideProjects} />
-          </div>
-        </Section>
+        <div
+          className="flex flex-col gap-16 animate-in sm:animate-none md:gap-24"
+          style={{ "--index": 2 } as React.CSSProperties}
+        >
+          <Section heading="About me" headingAlignment="right">
+            <div className="flex flex-col gap-6">
+              <p>
+                <em className="font-semibold">Hi there!</em>&nbsp; I’m Samuel, a
+                designer/frontend developer hybrid that loves to build great
+                products with delightful interfaces.
+              </p>
+              <p>
+                Currently working at{" "}
+                <Link href="https://bitrefill.com">Bitrefill</Link>, making
+                living on crypto possible. Before that I worked at music startup{" "}
+                <Link href="https://tracklib.com">Tracklib</Link>, the record
+                store for sampling.
+              </p>
+              <p>
+                I love working in the realm between design and code. Some things
+                that makes me excited are CSS, Design Systems, Animation,
+                crafting excellent component apis and making interfaces feel fun
+                and human.
+              </p>
+              <p>
+                I grew up in Nacka just outside of Stockholm, Sweden and come
+                from a background of studying Photography.
+              </p>
+              <p>
+                Outside of work I’m obsessed with endurance sports and
+                travelling with my family.
+              </p>
+            </div>
+          </Section>
+          <Section heading="Connect" headingAlignment="right">
+            <ul className="flex gap-6 animated-list">
+              {connectLinks.map((link) => (
+                <li className="transition-opacity" key={link.label}>
+                  <Link href={link.href}>{link.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </Section>
+          <Section heading="Work" headingAlignment="right">
+            <div className="flex flex-col w-full gap-8">
+              <p>
+                {new Date().getFullYear() - 2013}+ years of experience working
+                in both design & engineering.
+              </p>
+              <Workplaces items={workplaces} />
+            </div>
+          </Section>
+          <Section heading="Side projects" headingAlignment="right">
+            <div className="flex flex-col w-full gap-8">
+              <p>I enjoy hacking on the side.</p>
+              <Workplaces items={sideProjects} />
+            </div>
+          </Section>
+        </div>
       </div>
     </>
   );
