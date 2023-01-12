@@ -40,4 +40,5 @@ next-env.d.ts
 # Contentlayer
 .contentlayer
 
-.vscode
+.vscode/*
+!.vscode/launch.json
