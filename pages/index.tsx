@@ -5,10 +5,7 @@ import { pick } from "@contentlayer/client";
 import Link from "components/Link";
 import Section from "components/Section";
 import PostList from "components/postlist";
-import Image from "next/image";
 
-import tracklibImage from "public/projects/tracklib/ui-mobile.png";
-import trailroutesImage from "public/projects/trailroutes/detail.png";
 import BitrefillGraphic from "components/projects/BitrefillGraphic";
 import TrailRoutesGraphic from "components/projects/TrailRoutesGraphic";
 import TracklibGraphic from "components/projects/TracklibGraphic";
