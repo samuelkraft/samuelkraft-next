@@ -1,5 +1,6 @@
 import Halo from "components/Halo";
 import { useScroll, useTransform, motion, MotionValue } from "framer-motion";
+import { useTheme } from "next-themes";
 import Image from "next/image";
 import list from "public/projects/tracklib/list.png";
 import { useRef } from "react";
@@ -11,13 +12,14 @@ export default function TracklibGraphic() {
     offset: ["start end", "end start"],
   });
   const y = useTransform(scrollYProgress, [0, 1], [70, 0]);
+  const { resolvedTheme } = useTheme();
 
   return (
     <div
       className="relative overflow-hidden bg-black h-[283px] rounded-xl"
       ref={ref}
     >
-      <Halo strength={15}>
+      <Halo strength={resolvedTheme === "light" ? 15 : 8}>
         <motion.div
           className="w-[350px] absolute -right-20 z-10 bottom-0"
           style={{ y }}
