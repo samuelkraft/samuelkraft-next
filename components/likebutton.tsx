@@ -4,6 +4,7 @@ import { safeLocalStorage as localStorage } from "lib/localstorage";
 import useSWR, { mutate } from "swr";
 import fetcher from "lib/fetcher";
 import { IconHeart, IconHeartOutline, IconMoon } from "./Icons";
+import Halo from "./Halo";
 
 export default function LikeButton({ slug }: { slug: string }) {
   const [mounted, setMounted] = useState(false);
@@ -27,10 +28,16 @@ export default function LikeButton({ slug }: { slug: string }) {
         disabled={liked}
         onClick={onLike}
         type="button"
-        className="flex items-center justify-center h-10 gap-2 px-4 text-white transition-transform bg-orange-400 rounded-full like-button hover:cursor-default active:scale-95"
+        className="flex items-center justify-center h-10 gap-2 overflow-hidden text-white transition-transform bg-orange-400 rounded-full like-button hover:cursor-default active:scale-95"
       >
-        {liked ? <IconHeart /> : <IconHeartOutline />}{" "}
-        {typeof likes === "undefined" ? "--" : likes}
+        <Halo
+          className="flex items-center justify-center gap-2 px-4"
+          size={80}
+          strength={20}
+        >
+          {liked ? <IconHeart /> : <IconHeartOutline />}{" "}
+          {typeof likes === "undefined" ? "--" : likes}
+        </Halo>
       </button>
     </div>
   );
