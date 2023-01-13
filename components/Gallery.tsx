@@ -10,6 +10,7 @@ import imageTrailrun from "public/gallery/trailrun.jpg";
 import { ReactNode } from "react";
 import Activity, { ActivityType } from "./Activity";
 import Link from "./Link";
+import Halo from "./Halo";
 
 const ticketingFont = localFont({
   src: "../public/ticketing.woff2",
@@ -114,18 +115,20 @@ function Photo({
             transform: "rotateY(180deg)",
           }}
         >
-          <span className="absolute w-[500px] h-[500px] rotate-[-20deg] bg-repeat bg-[length:280px] bg-[url('/photopaper.png')]" />
-          <div className="z-[1] px-6">
-            <div
-              className={cn(
-                ticketingFont.className,
-                "flex flex-col gap-1 uppercase"
-              )}
-            >
-              <p className="text-sm text-secondary">{fileName}</p>
-              {meta && <p className="text-sm text-secondary">{meta}</p>}
+          <Halo strength={50} className="flex items-center">
+            <span className="absolute w-[500px] h-[500px] rotate-[-20deg] bg-repeat bg-[length:280px] bg-[url('/photopaper.png')]" />
+            <div className="z-[1] px-6">
+              <div
+                className={cn(
+                  ticketingFont.className,
+                  "flex flex-col gap-1 uppercase"
+                )}
+              >
+                <p className="text-sm text-secondary">{fileName}</p>
+                {meta && <p className="text-sm text-secondary">{meta}</p>}
+              </div>
             </div>
-          </div>
+          </Halo>
         </div>
       </motion.div>
     </motion.div>

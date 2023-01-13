@@ -1,6 +1,7 @@
-import React, { ReactNode, useRef, useState } from "react";
+import React, { ReactNode } from "react";
 import useMousePosition from "hooks/usemouseposition";
 import { motion } from "framer-motion";
+import cn from "clsx";
 
 type HaloProps = {
   children: ReactNode | ReactNode[];
@@ -8,12 +9,14 @@ type HaloProps = {
   size?: number;
   /** How strong the effect should be (0-100) */
   strength?: number;
+  className?: string;
 };
 
 export default function Halo({
   children,
   size = 600,
   strength = 10,
+  className,
 }: HaloProps) {
   const ref = React.useRef(null);
   const { x, y } = useMousePosition(ref);
@@ -22,7 +25,7 @@ export default function Halo({
   return (
     <motion.div
       ref={ref}
-      className="relative w-full h-full overflow-hidden"
+      className={cn("relative w-full h-full overflow-hidden", className)}
       whileHover="hover"
     >
       <motion.div
