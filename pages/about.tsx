@@ -1,7 +1,11 @@
+import Image from "next/image";
+import { NextSeo } from "next-seo";
+
 import Link from "components/Link";
 import Section from "components/Section";
 import Workplaces from "components/Workplaces";
 import Gallery from "components/Gallery";
+import { ActivityType } from "components/Activity";
 
 import bitrefillLogo from "public/projects/bitrefill-logo.png";
 import tracklibLogo from "public/projects/tracklib-logo.png";
@@ -10,10 +14,8 @@ import trailroutesLogo from "public/projects/trailroutes-logo.png";
 import notionLogo from "public/projects/notion-logo.png";
 import strengthLogo from "public/projects/strength-logo.png";
 import avatar from "public/avatar.png";
-import { NextSeo } from "next-seo";
+
 import { getActivities, getActivity } from "lib/strava";
-import { ActivityType } from "components/Activity";
-import Image from "next/image";
 
 export const connectLinks = [
   { label: "Email", href: "mailto:samuelkraft@me.com" },
@@ -175,13 +177,8 @@ export default function About({
 export const getStaticProps = async () => {
   const activities: ActivityType[] = await getActivities();
   const lastNonVirtualActivityWithPhoto = activities
-    .filter(
-      (activity) =>
-        activity.sport_type === "Run" ||
-        activity.sport_type === "TrailRun" ||
-        activity.sport_type === "Bike" ||
-        activity.sport_type === "Swim" ||
-        activity.sport_type === "Hike"
+    .filter((activity) =>
+      ["Run", "TrailRun", "Bike", "Swim", "Hike"].includes(activity.sport_type)
     )
     .find((activity) => activity.total_photo_count > 0);
   const activity = await getActivity(
