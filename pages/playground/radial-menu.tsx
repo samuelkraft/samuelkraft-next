@@ -3,6 +3,7 @@ import Image from "next/image";
 import RadialImage from "public/playground/radial-image.jpeg";
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { NextSeo } from "next-seo";
 
 type MenuItem = {
   label: string;
@@ -219,24 +220,46 @@ const items = [
 ];
 
 export default function Playground() {
+  const title = "Radial Menu";
+  const seoTitle = `${title} | Samuel Kraft`;
+  const desc = `Fun interaction from Pinterest on iOS built with Framer Motion`;
+  const url = `https://samuelkraft.com/playground/radial-menu`;
   return (
-    <div className="flex flex-col gap-8">
-      <div className="flex flex-col gap-1">
-        <h1 className="text-primary">Radial Menu</h1>
-        <p className="text-secondary">
-          Fun interaction from Pinterest on iOS built with Framer Motion
-        </p>
+    <>
+      <NextSeo
+        title={seoTitle}
+        description={desc}
+        canonical={url}
+        openGraph={{
+          title: seoTitle,
+          url,
+          description: desc,
+          images: [
+            {
+              url: `https://og-image.samuelkraft.vercel.app/${encodeURIComponent(
+                title
+              )}?desc=${encodeURIComponent(desc)}&theme=dark.png`,
+              alt: title,
+            },
+          ],
+        }}
+      />
+      <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-1">
+          <h1 className="text-primary">{title}</h1>
+          <p className="text-secondary">{desc}</p>
+        </div>
+        <div className="flex flex-col gap-4">
+          <section className="overflow-hidden rounded-lg">
+            <RadialMenu items={items}>
+              <Image src={RadialImage} alt="Portugal" />
+            </RadialMenu>
+          </section>
+          <p className="text-center text-primary">
+            Long-press anywhere on the image
+          </p>
+        </div>
       </div>
-      <div className="flex flex-col gap-4">
-        <section className="overflow-hidden rounded-lg">
-          <RadialMenu items={items}>
-            <Image src={RadialImage} alt="Portugal" />
-          </RadialMenu>
-        </section>
-        <p className="text-center text-primary">
-          Long-press anywhere on the image
-        </p>
-      </div>
-    </div>
+    </>
   );
 }
