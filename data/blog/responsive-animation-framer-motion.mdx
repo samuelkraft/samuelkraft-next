@@ -1,11 +1,12 @@
 ---
-title: 'Responsive Animations with Framer Motion'
-publishedAt: '2021-06-10'
-summary: 'How to write responsive variants with media queries in javascript'
+title: "Responsive Animations with Framer Motion"
+publishedAt: "2021-06-10"
+updatedAt: "2023-02-20",
+summary: "How to write responsive variants with media queries in javascript"
 tags: ["Framer Motion", "Animation", "React"]
 ---
 
-__Framer Motion makes it super easy to create great looking animations, but what if you want to have different animations for different screen sizes? In pure css you can just use a media query but did you know that by utilising the Window.matchMedia API you can use media queries in javascript too? This way we can write responsive animations for javascript animation libraries like Framer Motion & React Spring.__
+**Framer Motion makes it super easy to create great looking animations, but what if you want to have different animations for different screen sizes? In pure css you can just use a media query but did you know that by utilising the Window.matchMedia API you can use media queries in javascript too? This way we can write responsive animations for javascript animation libraries like Framer Motion & React Spring.**
 
 ## Using media queries in javascript
 
@@ -20,11 +21,24 @@ export function useMediaQuery(query) {
     if (media.matches !== matches) {
       setMatches(media.matches);
     }
+
     const listener = () => {
       setMatches(media.matches);
     };
-    media.addListener(listener);
-    return () => media.removeListener(listener);
+
+    if (typeof media.addEventListener === "function") {
+      media.addEventListener("change", listener);
+    } else {
+      media.addListener(listener);
+    }
+
+    return () => {
+      if (typeof media.removeEventListener === "function") {
+        media.removeEventListener("change", listener);
+      } else {
+        media.removeListener(listenerList);
+      }
+    };
   }, [matches, query]);
 
   return matches;
@@ -34,7 +48,7 @@ export function useMediaQuery(query) {
 It takes a media query string (the same way you would write it in css) and returns `true` if the query matches the current screen. If the screen is resized the value will update. Use it in code like this:
 
 ```jsx
- const isSmall = useMediaQuery('(min-width: 480px)');
+const isSmall = useMediaQuery("(min-width: 480px)");
 ```
 
 A good idea is to set up custom hooks matching the media queries you already use in your css so you don't have to remember the pixel values (was it 479 or 480?):
@@ -56,7 +70,7 @@ import { useIsSmall } from 'src/hooks/utils'
 
 const Component = () => {
 	const isSmall = useIsSmall() /* or useMediaQuery('(min-width: 480px)'); */
- 
+
 	const variants = isSmall
 	? {
 	    animate: {
@@ -82,7 +96,7 @@ const Component = () => {
 	      y: -10,
 	    },
 	  };
-	
+
 	return (
 		<motion.div initial="exit" animate="animate" exit="exit">Animated</div>
 	);
@@ -90,4 +104,3 @@ const Component = () => {
 ```
 
 That's it 🙌. You can also use the variable inline `<motion.div animate={isSmall ? { y: 500} : { y: 1000}} />` but I find that using it together with variants is the cleanest way most of the time.
-
