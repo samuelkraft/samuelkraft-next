@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.7",
-    "@mapbox/polyline": "^1.1.1",
+    "@mapbox/polyline": "^1.2.0",
     "@next/font": "^13.1.1",
     "@radix-ui/colors": "^0.1.8",
     "@vercel/analytics": "^0.1.6",
