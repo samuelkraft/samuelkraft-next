@@ -42,7 +42,7 @@
     "@types/react-dom": "18.0.10",
     "autoprefixer": "^10.4.13",
     "eslint": "8.31.0",
-    "eslint-config-next": "13.3.0",
+    "eslint-config-next": "13.4.6",
     "gray-matter": "^4.0.3",
     "postcss": "^8.4.21",
     "rss": "^1.2.2",
