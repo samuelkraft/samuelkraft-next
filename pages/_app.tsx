@@ -1,5 +1,4 @@
 import { ReactElement, ReactNode, useEffect } from "react";
-import { Analytics } from "@vercel/analytics/react";
 import { ThemeProvider } from "next-themes";
 import Head from "next/head";
 import { AppProps } from "next/app";
@@ -69,7 +68,6 @@ export default function MyApp({
         <Header />
         {getLayout(<Component {...pageProps} />)}
       </div>
-      <Analytics />
     </ThemeProvider>
   );
 }
