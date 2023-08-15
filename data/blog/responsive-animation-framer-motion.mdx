@@ -1,16 +1,16 @@
 ---
 title: "Responsive Animations with Framer Motion"
 publishedAt: "2021-06-10"
-updatedAt: "2023-02-20"
+updatedAt: "2023-08-15"
 summary: "How to write responsive variants with media queries in javascript"
 tags: ["Framer Motion", "Animation", "React"]
 ---
 
-**Framer Motion makes it super easy to create great looking animations, but what if you want to have different animations for different screen sizes? In pure css you can just use a media query but did you know that by utilising the Window.matchMedia API you can use media queries in javascript too? This way we can write responsive animations for javascript animation libraries like Framer Motion & React Spring.**
+**Framer Motion makes it super easy to create great looking animations, but what if you want to have different animations for different screen sizes? With CSS animations you can just use a media query but did you know that by utilising the Window.matchMedia API or using CSS variables we can write responsive animations for javascript animation libraries like Framer Motion & React Spring?**
 
 ## Using media queries in javascript
 
-The easiest way to get started with the [window.matchMedia API](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) in React is to create a custom hook. A lot of UI frameworks like [Material UI](https://material-ui.com/components/use-media-query/) and [Chakra UI](https://chakra-ui.com/docs/hooks/use-media-query) already exposes such a hook, but here's what it could look like if you would write your own:
+The easiest way to make a responsive animation for Framer Motion is using the [window.matchMedia API](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) in React with a custom hook. A lot of UI frameworks like [Material UI](https://material-ui.com/components/use-media-query/) and [Chakra UI](https://chakra-ui.com/docs/hooks/use-media-query) already exposes such a hook, but here's what it could look like if you would write your own:
 
 ```jsx
 export function useMediaQuery(query) {
@@ -44,6 +44,12 @@ export function useMediaQuery(query) {
   return matches;
 }
 ```
+
+<Warning type="warning">
+  Not all media query hooks works optimally with server side rendering, by only
+  updating the value on the client. If this is important to you, consider using
+  the CSS variables option described below.
+</Warning>
 
 It takes a media query string (the same way you would write it in css) and returns `true` if the query matches the current screen. If the screen is resized the value will update. Use it in code like this:
 
@@ -103,4 +109,59 @@ const Component = () => {
 }
 ```
 
-That's it 🙌. You can also use the variable inline `<motion.div animate={isSmall ? { y: 500} : { y: 1000}} />` but I find that using it together with variants is the cleanest way most of the time.
+You can also use the variable inline `<motion.div animate={isSmall ? { y: 500} : { y: 1000}} />` but I find that using it together with variants is the cleanest way most of the time.
+
+## Responsive Framer Motion with CSS Variables
+
+Another way to make responsive animations with Framer Motion is to use css variables, as shown using Tailwind CSS in [this excellent video](https://www.youtube.com/watch?v=xSuxsfn13xg) by Sam Selikoff. This is slightly more complicated than using a media query hook but has the advantage of working optimally with server side rendering.
+
+The trick is to use CSS variables as the values of your variants and then update the variables across breakpoints using a media query. Here's a refactor of the previous example:
+
+```jsx {4-6, 9-11, 20}
+const Component = () => {
+	const variants = {
+		animate: {
+			opacity: var("--opacity-animate"),
+			scale: var("--scale-animate"),
+			y: var("--y-animate"),
+		},
+		exit: {
+			opacity: var("--opacity-exit"),
+			scale: var("--scale-exit"),
+			y: var("--y-exit"),
+		},
+	}
+
+	return (
+		<motion.div
+			initial="exit"
+			animate="animate"
+			exit="exit"
+			className="component"
+		>
+			Animated
+		</div>
+	);
+}
+```
+
+And then in your css override the variables with media queries. Note that you only need to specify the values that change in the breakpoint, the rest will be inherited from the inital values.
+
+```css
+.component {
+  --opacity-animate: 1;
+  --scale-animate: 1;
+  --y-animate: "0px";
+  --opacity-exit: 0;
+  --scale-exit: 0.9;
+  --y-exit: "-10px";
+
+  @media (min-width: 480px) {
+    --opacity-exit: 1;
+    --scale-exit: 1;
+    --y-exit: "500px";
+  }
+}
+```
+
+Check out Sam's video above for a more in depth explanation of this technique and how to use it with Tailwind CSS.

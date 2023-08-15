@@ -323,3 +323,11 @@ article .remark-code-title + pre {
   background-color: var(--brand);
   content: "";
 }
+
+.warning > p:first-of-type {
+  margin-top: 0;
+}
+
+.warning > p:last-of-type {
+  margin-bottom: 0;
+}
