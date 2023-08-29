@@ -74,7 +74,8 @@ const getFormattedStats = (activity: ActivityType) => {
       name: "Duration",
       value: new Date(activity.moving_time * 1000)
         .toISOString()
-        .substring(14, 19),
+        .slice(11, 19)
+        .replace(/^00:/, ""),
     },
   ];
 };
