@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 import { Inter } from "@next/font/google";
 
 import SEO from "components/seo";
-import * as gtag from "lib/gtag";
 
 import "../styles/globals.css";
 import Header from "components/header";
@@ -35,16 +34,6 @@ export default function MyApp({
     ));
 
   const router = useRouter();
-
-  useEffect(() => {
-    const handleRouteChange = (url: string) => {
-      gtag.pageview(url);
-    };
-    router.events.on("routeChangeComplete", handleRouteChange);
-    return () => {
-      router.events.off("routeChangeComplete", handleRouteChange);
-    };
-  }, [router.events]);
 
   return (
     <ThemeProvider
