@@ -5,7 +5,14 @@ export type ActivityType = {
   name: string;
   start_date: string;
   moving_time: number;
-  sport_type: "Swim" | "Run" | "Bike" | "Hike" | "TrailRun" | "VirtualRide";
+  sport_type:
+    | "Swim"
+    | "Run"
+    | "Bike"
+    | "Hike"
+    | "TrailRun"
+    | "VirtualRide"
+    | "GravelRide";
   distance: number;
   average_speed: number;
   visibility: "everyone" | "followers" | "me";

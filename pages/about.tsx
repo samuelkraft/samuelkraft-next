@@ -178,7 +178,9 @@ export const getStaticProps = async () => {
   const activities: ActivityType[] = await getActivities();
   const lastNonVirtualActivityWithPhoto = activities
     .filter((activity) =>
-      ["Run", "TrailRun", "Bike", "Swim", "Hike"].includes(activity.sport_type)
+      ["Run", "TrailRun", "Bike", "Swim", "Hike", "GravelRide"].includes(
+        activity.sport_type
+      )
     )
     .find((activity) => activity.total_photo_count > 0);
   const activity = await getActivity(
