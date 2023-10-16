@@ -320,10 +320,10 @@
   dependencies:
     glob "7.1.7"
 
-"@next/font@^13.1.1":
-  version "13.1.1"
-  resolved "https://registry.npmjs.org/@next/font/-/font-13.1.1.tgz#a0cb38bf8a181560f195d82f13f9f92fd0b0dd20"
-  integrity sha512-amygRorS05hYK1/XQRZo5qBl7l2fpHnezeKU/cNveWU5QJg+sg8gMGkUXHtvesNKpiKIJshBRH1TzvO+2sKpvQ==
+"@next/font@^13.5.5":
+  version "13.5.5"
+  resolved "https://registry.yarnpkg.com/@next/font/-/font-13.5.5.tgz#b8e58da5d3c934449816c24eb4dd9d68e11d4c37"
+  integrity sha512-X1BwoqJ/ua9NLCFsWAZ3n3Q74tkHbbqf4YkI9VRn/InqUkY3TnyPao/aSCdJ5w4aWUZBZlOjZJiQnD6JnOCoMw==
 
 "@next/swc-android-arm-eabi@13.1.1":
   version "13.1.1"
