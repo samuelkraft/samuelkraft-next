@@ -13,6 +13,7 @@ import styleroomLogo from "public/projects/styleroom-logo.png";
 import trailroutesLogo from "public/projects/trailroutes-logo.png";
 import notionLogo from "public/projects/notion-logo.png";
 import strengthLogo from "public/projects/strength-logo.png";
+import shapeLogo from "public/projects/shape-logo.png";
 import avatar from "public/avatar.png";
 
 import { getActivities, getActivity } from "lib/strava";
@@ -48,6 +49,12 @@ const workplaces = [
 ];
 
 const sideProjects = [
+  {
+    title: "Shape",
+    description: "A calendar for your workouts",
+    imageSrc: shapeLogo,
+    link: "https://shape.samuelkraft.com",
+  },
   {
     title: "Trail Routes",
     description: "Mapping platform built with react, mapbox, swiftUI",
