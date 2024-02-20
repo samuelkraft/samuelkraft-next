@@ -22,7 +22,7 @@ export const connectLinks = [
   { label: "Email", href: "mailto:samuelkraft@me.com" },
   { label: "Twitter", href: "https://twitter.com/samuelkraft" },
   { label: "GitHub", href: "https://github.com/samuelkraft" },
-  { label: "Strava", href: "https://strava.com/user/18364318" },
+  { label: "Strava", href: "https://strava.com/athletes/18364318" },
 ];
 
 const workplaces = [
