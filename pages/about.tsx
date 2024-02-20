@@ -29,7 +29,7 @@ const workplaces = [
   {
     title: "Design Engineer",
     description: "Bitrefill",
-    time: "2021 - Now",
+    time: "2021 - 2024",
     imageSrc: bitrefillLogo,
     link: "https://bitrefill.com",
   },
