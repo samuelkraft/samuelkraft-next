@@ -7,6 +7,7 @@ import Workplaces from "components/Workplaces";
 import Gallery from "components/Gallery";
 import { ActivityType } from "components/Activity";
 
+import raycastLogo from "public/projects/raycast-logo.jpeg";
 import bitrefillLogo from "public/projects/bitrefill-logo.png";
 import tracklibLogo from "public/projects/tracklib-logo.png";
 import styleroomLogo from "public/projects/styleroom-logo.png";
@@ -26,6 +27,13 @@ export const connectLinks = [
 ];
 
 const workplaces = [
+  {
+    title: "Design Engineer",
+    description: "Raycast",
+    time: "2024 - Now",
+    imageSrc: raycastLogo,
+    link: "https://raycast.com",
+  },
   {
     title: "Design Engineer",
     description: "Bitrefill",
@@ -130,9 +138,10 @@ export default function About({
                 products with delightful interfaces.
               </p>
               <p>
-                Currently working at{" "}
-                <Link href="https://bitrefill.com">Bitrefill</Link>, making
-                living on crypto possible. Before that I worked at music startup{" "}
+                Currently working as a design engineer at{" "}
+                <Link href="https://raycast.com">Raycast</Link>. Before that I
+                worked at <Link href="https://bitrefill.com">Bitrefill</Link>{" "}
+                making living on crypto possible and music startup{" "}
                 <Link href="https://tracklib.com">Tracklib</Link>, the record
                 store for sampling.
               </p>

@@ -219,7 +219,7 @@ const items = [
   },
 ];
 
-export default function Playground() {
+export default function RadialMenuPage() {
   const title = "Radial Menu";
   const seoTitle = `${title} | Samuel Kraft`;
   const desc = `Fun interaction from Pinterest on iOS built with Framer Motion`;
