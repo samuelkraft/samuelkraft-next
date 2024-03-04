@@ -119,7 +119,7 @@
 .glow1 {
   position: absolute;
   top: -1px;
-  width: 90%;
+  width: 80%;
   background-image: linear-gradient(to right, transparent, white, transparent);
   filter: blur(4px);
   height: 4px;
@@ -129,7 +129,7 @@
 .glow2 {
   position: absolute;
   top: -1px;
-  width: 85%;
+  width: 75%;
   height: 2px;
   background-image: linear-gradient(to right, transparent, white, transparent);
   opacity: 0.3;
