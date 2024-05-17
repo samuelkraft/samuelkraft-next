@@ -20,8 +20,8 @@ import avatar from "public/avatar.png";
 import { getActivities, getActivity } from "lib/strava";
 
 export const connectLinks = [
+  { label: "𝕏", href: "https://x.com/samuelkraft" },
   { label: "Email", href: "mailto:samuelkraft@me.com" },
-  { label: "Twitter", href: "https://twitter.com/samuelkraft" },
   { label: "GitHub", href: "https://github.com/samuelkraft" },
   { label: "Strava", href: "https://strava.com/athletes/18364318" },
 ];
