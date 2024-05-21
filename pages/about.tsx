@@ -199,6 +199,7 @@ export const getStaticProps = async () => {
         "Run",
         "TrailRun",
         "Bike",
+        "Ride",
         "Swim",
         "Hike",
         "GravelRide",
