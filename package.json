@@ -11,7 +11,7 @@
     "cache-clear": "./node_modules/.bin/contentlayer build --verbose --clearCache"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.7",
+    "@headlessui/react": "^1.7.17",
     "@mapbox/polyline": "^1.1.1",
     "@next/font": "^13.1.1",
     "@radix-ui/colors": "^0.1.8",
