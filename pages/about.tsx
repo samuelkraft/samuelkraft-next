@@ -62,7 +62,7 @@ const sideProjects = [
     title: "Shape",
     description: "A calendar for your workouts",
     imageSrc: shapeLogo,
-    link: "https://shape.samuelkraft.com",
+    link: "https://shapecalendar.com",
   },
   {
     title: "Trail Routes",
