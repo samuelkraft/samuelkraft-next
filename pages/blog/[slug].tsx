@@ -11,7 +11,6 @@ import Link from "components/Link";
 import Image from "next/image";
 import NewsletterInput from "components/NewsletterInput";
 import Tags from "components/tags";
-import LikeButton from "components/likebutton";
 import MDXComponents from "components/MDXComponents";
 import Parallax from "components/blog/parallax";
 
@@ -109,8 +108,6 @@ export default function Post({ post, related }: PostProps) {
           </div>
         </article>
 
-        <LikeButton slug={post.slug} />
-
         <Tags tags={post.tags} />
 
         <div className="flex flex-col gap-4">
@@ -123,7 +120,7 @@ export default function Post({ post, related }: PostProps) {
         </div>
 
         {related.length ? (
-          <div className="flex flex-col items-start gap-10">
+          <div className="flex flex-col gap-10 items-start">
             <h3 className="text-xl">Related posts</h3>
             <div className="will-change-transform">
               <PostList posts={related} />

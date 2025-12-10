@@ -1,0 +1,77 @@
+---
+title: "Using SF Pro Rounded with React Native"
+publishedAt: "2025-12-10"
+summary: "How to use San Francisco Pro Rounded with React Native"
+tags: ["React Native", "Font"]
+---
+
+Apple's San Francisco is the default system font for React Native on iOS. Apple also offers a rounded version called SF Pro Rounded, used in apps like Reminders. While Swift apps can utilize this font variant by setting the [Font.Design](https://developer.apple.com/documentation/swiftui/font/design) to `rounded`, I couldn't find any information on how to implement it in React Native, prompting me to create this post.
+
+## How to use SF Pro Rounded with React Native
+
+React Native supports the `ui-rounded` font family by default. You can use it in your app by setting the `fontFamily` prop to `ui-rounded`. Learn more about `ui-rounded` [here](https://drafts.csswg.org/css-fonts-4/#ui-rounded-def).
+
+```tsx
+import { Text, StyleSheet } from "react-native";
+
+const styles = StyleSheet.create({
+  text: {
+    fontFamily: "ui-rounded",
+  },
+});
+```
+
+## SF Pro Rounded with NativeWind
+
+Extend your NativeWind theme to include the `ui-rounded` font family.
+
+```ts
+import { extendTheme } from "nativewind";
+
+module.exports = {
+  content: ["./src/**/*.{js,ts,jsx,tsx}"],
+  presets: [require("nativewind/preset")],
+  theme: {
+    extend: {
+      fontFamily: {
+        rounded: ["ui-rounded", "system-ui", "sans-serif"],
+      },
+    },
+  },
+};
+```
+
+Then use it in your app:
+
+```tsx
+import { View, Text, StyleSheet } from "react-native";
+
+function App() {
+  return (
+    <View>
+      <Text className="font-rounded">Hello, world!</Text>
+    </View>
+  );
+}
+```
+
+## Setting a global font family in React Native
+
+In React Native, styles do not cascade like in regular CSS. One way to set a global font family is to create a custom `<Text />` component that applies the font family throughout the app.
+
+```tsx
+import { Text as RNText, StyleSheet } from "react-native";
+import cn from "clsx";
+
+function Text({ children, className, ...props }: TextProps) {
+  return (
+    <RNText className={cn("font-rounded", className)} {...props}>
+      {children}
+    </RNText>
+  );
+}
+```
+
+## Other variants: SF Mono
+
+React Native also supports the `ui-monospace` font family [out of the box](https://reactnative.dev/docs/text-style-props#fontfamily). You can use it in your iOS app by setting the `fontFamily` prop to `ui-monospace`.
