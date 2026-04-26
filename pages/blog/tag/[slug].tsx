@@ -5,9 +5,10 @@ import { useRouter } from "next/router";
 // Utils
 import { pick } from "@contentlayer/client";
 import { allPosts, Post } from "contentlayer/generated";
+import { PostListLink } from "components/Post";
 import PostList from "components/postlist";
-import Link from "components/Link";
 import { NextSeo } from "next-seo";
+import { IconArrowRight } from "components/Icons";
 
 type TagProps = {
   posts: Post[];
@@ -51,10 +52,12 @@ const Tag = ({ posts }: TagProps): JSX.Element => {
           className="flex flex-col gap-12 animate-in"
           style={{ "--index": 2 } as React.CSSProperties}
         >
-          <PostList posts={posts} />
-          <Link href="/blog" underline>
-            ← See all posts
-          </Link>
+          <PostList posts={posts}>
+            <PostListLink href="/blog">
+              <span>See all posts</span>
+              <IconArrowRight className="w-4 h-4" />
+            </PostListLink>
+          </PostList>
         </div>
       </div>
     </>

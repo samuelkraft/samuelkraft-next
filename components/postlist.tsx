@@ -1,61 +1,19 @@
-import type { Post as PostType } from ".contentlayer/generated";
-import Post from "components/Post";
-import React, { useRef, useState } from "react";
-
-function getRelativeCoordinates(
-  event: React.MouseEvent<HTMLUListElement>,
-  referenceElement: any
-) {
-  const position = {
-    x: event.pageX,
-    y: event.pageY,
-  };
-
-  const offset = {
-    left: referenceElement.offsetLeft,
-    top: referenceElement.clientTop,
-    width: referenceElement.clientWidth,
-    height: referenceElement.clientHeight,
-  };
-
-  let reference = referenceElement.offsetParent;
-
-  while (reference) {
-    offset.left += reference.offsetLeft;
-    offset.top += reference.offsetTop;
-    reference = reference.offsetParent;
-  }
-
-  return {
-    x: position.x - offset.left,
-    y: position.y - offset.top,
-  };
-}
+import Post, { type PostPreview } from "components/Post";
+import type { ReactNode } from "react";
 
 type PostListProps = {
-  posts: PostType[];
+  children?: ReactNode;
+  posts: PostPreview[];
 };
 
-export default function PostList({ posts }: PostListProps) {
-  const [mousePosition, setMousePosition] = useState({
-    x: 240,
-    y: 0,
-  });
-  const listRef = useRef(null);
-  const handleMouseMove = (e: React.MouseEvent<HTMLUListElement>) => {
-    setMousePosition(getRelativeCoordinates(e, listRef.current));
-  };
-
+export default function PostList({ children, posts }: PostListProps) {
   return (
-    <ul
-      ref={listRef}
-      onMouseMove={(e) => handleMouseMove(e)}
-      className="flex flex-col animated-list"
-    >
+    <ol className="w-full animated-list">
       {posts.length === 0 && <p>No posts found</p>}
       {posts.map((post) => (
-        <Post key={post.slug} post={post} mousePosition={mousePosition} />
+        <Post key={post.slug} post={post} />
       ))}
-    </ul>
+      {children}
+    </ol>
   );
 }

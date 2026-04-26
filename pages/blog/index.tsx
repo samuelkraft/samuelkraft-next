@@ -2,17 +2,21 @@ import { pick } from "@contentlayer/client";
 import { allPosts, Post } from ".contentlayer/generated";
 import { GetStaticProps } from "next";
 import { NextSeo } from "next-seo";
-import PostList from "components/postlist";
 import Input from "components/input";
 import { useState } from "react";
 import { IconSearch } from "components/Icons";
+import PostList from "components/postlist";
 
 const seoTitle = "Blog | Samuel Kraft";
 const seoDesc =
   "I write about development, design, React, CSS, animation and more!";
 
 type BlogProps = {
-  posts: Post[];
+  posts: BlogPost[];
+};
+
+type BlogPost = Pick<Post, "slug" | "title" | "summary" | "publishedAt"> & {
+  tags: string[];
 };
 
 export default function Blog({ posts }: BlogProps) {
@@ -81,9 +85,10 @@ export const getStaticProps: GetStaticProps = async () => {
       (a, b) =>
         new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
     )
-    .map((post) =>
-      pick(post, ["slug", "title", "summary", "publishedAt", "image"])
-    );
+    .map((post) => ({
+      ...pick(post, ["slug", "title", "summary", "publishedAt"]),
+      tags: post.tags ?? [],
+    }));
 
   return {
     props: { posts },

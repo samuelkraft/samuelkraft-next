@@ -23,7 +23,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function MyInput(
         )}
       >
         {pfix && (
-          <label htmlFor={id} className="pl-2.5 pr-1.5">
+          <label htmlFor={id} className="flex items-center pl-2.5 pr-1.5">
             {pfix}
           </label>
         )}
@@ -34,11 +34,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function MyInput(
           ref={ref}
           {...otherProps}
         />
-        {suffix && (
-          <label htmlFor={id} className="pl-2 pr-3">
-            {suffix}
-          </label>
-        )}
+        {suffix && <div className="flex items-center pl-2 pr-3">{suffix}</div>}
       </div>
       {error && <p className="text-sm text-red-600">{error}</p>}
     </div>
