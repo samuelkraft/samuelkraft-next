@@ -70,7 +70,7 @@ const newProjectItems: Project[] = [
     slug: "ray-so",
     title: "ray.so by Raycast",
     description: [
-      { text: "Browse themes, AI presets, quicklinks & more. Partnered with brands like " },
+      { text: "Browse themes, AI presets, quicklinks & more. Partnered with companies like " },
       {
         text: "OpenAI",
         href: "https://x.com/samuelkraft/status/1858903109839548529",
@@ -95,7 +95,7 @@ const newProjectItems: Project[] = [
         text: "Gemini",
         href: "https://x.com/samuelkraft/status/2002057848973635983",
       },
-      { text: " and more on custom branded code themes." },
+      { text: " on custom branded code themes." },
     ],
     href: "https://ray.so",
     graphic: "ray-so",
@@ -258,14 +258,14 @@ function SelectedProjects({
       >
         Projects
       </h2>
-      <ul className="flex flex-col gap-8">
+      <ul className="flex flex-col gap-4">
         {projects.map((project, index) => (
           <li
             className="animate-in"
             key={project.title}
             style={animationStyle(startIndex + index + 1)}
           >
-            <div className="flex relative flex-col gap-4">
+            <div className="flex relative flex-col gap-4 px-4 py-4 -mx-4 rounded-2xl transition-colors hover:bg-secondaryA">
               <Link
                 href={project.href}
                 className="absolute inset-0 z-0"
@@ -321,7 +321,7 @@ function SelectedPosts({
               >
                 <Link
                   href={`/blog/${post.slug}`}
-                  className="flex gap-4 items-center px-4 py-4 -mx-4 rounded-lg transition-colors hover:bg-secondaryA"
+                  className="flex gap-4 items-center px-4 py-4 -mx-4 rounded-2xl transition-colors hover:bg-secondaryA"
                   unstyled
                 >
                   <div className="flex flex-wrap flex-1 gap-y-1 gap-x-3 items-baseline min-w-0">
@@ -345,7 +345,7 @@ function SelectedPosts({
           >
             <Link
               href="/blog"
-              className="flex gap-1 items-center px-4 py-4 -mx-4 rounded-lg transition-colors text-secondary hover:bg-secondaryA hover:text-primary"
+              className="flex gap-1 items-center px-4 py-4 -mx-4 rounded-2xl transition-colors text-secondary hover:bg-secondaryA hover:text-primary"
               unstyled
             >
               <span>See all</span>

@@ -10,7 +10,7 @@ type PostProps = {
 };
 
 const postRowLinkClassName =
-  "flex gap-4 items-center px-4 py-4 -mx-4 rounded-lg transition-colors hover:bg-secondaryA";
+  "flex gap-4 items-center px-4 py-4 -mx-4 rounded-2xl transition-colors hover:bg-secondaryA";
 const postRowContentClassName =
   "flex flex-wrap flex-1 gap-y-1 gap-x-3 items-baseline min-w-0";
 
