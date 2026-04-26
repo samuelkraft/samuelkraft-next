@@ -1,63 +1,67 @@
-import { formatDate } from "lib/formatdate";
-import type { Post } from ".contentlayer/generated";
-import Section from "./Section";
+import type { Post as PostType } from ".contentlayer/generated";
+import type { ReactNode } from "react";
 import Link from "./Link";
-import Image from "next/image";
-import { motion } from "framer-motion";
-import React from "react";
+
+export type PostPreview = Pick<PostType, "slug" | "title" | "publishedAt"> &
+  Partial<Pick<PostType, "image">>;
 
 type PostProps = {
-  post: Post;
-  mousePosition?: {
-    x: number;
-    y: number;
-  };
+  post: PostPreview;
 };
 
-export default function Post({ post, mousePosition }: PostProps) {
-  const { publishedAt, slug, title, image } = post;
-  const publishDate = new Date(publishedAt);
-  const showNewBadge =
-    Math.abs(new Date(publishDate).getTime() - new Date().getTime()) /
-      (24 * 60 * 60 * 1000) <
-    30;
-  const imageHeight = 150;
-  const imageWidth = 300;
-  const imageOffset = 22;
+const postRowLinkClassName =
+  "flex gap-4 items-center px-4 py-4 -mx-4 rounded-2xl transition-colors hover:bg-secondaryA";
+const postRowContentClassName =
+  "flex flex-wrap flex-1 gap-y-1 gap-x-3 items-baseline min-w-0";
 
+function formatPostDate(date: string) {
+  const parsedDate = new Date(`${date}T00:00:00`);
+
+  return parsedDate.toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
+}
+
+export default function Post({ post }: PostProps) {
   return (
-    <li className="py-2.5 group">
-      <div className="transition-opacity">
-        {image && mousePosition && (
-          <motion.div
-            animate={{
-              top: mousePosition.y - imageHeight - imageOffset,
-              left: mousePosition.x + imageOffset,
-            }}
-            initial={false}
-            transition={{ ease: "easeOut" }}
-            style={{ width: imageWidth, height: imageHeight }}
-            className="absolute z-10 hidden overflow-hidden rounded shadow-sm pointer-events-none sm:group-hover:block bg-primary"
-          >
-            <Image
-              src={image}
-              alt={title}
-              width={imageWidth}
-              height={imageHeight}
-            />
-          </motion.div>
-        )}
-        <Section heading={formatDate(publishedAt)}>
-          <Link href={`/blog/${slug}`}>
-            {title}
-            {showNewBadge && (
-              <span className="inline-block px-1.5 py-[1px] relative -top-[2px] font-bold ml-2 text-[10px] uppercase rounded-full brand-gradient text-white">
-                New
-              </span>
-            )}
-          </Link>
-        </Section>
-      </div>
+    <li className="transition-opacity">
+      <Link
+        href={`/blog/${post.slug}`}
+        className={postRowLinkClassName}
+        unstyled
+      >
+        <div className={postRowContentClassName}>{post.title}</div>
+        <time
+          className="tabular-nums text-right shrink-0 text-secondary"
+          dateTime={post.publishedAt}
+        >
+          {formatPostDate(post.publishedAt)}
+        </time>
+      </Link>
+    </li>
+  );
+}
+
+export function PostListLink({
+  children,
+  href,
+}: {
+  children: ReactNode;
+  href: string;
+}) {
+  return (
+    <li className="transition-opacity">
+      <Link
+        href={href}
+        className={`${postRowLinkClassName} text-secondary hover:text-primary`}
+        unstyled
+      >
+        <div className="flex flex-wrap flex-1 gap-y-1 gap-x-2 items-center min-w-0">
+          {children}
+        </div>
+      </Link>
     </li>
   );
 }

@@ -35,7 +35,7 @@ module.exports = {
         },
       },
       animation: {
-        in: "in .6s both",
+        in: "in 500ms both",
       },
     },
   },

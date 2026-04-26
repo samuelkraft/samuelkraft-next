@@ -3,7 +3,7 @@ import { allProjects, Project as ProjectType } from ".contentlayer/generated";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { NextSeo } from "next-seo";
 import MDXComponents from "components/MDXComponents";
-import { connectLinks } from "pages/about";
+import { connectLinks } from "lib/connect-links";
 import Link from "components/Link";
 import { ReactElement } from "react";
 import HitCounter from "components/hitcounter";
@@ -46,7 +46,7 @@ export default function Project({ project, rest }: ProjectProps) {
       <div className="flex flex-col gap-20">
         <article>
           <div className="h-20" />
-          <div className="flex flex-col gap-3 px-4 md:px-6 py-2 max-w-[700px] mx-auto ">
+          <div className="flex flex-col gap-3 px-4 md:px-6 py-2 max-w-[640px] mx-auto ">
             <h1 className="text-2xl font-semibold">{project.title}</h1>
             <div className="flex gap-3">
               <p className="text-secondary">{project.time}</p>
@@ -65,8 +65,8 @@ export default function Project({ project, rest }: ProjectProps) {
             <Component components={MDXComponents} />
           </div>
         </article>
-        <hr className="border-primary px-4 md:px-6 py-2 max-w-[700px] mx-auto w-full" />
-        <div className="flex flex-col gap-3.5 px-4 md:px-6 py-2 max-w-[700px] mx-auto w-full">
+        <hr className="border-primary px-4 md:px-6 py-2 max-w-[640px] mx-auto w-full" />
+        <div className="flex flex-col gap-3.5 px-4 md:px-6 py-2 max-w-[640px] mx-auto w-full">
           <h3 className="text-xl">Want a deeper dive?</h3>
           <p className="text-secondary">
             Get in touch to schedule a presentation

@@ -6,13 +6,14 @@ import { NextSeo } from "next-seo";
 
 import { formatDate } from "lib/formatdate";
 import HitCounter from "components/hitcounter";
+import { PostListLink } from "components/Post";
 import PostList from "components/postlist";
-import Link from "components/Link";
 import Image from "next/image";
 import NewsletterInput from "components/NewsletterInput";
 import Tags from "components/tags";
 import MDXComponents from "components/MDXComponents";
 import Parallax from "components/blog/parallax";
+import { IconArrowRight } from "components/Icons";
 
 type PostProps = {
   post: PostType;
@@ -58,7 +59,7 @@ export default function Post({ post, related }: PostProps) {
       <div className="flex flex-col gap-20">
         <article>
           {post.slug === "spring-parallax-framer-motion-guide" ? (
-            <div className="relative h-0 pb-[50%] bg-[#00000c] overflow-hidden rounded-xl">
+            <div className="relative h-0 pb-[50%] overflow-hidden rounded-xl bg-[#00000c]">
               <div className="absolute inset-0">
                 <Parallax offset={100}>
                   <Image
@@ -80,16 +81,20 @@ export default function Post({ post, related }: PostProps) {
                   sizes="(min-width: 540px) 120px, 50px"
                 />
               </div>
+              <div className="absolute inset-0 pointer-events-none rounded-[inherit] shadow-[inset_0_0_0_1px_var(--imageInnerShadow)]" />
             </div>
           ) : (
-            <Image
-              src={post.image}
-              alt={`${post.title} post image`}
-              width={700}
-              height={350}
-              className="w-[calc(100%+32px)] -ml-4 md:rounded-xl max-w-none border  border-primary"
-              priority
-            />
+            <div className="relative -ml-4 w-[calc(100%+32px)] overflow-hidden md:rounded-xl">
+              <Image
+                src={post.image}
+                alt={`${post.title} post image`}
+                width={700}
+                height={350}
+                className="w-full max-w-none"
+                priority
+              />
+              <div className="absolute inset-0 pointer-events-none rounded-[inherit] shadow-[inset_0_0_0_1px_var(--imageInnerShadow)]" />
+            </div>
           )}
           <div className="h-8" />
           <div className="flex flex-col gap-3">
@@ -120,14 +125,14 @@ export default function Post({ post, related }: PostProps) {
         </div>
 
         {related.length ? (
-          <div className="flex flex-col gap-10 items-start">
+          <div className="flex flex-col gap-10">
             <h3 className="text-xl">Related posts</h3>
-            <div className="will-change-transform">
-              <PostList posts={related} />
-            </div>
-            <Link href="/blog" underline>
-              ← See all
-            </Link>
+            <PostList posts={related}>
+              <PostListLink href="/blog">
+                <span>See all</span>
+                <IconArrowRight className="w-4 h-4" />
+              </PostListLink>
+            </PostList>
           </div>
         ) : null}
       </div>

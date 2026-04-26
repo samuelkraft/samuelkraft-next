@@ -2,6 +2,15 @@ const { withContentlayer } = require("next-contentlayer"); // eslint-disable-lin
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async redirects() {
+    return [
+      {
+        source: "/about",
+        destination: "/",
+        permanent: true,
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {

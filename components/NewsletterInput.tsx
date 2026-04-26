@@ -43,7 +43,7 @@ export default function NewsletterInput() {
         id="email"
         type="email"
         placeholder="Email address…"
-        pfix={<IconAtSign className="text-secondary" />}
+        pfix={<IconAtSign className="w-5 h-5 text-secondary" />}
         required
         suffix={
           <button
@@ -53,7 +53,7 @@ export default function NewsletterInput() {
               success && "bg-green-600",
               !success && !loading && "hover:bg-primary focus:bg-primary",
               !value && !success && "opacity-0",
-              "transition-all duration-150  w-7 h-7 rounded-full -mr-1.5 flex items-center justify-center"
+              "transition-all duration-150 w-7 h-7 rounded-full -mr-1.5 flex items-center justify-center"
             )}
           >
             {loading ? (
@@ -61,7 +61,7 @@ export default function NewsletterInput() {
             ) : success ? (
               <IconCheck className="text-white" />
             ) : (
-              <IconArrowRight />
+              <IconArrowRight className="w-5 h-5" />
             )}
           </button>
         }

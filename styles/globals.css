@@ -7,11 +7,21 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    font-size: 14px;
+  }
+
   :root {
     --blurBackground: rgb(255 255 255 / 95%);
     --headerBackground: rgb(253 253 252 / 80%);
     --brand: #e38356;
     --brandTinted: rgb(227 131 86 / 20%);
+    --imageInnerShadow: rgb(0 0 0 / 10%);
+    --codeBackground: var(--sand3);
+    --codeText: var(--sand11);
+    --codeMuted: var(--sand10);
+    --codeStrong: var(--sand12);
+    --codeAccent: var(--brand);
 
     /* legacy vars from blogposts */
     --bg: var(--sand1);
@@ -21,6 +31,7 @@
   .dark-theme {
     --blurBackground: rgb(15 15 15 / 95%);
     --headerBackground: rgb(21 21 20 / 80%);
+    --imageInnerShadow: rgb(255 255 255 / 10%);
   }
 
   .main-header {
@@ -56,7 +67,7 @@
 }
 
 .project > :not(.not-prose, video) {
-  max-width: 700px;
+  max-width: 640px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 1rem;
@@ -152,21 +163,15 @@ input:-webkit-autofill:focus {
 }
 
 .animate-in {
-  animation-delay: calc(var(--index) * 130ms);
+  animation-delay: calc(var(--index) * 90ms);
 }
 
-/*
- * Hopscotch
- * by Jan T. Sott
- * https://github.com/idleberg/Hopscotch
- *
- * This work is licensed under the Creative Commons CC0 1.0 Universal License
- */
+/* Minimal syntax theme */
 
 code[class*="language-"],
 pre[class*="language-"] {
-  color: #b9b5b8;
-  font-size: 14px;
+  color: var(--codeText);
+  font-size: 13px;
   font-family: Menlo, Monaco, "Lucida Console", "Courier New", Courier,
     monospace;
   line-height: 1.375;
@@ -177,14 +182,7 @@ pre[class*="language-"] {
   -moz-hyphens: none;
   -ms-hyphens: none;
   hyphens: none;
-  background: #322931;
-}
-
-@media (min-width: 480px) {
-  code[class*="language-"],
-  pre[class*="language-"] {
-    font-size: 15px;
-  }
+  background: var(--codeBackground);
 }
 
 pre > code[class*="language-"] {
@@ -210,11 +208,11 @@ pre[class*="language-"] {
 .token.prolog,
 .token.doctype,
 .token.cdata {
-  color: #797379;
+  color: var(--codeMuted);
 }
 
 .token.punctuation {
-  color: #b9b5b8;
+  color: var(--codeText);
 }
 
 .namespace {
@@ -222,37 +220,40 @@ pre[class*="language-"] {
 }
 
 .token.null,
-.token.operator,
 .token.boolean,
 .token.number {
-  color: #fd8b19;
+  color: var(--codeAccent);
+}
+
+.token.operator {
+  color: var(--codeStrong);
 }
 
 .token.property {
-  color: #fdcc59;
+  color: var(--codeText);
 }
 
 .token.tag {
-  color: #1290bf;
+  color: var(--codeStrong);
 }
 
 .token.string {
-  color: #149b93;
+  color: var(--codeText);
 }
 
 .token.selector {
-  color: #c85e7c;
+  color: var(--codeStrong);
 }
 
 .token.attr-name {
-  color: #fd8b19;
+  color: var(--codeText);
 }
 
 .token.entity,
 .token.url,
 .language-css .token.string,
 .style .token.string {
-  color: #149b93;
+  color: var(--codeText);
 }
 
 .token.attr-value,
@@ -260,22 +261,22 @@ pre[class*="language-"] {
 .token.control,
 .token.directive,
 .token.unit {
-  color: #8fc13e;
+  color: var(--codeAccent);
 }
 
 .token.statement,
 .token.regex,
 .token.atrule {
-  color: #149b93;
+  color: var(--codeAccent);
 }
 
 .token.placeholder,
 .token.variable {
-  color: #1290bf;
+  color: var(--codeStrong);
 }
 
 .token.important {
-  color: #dd464c;
+  color: var(--codeAccent);
   font-weight: bold;
 }
 
@@ -291,10 +292,10 @@ pre > code.highlight {
 .remark-code-title {
   padding: 12px 25px;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
   font-family: Menlo, Monaco, "Lucida Console", "Courier New", Courier,
     monospace;
-  background-color: var(--boxBg);
+  background-color: var(--codeBackground);
   border-top-left-radius: 0.3em;
   border-top-right-radius: 0.3em;
 }

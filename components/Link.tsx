@@ -6,16 +6,18 @@ type LinkProps = {
   children: ReactNode;
   className?: string;
   underline?: boolean;
+  unstyled?: boolean;
 } & NextLinkProps;
 
 export default function Link(props: LinkProps) {
   const isExternal = !props.href.toString().startsWith("/");
-  const { underline, ...rest } = props;
+  const { underline, unstyled, ...rest } = props;
   return (
     <NextLink
       {...rest}
       className={cn(
-        (isExternal || underline) && "underline underline-offset-4",
+        !unstyled && (isExternal || underline) && "underline underline-offset-2 decoration-dotted hover:decoration-solid",
+
         props.className
       )}
       target={isExternal ? "_blank" : undefined}
