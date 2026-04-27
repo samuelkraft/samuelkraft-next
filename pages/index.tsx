@@ -246,18 +246,28 @@ function RaySoGraphic() {
 function ProjectImageGraphic({
   alt,
   src,
+  width = 1024,
+  height = 538,
 }: {
   alt: string;
   src: string;
+  width?: number;
+  height?: number;
 }) {
   return (
-    <div className="relative h-[283px] overflow-hidden rounded-xl bg-[#101010]">
+    <div
+      className="overflow-hidden rounded-xl bg-[#101010]"
+      style={{ aspectRatio: `${width} / ${height}` }}
+    >
       <Image
         alt={alt}
-        className="object-cover"
-        fill
+        className="block w-full h-auto"
+        height={height}
+        quality={100}
         sizes="(max-width: 672px) calc(100vw - 64px), 576px"
         src={src}
+        style={{ clipPath: "inset(0 0 1px 0)" }}
+        width={width}
       />
     </div>
   );
@@ -276,7 +286,7 @@ function RaycastFocusGraphic() {
   return (
     <ProjectImageGraphic
       alt="Raycast Focus landing page"
-      src="/projects/raycast-focus.jpg"
+      src="/projects/raycast-focus.png"
     />
   );
 }
@@ -302,7 +312,7 @@ function ProjectGraphicBySlug({ slug }: { slug: string }) {
     return (
       <ProjectImageGraphic
         alt="Raycast AI landing page"
-        src="/projects/raycast-ai.jpg"
+        src="/projects/raycast-ai.png"
       />
     );
   }
@@ -311,7 +321,7 @@ function ProjectGraphicBySlug({ slug }: { slug: string }) {
     return (
       <ProjectImageGraphic
         alt="Raycast Notes landing page"
-        src="/projects/raycast-notes.jpg"
+        src="/projects/raycast-notes.png"
       />
     );
   }
