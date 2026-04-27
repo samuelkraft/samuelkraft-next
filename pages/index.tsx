@@ -100,6 +100,34 @@ const newProjectItems: Project[] = [
     href: "https://ray.so",
     graphic: "ray-so",
   },
+  {
+    slug: "raycast-ai-lite",
+    title: "Raycast AI Lite",
+    description: "Built a lightweight web version of Raycast AI to try for free.",
+    href: "https://x.com/samuelkraft/status/1915029407372386328",
+    graphic: "raycast-ai-lite",
+  },
+  {
+    slug: "raycast-focus",
+    title: "Raycast Focus landing page",
+    description: "Built the landing page for Raycast Focus - stay in flow by blocking distracting apps and websites.",
+    href: "https://www.raycast.com/core-features/focus",
+    graphic: "raycast-focus",
+  },
+  {
+    slug: "raycast-ai",
+    title: "Raycast AI landing page",
+    description: "A landing page for Raycast AI, showing how AI fits naturally into everyday desktop workflows.",
+    href: "https://www.raycast.com/core-features/ai",
+    graphic: "raycast-ai",
+  },
+  {
+    slug: "raycast-notes",
+    title: "Raycast Notes landing page",
+    description: "A focused launch page for Raycast Notes, a fast place to capture thoughts without leaving your workflow.",
+    href: "https://www.raycast.com/core-features/notes",
+    graphic: "raycast-notes",
+  },
 ];
 
 const experienceStartYear = 2013;
@@ -215,6 +243,44 @@ function RaySoGraphic() {
   );
 }
 
+function ProjectImageGraphic({
+  alt,
+  src,
+}: {
+  alt: string;
+  src: string;
+}) {
+  return (
+    <div className="relative h-[283px] overflow-hidden rounded-xl bg-[#101010]">
+      <Image
+        alt={alt}
+        className="object-cover"
+        fill
+        sizes="(max-width: 672px) calc(100vw - 64px), 576px"
+        src={src}
+      />
+    </div>
+  );
+}
+
+function RaycastAiGraphic() {
+  return (
+    <ProjectImageGraphic
+      alt="Raycast AI Lite"
+      src="/projects/raycast-ai-lite.png"
+    />
+  );
+}
+
+function RaycastFocusGraphic() {
+  return (
+    <ProjectImageGraphic
+      alt="Raycast Focus landing page"
+      src="/projects/raycast-focus.jpg"
+    />
+  );
+}
+
 function ProjectGraphicBySlug({ slug }: { slug: string }) {
   if (slug === "shape-calendar") {
     return <ShapeCalendarGraphic />;
@@ -222,6 +288,32 @@ function ProjectGraphicBySlug({ slug }: { slug: string }) {
 
   if (slug === "glaze") {
     return <GlazeGraphic />;
+  }
+
+  if (slug === "raycast-ai-lite") {
+    return <RaycastAiGraphic />;
+  }
+
+  if (slug === "raycast-focus") {
+    return <RaycastFocusGraphic />;
+  }
+
+  if (slug === "raycast-ai") {
+    return (
+      <ProjectImageGraphic
+        alt="Raycast AI landing page"
+        src="/projects/raycast-ai.jpg"
+      />
+    );
+  }
+
+  if (slug === "raycast-notes") {
+    return (
+      <ProjectImageGraphic
+        alt="Raycast Notes landing page"
+        src="/projects/raycast-notes.jpg"
+      />
+    );
   }
 
   if (slug === "ray-so") {
